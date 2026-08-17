@@ -1,6 +1,20 @@
 [submodule "ticket"]
 	path = ticket
 	url = "https://github.com/mankinskin/ticket"
+	branch = "main"
 [submodule "spec"]
 	path = spec
 	url = "https://github.com/mankinskin/spec"
+	branch = "main"
+[submodule "audit"]
+	path = audit
+	url = "https://github.com/mankinskin/audit"
+	branch = "main"
+[submodule "feedback"]
+	path = feedback
+	url = "https://github.com/mankinskin/feedback"
+	branch = "main"
+[submodule "session"]
+	path = session
+	url = "https://github.com/mankinskin/session"
+	branch = "main"
