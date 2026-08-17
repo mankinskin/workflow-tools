@@ -1,0 +1,36 @@
+[package]
+name = "example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[features]
+default = []
+cli = ["dep:transport-harness", "transport-harness/cli"]
+mcp = ["dep:transport-harness", "transport-harness/mcp"]
+http = ["dep:transport-harness", "transport-harness/http"]
+
+[[bin]]
+name = "example"
+path = "src/bin/example.rs"
+required-features = ["cli"]
+
+[[bin]]
+name = "example-mcp"
+path = "src/bin/example-mcp.rs"
+required-features = ["mcp"]
+
+[[bin]]
+name = "example-http"
+path = "src/bin/example-http.rs"
+required-features = ["http"]
+
+[dependencies]
+example-api = { path = "../example-api" }
+# Development-only Git dependency pinned to the memory-kernel `main` branch.
+# The memory-kernel submodule under `memory-kernel/` provides a local checkout
+# for development; Cargo resolves the harness from the pinned Git branch.
+transport-harness = { git = "https://github.com/mankinskin/memory-kernel", branch = "main", optional = true, default-features = false }
