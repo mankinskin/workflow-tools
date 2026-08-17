@@ -1,3 +1,6 @@
 [submodule "ticket"]
 	path = ticket
 	url = "https://github.com/mankinskin/ticket"
+[submodule "spec"]
+	path = spec
+	url = ./spec
