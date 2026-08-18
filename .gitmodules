@@ -18,3 +18,27 @@
 	path = session
 	url = "https://github.com/mankinskin/session"
 	branch = "main"
+[submodule "doc"]
+	path = doc
+	url = "https://github.com/mankinskin/doc"
+	branch = "main"
+[submodule "log"]
+	path = log
+	url = "https://github.com/mankinskin/log"
+	branch = "main"
+[submodule "peek"]
+	path = peek
+	url = "https://github.com/mankinskin/peek"
+	branch = "main"
+[submodule "interview"]
+	path = interview
+	url = "https://github.com/mankinskin/interview"
+	branch = "main"
+[submodule "rule"]
+	path = rule
+	url = "https://github.com/mankinskin/rule"
+	branch = "main"
+[submodule "test"]
+	path = test
+	url = "https://github.com/mankinskin/test"
+	branch = "main"
