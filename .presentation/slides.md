@@ -4,7 +4,7 @@ title: Workflow Tools
 info: |
   ## Workflow Tools
   A tour of the domain-crate repositories nested under `workflow-tools`.
-transition: fade
+transition: slide-up
 mdc: true
 ---
 
