@@ -1,0 +1,6 @@
+id = "workflow-tools"
+title = "Workflow Tools"
+summary = "Domain-crate suite: ticket, spec, rule, session, audit, test, doc, log, feedback, peek, interview, memory-kernel"
+slides = "slides.md"
+theme = "seriph"
+standalone = true
