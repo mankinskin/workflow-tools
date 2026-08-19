@@ -42,3 +42,7 @@
 	path = test
 	url = "https://github.com/mankinskin/test"
 	branch = "main"
+[submodule "memory-kernel"]
+	path = memory-kernel
+	url = https://github.com/mankinskin/memory-kernel
+	branch = main
