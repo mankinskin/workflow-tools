@@ -1,0 +1,36 @@
+{
+  "name": "example-viewer",
+  "publisher": "context-engine",
+  "displayName": "Example Viewer",
+  "description": "Minimal reference VS Code extension demonstrating the workflow-tools domain-crate contract's editor-transport shape.",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "example-viewer.openBrowser",
+        "title": "Open Example Viewer in Browser",
+        "category": "Example Viewer"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "watch": "tsc --watch -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.0"
+  }
+}

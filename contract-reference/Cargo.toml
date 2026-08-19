@@ -2,5 +2,6 @@
 members = [
     "crates/example",
     "crates/example-api",
+    "crates/example-viewer",
 ]
 resolver = "3"

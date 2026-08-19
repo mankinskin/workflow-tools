@@ -1,0 +1,14 @@
+[package]
+name = "example-viewer"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "example-viewer"
+path = "src/main.rs"
+
+[dependencies]
+example = { path = "../example" }
+viewer-api = { git = "https://github.com/mankinskin/viewer-api", branch = "main" }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
