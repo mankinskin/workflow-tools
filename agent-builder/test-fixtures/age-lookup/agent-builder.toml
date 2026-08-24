@@ -1,0 +1,6 @@
+template_dir = "agent-templates"
+template = "age-lookup.md"
+file_root = "files"
+ticket_workspace = "."
+ticket_mcp_command = "mcp-toolmon"
+ticket_mcp_args = ["--", "ticket-mcp"]
