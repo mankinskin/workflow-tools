@@ -29,6 +29,9 @@ use crate::{
     },
 };
 
+/// Total model calls allowed per run: the initial call plus tool follow-ups.
+const MAX_TURNS: usize = 10;
+
 #[derive(Debug, Parser)]
 #[command(about = "Execute one configured agent request with an attached file")]
 struct Args {
@@ -78,7 +81,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .preamble(&template.preamble)
         .tool_server_handle(tool_server)
         .build();
-    let response = agent.prompt(&prompt).await?;
+    let response = agent.prompt(&prompt).max_turns(MAX_TURNS).await?;
 
     println!("{}", response.trim());
 
