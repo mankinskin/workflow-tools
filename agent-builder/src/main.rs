@@ -1,22 +1,57 @@
-use rig::client::{AgentClientExt, CompletionClient, ProviderClient};
-use rig::completion::Prompt;
-use rig::providers::copilot;
+mod config;
+mod request;
+mod template;
+
+use std::path::PathBuf;
+
+use clap::Parser;
+use rig::{
+    client::{
+        AgentClientExt,
+        ProviderClient,
+    },
+    completion::Prompt,
+    providers::copilot,
+};
+
+use crate::{
+    config::Config,
+    request::{
+        assemble_prompt,
+        read_attachment,
+    },
+    template::AgentTemplate,
+};
+
+#[derive(Debug, Parser)]
+#[command(about = "Execute one configured agent request with an attached file")]
+struct Args {
+    /// The request sent to the configured agent.
+    request: String,
+
+    /// Path to the file included in the model prompt.
+    #[arg(short, long)]
+    file: PathBuf,
+
+    /// Path to the TOML configuration file.
+    #[arg(short, long)]
+    config: PathBuf,
+}
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
-    // Create the client from the environment variable.
-    // - COPILOT_API_KEY
-    // - OPENAI_API_KEY
+    let args = Args::parse();
+    let config = Config::load(&args.config)?;
+    let template = AgentTemplate::load(&config.template_path())?;
+    let attachment = read_attachment(&args.file)?;
+    let prompt = assemble_prompt(&args.request, &args.file, &attachment);
+    let model = config.model.as_deref().unwrap_or(&template.model);
+
     let client = copilot::Client::from_env()?;
-    // Build an agent: a model plus a system prompt (the "preamble").
-    let agent = client.agent(copilot::GPT_5_3_CODEX)
-        .preamble("You are a helpful assistant.")
-        .build();
+    let agent = client.agent(model).preamble(&template.preamble).build();
+    let response = agent.prompt(&prompt).await?;
 
-    // Send a prompt and await the model's reply.
-    let response = agent.prompt("What is the Rust programming language?").await?;
-
-    println!("{response}");
+    println!("{}", response.trim());
 
     Ok(())
 }

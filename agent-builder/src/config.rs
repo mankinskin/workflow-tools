@@ -1,0 +1,97 @@
+use std::{
+    fs,
+    path::{
+        Path,
+        PathBuf,
+    },
+};
+
+use anyhow::{
+    Context,
+    Result,
+};
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize, PartialEq, Eq)]
+pub struct Config {
+    pub template_dir: PathBuf,
+    pub template: String,
+    pub model: Option<String>,
+}
+
+impl Config {
+    pub fn load(path: &Path) -> Result<Self> {
+        let contents = fs::read_to_string(path).with_context(|| {
+            format!("failed to read config file {}", path.display())
+        })?;
+        let mut config = Self::from_toml(&contents)?;
+        config.resolve_paths(path.parent().unwrap_or_else(|| Path::new(".")));
+        Ok(config)
+    }
+
+    pub fn from_toml(contents: &str) -> Result<Self> {
+        toml::from_str(contents).context("failed to parse configuration TOML")
+    }
+
+    pub fn resolve_paths(
+        &mut self,
+        config_dir: &Path,
+    ) {
+        if self.template_dir.is_relative() {
+            self.template_dir = config_dir.join(&self.template_dir);
+        }
+    }
+
+    pub fn template_path(&self) -> PathBuf {
+        let template = Path::new(&self.template);
+        if template.is_absolute() {
+            template.to_path_buf()
+        } else {
+            self.template_dir.join(template)
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::path::{
+        Path,
+        PathBuf,
+    };
+
+    use super::Config;
+
+    #[test]
+    fn parses_config_and_resolves_template_directory() {
+        let mut config = Config::from_toml(
+            r#"
+template_dir = "templates"
+template = "age.md"
+model = "gpt-5.3-codex"
+"#,
+        )
+        .unwrap();
+
+        config.resolve_paths(Path::new("fixtures/request"));
+
+        assert_eq!(
+            config.template_dir,
+            PathBuf::from("fixtures/request/templates")
+        );
+        assert_eq!(config.model.as_deref(), Some("gpt-5.3-codex"));
+    }
+
+    #[test]
+    fn resolves_template_name_under_template_directory() {
+        let config = Config {
+            template_dir: PathBuf::from("fixtures/templates"),
+            template: "age-lookup.md".to_owned(),
+            model: None,
+        };
+
+        assert_eq!(
+            config.template_path(),
+            PathBuf::from("fixtures/templates/age-lookup.md")
+        );
+    }
+}
