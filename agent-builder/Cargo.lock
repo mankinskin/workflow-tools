@@ -21,6 +21,7 @@ dependencies = [
  "serde_yaml",
  "tokio",
  "toml",
+ "tracing-subscriber",
 ]
 
 [[package]]

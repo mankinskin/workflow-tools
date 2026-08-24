@@ -32,6 +32,17 @@ use crate::{
 /// Total model calls allowed per run: the initial call plus tool follow-ups.
 const MAX_TURNS: usize = 10;
 
+/// Rig logs tool names and arguments at `rig=debug`; opt in via `RUST_LOG`.
+fn init_tracing() {
+    tracing_subscriber::fmt()
+        .with_env_filter(
+            tracing_subscriber::EnvFilter::try_from_default_env()
+                .unwrap_or_else(|_| tracing_subscriber::EnvFilter::new("warn")),
+        )
+        .with_writer(std::io::stderr)
+        .init();
+}
+
 #[derive(Debug, Parser)]
 #[command(about = "Execute one configured agent request with an attached file")]
 struct Args {
@@ -49,6 +60,8 @@ struct Args {
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
+    init_tracing();
+
     let args = Args::parse();
     let config = Config::load(&args.config)?;
     let template = AgentTemplate::load(&config.template_path())?;
