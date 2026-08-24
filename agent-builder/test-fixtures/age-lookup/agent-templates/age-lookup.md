@@ -1,5 +1,5 @@
 ---
-model: gpt-5.3-codex
+model: gpt-5.4-mini
 tools:
   - read_file
   - ticket_lookup
