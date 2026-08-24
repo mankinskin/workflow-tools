@@ -1,6 +1,7 @@
 mod config;
 mod request;
 mod template;
+mod tools;
 
 use std::path::PathBuf;
 
@@ -21,6 +22,11 @@ use crate::{
         read_attachment,
     },
     template::AgentTemplate,
+    tools::{
+        AuthorizedTools,
+        ReadFileTool,
+        TicketMcpConnection,
+    },
 };
 
 #[derive(Debug, Parser)]
@@ -46,9 +52,32 @@ async fn main() -> Result<(), anyhow::Error> {
     let attachment = read_attachment(&args.file)?;
     let prompt = assemble_prompt(&args.request, &args.file, &attachment);
     let model = config.model.as_deref().unwrap_or(&template.model);
+    let tools = AuthorizedTools::from_template(&template)?;
+
+    let ticket_mcp = if tools.ticket_lookup {
+        Some(TicketMcpConnection::connect(&config).await?)
+    } else {
+        None
+    };
+
+    let mut tool_server = rig::tool::server::ToolServer::new();
+    if tools.read_file {
+        tool_server = tool_server.tool(ReadFileTool::new(&config.file_root)?);
+    }
+    if let Some(ticket_mcp) = &ticket_mcp {
+        tool_server = tool_server.rmcp_tool(
+            ticket_mcp.tool.clone(),
+            ticket_mcp.service.peer().clone(),
+        );
+    }
+    let tool_server = tool_server.run();
 
     let client = copilot::Client::from_env()?;
-    let agent = client.agent(model).preamble(&template.preamble).build();
+    let agent = client
+        .agent(model)
+        .preamble(&template.preamble)
+        .tool_server_handle(tool_server)
+        .build();
     let response = agent.prompt(&prompt).await?;
 
     println!("{}", response.trim());
