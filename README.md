@@ -1,5 +1,16 @@
 # workflow-tools
 
+## Installation Registry
+
+`install/artifacts.toml` is the canonical inventory of workflow-tools source
+artifacts. Each `source_path` is relative to this repository root. The
+`install/install-ctl` crate reads the registry at runtime and generates
+`COMMANDS.md`:
+
+```bash
+cargo run --manifest-path install/install-ctl/Cargo.toml -- catalog --check
+```
+
 ## Bootstrap A Consumer
 
 Install the minimal ticket/spec CLI bundle and initialize one consumer workspace

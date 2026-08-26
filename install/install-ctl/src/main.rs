@@ -1,0 +1,546 @@
+mod cli;
+mod commands;
+mod config;
+mod logging;
+mod paths;
+mod process;
+mod registry;
+mod selection;
+mod shell;
+
+use std::{path::Path, time::Duration};
+
+use clap::{Parser, Subcommand};
+use cli::ViewerCmd;
+use config::Config;
+use registry::{Artifact, ArtifactKind, load_registry, sync_catalog};
+use selection::resolve_selection;
+
+#[derive(Parser)]
+#[command(
+    name = "install-ctl",
+    about = "Install workspace tool binaries and extensions, and manage the viewer lifecycle"
+)]
+struct Cli {
+    /// Print supported artifacts grouped by category and exit.
+    #[arg(long)]
+    list: bool,
+
+    /// Print the planned actions without performing them.
+    #[arg(long)]
+    dry_run: bool,
+
+    #[command(subcommand)]
+    command: Option<Command>,
+}
+
+#[derive(Subcommand)]
+enum Command {
+    /// Install one or more artifacts by id, category, or "all".
+    Install {
+        #[arg(required = true)]
+        selection: Vec<String>,
+        /// Skip passing --force to `cargo install` for rust-binary artifacts.
+        #[arg(long)]
+        no_force: bool,
+    },
+    /// Render the registry projection to COMMANDS.md, or verify it is current.
+    Catalog {
+        #[arg(long)]
+        check: bool,
+    },
+    /// Start a viewer server (alias for `viewer start`; kept top-level so
+    /// existing `install-ctl start <viewer>` invocations, e.g. from
+    /// .vscode/tasks.json, keep working verbatim).
+    Start {
+        server: String,
+        #[arg(long, alias = "fg", short = 'f')]
+        foreground: bool,
+        #[arg(last = true)]
+        extra: Vec<String>,
+    },
+    /// Build + install the frontend linked to a viewer server (alias for
+    /// `viewer prepare`; kept top-level for the same reason as `start`).
+    Prepare { server: String },
+    /// Viewer lifecycle surface (list/status/build/install/start/stop/restart/task/prepare/static-dir),
+    /// nested under `viewer` so it does not collide with the top-level
+    /// artifact-registry `--list`/`install`.
+    Viewer {
+        #[command(subcommand)]
+        command: ViewerCmd,
+    },
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    if cli.list {
+        match load_registry() {
+            Ok(reg) => print_list(&reg.artifacts),
+            Err(e) => fail(&e),
+        }
+        return;
+    }
+
+    match cli.command {
+        Some(Command::Install {
+            selection,
+            no_force,
+        }) => {
+            let reg = match load_registry() {
+                Ok(reg) => reg,
+                Err(e) => fail(&e),
+            };
+            let selected = match resolve_selection(&reg.artifacts, &selection) {
+                Ok(s) => s,
+                Err(e) => fail(&e),
+            };
+            if selected.is_empty() {
+                fail("selection matched no artifacts");
+            }
+            let force = !no_force;
+            if cli.dry_run {
+                print_plan(&selected, force);
+            } else {
+                run_install(&selected, force);
+            }
+        }
+        Some(Command::Catalog { check }) => {
+            if let Err(error) = sync_catalog(check) {
+                fail(&error);
+            }
+        }
+        Some(Command::Start {
+            server,
+            foreground,
+            extra,
+        }) => run_viewer(|cfg, root| commands::cmd_start(cfg, root, &server, foreground, extra)),
+        Some(Command::Prepare { server }) => {
+            run_viewer(|cfg, root| commands::cmd_prepare(cfg, root, &server))
+        }
+        Some(Command::Viewer { command }) => {
+            run_viewer(|cfg, root| dispatch_viewer(cfg, root, command))
+        }
+        None => {
+            eprintln!("error: no command given; try --list or `install <selection>`");
+            std::process::exit(1);
+        }
+    }
+}
+
+/// Load `viewer-ctl.toml` from the same repo root the artifact registry
+/// resolves, then run `action` against it, failing the process on error.
+fn run_viewer<F>(action: F)
+where
+    F: FnOnce(&Config, &Path) -> Result<(), String>,
+{
+    let root = match registry::resolve_repo_root() {
+        Ok(root) => root,
+        Err(e) => fail(&e),
+    };
+    let cfg = match Config::load(&root) {
+        Ok(c) => c,
+        Err(e) => fail(&e),
+    };
+    if let Err(e) = action(&cfg, &root) {
+        fail(&e);
+    }
+}
+
+fn dispatch_viewer(cfg: &Config, root: &Path, command: ViewerCmd) -> Result<(), String> {
+    match command {
+        ViewerCmd::List => commands::cmd_list(cfg),
+        ViewerCmd::Status { name } => commands::cmd_status(cfg, name.as_deref()),
+        ViewerCmd::Build { name, kind } => commands::cmd_build(cfg, root, &name, kind),
+        ViewerCmd::Install { name, kind } => commands::cmd_install(cfg, root, &name, kind),
+        ViewerCmd::Start {
+            server,
+            foreground,
+            extra,
+        } => commands::cmd_start(cfg, root, &server, foreground, extra),
+        ViewerCmd::Stop { server } => commands::cmd_stop(cfg, &server),
+        ViewerCmd::Restart {
+            server,
+            foreground,
+            extra,
+        } => restart_server(cfg, root, &server, foreground, extra),
+        ViewerCmd::Task { name } => commands::cmd_task(cfg, root, &name),
+        ViewerCmd::Prepare { server } => commands::cmd_prepare(cfg, root, &server),
+        ViewerCmd::StaticDir { server } => commands::cmd_static_dir(cfg, &server),
+    }
+}
+
+fn restart_server(
+    cfg: &Config,
+    root: &Path,
+    server: &str,
+    foreground: bool,
+    extra: Vec<String>,
+) -> Result<(), String> {
+    commands::cmd_stop(cfg, server)?;
+    std::thread::sleep(Duration::from_millis(500));
+    commands::cmd_start(cfg, root, server, foreground, extra)
+}
+
+fn print_list(artifacts: &[Artifact]) {
+    let mut categories: Vec<&str> = artifacts.iter().map(|a| a.category.as_str()).collect();
+    categories.sort();
+    categories.dedup();
+
+    for category in categories {
+        println!("{category}:");
+        for artifact in artifacts.iter().filter(|a| a.category == category) {
+            println!("  {}", artifact.id);
+        }
+    }
+}
+
+fn print_plan(selected: &[Artifact], force: bool) {
+    let repo_root = match registry::resolve_repo_root() {
+        Ok(root) => root,
+        Err(e) => fail(&e),
+    };
+    let target_dir = repo_root.join("target/install-tools");
+    let (rust_artifacts, ext_artifacts) = split_by_kind(selected);
+
+    if !rust_artifacts.is_empty() {
+        let plan = match RustBuildPlan::new(&rust_artifacts, &repo_root) {
+            Ok(p) => p,
+            Err(e) => fail(&e),
+        };
+        println!("==> {}", plan.bins.join(", "));
+        println!("    {}", plan.build_command_string());
+
+        for group in group_by_path(&rust_artifacts) {
+            let (ids, path, bins, features) = group_summary(&group);
+            println!("==> {}", ids.join(", "));
+            println!(
+                "    {}",
+                install_command_string(&repo_root, &target_dir, path, &bins, &features, force)
+            );
+        }
+    }
+
+    for artifact in ext_artifacts {
+        let script = artifact.npm_script.as_deref().unwrap_or("install:vsix");
+        println!("==> {}", artifact.id);
+        println!(
+            "    (cd \"{}\" && npm ci && npm run {})",
+            artifact.path, script
+        );
+    }
+}
+
+/// Split a selection into rust-binary and vscode-extension artifacts,
+/// preserving relative order within each group.
+fn split_by_kind(selected: &[Artifact]) -> (Vec<&Artifact>, Vec<&Artifact>) {
+    let mut rust_artifacts = Vec::new();
+    let mut ext_artifacts = Vec::new();
+    for artifact in selected {
+        match artifact.kind {
+            ArtifactKind::RustBinary => rust_artifacts.push(artifact),
+            ArtifactKind::VscodeExtension => ext_artifacts.push(artifact),
+        }
+    }
+    (rust_artifacts, ext_artifacts)
+}
+
+/// Everything needed to build every selected rust-binary artifact in a
+/// single `cargo build` call against the root workspace manifest.
+///
+/// Building through `cargo install --path <crate>` once per artifact (the
+/// old approach) ignores the enclosing workspace: it re-resolves and
+/// re-fetches each crate's dependency graph from scratch on every call,
+/// bypassing the workspace `Cargo.lock` and `[patch]` table, and unifies
+/// features only within that one crate — so siblings built with different
+/// `--features` (e.g. `ticket` vs `ticket-mcp`) evict each other's cache
+/// entries and rebuild shared dependencies repeatedly. Building every
+/// requested binary together, against the workspace manifest, resolves
+/// features once and reuses the workspace's own lockfile/patches.
+struct RustBuildPlan {
+    manifest_path: String,
+    packages: Vec<String>,
+    bins: Vec<String>,
+    feature_flags: Vec<String>,
+}
+
+impl RustBuildPlan {
+    fn new(artifacts: &[&Artifact], repo_root: &Path) -> Result<Self, String> {
+        let manifest_path = repo_root.join("Cargo.toml").to_string_lossy().to_string();
+        let mut packages: Vec<String> = Vec::new();
+        let mut bins: Vec<String> = Vec::new();
+        let mut feature_flags: Vec<String> = Vec::new();
+
+        for artifact in artifacts {
+            let pkg = package_name_for(repo_root, &artifact.path)?;
+            if !packages.contains(&pkg) {
+                packages.push(pkg.clone());
+            }
+            let bin = artifact.bin.clone().unwrap_or_else(|| artifact.id.clone());
+            if !bins.contains(&bin) {
+                bins.push(bin);
+            }
+            for feature in &artifact.features {
+                let flag = format!("{pkg}/{feature}");
+                if !feature_flags.contains(&flag) {
+                    feature_flags.push(flag);
+                }
+            }
+        }
+
+        Ok(Self {
+            manifest_path,
+            packages,
+            bins,
+            feature_flags,
+        })
+    }
+
+    fn build_args(&self) -> Vec<String> {
+        let mut args = vec![
+            "build".to_string(),
+            "--manifest-path".to_string(),
+            self.manifest_path.clone(),
+            "--release".to_string(),
+        ];
+        for pkg in &self.packages {
+            args.push("-p".to_string());
+            args.push(pkg.clone());
+        }
+        for bin in &self.bins {
+            args.push("--bin".to_string());
+            args.push(bin.clone());
+        }
+        if !self.feature_flags.is_empty() {
+            args.push("--features".to_string());
+            args.push(self.feature_flags.join(","));
+        }
+        args
+    }
+
+    fn build_command_string(&self) -> String {
+        std::iter::once("cargo".to_string())
+            .chain(self.build_args())
+            .collect::<Vec<_>>()
+            .join(" ")
+    }
+}
+
+/// Read `[package].name` out of `<repo_root>/<artifact_path>/Cargo.toml`.
+fn package_name_for(repo_root: &Path, artifact_path: &str) -> Result<String, String> {
+    let manifest_path = repo_root.join(artifact_path).join("Cargo.toml");
+    let text = std::fs::read_to_string(&manifest_path)
+        .map_err(|e| format!("failed to read {}: {e}", manifest_path.display()))?;
+    let value: toml::Value = text
+        .parse()
+        .map_err(|e| format!("failed to parse {}: {e}", manifest_path.display()))?;
+    value
+        .get("package")
+        .and_then(|p| p.get("name"))
+        .and_then(|n| n.as_str())
+        .map(str::to_string)
+        .ok_or_else(|| format!("no [package].name in {}", manifest_path.display()))
+}
+
+/// Group rust-binary artifacts that share a source path (e.g. `ticket` +
+/// `ticket-mcp`, or `spec-cli` + `spec-mcp`) so a single `cargo install`
+/// call can install every bin from that crate (cargo install only accepts
+/// one `--path` per invocation, so distinct crates still need one call
+/// each).
+fn group_by_path<'a>(artifacts: &[&'a Artifact]) -> Vec<Vec<&'a Artifact>> {
+    let mut order: Vec<&str> = Vec::new();
+    let mut groups: std::collections::HashMap<&str, Vec<&'a Artifact>> =
+        std::collections::HashMap::new();
+    for artifact in artifacts {
+        groups.entry(artifact.path.as_str()).or_insert_with(|| {
+            order.push(artifact.path.as_str());
+            Vec::new()
+        });
+        groups
+            .get_mut(artifact.path.as_str())
+            .unwrap()
+            .push(artifact);
+    }
+    order
+        .into_iter()
+        .map(|path| groups.remove(path).unwrap())
+        .collect()
+}
+
+/// Collapse a group of artifacts sharing one source path into the ids,
+/// shared path, unique `--bin` names, and unioned `--features` needed to
+/// install all of them in one `cargo install` call.
+fn group_summary<'a>(
+    group: &[&'a Artifact],
+) -> (Vec<&'a str>, &'a str, Vec<&'a str>, Vec<&'a str>) {
+    let path = group[0].path.as_str();
+    let mut ids = Vec::new();
+    let mut bins: Vec<&str> = Vec::new();
+    let mut features: Vec<&str> = Vec::new();
+    for artifact in group {
+        ids.push(artifact.id.as_str());
+        let bin = artifact.bin.as_deref().unwrap_or(&artifact.id);
+        if !bins.contains(&bin) {
+            bins.push(bin);
+        }
+        for feature in &artifact.features {
+            let feature = feature.as_str();
+            if !features.contains(&feature) {
+                features.push(feature);
+            }
+        }
+    }
+    (ids, path, bins, features)
+}
+
+#[allow(clippy::too_many_arguments)]
+fn install_args(
+    repo_root: &Path,
+    target_dir: &Path,
+    path: &str,
+    bins: &[&str],
+    features: &[&str],
+    force: bool,
+) -> Vec<String> {
+    let full_path = repo_root.join(path).to_string_lossy().to_string();
+    let target_dir_str = target_dir.to_string_lossy().to_string();
+    let mut args = vec![
+        "install".to_string(),
+        "--path".to_string(),
+        full_path,
+        "--target-dir".to_string(),
+        target_dir_str,
+        "--offline".to_string(),
+    ];
+    for bin in bins {
+        args.push("--bin".to_string());
+        args.push((*bin).to_string());
+    }
+    if !features.is_empty() {
+        args.push("--features".to_string());
+        args.push(features.join(","));
+    }
+    if force {
+        args.push("--force".to_string());
+    }
+    args
+}
+
+fn install_command_string(
+    repo_root: &Path,
+    target_dir: &Path,
+    path: &str,
+    bins: &[&str],
+    features: &[&str],
+    force: bool,
+) -> String {
+    std::iter::once("cargo".to_string())
+        .chain(install_args(
+            repo_root, target_dir, path, bins, features, force,
+        ))
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
+fn run_install(selected: &[Artifact], force: bool) {
+    let repo_root = match registry::resolve_repo_root() {
+        Ok(root) => root,
+        Err(e) => fail(&e),
+    };
+
+    // Isolate build artifacts from the dev target dir so a running debug
+    // binary's file lock doesn't block the build itself.
+    let target_dir = repo_root.join("target/install-tools");
+    unsafe {
+        std::env::set_var("CARGO_TARGET_DIR", &target_dir);
+    }
+
+    let (rust_artifacts, ext_artifacts) = split_by_kind(selected);
+
+    if !rust_artifacts.is_empty() {
+        install_rust_binaries(&rust_artifacts, &repo_root, &target_dir, force);
+    }
+
+    for artifact in ext_artifacts {
+        install_vscode_extension(artifact, &repo_root);
+    }
+}
+
+fn install_rust_binaries(
+    artifacts: &[&Artifact],
+    repo_root: &Path,
+    target_dir: &Path,
+    force: bool,
+) {
+    let plan = match RustBuildPlan::new(artifacts, repo_root) {
+        Ok(p) => p,
+        Err(e) => fail(&e),
+    };
+
+    println!("==> {}", plan.bins.join(", "));
+
+    // Stop every requested binary up front: a locked exe on Windows blocks
+    // both the warm-up build's link step and cargo install's replace step.
+    for bin in &plan.bins {
+        let running = process::pids_by_image_name(bin);
+        for pid in running {
+            process::print_process_info(pid, bin);
+            if !process::kill_process(pid, bin) {
+                eprintln!(
+                    "warning: [{bin}] failed to stop PID {} before install",
+                    pid.as_u32()
+                );
+            }
+        }
+    }
+
+    // Warm-up build: compile every requested binary in one cargo invocation
+    // against the root workspace manifest, so features unify once and the
+    // workspace's own Cargo.lock/[patch] table is honored (`cargo install
+    // --path` alone re-resolves each crate's deps from scratch, ignoring
+    // both). The per-crate `cargo install` calls below reuse this shared,
+    // already-compiled target dir instead of rebuilding from nothing, while
+    // still being real `cargo install` calls for canonical `.crates2.json`
+    // bookkeeping (`cargo install --list` / `cargo uninstall` support).
+    let build_args = plan.build_args();
+    let arg_refs: Vec<&str> = build_args.iter().map(String::as_str).collect();
+    let label = plan.bins.join(", ");
+    if let Err(e) = shell::run_cmd_args("cargo", &arg_refs, repo_root, &label) {
+        fail(&e);
+    }
+
+    // cargo install only accepts one --path per call, so distinct crates
+    // still need one call each; siblings sharing a crate (ticket +
+    // ticket-mcp) are grouped into a single call via --bin/--features union.
+    for group in group_by_path(artifacts) {
+        let (ids, path, bins, features) = group_summary(&group);
+        let args = install_args(repo_root, target_dir, path, &bins, &features, force);
+        let arg_refs: Vec<&str> = args.iter().map(String::as_str).collect();
+        let label = ids.join(", ");
+        println!("==> {label}");
+        if let Err(e) = shell::run_cmd_args("cargo", &arg_refs, repo_root, &label) {
+            fail(&e);
+        }
+    }
+}
+
+fn install_vscode_extension(artifact: &Artifact, repo_root: &Path) {
+    println!("==> {}", artifact.id);
+    let script = artifact.npm_script.as_deref().unwrap_or("install:vsix");
+    let ext_dir = repo_root.join(&artifact.path);
+
+    if !ext_dir.join("node_modules").is_dir()
+        && let Err(e) = shell::run_cmd_args("npm", &["ci"], &ext_dir, &artifact.id)
+    {
+        fail(&e);
+    }
+
+    if let Err(e) = shell::run_cmd_args("npm", &["run", script], &ext_dir, &artifact.id) {
+        fail(&e);
+    }
+}
+
+fn fail(message: &str) -> ! {
+    eprintln!("error: {message}");
+    std::process::exit(1);
+}
