@@ -16,11 +16,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=node /usr/local /usr/local
-# viewer-api's context-stack dependency chain (context-read) requires an
-# unstable feature, so this container builds with nightly; viewer-api-dioxus's
-# WebGPU web-sys bindings additionally require the web_sys_unstable_apis cfg.
-RUN rustup toolchain install nightly \
-    && rustup target add wasm32-unknown-unknown --toolchain nightly \
+# viewer-api-dioxus's WebGPU web-sys bindings require the
+# web_sys_unstable_apis cfg flag.
+RUN rustup target add wasm32-unknown-unknown \
     && cargo install trunk --locked
 ENV RUSTFLAGS="--cfg=web_sys_unstable_apis"
 
