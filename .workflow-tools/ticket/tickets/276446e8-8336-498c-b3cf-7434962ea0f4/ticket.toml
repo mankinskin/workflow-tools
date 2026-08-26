@@ -1,0 +1,7 @@
+id = "276446e8-8336-498c-b3cf-7434962ea0f4"
+created_at = "2026-08-26T16:30:36.313365700+00:00"
+title = "[mcp-toolmon] transparent_reload_end_to_end_subprocess is flaky; orphaned child processes lock target binary on panic"
+state = "done"
+component = "mcp-toolmon"
+priority = "medium"
+type = "bug"

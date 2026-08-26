@@ -2,9 +2,9 @@
 set -euo pipefail
 
 TICKET_REPOSITORY="https://github.com/mankinskin/ticket"
-TICKET_REVISION="bd826dc9ddaa8dbf44e0e0d371618309c67409a6"
+TICKET_REVISION="a02cb0773ea9e63e3ce979cb43da9a92579dad16"
 SPEC_REPOSITORY="https://github.com/mankinskin/spec"
-SPEC_REVISION="f9f661f0ef876b7298fdaa976bd397531df27a01"
+SPEC_REVISION="6dddad9dc8ad4f79b62b5d4a10b1008a9a52f6b7"
 
 usage() {
     cat <<'EOF'

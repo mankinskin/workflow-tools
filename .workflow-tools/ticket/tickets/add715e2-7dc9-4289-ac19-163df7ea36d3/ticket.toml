@@ -1,0 +1,7 @@
+id = "add715e2-7dc9-4289-ac19-163df7ea36d3"
+created_at = "2026-08-26T16:23:49.012640800+00:00"
+title = "[audit-mcp] ticket_graph (and related store-backed checks) leak findings from outside repo_root scope"
+state = "open"
+component = "audit-mcp"
+priority = "medium"
+type = "bug"

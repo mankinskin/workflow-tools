@@ -46,3 +46,7 @@
 	path = memory-kernel
 	url = "https://github.com/mankinskin/memory-kernel"
 	branch = main
+[submodule "viewer-api"]
+	path = viewer-api
+	url = https://github.com/mankinskin/viewer-api
+	branch = main

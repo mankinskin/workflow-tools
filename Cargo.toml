@@ -39,6 +39,8 @@ members = [
   "peek/crates/peek-cli",
   "peek/crates/peek-mcp",
   "install/install-ctl",
+  "viewer-api",
+  "viewer-api/frontend/dioxus",
 ]
 
 [profile.dev]
@@ -97,3 +99,7 @@ feedback-http = { path = "feedback/crates/feedback-http" }
 
 [patch."https://github.com/mankinskin/peek"]
 peek-api = { path = "peek/crates/peek-api" }
+
+[patch."https://github.com/mankinskin/viewer-api"]
+viewer-api = { path = "viewer-api" }
+viewer-api-dioxus = { path = "viewer-api/frontend/dioxus" }

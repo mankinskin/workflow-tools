@@ -1,0 +1,1 @@
+{"rev":1,"ts":"2026-08-26T16:23:49.058616400+00:00","fields":{"component":"audit-mcp","priority":"medium","state":"open","title":"[audit-mcp] ticket_graph (and related store-backed checks) leak findings from outside repo_root scope","type":"bug"}}
