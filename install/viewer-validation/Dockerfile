@@ -16,8 +16,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=node /usr/local /usr/local
-RUN rustup target add wasm32-unknown-unknown \
+# viewer-api's context-stack dependency chain (context-read) requires an
+# unstable feature, so this container builds with nightly; viewer-api-dioxus's
+# WebGPU web-sys bindings additionally require the web_sys_unstable_apis cfg.
+RUN rustup toolchain install nightly \
+    && rustup target add wasm32-unknown-unknown --toolchain nightly \
     && cargo install trunk --locked
+ENV RUSTFLAGS="--cfg=web_sys_unstable_apis"
 
 # Anonymous HTTPS clones of public GitHub repos intermittently fail through
 # cargo's built-in libgit2 fetcher inside minimal containers; shell out to

@@ -4,10 +4,10 @@
 # from a fresh full-repo checkout (no context-engine-local path involved).
 set -euo pipefail
 
-echo "[viewer-validation] cargo check -p viewer-api"
-cargo check -p viewer-api
+echo "[viewer-validation] cargo +nightly check -p viewer-api"
+cargo +nightly check -p viewer-api
 
-echo "[viewer-validation] cargo check --target wasm32-unknown-unknown -p viewer-api-dioxus"
-cargo check --target wasm32-unknown-unknown -p viewer-api-dioxus
+echo "[viewer-validation] cargo +nightly check --target wasm32-unknown-unknown -p viewer-api-dioxus"
+cargo +nightly check --target wasm32-unknown-unknown -p viewer-api-dioxus
 
 echo "[viewer-validation] OK: viewer-api and viewer-api-dioxus build cleanly from workflow-tools/viewer-api"
