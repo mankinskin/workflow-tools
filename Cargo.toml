@@ -1,0 +1,99 @@
+[workspace]
+resolver = "2"
+members = [
+  "agent-builder",
+  "ticket/ticket-viewer",
+  "spec/spec-viewer",
+  "spec/spec-viewer/frontend/dioxus",
+  "ticket/ticket-viewer/frontend/dioxus",
+  "spec",
+  "ticket",
+  "rule",
+  "rule/crates/rule-api",
+  "session",
+  "session/crates/session-api",
+  "session/crates/session-worktree-provision",
+  "session/crates/session-record-merge",
+  "session/crates/session-workspace-resolver",
+  "session/crates/toolmon-policy-api",
+  "session/crates/toolmon-costgate",
+  "session/crates/mcp-toolmon",
+  "session/crates/worktree-ctl",
+  "audit/crates/audit-api",
+  "audit/crates/audit-cli",
+  "audit/crates/audit-mcp",
+  "test/crates/test-api",
+  "test/crates/test-cli",
+  "test/crates/test-mcp",
+  "doc/crates/doc-api",
+  "doc/crates/doc-http",
+  "doc/crates/doc-viewer",
+  "log/crates/log-api",
+  "log/crates/log-viewer",
+  "log/crates/log-viewer/frontend/dioxus",
+  "feedback/crates/feedback-api",
+  "feedback/crates/feedback-http",
+  "feedback/crates/feedback-cli",
+  "feedback/crates/feedback-mcp",
+  "peek/crates/peek-api",
+  "peek/crates/peek-cli",
+  "peek/crates/peek-mcp",
+  "install/install-ctl",
+]
+
+[profile.dev]
+debug = true
+opt-level = 0
+
+[profile.release]
+opt-level = 2
+
+[workspace.metadata.docs.rs]
+no-deps = true
+
+[patch."https://github.com/mankinskin/memory-kernel"]
+memory-kernel = { path = "memory-kernel" }
+transport-harness = { path = "memory-kernel/crates/transport-harness" }
+
+[patch."https://github.com/mankinskin/ticket"]
+ticket = { path = "ticket" }
+ticket-api = { path = "ticket/crates/ticket-api" }
+
+[patch."https://github.com/mankinskin/spec"]
+spec = { path = "spec" }
+spec-api = { path = "spec/crates/spec-api" }
+
+[patch."https://github.com/mankinskin/rule"]
+rule = { path = "rule" }
+rule-api = { path = "rule/crates/rule-api" }
+
+[patch."https://github.com/mankinskin/session"]
+session = { path = "session" }
+session-api = { path = "session/crates/session-api" }
+session-worktree-provision = { path = "session/crates/session-worktree-provision" }
+session-workspace-resolver = { path = "session/crates/session-workspace-resolver" }
+session-record-merge = { path = "session/crates/session-record-merge" }
+toolmon-policy-api = { path = "session/crates/toolmon-policy-api" }
+toolmon-costgate = { path = "session/crates/toolmon-costgate" }
+mcp-toolmon = { path = "session/crates/mcp-toolmon" }
+worktree-ctl = { path = "session/crates/worktree-ctl" }
+
+[patch."https://github.com/mankinskin/audit"]
+audit-api = { path = "audit/crates/audit-api" }
+
+[patch."https://github.com/mankinskin/test"]
+test-api = { path = "test/crates/test-api" }
+
+[patch."https://github.com/mankinskin/doc"]
+doc-api = { path = "doc/crates/doc-api" }
+doc-http = { path = "doc/crates/doc-http" }
+
+[patch."https://github.com/mankinskin/log"]
+log-api = { path = "log/crates/log-api" }
+
+[patch."https://github.com/mankinskin/feedback"]
+feedback-api = { path = "feedback/crates/feedback-api" }
+feedback-http = { path = "feedback/crates/feedback-http" }
+
+[patch."https://github.com/mankinskin/peek"]
+peek-api = { path = "peek/crates/peek-api" }
