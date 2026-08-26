@@ -1,0 +1,27 @@
+name: Viewer Validation
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: viewer-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  docker-viewer-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Show Docker version
+        run: docker version
+
+      - name: Run Docker viewer validation
+        shell: bash
+        run: bash install/viewer-validation/run-docker-viewer-validation.sh
