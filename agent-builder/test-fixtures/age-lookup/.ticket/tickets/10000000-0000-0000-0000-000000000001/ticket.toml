@@ -1,6 +1,0 @@
-id = "10000000-0000-0000-0000-000000000001"
-created_at = "2026-08-24T00:00:00Z"
-title = "Ada Finch profile"
-state = "new"
-type = "tracker-improvement"
-component = "agent-builder-fixture"

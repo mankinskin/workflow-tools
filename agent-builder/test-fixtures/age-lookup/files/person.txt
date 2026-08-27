@@ -1,1 +1,0 @@
-The person is Ada Finch. Her profile record is ticket 10000000-0000-0000-0000-000000000001. Determine her age from the available records.

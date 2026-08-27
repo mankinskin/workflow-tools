@@ -1,7 +1,6 @@
 [workspace]
 resolver = "2"
 members = [
-  "agent-builder",
   "ticket/ticket-viewer",
   "spec/spec-viewer",
   "spec/spec-viewer/frontend/dioxus",

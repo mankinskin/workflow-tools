@@ -1,5 +1,0 @@
-fixture_name = "agent-builder-age-lookup"
-
-[[stores]]
-domain = "ticket-root"
-relative_path = ".ticket"
