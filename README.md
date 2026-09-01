@@ -1,5 +1,29 @@
 # workflow-tools
 
+The installable ticket/spec/session/rule/audit/test CLI and MCP bundle that
+`context-engine` and downstream consumers depend on. Its primary use case is
+bootstrapping a consumer workspace with the ticket and spec CLIs so agents and
+humans can track work as structured tickets instead of ad hoc markdown notes.
+
+## Quickstart: bootstrap a consumer
+
+Install the minimal ticket/spec CLI bundle and initialize one consumer workspace
+with a single, version-pinned command:
+
+```bash
+bash bootstrap.sh \
+	--root "$HOME/.local/workflow-tools" \
+	--workspace /path/to/minimal-demo
+```
+
+The bootstrap command installs only into the supplied `--root` and initializes
+only the supplied `--workspace`. It never discovers a sibling consumer from a
+superproject working directory. Use `--dry-run` to inspect the pinned install
+commands before modifying a consumer workspace.
+
+`workflow-minimal-demo` is the first top-level consumer workspace in the
+meta-workspace and exercises this install path.
+
 ## Installation Registry
 
 `install/artifacts.toml` is the canonical inventory of workflow-tools source
@@ -26,22 +50,3 @@ curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/<rev>/ins
 Use `--dry-run` to preview the pinned `cargo install` command, or append
 `-- <install-ctl args>` to run `install-ctl` immediately after installing it
 (for example `-- --list`).
-
-## Bootstrap A Consumer
-
-Install the minimal ticket/spec CLI bundle and initialize one consumer workspace
-with a single, version-pinned command:
-
-```bash
-bash bootstrap.sh \
-	--root "$HOME/.local/workflow-tools" \
-	--workspace /path/to/minimal-demo
-```
-
-The bootstrap command installs only into the supplied `--root` and initializes
-only the supplied `--workspace`. It never discovers a sibling consumer from a
-superproject working directory. Use `--dry-run` to inspect the pinned install
-commands before modifying a consumer workspace.
-
-`workflow-minimal-demo` is the first top-level consumer workspace in the
-meta-workspace and exercises this install path.
