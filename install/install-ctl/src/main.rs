@@ -1,6 +1,7 @@
 mod cli;
 mod commands;
 mod config;
+mod freshness;
 mod logging;
 mod paths;
 mod process;
@@ -71,7 +72,14 @@ enum Command {
     },
 }
 
+/// Env var carrying the shadow copy's own path: its presence marks the
+/// current process as a relaunched shadow copy (guards against relaunching
+/// forever) and tells it where to schedule its own cleanup.
+const SHADOW_ENV_VAR: &str = "INSTALL_CTL_SHADOW";
+
 fn main() {
+    cleanup_shadow_copy_if_running_from_one();
+
     let cli = Cli::parse();
 
     if cli.list {
@@ -442,7 +450,93 @@ fn install_command_string(
         .join(" ")
 }
 
+/// On Windows, a running `install-ctl.exe` holds an exclusive lock on its
+/// own image file, so `cargo install` cannot overwrite `install-ctl.exe` in
+/// place while this process is alive (`os error 5`, access denied) — killing
+/// other instances (see `process::pids_by_image_name`'s own-PID exclusion)
+/// isn't enough, since *this* process's lock is the one blocking the move.
+///
+/// When the current selection would replace the binary this process was
+/// launched from, copy the running exe to a temp "shadow" file, relaunch the
+/// exact same command from that shadow copy (which the loader locks instead),
+/// and exit immediately: a live process's exe lock only releases on exit, not
+/// on wait, so the original can't stick around to collect the child's exit
+/// code without re-introducing the same lock.
+///
+/// No-op on non-Windows targets, where replacing a running executable's
+/// backing file is a normal, supported operation, and when this process is
+/// itself already a relaunched shadow copy (`SHADOW_ENV_VAR` set).
+fn relaunch_from_shadow_copy_if_replacing_self(selected: &[Artifact]) {
+    if !cfg!(windows) || std::env::var_os(SHADOW_ENV_VAR).is_some() {
+        return;
+    }
+
+    let Ok(current_exe) = std::env::current_exe() else {
+        return;
+    };
+    let Some(own_bin) = current_exe
+        .file_stem()
+        .and_then(|s| s.to_str())
+        .map(str::to_ascii_lowercase)
+    else {
+        return;
+    };
+
+    let installing_self = selected.iter().any(|a| {
+        a.kind == ArtifactKind::RustBinary
+            && a.bin
+                .as_deref()
+                .unwrap_or(a.id.as_str())
+                .eq_ignore_ascii_case(&own_bin)
+    });
+    if !installing_self {
+        return;
+    }
+
+    let shadow_path =
+        std::env::temp_dir().join(format!("{own_bin}-shadow-{}.exe", std::process::id()));
+    if let Err(e) = std::fs::copy(&current_exe, &shadow_path) {
+        eprintln!(
+            "warning: could not create shadow copy for self-update ({e}); install may fail \
+             with 'access denied' while this process is running"
+        );
+        return;
+    }
+
+    println!("==> relaunching from a shadow copy so the running {own_bin}.exe can be replaced");
+    match std::process::Command::new(&shadow_path)
+        .args(std::env::args_os().skip(1))
+        .env(SHADOW_ENV_VAR, &shadow_path)
+        .spawn()
+    {
+        Ok(_) => std::process::exit(0),
+        Err(e) => {
+            eprintln!("warning: failed to relaunch from shadow copy: {e}");
+            let _ = std::fs::remove_file(&shadow_path);
+        }
+    }
+}
+
+/// A shadow copy can't delete the file backing its own running image either
+/// (same lock as above), so schedule its removal via a short-lived detached
+/// helper that waits for this process to exit first. Best-effort: a failure
+/// here just leaves a harmless leftover file in the temp directory.
+fn cleanup_shadow_copy_if_running_from_one() {
+    let Some(shadow_path) = std::env::var_os(SHADOW_ENV_VAR) else {
+        return;
+    };
+    let shadow_path = shadow_path.to_string_lossy().to_string();
+    let _ = std::process::Command::new("cmd")
+        .args([
+            "/C",
+            &format!("timeout /t 2 /nobreak >nul & del /f /q \"{shadow_path}\""),
+        ])
+        .spawn();
+}
+
 fn run_install(selected: &[Artifact], force: bool) {
+    relaunch_from_shadow_copy_if_replacing_self(selected);
+
     let repo_root = match registry::resolve_repo_root() {
         Ok(root) => root,
         Err(e) => fail(&e),
@@ -479,29 +573,11 @@ fn install_rust_binaries(
 
     println!("==> {}", plan.bins.join(", "));
 
-    // Stop every requested binary up front: a locked exe on Windows blocks
-    // both the warm-up build's link step and cargo install's replace step.
-    for bin in &plan.bins {
-        let running = process::pids_by_image_name(bin);
-        for pid in running {
-            process::print_process_info(pid, bin);
-            if !process::kill_process(pid, bin) {
-                eprintln!(
-                    "warning: [{bin}] failed to stop PID {} before install",
-                    pid.as_u32()
-                );
-            }
-        }
-    }
-
-    // Warm-up build: compile every requested binary in one cargo invocation
-    // against the root workspace manifest, so features unify once and the
-    // workspace's own Cargo.lock/[patch] table is honored (`cargo install
-    // --path` alone re-resolves each crate's deps from scratch, ignoring
-    // both). The per-crate `cargo install` calls below reuse this shared,
-    // already-compiled target dir instead of rebuilding from nothing, while
-    // still being real `cargo install` calls for canonical `.crates2.json`
-    // bookkeeping (`cargo install --list` / `cargo uninstall` support).
+    // Warm-up build first: it writes into target_dir, never into
+    // $CARGO_HOME/bin, so it never needs an installed binary's process
+    // killed. It also produces the exact output `cargo install` would copy,
+    // which the freshness check below compares against what's installed
+    // before deciding whether killing/reinstalling is needed at all.
     let build_args = plan.build_args();
     let arg_refs: Vec<&str> = build_args.iter().map(String::as_str).collect();
     let label = plan.bins.join(", ");
@@ -514,7 +590,36 @@ fn install_rust_binaries(
     // ticket-mcp) are grouped into a single call via --bin/--features union.
     for group in group_by_path(artifacts) {
         let (ids, path, bins, features) = group_summary(&group);
-        let args = install_args(repo_root, target_dir, path, &bins, &features, force);
+
+        // Skip bins whose freshly built output is byte-identical to what's
+        // already installed: cargo install would be a no-op for them, so
+        // there is nothing to gain from killing their running process.
+        let stale_bins: Vec<&str> = bins
+            .iter()
+            .copied()
+            .filter(|bin| !freshness::is_up_to_date(target_dir, bin))
+            .collect();
+        if stale_bins.is_empty() {
+            println!("==> {} (up to date, skipping)", ids.join(", "));
+            continue;
+        }
+
+        // Stop only the binaries that are actually about to change: a
+        // locked exe on Windows blocks cargo install's replace step.
+        for bin in &stale_bins {
+            let running = process::pids_by_image_name(bin);
+            for pid in running {
+                process::print_process_info(pid, bin);
+                if !process::kill_process(pid, bin) {
+                    eprintln!(
+                        "warning: [{bin}] failed to stop PID {} before install",
+                        pid.as_u32()
+                    );
+                }
+            }
+        }
+
+        let args = install_args(repo_root, target_dir, path, &stale_bins, &features, force);
         let arg_refs: Vec<&str> = args.iter().map(String::as_str).collect();
         let label = ids.join(", ");
         println!("==> {label}");

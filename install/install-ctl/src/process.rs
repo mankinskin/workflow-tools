@@ -153,16 +153,21 @@ pub fn process_exists(pid: Pid) -> bool {
 /// Matches `<package>` and `<package>.exe` (case-insensitive on Windows).
 /// Used to stop a running instance that still holds a file lock on
 /// `target/debug/<package>.exe` before installing a replacement.
+///
+/// Excludes the calling process's own PID: `install-ctl install all`
+/// installs `install-ctl` itself, and a naive match would find and kill
+/// the currently running `install-ctl` process before it finishes.
 pub fn pids_by_image_name(package: &str) -> Vec<Pid> {
     let sys =
         System::new_with_specifics(RefreshKind::new().with_processes(ProcessRefreshKind::new()));
     let bare = package.to_ascii_lowercase();
     let exe = format!("{bare}.exe");
+    let own_pid = Pid::from_u32(std::process::id());
     sys.processes()
         .iter()
         .filter_map(|(pid, proc)| {
             let name = proc.name().to_string_lossy().to_ascii_lowercase();
-            (name == bare || name == exe).then_some(*pid)
+            (*pid != own_pid && (name == bare || name == exe)).then_some(*pid)
         })
         .collect()
 }

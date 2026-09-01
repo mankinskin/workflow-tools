@@ -2777,6 +2777,7 @@ dependencies = [
  "dirs",
  "serde",
  "serde_json",
+ "sha2",
  "sysinfo",
  "toml 0.8.23",
  "windows-sys 0.59.0",
