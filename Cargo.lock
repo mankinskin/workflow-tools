@@ -3393,6 +3393,7 @@ version = "0.1.0"
 dependencies = [
  "bincode",
  "chrono",
+ "criterion",
  "fs4 0.11.1",
  "globset",
  "jaq-core",
