@@ -4963,6 +4963,7 @@ name = "session-api"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "criterion",
  "feedback-api",
  "git2",
  "memory-kernel",
@@ -5205,6 +5206,7 @@ name = "spec-api"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "criterion",
  "feedback-api",
  "memory-fixtures",
  "memory-kernel",
