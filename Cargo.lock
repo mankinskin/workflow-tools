@@ -212,6 +212,7 @@ version = "0.1.0"
 dependencies = [
  "cargo_metadata",
  "chrono",
+ "criterion",
  "ignore",
  "memory-kernel",
  "proc-macro2",
@@ -4595,6 +4596,7 @@ name = "rule-api"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "criterion",
  "feedback-api",
  "memory-kernel",
  "pretty_assertions",
