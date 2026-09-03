@@ -521,17 +521,47 @@ fn relaunch_from_shadow_copy_if_replacing_self(selected: &[Artifact]) {
 /// (same lock as above), so schedule its removal via a short-lived detached
 /// helper that waits for this process to exit first. Best-effort: a failure
 /// here just leaves a harmless leftover file in the temp directory.
+#[cfg(windows)]
 fn cleanup_shadow_copy_if_running_from_one() {
+    use std::os::windows::process::CommandExt;
+
     let Some(shadow_path) = std::env::var_os(SHADOW_ENV_VAR) else {
         return;
     };
-    let shadow_path = shadow_path.to_string_lossy().to_string();
-    let _ = std::process::Command::new("cmd")
-        .args([
-            "/C",
-            &format!("timeout /t 2 /nobreak >nul & del /f /q \"{shadow_path}\""),
-        ])
+    let shadow_path = windows_display_path(std::path::PathBuf::from(shadow_path));
+
+    // Resolve the helpers by absolute path: under Git Bash / MSYS a GNU
+    // `timeout.exe` (which rejects `/t`) shadows the System32 one on PATH.
+    let system32 = std::path::PathBuf::from(
+        std::env::var("SystemRoot").unwrap_or_else(|_| r"C:\Windows".to_string()),
+    )
+    .join("System32");
+    let ping_exe = windows_display_path(system32.join("PING.EXE"));
+
+    // `raw_arg` bypasses Rust's MSVCRT-style quoting, which escapes inner
+    // quotes as `\"` — a sequence `cmd` does not understand and would pass on
+    // to `del` as part of the path. Leading `call` keeps the payload from
+    // starting with a quote, which `cmd /C` would strip asymmetrically.
+    let _ = std::process::Command::new(system32.join("cmd.exe"))
+        .raw_arg("/C")
+        .raw_arg(format!(
+            r#"call "{ping_exe}" -n 3 127.0.0.1 >nul & del /f /q "{shadow_path}""#
+        ))
         .spawn();
+}
+
+#[cfg(not(windows))]
+fn cleanup_shadow_copy_if_running_from_one() {}
+
+/// Render a path the way `cmd` expects it: canonicalized (so a POSIX-style
+/// `TEMP` such as `/tmp` from Git Bash becomes a real drive-rooted path, which
+/// `del` would otherwise reject as switch syntax) and without the `\\?\`
+/// verbatim prefix.
+#[cfg(windows)]
+fn windows_display_path(path: std::path::PathBuf) -> String {
+    let path = std::fs::canonicalize(&path).unwrap_or(path);
+    let path = path.to_string_lossy().into_owned();
+    path.strip_prefix(r"\\?\").unwrap_or(&path).to_string()
 }
 
 fn run_install(selected: &[Artifact], force: bool) {
