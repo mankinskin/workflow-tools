@@ -17,6 +17,19 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 6. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
 7. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route.
 
+### Execute Ingest Approval Gate
+
+When [execute-ingest.prompt.md](../../../.agents/prompts/execute-ingest.prompt.md)
+hands a roadmap to this execution procedure, the handoff must contain the
+explicit final user outcome `approve`. The outcome `replan` returns control to
+the planning loop and is not an executable handoff. A planning verdict such as
+`Approved as scoped` is evidence that the roadmap is ready for review, not
+evidence of execution approval.
+
+The executor must use the exact dossier path and `ROADMAP.md` supplied by the
+approved handoff. The executor must not reconstruct, alter, or substitute the
+roadmap before checking waypoint readiness.
+
 ## Waypoint Readiness Gate
 
 A waypoint is ready only when all of the following are true:

@@ -11,6 +11,23 @@ This pipeline is an extension of [audio-transcript.instructions.md](../transcrip
 
 This file is the ingestion shell: it owns the dossier folder layout and the six-stage sequence. [intent-refinement.instructions.md](intent-refinement.instructions.md) owns the recurring technique used at Stages 3 and 5 — the informed review + interview loop that clears ambiguity before it reaches the shipped roadmap.
 
+When the workflow is invoked through `Execute Ingest`, roadmap compilation is
+not the terminal state. The lifecycle continues through these explicit states:
+
+1. **Planning** — run the six-stage ingestion pipeline, including interviews
+   whenever repository evidence cannot resolve a requirement, and surface the
+   decisions made during planning to the user.
+2. **Planned and accepted** — Stage 5 closes with no open question and Stage 6
+   produces the current `ROADMAP.md`.
+3. **Final user review** — present the compiled roadmap and request one explicit
+   outcome from the user: `replan` returns the request to the planning loop;
+   `approve` authorizes execution of the current roadmap.
+4. **Execution** — only after `approve`, hand the same dossier path and
+   `ROADMAP.md` to [execute-roadmap](../../../.agents/prompts/execute-roadmap.prompt.md).
+
+Planning interviews and final roadmap approval are separate interactions. A
+successful planning verdict never implies execution approval.
+
 ## The Six Stages
 
 Run each stage as a distinct pass; do not collapse them. Each stage has one job and one exit artifact.
