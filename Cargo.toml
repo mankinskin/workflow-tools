@@ -99,6 +99,9 @@ feedback-http = { path = "feedback/crates/feedback-http" }
 [patch."https://github.com/mankinskin/peek"]
 peek-api = { path = "peek/crates/peek-api" }
 
+[patch."https://github.com/mankinskin/install"]
+install-ctl = { path = "install/install-ctl" }
+
 [patch."https://github.com/mankinskin/viewer-api"]
 viewer-api = { path = "viewer-api" }
 viewer-api-dioxus = { path = "viewer-api/frontend/dioxus" }

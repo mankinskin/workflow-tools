@@ -10,13 +10,14 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 ## Required Procedure
 
 1. **Read the roadmap and the dossier together.** Before acting on anything, read `ROADMAP.md` in full — starting with its outcome summary — plus the dossier's `README.md` index and `ARTIFACTS.md`, so every cited id/path resolves to a real artifact instead of an assumed one.
-2. **Establish readiness before starting a waypoint.** Confirm that every declared dependency is satisfied, every cited artifact resolves, the intended outcome has unambiguous acceptance criteria, the target setting is known, the session package and roadmap-authored prompt are clear and proportionate, and the waypoint has an exact validation strategy. A missing, stale, contradictory, or untestable item is a blocker; do not set the waypoint `in-progress` or make a mutation.
+2. **Establish readiness before starting a waypoint.** Confirm that every declared dependency is satisfied, every cited artifact resolves, the intended outcome has unambiguous acceptance criteria, the target setting is known, the session package and roadmap-authored prompt are clear and proportionate, the commit checkpoint is declared, and the waypoint has an exact validation strategy. A missing, stale, contradictory, or untestable item is a blocker; do not set the waypoint `in-progress` or make a mutation.
 3. **Execute waypoints in order.** Walk the Roadmap Waypoints section top to bottom, respecting dependency order. Do not start a waypoint whose declared dependency (an earlier waypoint, a ticket, a decision) is not satisfied. Mark a ready waypoint `in-progress` immediately so the roadmap remains a live progress record.
 4. **Collect per-waypoint context from the dossier before acting.** For each waypoint, resolve its cited artifact ids/paths — tickets, specs, numbered work-package documents (`01-...md`, ...), and code/config paths — via the dossier before writing anything. A waypoint's one-line roadmap summary is a pointer, not sufficient implementation context; the cited work-package document is normative and must be read.
 5. **Use the roadmap-authored session prompt.** Treat the waypoint's `Prompt:` line as the starting handoff for the fresh session or delegated worker named by `Session package:`. Add only verified execution identity, current status, and any already-satisfied dependency evidence needed by [shared-context-bundle.instructions.md](shared-context-bundle.instructions.md); do not replace the roadmap prompt with a reconstructed prompt from memory.
 6. **Use the task routing table.** Route the ready waypoint by task type before dispatching or acting. A task's route is determined by the work still required, not by its heading or a previous session's route.
 7. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
-8. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route.
+8. **Commit the checkpoint before advancing.** After the waypoint's validation and required review pass, create the declared `Commit checkpoint:` using the repository commit workflow, or record the declared no-change reason. The checkpoint preserves the stable state and documents the handoff boundary for later sessions.
+9. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route, and do not start a dependent waypoint while the current waypoint's required commit checkpoint is still uncommitted.
 
 ### Execute Ingest Approval Gate
 
@@ -40,6 +41,7 @@ A waypoint is ready only when all of the following are true:
 - Its acceptance criteria describe observable success and its target setting (repository, worktree, relevant configuration, and applicable constraints) is known.
 - Its scope names the owning files, interfaces, or research question closely enough to prevent an implementation agent from rediscovering requirements.
 - Its `Session package:` line names one proportionate execution package, and its `Prompt:` line is self-contained enough for that package's fresh session to begin without rediscovering the goal, targets, dependencies, validation, or non-goals.
+- Its `Commit checkpoint:` line states the logical checkpoint to commit after validation, or explicitly records why the waypoint is read-only or produces no repository change.
 - Its validation lines name executable commands or an explicitly documented non-executable review method that can prove each criterion.
 - The user has not supplied a newer request that changes or conflicts with the waypoint's objective, scope, order, acceptance criteria, or non-goals.
 
@@ -87,7 +89,7 @@ Follow [orchestrator-delegation.instructions.md](orchestrator-delegation.instruc
 
 If a waypoint's dossier context has gone stale — a cited artifact no longer resolves, a validation command no longer exists, or source behavior contradicts the plan — do not silently improvise a substitute. Treat drift as a blocker and follow the blocker and user-escalation protocol. The resumed plan must replace the stale reference with a verified artifact and complete validation strategy.
 
-**Completion record.** Immediately after a waypoint's validation and required review pass, change `Status: in-progress` to `Status: done` in `ROADMAP.md`. Add a short completion note naming the validation command or evidence record and, for a ticket-backed waypoint, the terminal ticket state. A completed waypoint is never merely implied by a later waypoint starting.
+**Completion record.** Immediately after a waypoint's validation, required review, and commit checkpoint pass, change `Status: in-progress` to `Status: done` in `ROADMAP.md`. Add a short completion note naming the validation command or evidence record, the commit id or no-change reason from `Commit checkpoint:`, and, for a ticket-backed waypoint, the terminal ticket state. A completed waypoint is never merely implied by a later waypoint starting.
 
 ## Task Lifecycle
 
@@ -96,7 +98,7 @@ A waypoint's `Status:` line (see [roadmap-authoring.instructions.md's Syntax Rul
 1. **`pending`** — not yet started; its declared dependencies may or may not be satisfied yet.
 2. **`in-progress`** — the executing session has started work on it. Set this the moment work begins, not after it finishes, so a concurrent or later reader sees accurate live state.
 3. **`blocked`** — work stopped on an unmet precondition. A waypoint MUST NOT sit at `blocked` without a stated reason in its own text or in "Active blockers" (per "Handling Drift" above).
-4. **`done`** — its validation gate passed. Never mark a waypoint `done` before running its `Validate:` command per "Required Procedure" step 5.
+4. **`done`** — its validation gate passed and its commit checkpoint is complete or explicitly recorded as no-change. Never mark a waypoint `done` before running its `Validate:` command and satisfying its `Commit checkpoint:` line per "Required Procedure".
 
 **Ticket-backed waypoints track two lifecycles at once.** A waypoint whose `Scope:` names a ticket (per [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md#scoping-guidelines)) has its own `Status:` line in the roadmap AND the ticket's own state machine (see [lifecycle.instructions.md](../../../ticket/.agents/instructions/ticket/lifecycle.instructions.md)). Keep the two in sync at the coarse level a roadmap needs: `pending`/`in-progress` maps loosely to the ticket being unclaimed/claimed, and the waypoint moves to `done` only once the ticket itself reaches a terminal `done` state — never mark the waypoint `done` while its ticket is still `in-review` or earlier.
 

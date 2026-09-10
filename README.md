@@ -37,13 +37,13 @@ cargo run --manifest-path install/install-ctl/Cargo.toml -- catalog --check
 
 ## Public Install Entry Point
 
-`install.sh` is the single, commit-pinned `curl | bash` entry point. It
+`install.sh` is the single `curl | bash` entry point. It
 installs `install-ctl` into a caller-supplied local directory (never a
-system-wide bin path) at a pinned `workflow-tools` commit, then hands off to
+system-wide bin path) from the `install` repository, then hands off to
 it:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/main/install.sh \
+curl -fsSL https://raw.githubusercontent.com/mankinskin/install/main/install.sh \
   | bash -s -- --root "$HOME/.local/workflow-tools"
 ```
 

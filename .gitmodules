@@ -50,3 +50,7 @@
 	path = viewer-api
 	url = https://github.com/mankinskin/viewer-api
 	branch = main
+[submodule "install"]
+	path = install
+	url = https://github.com/mankinskin/install.git
+	branch = main
