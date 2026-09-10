@@ -39,7 +39,14 @@ if [[ -z "$auditor" ]]; then
     exit 1
 fi
 
-if ! "$auditor" links "$repo_root"; then
+audit_root="$repo_root"
+if superproject_root="$(git rev-parse --show-superproject-working-tree 2>/dev/null)"; then
+    if [[ -n "$superproject_root" ]]; then
+        audit_root="$superproject_root"
+    fi
+fi
+
+if ! "$auditor" links "$audit_root"; then
     echo "pre-commit: Markdown link-coherence check failed; repair the reported guidance links" >&2
     exit 1
 fi

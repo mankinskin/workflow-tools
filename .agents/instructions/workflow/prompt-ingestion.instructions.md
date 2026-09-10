@@ -41,13 +41,14 @@ Run each stage as a distinct pass; do not collapse them. Each stage has one job 
 
 ## Resuming an In-Progress Dossier
 
-A single raw prompt is refined iteratively as the standard mode of use, not an edge case: after the pipeline runs, the requester reviews the dossier and can trigger it again with an additional transcript. Treat every such re-invocation as continuing the same dossier, never as a new request.
+A single raw prompt is refined iteratively as the standard mode of use, not an edge case: after the pipeline runs, the requester reviews the dossier and can trigger it again with an additional transcript. Treat every such re-invocation as continuing the same dossier, never as a new request — but only when that continuation is anchored to **this session**, per the strict rule below.
 
-**Detecting continuation.** Before creating a new `transcripts/DD-MM-YYYY_<slug>/` folder, check for an in-progress dossier for the same request:
+**Strict two-condition reuse rule.** Two sessions have in practice worked on similar or overlapping topics in parallel, and a new pipeline invocation in a fresh session reused another session's transcript folder by topic resemblance, collapsing what should have been two isolated dossiers and roadmaps into one. To close that failure mode, an existing dossier folder may be addressed only when at least one of these two conditions holds, evaluated strictly against the **current session**:
 
-1. Scan this conversation's own history for a dossier path a prior stage already created or resumed this session.
-2. If the conversation history is too long to scan reliably, check the pinned session-runtime anchors (`session_runtime_view`) for a `transcripts/...` path pinned under the relation `intent-ingestion-dossier`.
-3. Treat the new input as a continuation only when both signals agree the dossier is from the current session **and** the new ask is thematically continuous with it (a refinement, addition, or correction to the same request) — not a distinct, unrelated ask that happens to arrive in the same session.
+1. This session's own conversation history shows it already created or resumed that exact dossier folder earlier in this session, or
+2. `session_runtime_view` shows **exactly one** path pinned under relation `intent-ingestion-dossier` by this session.
+
+If neither condition holds — including when `session_runtime_view` shows zero matching pins, or shows more than one (ambiguous) — a new `transcripts/DD-MM-YYYY_<slug>/` folder MUST be created, even if a similarly-named or topically similar dossier already exists from another session. Never scan the `transcripts/` directory for a topically similar existing folder to reuse: continuation detection is scoped strictly to this session's own record (conversation history or its own pins), never to the repository-wide `transcripts/` folder or to another session's work. When condition 1 or 2 holds, still confirm the new ask is thematically continuous with that dossier (a refinement, addition, or correction to the same request) before treating it as a continuation rather than an unrelated new request in the same session.
 
 **Pinning.** Immediately after creating or resuming a dossier folder, pin its path via `session_runtime_pin` with relation `intent-ingestion-dossier` so a later stage, or a later pipeline invocation in the same session, can find it without re-deriving it.
 
