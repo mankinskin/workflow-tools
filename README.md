@@ -50,3 +50,11 @@ curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/<rev>/ins
 Use `--dry-run` to preview the pinned `cargo install` command, or append
 `-- <install-ctl args>` to run `install-ctl` immediately after installing it
 (for example `-- --list`).
+
+## Guidance Corpus Installer
+
+`install-ctl guidance plan|install|autofix` plans, installs, and repairs
+guidance corpora (`.agents/**`) across repo/user/system/explicit
+destinations. See [install/README.md](install/README.md) for the full
+command contract, profile schema, dependency/diagnostic classes, and the
+deterministic fixture/Docker validation commands.

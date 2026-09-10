@@ -2,6 +2,7 @@ mod cli;
 mod commands;
 mod config;
 mod freshness;
+mod guidance;
 mod logging;
 mod paths;
 mod process;
@@ -70,6 +71,11 @@ enum Command {
         #[command(subcommand)]
         command: ViewerCmd,
     },
+    /// Guidance profile planning/installation (`guidance plan`, `guidance install`).
+    Guidance {
+        #[command(subcommand)]
+        command: guidance::GuidanceCmd,
+    },
 }
 
 /// Env var carrying the shadow copy's own path: its presence marks the
@@ -128,6 +134,11 @@ fn main() {
         }
         Some(Command::Viewer { command }) => {
             run_viewer(|cfg, root| dispatch_viewer(cfg, root, command))
+        }
+        Some(Command::Guidance { command }) => {
+            if let Err(e) = guidance::run(command) {
+                fail(&e);
+            }
         }
         None => {
             eprintln!("error: no command given; try --list or `install <selection>`");

@@ -2783,12 +2783,14 @@ dependencies = [
 name = "install-ctl"
 version = "0.1.0"
 dependencies = [
+ "audit-api",
  "clap",
  "dirs",
  "serde",
  "serde_json",
  "sha2",
  "sysinfo",
+ "tempfile",
  "toml 0.8.23",
  "windows-sys 0.59.0",
 ]
