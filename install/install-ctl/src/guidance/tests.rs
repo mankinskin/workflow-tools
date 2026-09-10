@@ -1147,3 +1147,84 @@ fn get_rerun_is_idempotent() {
     second.expect("second get should succeed and be idempotent");
     assert!(explicit.join("prompt.md").is_file());
 }
+
+#[test]
+fn get_installs_all_meta_workspace_guidance() {
+    let fixture = TempDir::new().unwrap();
+    write(
+        fixture.path(),
+        "context-engine/AGENTS.md",
+        "See [world model](../workflow-tools/.agents/instructions/workflow/agent-world-model.instructions.md) and [implement](../.agents/agents/implement.agent.md).",
+    );
+    write(
+        fixture.path(),
+        "workflow-tools/.agents/instructions/workflow/agent-world-model.instructions.md",
+        "See [code quality](code-quality.instructions.md).",
+    );
+    write(
+        fixture.path(),
+        "workflow-tools/.agents/instructions/workflow/code-quality.instructions.md",
+        "# Code Quality Rules",
+    );
+    write(
+        fixture.path(),
+        ".agents/agents/implement.agent.md",
+        "See [write and die](../instructions/workflow/write-and-die.instructions.md).",
+    );
+    write(
+        fixture.path(),
+        ".agents/instructions/workflow/write-and-die.instructions.md",
+        "# Write and Die Protocol",
+    );
+    write(
+        fixture.path(),
+        "workflow-tools/.agents/agents/orchestrator.agent.md",
+        "# Orchestrator Agent",
+    );
+    write(
+        fixture.path(),
+        "workflow-tools/.agents/prompts/iteration.prompt.md",
+        "# Iteration Prompt",
+    );
+
+    let target = TempDir::new().unwrap();
+    let mut args = get_args(
+        "https://github.com/mankinskin/meta-workspace.git",
+        vec![
+            "context-engine/AGENTS.md".to_string(),
+            ".agents/agents/implement.agent.md".to_string(),
+            "workflow-tools/.agents/agents/orchestrator.agent.md".to_string(),
+            "workflow-tools/.agents/prompts/iteration.prompt.md".to_string(),
+        ],
+        target.path().to_path_buf(),
+    );
+    args.destination_scope = Some(ScopeKind::Repo);
+
+    let (result, checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    result.expect("installing all meta-workspace guidance should succeed");
+
+    // Under repo scope, AGENTS.md stays at context-engine/AGENTS.md, while .agents/... lands under target's .agents/
+    let dest = target.path();
+    assert!(dest.join(".agents/context-engine/AGENTS.md").is_file());
+    assert!(
+        dest.join(".agents/instructions/workflow/agent-world-model.instructions.md")
+            .is_file()
+    );
+    assert!(
+        dest.join(".agents/instructions/workflow/code-quality.instructions.md")
+            .is_file()
+    );
+    assert!(dest.join(".agents/agents/implement.agent.md").is_file());
+    assert!(
+        dest.join(".agents/instructions/workflow/write-and-die.instructions.md")
+            .is_file()
+    );
+    assert!(dest.join(".agents/agents/orchestrator.agent.md").is_file());
+    assert!(dest.join(".agents/prompts/iteration.prompt.md").is_file());
+
+    assert!(
+        !checkout_path.exists(),
+        "managed checkout must be cleaned up after installing all guidance"
+    );
+}

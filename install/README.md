@@ -156,33 +156,34 @@ declares; the profile's own `[destination]` table is the default.
 ## Quickstart: install guidance in another repository
 
 The public `install.sh` entry point installs a pinned `install-ctl` binary
-into a caller-owned directory. The following command is the shortest complete
-path from an arbitrary consumer repository to guidance installed under its
-`.agents/` tree:
+into a caller-owned directory. The primary, most important use case is
+installing all guidance from `meta-workspace` into an external consumer
+repository under its `.agents/` tree:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/main/install.sh \
-  | bash -s -- --root "$HOME/.local/workflow-tools"
+  | bash -s -- --root "$HOME/.local/workflow-tools" \
+  && "$HOME/.local/workflow-tools/bin/install-ctl" \
+       guidance get \
+       https://github.com/mankinskin/meta-workspace.git \
+       --select context-engine/AGENTS.md \
+       --select .agents/agents/implement.agent.md \
+       --select workflow-tools/.agents/agents/orchestrator.agent.md \
+       --select workflow-tools/.agents/prompts/iteration.prompt.md \
+       --target "$PWD" \
+       --destination-scope repo
 ```
 
-```bash
-install-ctl guidance get \
-  https://github.com/mankinskin/meta-workspace.git \
-  --select workflow-tools/.agents/agents/implement.agent.md \
-  --target "$PWD" \
-  --destination-scope repo
-```
+The command installs `install-ctl` and runs `guidance get`, which shallow-clones
+`meta-workspace`, computes the full transitive Markdown closure of all referenced
+instructions, agents, and prompts, installs all guidance files into `$PWD/.agents/`,
+and automatically cleans up the temporary clone.
 
-The first command installs `install-ctl`; `guidance get` then shallow-clones
-the source repository, selects the requested repo-relative file, installs its
-guidance dependencies, and removes the temporary checkout. `--target` may
-point at another consumer repository. The default target is the current
-directory, and the synthesized profile defaults to the `repo` destination.
+### Install specific selected agents or guidance files
 
-### Install selected agents or guidance files
-
-`--select` accepts repo-relative file paths and can be repeated. When the
-source is the `meta-workspace` monorepo, include the `workflow-tools/` prefix:
+If you only want a subset of agents or guidance files rather than the complete corpus,
+`--select` accepts specific repo-relative file paths and can be repeated. When the
+source is the `meta-workspace` monorepo, include the appropriate prefix:
 
 ```bash
 install-ctl guidance get \

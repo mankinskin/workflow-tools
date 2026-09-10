@@ -53,8 +53,8 @@ Use `--dry-run` to preview the pinned `cargo install` command, or append
 
 ## Guidance Corpus Installer
 
-`install-ctl guidance plan|install|autofix` plans, installs, and repairs
-guidance corpora (`.agents/**`) across repo/user/system/explicit
+`install-ctl guidance plan|install|autofix|get` plans, fetches, installs, and
+repairs guidance corpora (`.agents/**`) across repo/user/system/explicit
 destinations. See [install/README.md](install/README.md) for the full
 command contract, profile schema, dependency/diagnostic classes, and the
 deterministic fixture/Docker validation commands.
