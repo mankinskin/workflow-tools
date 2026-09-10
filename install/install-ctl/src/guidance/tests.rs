@@ -1,7 +1,7 @@
 //! Integration tests exercising `build_plan`/`install_plan` end-to-end
 //! against real temporary directories (never the host user/system dirs).
 
-use std::{collections::HashSet, fs, path::Path};
+use std::{collections::HashSet, fs, path::Path, path::PathBuf};
 
 use serde::Deserialize;
 use tempfile::TempDir;
@@ -61,8 +61,16 @@ fn fixture_manifest_is_versioned_and_declares_expected_contract() {
     assert_eq!(manifest.version, 1);
     assert!(manifest.fixture.len() >= 15);
 
-    let ids: HashSet<&str> = manifest.fixture.iter().map(|entry| entry.id.as_str()).collect();
-    assert_eq!(ids.len(), manifest.fixture.len(), "fixture ids must be unique");
+    let ids: HashSet<&str> = manifest
+        .fixture
+        .iter()
+        .map(|entry| entry.id.as_str())
+        .collect();
+    assert_eq!(
+        ids.len(),
+        manifest.fixture.len(),
+        "fixture ids must be unique"
+    );
     assert!(ids.contains("direct-prompt-closure"));
     assert!(ids.contains("full-agents-surface"));
     assert!(ids.contains("existing-submodule"));
@@ -74,7 +82,11 @@ fn fixture_manifest_is_versioned_and_declares_expected_contract() {
         assert!(!entry.category.is_empty(), "{} has no category", entry.id);
         assert!(!entry.test.is_empty(), "{} has no test", entry.id);
         assert!(matches!(entry.expected.as_str(), "pass" | "blocked"));
-        assert!(!entry.assertions.is_empty(), "{} has no assertions", entry.id);
+        assert!(
+            !entry.assertions.is_empty(),
+            "{} has no assertions",
+            entry.id
+        );
     }
 }
 
@@ -387,7 +399,11 @@ fn symlink_escaping_the_source_root_is_a_blocking_diagnostic() {
 
     let src = TempDir::new().unwrap();
     write(src.path(), "prompt.md", "see [escaped](escaped.md)");
-    symlink(outside.path().join("secret.md"), src.path().join("escaped.md")).unwrap();
+    symlink(
+        outside.path().join("secret.md"),
+        src.path().join("escaped.md"),
+    )
+    .unwrap();
     write(
         src.path(),
         "guidance.toml",
@@ -929,4 +945,205 @@ fn install_is_idempotent_and_preserves_unrelated_files() {
         fs::read_to_string(explicit.join("unrelated.txt")).unwrap(),
         "keep me"
     );
+}
+
+// -- guidance get (W9, AC1-AC10) ----------------------------------------------
+
+use super::{GuidanceGetArgs, run_get};
+use crate::guidance::profile::DestinationScopeKind as ScopeKind;
+
+/// Recursively copies `fixture` to `dest`, standing in for `git clone`.
+fn copy_dir_recursive(fixture: &Path, dest: &Path) -> std::io::Result<()> {
+    for entry in fs::read_dir(fixture)? {
+        let entry = entry?;
+        let target = dest.join(entry.file_name());
+        if entry.file_type()?.is_dir() {
+            fs::create_dir_all(&target)?;
+            copy_dir_recursive(&entry.path(), &target)?;
+        } else {
+            fs::copy(entry.path(), &target)?;
+        }
+    }
+    Ok(())
+}
+
+fn fake_clone_from(fixture_root: PathBuf) -> impl Fn(&str, &Path) -> Result<(), String> {
+    move |_url, dest| copy_dir_recursive(&fixture_root, dest).map_err(|e| e.to_string())
+}
+
+fn failing_clone(_url: &str, _dest: &Path) -> Result<(), String> {
+    Err("simulated network failure".to_string())
+}
+
+fn get_args(repository_url: &str, select: Vec<String>, target: PathBuf) -> GuidanceGetArgs {
+    GuidanceGetArgs {
+        repository_url: repository_url.to_string(),
+        select,
+        profile: None,
+        target,
+        destination_scope: Some(ScopeKind::Explicit),
+        destination_path: None,
+        keep_checkout: false,
+        json: false,
+    }
+}
+
+#[test]
+fn get_profile_less_select_installs_a_bare_path_directly() {
+    let fixture = TempDir::new().unwrap();
+    write(
+        fixture.path(),
+        "prompt.md",
+        "see [base](instructions/base.md)",
+    );
+    write(fixture.path(), "instructions/base.md", "base content");
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit.clone());
+
+    let (result, checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    result.expect("profile-less get should succeed");
+    assert!(explicit.join("prompt.md").is_file());
+    assert!(explicit.join("instructions/base.md").is_file());
+    assert!(
+        !checkout_path.exists(),
+        "managed checkout must be cleaned up by default"
+    );
+}
+
+#[test]
+fn get_explicit_profile_is_resolved_inside_the_clone() {
+    let fixture = TempDir::new().unwrap();
+    write(fixture.path(), "prompt.md", "no links here");
+    write(
+        fixture.path(),
+        "guidance.toml",
+        "[profile]\nid = \"repo-published\"\n\n[[corpus]]\nid = \"root\"\npaths = [\"prompt.md\"]\n\n[destination]\nscope = \"explicit\"\npath = \"/unused\"\n",
+    );
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["root".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.profile = Some(PathBuf::from("guidance.toml"));
+    args.destination_path = Some(explicit.clone());
+
+    let (result, checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    result.expect("explicit-profile get should succeed");
+    assert!(explicit.join("prompt.md").is_file());
+    assert!(!checkout_path.exists());
+}
+
+#[test]
+fn get_keep_checkout_retains_the_managed_directory() {
+    let fixture = TempDir::new().unwrap();
+    write(fixture.path(), "prompt.md", "content");
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit);
+    args.keep_checkout = true;
+
+    let (result, checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    result.expect("get with --keep-checkout should still succeed");
+    assert!(
+        checkout_path.join("prompt.md").is_file(),
+        "kept checkout must still contain the cloned content"
+    );
+}
+
+#[test]
+fn get_blocking_plan_writes_nothing_and_still_cleans_up() {
+    let fixture = TempDir::new().unwrap();
+    write(fixture.path(), "prompt.md", "see [gone](missing.md)");
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit.clone());
+
+    let (result, checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    assert!(result.is_err(), "blocking plan must surface as an error");
+    assert!(!explicit.exists(), "no writes on a blocking plan");
+    assert!(!checkout_path.exists(), "cleanup runs even on failure");
+}
+
+#[test]
+fn get_clone_failure_attempts_no_plan_or_install() {
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/unreachable.git",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit.clone());
+
+    let (result, checkout_path) = run_get(&args, failing_clone);
+
+    let error = result.expect_err("clone failure must surface as an error");
+    assert!(error.contains("failed to clone"));
+    assert!(!explicit.exists());
+    assert!(!checkout_path.exists());
+}
+
+#[test]
+fn get_rejects_absolute_select_path_before_any_clone_side_effect() {
+    let target = TempDir::new().unwrap();
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["/etc/passwd".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(target.path().join("out"));
+
+    let fixture = TempDir::new().unwrap();
+    let (result, _checkout_path) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+
+    let error = result.expect_err("absolute select path must be rejected");
+    assert!(error.contains("absolute"));
+}
+
+#[test]
+fn get_rerun_is_idempotent() {
+    let fixture = TempDir::new().unwrap();
+    write(fixture.path(), "prompt.md", "content");
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+    let mut args = get_args(
+        "https://example.invalid/repo.git",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit.clone());
+
+    let (first, _) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+    first.expect("first get should succeed");
+
+    let (second, _) = run_get(&args, fake_clone_from(fixture.path().to_path_buf()));
+    second.expect("second get should succeed and be idempotent");
+    assert!(explicit.join("prompt.md").is_file());
 }

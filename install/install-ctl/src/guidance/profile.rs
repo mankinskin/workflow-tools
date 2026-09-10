@@ -207,6 +207,32 @@ pub fn load_profile(profile_path: &Path) -> Result<Profile, String> {
     })
 }
 
+/// Synthesize a minimal direct-corpus profile from bare repo-relative
+/// selection paths, for `guidance get` when no `--profile` is given. Each
+/// path becomes its own corpus item (id == path), validated through the
+/// same [`validate_repo_relative`] check an authored profile's paths go
+/// through — no bypass of that validation for the profile-less path.
+/// Destination defaults to the `repo` scope, matching `plan`/`install`'s
+/// own default when a profile declares no destination override.
+pub fn synthesize_direct_profile(select: &[String]) -> Result<Profile, String> {
+    let mut corpus = Vec::with_capacity(select.len());
+    for path in select {
+        validate_repo_relative(path, path)?;
+        corpus.push(CorpusItem::Direct {
+            id: path.clone(),
+            paths: vec![path.clone()],
+        });
+    }
+    Ok(Profile {
+        id: "get".to_string(),
+        corpus,
+        destination: DestinationSpec {
+            scope: DestinationScopeKind::Repo,
+            explicit_path: None,
+        },
+    })
+}
+
 fn normalize_recipe_step(step: RawRecipeStep, item_id: &str) -> Result<RecipeStep, String> {
     match step.kind.as_str() {
         "copy" => {

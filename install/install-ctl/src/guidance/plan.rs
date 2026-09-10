@@ -19,7 +19,7 @@ use crate::guidance::{
         ClosureResult, ContentSource, Diagnostic, DiagnosticCode, compute_closure, extract_links,
         resolve_relative,
     },
-    profile::{CorpusItem, DestinationScopeKind, RecipeStep, load_profile},
+    profile::{CorpusItem, DestinationScopeKind, Profile, RecipeStep, load_profile},
     rewrite::rewrite_link,
 };
 
@@ -119,7 +119,18 @@ pub fn build_plan(inputs: &PlanInputs) -> Result<GuidancePlan, String> {
         ));
     }
     let profile = load_profile(inputs.profile_path)?;
+    build_plan_with_profile(profile, inputs)
+}
 
+/// Build a plan from an already-resolved [`Profile`] value, skipping the
+/// `load_profile` TOML read/parse step. `inputs.profile_path` is not read
+/// on this path. Used by `guidance get` for its synthesized, profile-less
+/// selection; `build_plan` above is the unchanged entry point every other
+/// caller (including all pre-existing tests) continues to use.
+pub fn build_plan_with_profile(
+    profile: Profile,
+    inputs: &PlanInputs,
+) -> Result<GuidancePlan, String> {
     let by_id: BTreeMap<&str, &CorpusItem> = profile.corpus.iter().map(|c| (c.id(), c)).collect();
 
     let mut selected_roots: Vec<String> = Vec::new();

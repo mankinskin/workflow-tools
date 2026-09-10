@@ -8,6 +8,7 @@
 
 pub mod autofix;
 pub mod destination;
+pub mod git;
 pub mod graph;
 pub mod install;
 pub mod plan;
@@ -17,13 +18,16 @@ pub mod rewrite;
 #[cfg(test)]
 mod tests;
 
-use std::{collections::BTreeMap, path::PathBuf};
+use std::{
+    collections::BTreeMap,
+    path::{Path, PathBuf},
+};
 
 use clap::{Args, Subcommand};
 
 use self::destination::DestinationPaths;
-use self::plan::{PlanInputs, build_plan, render_text};
-use self::profile::DestinationScopeKind;
+use self::plan::{PlanInputs, build_plan, build_plan_with_profile, render_text};
+use self::profile::{DestinationScopeKind, load_profile, synthesize_direct_profile};
 
 #[derive(Subcommand)]
 pub enum GuidanceCmd {
@@ -38,6 +42,11 @@ pub enum GuidanceCmd {
     /// `--plan` is read-only; `--apply` is the only mutation path and
     /// requires `--yes`.
     Autofix(GuidanceAutofixArgs),
+    /// One-command fetch + select + install: clones `<repository-url>` with
+    /// the system `git` binary, resolves an explicit or synthesized
+    /// profile, plans, and installs into `--target` (default `.`), then
+    /// deletes the managed checkout unless `--keep-checkout` is given.
+    Get(GuidanceGetArgs),
 }
 
 #[derive(Args)]
@@ -112,6 +121,41 @@ pub struct GuidanceArgs {
     pub json: bool,
 }
 
+#[derive(Args)]
+pub struct GuidanceGetArgs {
+    /// Source repository to clone (any URL `git clone` accepts).
+    pub repository_url: String,
+    /// Corpus item ids to select. Resolved against `--profile`'s declared
+    /// corpus when given; otherwise each value is a bare repo-relative
+    /// source path, installed directly (no profile file required).
+    #[arg(long = "select", required = true)]
+    pub select: Vec<String>,
+    /// Path to a guidance profile TOML file, resolved inside the freshly
+    /// cloned checkout (not the caller's local filesystem). Omit to install
+    /// `--select` paths directly without authoring a profile.
+    #[arg(long)]
+    pub profile: Option<PathBuf>,
+    /// Root of the repository receiving installed guidance. Defaults to the
+    /// current directory so the short command form only strictly requires
+    /// the repository URL and a selection.
+    #[arg(long, default_value = ".")]
+    pub target: PathBuf,
+    /// Override the profile's declared destination scope: repo, user,
+    /// system, or explicit.
+    #[arg(long, value_enum)]
+    pub destination_scope: Option<DestinationScopeKind>,
+    /// Override the profile's declared explicit destination path.
+    #[arg(long)]
+    pub destination_path: Option<PathBuf>,
+    /// Keep the managed clone directory after the command finishes instead
+    /// of deleting it, and print its path.
+    #[arg(long)]
+    pub keep_checkout: bool,
+    /// Emit the plan as JSON instead of human-readable text.
+    #[arg(long)]
+    pub json: bool,
+}
+
 pub fn run(command: GuidanceCmd) -> Result<(), String> {
     match command {
         GuidanceCmd::Plan(args) => {
@@ -137,7 +181,89 @@ pub fn run(command: GuidanceCmd) -> Result<(), String> {
             Ok(())
         }
         GuidanceCmd::Autofix(args) => run_autofix(&args),
+        GuidanceCmd::Get(args) => {
+            let (result, checkout_path) = run_get(&args, git::clone_shallow);
+            if args.keep_checkout {
+                println!("checkout kept at: {}", checkout_path.display());
+            }
+            result
+        }
     }
+}
+
+/// Fetch `args.repository_url`, resolve/synthesize a profile, plan, and
+/// install — cleaning up the managed checkout on every exit path unless
+/// `--keep-checkout` is given. `clone_fn` is injectable so tests never
+/// require a real network call or the `git` binary. Always returns the
+/// checkout path alongside the result: when `--keep-checkout` was not
+/// given, that path no longer exists on disk by the time this returns,
+/// which is itself the cleanup-happened assertion tests rely on.
+fn run_get(
+    args: &GuidanceGetArgs,
+    clone_fn: impl Fn(&str, &Path) -> Result<(), String>,
+) -> (Result<(), String>, PathBuf) {
+    let checkout = match tempfile::Builder::new()
+        .prefix("install-ctl-guidance-get-")
+        .tempdir()
+    {
+        Ok(dir) => dir,
+        Err(e) => {
+            return (
+                Err(format!(
+                    "failed to create a managed checkout directory: {e}"
+                )),
+                PathBuf::new(),
+            );
+        }
+    };
+    let checkout_path = checkout.path().to_path_buf();
+    // `git clone` accepts an existing empty directory as its destination.
+
+    let result = (|| -> Result<(), String> {
+        clone_fn(&args.repository_url, &checkout_path)
+            .map_err(|e| format!("failed to clone '{}': {e}", args.repository_url))?;
+
+        let profile = match &args.profile {
+            Some(relative) => load_profile(&checkout_path.join(relative))?,
+            None => synthesize_direct_profile(&args.select)?,
+        };
+
+        let destination_paths = DestinationPaths::platform_default();
+        let inputs = PlanInputs {
+            source_root: &checkout_path,
+            // Unread by `build_plan_with_profile`; `checkout_path` is a
+            // harmless placeholder to satisfy the shared struct literal.
+            profile_path: &checkout_path,
+            select: &args.select,
+            target_root: &args.target,
+            scope_override: args.destination_scope,
+            explicit_override: args.destination_path.as_deref(),
+            destination_paths: &destination_paths,
+        };
+        let plan = build_plan_with_profile(profile, &inputs)?;
+        print_plan(&plan, args.json);
+        if plan.is_blocking() {
+            return Err(format!(
+                "plan has {} blocking diagnostic(s); see above",
+                plan.diagnostics.len()
+            ));
+        }
+
+        let report = install::install_plan(&plan, &checkout_path)?;
+        println!(
+            "installed {} artifact(s), {} unchanged",
+            report.written.len(),
+            report.unchanged.len()
+        );
+        Ok(())
+    })();
+
+    if args.keep_checkout {
+        // `checkout` (a `TempDir`) would delete this on drop; `keep`
+        // disarms that so the directory survives past this function.
+        let _ = checkout.keep();
+    }
+    (result, checkout_path)
 }
 
 fn run_autofix(args: &GuidanceAutofixArgs) -> Result<(), String> {

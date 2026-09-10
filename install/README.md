@@ -15,12 +15,12 @@ hooks. `COMMANDS.md` at the repository root is its generated projection:
 cargo run -p install-ctl -- catalog --check
 ```
 
-`guidance plan`/`install`/`autofix` are subcommands of the already-registered
-`install-ctl` binary artifact, not separate artifacts. A user-authored
-guidance profile (a `.toml` file naming a corpus and a destination) is
-runtime input to those subcommands, never a registry entry — the catalog
-projects installable binaries, not profiles a caller supplies on the command
-line.
+`guidance plan`/`install`/`autofix`/`get` are subcommands of the
+already-registered `install-ctl` binary artifact, not separate artifacts. A
+user-authored guidance profile (a `.toml` file naming a corpus and a
+destination) is runtime input to those subcommands, never a registry entry —
+the catalog projects installable binaries, not profiles a caller supplies on
+the command line.
 
 ## `guidance` command family
 
@@ -28,6 +28,7 @@ line.
 install-ctl guidance plan    --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope repo|user|system|explicit] [--destination-path <path>] [--json]
 install-ctl guidance install --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope ...] [--destination-path ...] [--json]
 install-ctl guidance autofix --repo-root <repo> [--scope <path>] [--rewrite old=new]... (--plan | --apply --yes) [--json]
+install-ctl guidance get <repository-url> --select <id>... [--profile <repo-relative-path>] [--target <repo>] [--destination-scope ...] [--destination-path ...] [--keep-checkout] [--json]
 ```
 
 - `plan` computes a read-only installation plan: no writes, no recipe
@@ -51,6 +52,16 @@ install-ctl guidance autofix --repo-root <repo> [--scope <path>] [--rewrite old=
   touched source still has a blocking finding for the same destination,
   every write from this call is rolled back from its in-memory backup and
   the result reports `rolled_back: true`.
+- `get` is the one-command surface: it shallow-clones `<repository-url>`
+  with the system `git` binary into a managed temporary checkout, resolves
+  a profile (an explicit `--profile <repo-relative-path>`, resolved inside
+  the clone — not the caller's filesystem — or, when omitted, a synthesized
+  single-item direct-corpus profile from the bare `--select` path(s)), then
+  runs the same `plan`/`install` logic unchanged. `--target` defaults to
+  `.`. The managed checkout is deleted on every exit path — success,
+  blocking plan, or error — unless `--keep-checkout` is given, in which case
+  its path is printed. No Git-client crate is added; the clone shells out to
+  `git`, styled after `workflow-tools/session/crates/worktree-ctl/src/git.rs`.
 
 ## Profile schema
 

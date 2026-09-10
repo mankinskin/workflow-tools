@@ -71,7 +71,8 @@ enum Command {
         #[command(subcommand)]
         command: ViewerCmd,
     },
-    /// Guidance profile planning/installation (`guidance plan`, `guidance install`).
+    /// Guidance profile planning/installation/autofix/one-command fetch
+    /// (`guidance plan`, `install`, `autofix`, `get`).
     Guidance {
         #[command(subcommand)]
         command: guidance::GuidanceCmd,
