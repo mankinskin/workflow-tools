@@ -21,7 +21,7 @@ repository `audit` tooling.
 A related fix may extract or separate the smallest cohesive responsibility needed
 to remove the finding. Do not use a related finding to reorganize unrelated
 modules, rename broad APIs, or clean repository-wide warnings. Follow the
-owning [ticket workflow](../ticket/workflow.instructions.md) for ticket state
+owning [ticket workflow](../../../ticket/.agents/instructions/ticket/workflow.instructions.md) for ticket state
 and completion evidence.
 
 `memory-api/crates/session-capture-hook/src/main.rs` is an exemplar: a module

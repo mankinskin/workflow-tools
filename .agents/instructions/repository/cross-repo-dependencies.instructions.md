@@ -30,6 +30,6 @@ dependency. Do not treat that command as a repair or as proof of remote
 resolution; the patch-free build and lockfile source are the proof.
 
 This repository-wide Cargo policy belongs here, rather than in
-[core-crates.instructions.md](../engine/core-crates.instructions.md), whose
+[core-crates.instructions.md](../../../memory-kernel/.agents/instructions/engine/core-crates.instructions.md), whose
 scope is limited to `context-stack` core crates. It derives from R1 and R2 of
-[182940eb repository architecture dependency policies](../../../.spec/specs/182940eb-0df3-4fa0-8aff-2abce6095708/body.md).
+[182940eb repository architecture dependency policies](../../../../context-engine/.spec/specs/182940eb-0df3-4fa0-8aff-2abce6095708/body.md).

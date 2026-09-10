@@ -5,16 +5,16 @@ applyTo: "**/*.md"
 
 ## Purpose
 
-Denoising a prompt (turning raw words into clean words) is not the same job as refining its intent (turning clean words into a verified, unambiguous decision). This instruction owns the second job: applying the shared [evidence-grounded refinement loop](evidence-grounded-refinement.instructions.md) that [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) runs twice — once right after research and the artifact inventory, before anything is drafted, and once right after the dossier and `ROADMAP.md` are drafted, before they ship. Denoising itself is not this file's job: it is delegated entirely to [audio-transcript.instructions.md](../transcripts/audio-transcript.instructions.md) and the [Transcription Agent](../../agents/transcription.agent.md), the same pipeline this whole ingestion process extends.
+Denoising a prompt (turning raw words into clean words) is not the same job as refining its intent (turning clean words into a verified, unambiguous decision). This instruction owns the second job: applying the shared [evidence-grounded refinement loop](evidence-grounded-refinement.instructions.md) that [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) runs twice — once right after research and the artifact inventory, before anything is drafted, and once right after the dossier and `ROADMAP.md` are drafted, before they ship. Denoising itself is not this file's job: it is delegated entirely to [audio-transcript.instructions.md](../../../../context-engine/.agents/instructions/transcripts/audio-transcript.instructions.md) and the [Transcription Agent](../../../../context-engine/.agents/agents/transcription.agent.md), the same pipeline this whole ingestion process extends.
 
 ## Applying the Refinement Loop Here
 
 Follow the four-step loop in [evidence-grounded-refinement.instructions.md](evidence-grounded-refinement.instructions.md); this section states only what differs for a prompt's intent:
 
 - **Evidence**: `ARTIFACTS.md` for the first loop; the drafted dossier and `ROADMAP.md` for the second loop.
-- **Critique**: review the current state the way [review.agent.md](../../agents/review.agent.md) critiques an implementation.
+- **Critique**: review the current state the way [review.agent.md](../../../../context-engine/.agents/agents/review.agent.md) critiques an implementation.
 - **Verdict**: `Changes requested` or `Approved as scoped`, plus a findings table and an explicit scope decision — or, for the second loop, a plain statement that no open question remains.
-- **Interview dispatch**: the [Mission Planning Agent](../../agents/mission-planning.agent.md) for a mission-goal-level gap, or the [Interview Agent](../../agents/interview.agent.md) for a narrower requirement/acceptance-criteria gap. Hand the dispatched agent the research already gathered and interview only what that evidence cannot resolve, so every question is grounded in a concrete finding, not a guess dressed up as a question.
+- **Interview dispatch**: the [Mission Planning Agent](../../../../context-engine/.agents/agents/mission-planning.agent.md) for a mission-goal-level gap, or the [Interview Agent](../../../../context-engine/.agents/agents/interview.agent.md) for a narrower requirement/acceptance-criteria gap. Hand the dispatched agent the research already gathered and interview only what that evidence cannot resolve, so every question is grounded in a concrete finding, not a guess dressed up as a question.
 
 ## Where the Loop Runs
 

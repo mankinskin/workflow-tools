@@ -5,7 +5,7 @@ applyTo: "**/*.md"
 
 ## Session Artifact Reading
 
-When the task involves prior sessions, transcript inspection, handoff recovery, or Copilot chat artifacts, follow [session-optimization instructions](../session/session-optimization.instructions.md).
+When the task involves prior sessions, transcript inspection, handoff recovery, or Copilot chat artifacts, follow [session-optimization instructions](../../../session/.agents/instructions/session/session-optimization.instructions.md).
 
 Rules:
 - Do not read raw session transcript files into the model prompt by default.

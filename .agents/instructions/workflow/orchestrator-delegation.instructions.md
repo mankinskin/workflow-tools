@@ -22,7 +22,7 @@ Activate this rule when:
 
 **Tooling**:
 - Query/regenerate the table: `workflow-tools/session/crates/model-prices/sync_model_prices.py` with `--query <model>`, `--list`, `--format {table,csv,json}`, `--check`, `--force`
-- Enforcement middleware: the Rust crate `workflow-tools/session/crates/mcp-toolmon`. There is no `cost_gate.py` — earlier revisions referenced one that never shipped. See [model-prices.instructions.md](model-prices.instructions.md) for its flags and failure modes.
+- Enforcement middleware: the Rust crate `workflow-tools/session/crates/mcp-toolmon`. There is no `cost_gate.py` — earlier revisions referenced one that never shipped. See [model-prices.instructions.md](../../../session/.agents/instructions/orchestration/model-prices.instructions.md) for its flags and failure modes.
 
 **MCP boundary enforcement**: `mcp-toolmon` middleware injects a mandatory `caller_model` field into every MCP tool schema, then grades each call: `base_budget = round((1 − output_mtok / 60) × 100)` versus an empirical per-tool cost. A pricier model keeps full access to cheap tools and is asked to delegate only the token-heavy ones; an unmeasured tool costs 0 and is always allowed, and a grant offset can raise any model's budget. No model is denied outright. Fails open if the price table is unavailable, and intercepts MCP `tools/call` traffic only — it never sees `runSubagent`, so it does not police dispatch targets.
 
@@ -34,7 +34,7 @@ Activate this rule when:
 
 The only thing threshold X decides is **who orchestrates**: a model whose `output_mtok` strictly exceeds 15 runs as orchestrator; everything at or below executes directly. Do **not** reuse "at or below X" as dispatch eligibility — it is not a selection rule, and reading it as one makes any same-priced model look defensible.
 
-Never hardcode prices into tooling; re-resolve with `sync_model_prices.py --query <model>` when a routing decision depends on the exact price. See [model-prices.instructions.md](model-prices.instructions.md) for working with the table.
+Never hardcode prices into tooling; re-resolve with `sync_model_prices.py --query <model>` when a routing decision depends on the exact price. See [model-prices.instructions.md](../../../session/.agents/instructions/orchestration/model-prices.instructions.md) for working with the table.
 
 **Roster check**: the price table is a vendor catalogue and lists models `runSubagent` will refuse. Pin only models present in the surface's model list — a rejected dispatch errors outright and wastes the spawn. See "Roster is not the catalogue" in [model-routing.instructions.md](model-routing.instructions.md).
 

@@ -30,7 +30,7 @@ their owning workspace rather than inferred from a command directory.
 ## Chapter 2: Exploration
 
 Exploration turns a request into a bounded slice of evidence. The
-[research agent](../../agents/research.agent.md) gathers the owning files,
+[research agent](../../../../context-engine/.agents/agents/research.agent.md) gathers the owning files,
 existing records, dependencies, and validation surfaces. Exploration remains
 read-only until the goal and ownership are clear; the result is a compact map
 of the relevant world, not an implementation guess.
@@ -52,7 +52,7 @@ contract before execution starts.
 
 ## Chapter 5: Execution
 
-The [implement agent](../../agents/implement.agent.md) performs one bounded
+The [implement agent](../../../../context-engine/.agents/agents/implement.agent.md) performs one bounded
 implementation unit from a complete handoff. [phase-separation.instructions.md](phase-separation.instructions.md)
 keeps discovery before implementation, while
 [write-and-die.instructions.md](write-and-die.instructions.md) keeps a worker
@@ -71,7 +71,7 @@ Execution has four observable action types:
 
 An edit, commit, tool call, or program run changes the observable repository
 world. Commit discipline belongs to the repository workflow and the
-[commit agent](../../agents/commit.agent.md); delegation economics belong to
+[commit agent](../../../../context-engine/.agents/agents/commit.agent.md); delegation economics belong to
 [model-routing.instructions.md](model-routing.instructions.md). The agent must
 keep the requested world-state change distinct from changes that improve the
 toolset itself.
@@ -81,9 +81,9 @@ toolset itself.
 Validation converts execution into evidence. The return contract in
 [subagent-return-contract.instructions.md](subagent-return-contract.instructions.md)
 requires command-backed success claims and explicit blockers. The
-[iteration prompt](../../prompts/iteration.prompt.md) closes the loop through
+[iteration prompt](../../../../context-engine/.agents/prompts/iteration.prompt.md) closes the loop through
 review, interview when needed, commit, and handoff; the
-[handoff agent](../../agents/handoff.agent.md) packages the next implementation
+[handoff agent](../../../../context-engine/.agents/agents/handoff.agent.md) packages the next implementation
 unit.
 
 ## Chapter 8: Improving the Tools

@@ -21,13 +21,13 @@ the user's next judgment. It complements [phase separation](phase-separation.ins
 ## Contract Rules
 
 - Author the spec before tickets when the work requires a spec. Tickets plan implementation and reference the governing spec; they do not author or restate spec content.
-- Each component owns its outward-facing acceptance criteria. When a component requires a child spec, [spec-system.instructions.md](../spec/spec-system.instructions.md#component-hierarchy) requires that separate entity; "component" never means an in-body record. Consumers reference the provider-owned criteria instead of duplicating them.
+- Each component owns its outward-facing acceptance criteria. When a component requires a child spec, [spec-system.instructions.md](../../../spec/.agents/instructions/spec/spec-system.instructions.md#component-hierarchy) requires that separate entity; "component" never means an in-body record. Consumers reference the provider-owned criteria instead of duplicating them.
 - An acceptance criterion without executable validation remains a valid documented criterion. Add automation when feasible, but do not block review on a missing `validated_by` record.
-- Test evidence links the cycle's measurable validation stage: [validation evidence](../testing/validation-evidence.instructions.md) records `ticket_ids`, `spec_ids`, and applicable `acceptance_criterion_ids`.
+- Test evidence links the cycle's measurable validation stage: [validation evidence](../../../test/.agents/instructions/testing/validation-evidence.instructions.md) records `ticket_ids`, `spec_ids`, and applicable `acceptance_criterion_ids`.
 
 ## Owning Workflows
 
 - [phase-separation.instructions.md](phase-separation.instructions.md) owns request discovery, planning, and implementation boundaries.
-- [spec.prompt.md](../../prompts/spec.prompt.md) owns spec authoring.
-- [ticket workflow](../ticket/workflow.instructions.md) and [ticket lifecycle](../ticket/lifecycle.instructions.md) own ticket planning, transitions, review, and closing.
+- [spec.prompt.md](../../../../context-engine/.agents/prompts/spec.prompt.md) owns spec authoring.
+- [ticket workflow](../../../ticket/.agents/instructions/ticket/workflow.instructions.md) and [ticket lifecycle](../../../ticket/.agents/instructions/ticket/lifecycle.instructions.md) own ticket planning, transitions, review, and closing.
 - [loop-closure.instructions.md](loop-closure.instructions.md) owns the final Review -> Interview -> Commit -> Handoff iteration workflow.

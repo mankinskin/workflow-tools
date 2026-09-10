@@ -18,7 +18,7 @@ advisory.
 This agent is the structural counterpart to the AGENTS.md "Orchestrator-mode
 threshold" rule: it is the entry point for any model whose `output_mtok` exceeds
 the threshold `X = 15` USD per 1M output tokens (see the model→cost mapping in
-[workflow-tools/session/crates/model-prices/model_prices.json](../../workflow-tools/session/crates/model-prices/model_prices.json)).
+[workflow-tools/session/crates/model-prices/model_prices.json](../../session/crates/model-prices/model_prices.json)).
 
 That threshold decides **whether you orchestrate**. It does *not* decide **who you
 dispatch to** — "at or below X" is not a selection rule, and reading it as one
@@ -47,7 +47,7 @@ have no tool to do it yourself, by design.
 
 ## Executing a Compiled Roadmap
 
-When the task at hand is executing a prompt-ingestion dossier's `ROADMAP.md`, follow [roadmap-execution.instructions.md](../instructions/orchestration/roadmap-execution.instructions.md) rather than improvising pacing: read the roadmap and dossier together, then delegate one waypoint at a time in dependency order, one dispatch per waypoint, on the tier its size warrants. A ticket-backed waypoint dispatches to whichever agent that ticket's own state calls for (Ticket Refinement, Scoping, Implement); a single-session waypoint dispatches like any other bounded unit below. The `/execute-roadmap` prompt sequences this walk when a human invokes it directly.
+When the task at hand is executing a prompt-ingestion dossier's `ROADMAP.md`, follow [roadmap-execution.instructions.md](../instructions/workflow/roadmap-execution.instructions.md) rather than improvising pacing: read the roadmap and dossier together, then delegate one waypoint at a time in dependency order, one dispatch per waypoint, on the tier its size warrants. A ticket-backed waypoint dispatches to whichever agent that ticket's own state calls for (Ticket Refinement, Scoping, Implement); a single-session waypoint dispatches like any other bounded unit below. The `/execute-roadmap` prompt sequences this walk when a human invokes it directly.
 
 ## Agent Roster and Routing
 
@@ -143,13 +143,13 @@ For each unit of work, spawn a sub-agent with:
    Flash" is not a selection. Never delegate to an orchestrator-tier (T0) model.
    Among models of equal cost, prefer the latest generation, then the larger
    context window. Prices and full rationale:
-   [model-routing.instructions.md](../instructions/orchestration/model-routing.instructions.md).
+   [model-routing.instructions.md](../instructions/workflow/model-routing.instructions.md).
 2. **A single, well-scoped objective.** One unit per sub-agent; do not hand a
    sub-agent the whole task.
 3. **A compact return contract.** Ask for exactly the facts/edits/results you
    need back — file paths, line ranges, a diff summary, a decision, or a short
    findings list — not a transcript. Require
-   [subagent-return-contract.instructions.md](../instructions/orchestration/subagent-return-contract.instructions.md)
+   [subagent-return-contract.instructions.md](../instructions/workflow/subagent-return-contract.instructions.md)
    for the terminal delivery.
 4. **A compiled prompt, not a raw artifact dump.** Do not inline full ticket
    bodies, full spec bodies, or full file contents. Compile what you
@@ -198,9 +198,9 @@ See `.agents/instructions/orchestration/pre-dispatch-gates.instructions.md` for 
 
 Every implementation unit runs in its own git worktree on a branch cut from `main`. Before dispatching an implementation unit, delegate UUID, worktree, session check-in, and board check-in to `session-bootstrap.agent.md`, then name the resolved worktree and branch in the implementation unit's compiled prompt (as part of execution identity).
 
-After a unit reports ready, you hold the merge monopoly: no worker touches `main`, because merge order across concurrent branches is a global decision. Delegate bottom-up fast-forward integration and worktree teardown to `merge.agent.md`; that agent follows the canonical sequence and gitlink invariants in [worktree-merge.instructions.md](../instructions/commit/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical). If integration cannot fast-forward, send the branch back for a fresh rebase rather than resolving a conflict on `main`.
+After a unit reports ready, you hold the merge monopoly: no worker touches `main`, because merge order across concurrent branches is a global decision. Delegate bottom-up fast-forward integration and worktree teardown to `merge.agent.md`; that agent follows the canonical sequence and gitlink invariants in [worktree-merge.instructions.md](../../session/.agents/instructions/worktree/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical). If integration cannot fast-forward, send the branch back for a fresh rebase rather than resolving a conflict on `main`.
 
-Full protocol: [worktree-workflow.instructions.md](../instructions/commit/worktree-workflow.instructions.md).
+Full protocol: [worktree-workflow.instructions.md](../../session/.agents/instructions/worktree/worktree-workflow.instructions.md).
 
 ## The Red Thread
 
@@ -208,8 +208,8 @@ Preserve continuity across tasks, sessions, and goals by naming the epic id,
 ticket ids, spec ids, branch, and worktree in every plan and synthesis.
 Dispatch `framing.agent.md` when a session has run long enough that continuity
 is at risk, and dispatch `session-learning.agent.md` at session close.
-Use [shared-context-bundle.instructions.md](../instructions/orchestration/shared-context-bundle.instructions.md)
-and [session-identity-and-handoff.instructions.md](../instructions/session/session-identity-and-handoff.instructions.md)
+Use [shared-context-bundle.instructions.md](../instructions/workflow/shared-context-bundle.instructions.md)
+and [session-identity-and-handoff.instructions.md](../../session/.agents/instructions/session/session-identity-and-handoff.instructions.md)
 for the durable-context and handoff contracts.
 
 ## Required workflow

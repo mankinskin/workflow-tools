@@ -9,12 +9,12 @@ agent: "agent"
 
 Create a compact handoff prompt for a new session and formalize the handoff track through the ticket workflow when needed.
 
-Reference [AGENTS](../../AGENTS.md), [session-optimization instructions](../instructions/session/session-optimization.instructions.md), [ticket](./ticket.prompt.md), [tickets](./tickets.prompt.md), [ticket-next](./ticket-next.prompt.md), [ticket-system instructions](../instructions/ticket/), [rule-target](./rule-target.prompt.md), [ticket-cli](../../memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../workflow-tools/audit/crates/audit-cli/README.md).
+Reference [AGENTS](../../../context-engine/AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket](../../ticket/.agents/prompts/ticket.prompt.md), [tickets](../../ticket/.agents/prompts/tickets.prompt.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [rule-target] (no standalone rule-target prompt is present), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
 
 ## Workflow
 
 1. Read the slash-command text and determine the handoff track, current implementation slice, and whether new ticketing is needed.
-2. Search existing tickets first per [workflow.instructions.md#discovery-before-creating](../instructions/ticket/workflow.instructions.md#discovery-before-creating) so the handoff flow reuses or updates the authoritative ticket set.
+2. Search existing tickets first per [workflow.instructions.md#discovery-before-creating](../../ticket/.agents/instructions/ticket/workflow.instructions.md#discovery-before-creating) so the handoff flow reuses or updates the authoritative ticket set.
 3. Inspect the current board, spec, validation, implementation references, session-audit evidence, and any persisted cross-session history needed to describe the track accurately.
 4. Produce a short, paragraph-style, reference-centric handoff prompt for a new session.
 5. If the current track is not already represented well enough in the ticket graph, create or refine the needed ticket or tracker ticket items:
@@ -48,7 +48,7 @@ Return:
 - the short handoff prompt in one paragraph
 - created or matched tickets, rendered as canonical markdown links when available
 - all file references must use markdown links with forward slashes only
-- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](./AGENTS.md)`)
+- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](../../../context-engine/AGENTS.md)`)
 - do not emit bare file paths or Windows-style backslashes
 - strict ticket references using full UUIDs
 - a `Shorthand And Placeholder Legend` section near the top that defines all shorthand/placeholders used later in the handoff, or `None used.` when none are introduced

@@ -6,8 +6,8 @@ description: "Regression probe for per-template MCP tool-grant scoping (ticket c
 # Tool-Grant Regression Probe
 
 Detects drift back toward wildcard MCP tool grants (ticket
-[cd19fed4](../../.ticket/tickets/cd19fed4-44d5-4ef0-848c-19753f1539b0/ticket.toml),
-spec [ec3b13f1](../../.spec/specs/ec3b13f1-ae9f-4f11-b3f9-e8fa3877afbd/spec.toml)).
+[cd19fed4](../../../context-engine/.ticket/tickets/cd19fed4-44d5-4ef0-848c-19753f1539b0/ticket.toml),
+spec [ec3b13f1](../../../context-engine/.spec/specs/ec3b13f1-ae9f-4f11-b3f9-e8fa3877afbd/spec.toml)).
 Re-run this probe whenever `.agents/agents/explore.agent.md` changes, or periodically,
 to confirm the Explore Agent's advertised tool surface has not regressed.
 

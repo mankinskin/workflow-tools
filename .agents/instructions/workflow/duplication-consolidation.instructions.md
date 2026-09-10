@@ -28,7 +28,7 @@ For each concept, choose exactly one occurrence's file as the authoritative sour
 1. **`AGENTS.md`** — if any occurrence lives there, it stays authoritative; `AGENTS.md` is the global, outranking source per its own precedence rules, and no other file may hold a competing copy of the same rule.
 2. **An `.instructions.md` file** among the occurrences — instruction files are the designated single-owner location for a reusable rule; prefer the file whose existing topic most closely matches the concept.
 3. **A `SKILL.md`** among the occurrences, only if no `.instructions.md` occurrence exists.
-4. **Never** an `.agent.md` or `.prompt.md` template, when any occurrence above is available — a rule that only lives in templates today still moves to an instructions file (create a new focused one under `.agents/instructions/<workflow>/` per [README.md](../README.md)'s layout convention if no existing file fits) rather than letting one template become the copy every other template must reference.
+4. **Never** an `.agent.md` or `.prompt.md` template, when any occurrence above is available — a rule that only lives in templates today still moves to an instructions file (create a new focused one under `.agents/instructions/<workflow>/` per [README.md](../../../README.md)'s layout convention if no existing file fits) rather than letting one template become the copy every other template must reference.
 
 ## Snippet Compilation
 
@@ -40,7 +40,7 @@ For each concept, choose exactly one occurrence's file as the authoritative sour
 
 For every non-authoritative occurrence:
 
-1. Replace the duplicated passage with a short reference to the authoritative location: a clickable link (repository-relative path, with a line range once the authoritative edit is applied) per the Clickable Reference Policy in [AGENTS.md](../../AGENTS.md).
+1. Replace the duplicated passage with a short reference to the authoritative location: a clickable link (repository-relative path, with a line range once the authoritative edit is applied) per the Clickable Reference Policy in [AGENTS.md](../../../../context-engine/AGENTS.md).
 2. Keep only the occurrence's genuinely local content next to the reference — a short clause naming how the rule applies in that file's context — per the Authoring Contract rule that a template "may state only the local application of a rule needed to establish the template's responsibility, input, output, or boundary." Do not reproduce the full rule text next to the reference.
 3. Record the exact `oldString`/`newString` pair for the replacement before moving to the next occurrence; do not apply it yet.
 
@@ -50,7 +50,7 @@ For every non-authoritative occurrence:
 2. Group the compiled edits by file. Within a file that receives edits from more than one concept, apply them **bottom-to-top by current line number** so an earlier edit never shifts the location an unapplied edit still needs to match.
 3. Apply each edit by matching its exact current text (not the review's stored line numbers, which may be stale) — re-read the file immediately before editing if any prior edit in this run touched it.
 4. After all edits to a file are applied, re-read the file once to confirm every intended replacement landed and no unrelated content was altered.
-5. Never edit a file, integrate a branch, or delete a worktree with unmerged commits that another agent actively owns, and never revert, stage, or commit another agent's in-progress work — check `board_show` per [board.instructions.md](../ticket/board.instructions.md) before the first edit to any file in the changeset.
+5. Never edit a file, integrate a branch, or delete a worktree with unmerged commits that another agent actively owns, and never revert, stage, or commit another agent's in-progress work — check `board_show` per [board.instructions.md](../../../ticket/.agents/instructions/ticket/board.instructions.md) before the first edit to any file in the changeset.
 
 ## Reporting Contract
 

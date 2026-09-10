@@ -19,7 +19,7 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 
 ### Execute Ingest Approval Gate
 
-When [execute-ingest.prompt.md](../../../.agents/prompts/execute-ingest.prompt.md)
+When [execute-ingest.prompt.md](../../../../.agents/prompts/execute-ingest.prompt.md)
 hands a roadmap to this execution procedure, the handoff must contain the
 explicit final user outcome `approve`. The outcome `replan` returns control to
 the planning loop and is not an executable handoff. A planning verdict such as
@@ -96,12 +96,12 @@ A waypoint's `Status:` line (see [roadmap-authoring.instructions.md's Syntax Rul
 3. **`blocked`** — work stopped on an unmet precondition. A waypoint MUST NOT sit at `blocked` without a stated reason in its own text or in "Active blockers" (per "Handling Drift" above).
 4. **`done`** — its validation gate passed. Never mark a waypoint `done` before running its `Validate:` command per "Required Procedure" step 5.
 
-**Ticket-backed waypoints track two lifecycles at once.** A waypoint whose `Scope:` names a ticket (per [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md#scoping-guidelines)) has its own `Status:` line in the roadmap AND the ticket's own state machine (see [lifecycle.instructions.md](../ticket/lifecycle.instructions.md)). Keep the two in sync at the coarse level a roadmap needs: `pending`/`in-progress` maps loosely to the ticket being unclaimed/claimed, and the waypoint moves to `done` only once the ticket itself reaches a terminal `done` state — never mark the waypoint `done` while its ticket is still `in-review` or earlier.
+**Ticket-backed waypoints track two lifecycles at once.** A waypoint whose `Scope:` names a ticket (per [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md#scoping-guidelines)) has its own `Status:` line in the roadmap AND the ticket's own state machine (see [lifecycle.instructions.md](../../../ticket/.agents/instructions/ticket/lifecycle.instructions.md)). Keep the two in sync at the coarse level a roadmap needs: `pending`/`in-progress` maps loosely to the ticket being unclaimed/claimed, and the waypoint moves to `done` only once the ticket itself reaches a terminal `done` state — never mark the waypoint `done` while its ticket is still `in-review` or earlier.
 
 ## Review Handling
 
 Some waypoints require a review pass before they can be marked `done`, not just a passing validation command — typically ticket-backed waypoints, per [loop-closure.instructions.md](loop-closure.instructions.md)'s Review → Interview → Commit → Handoff cycle. For a roadmap-tracked waypoint:
 
 - Do not move a waypoint to `done` while its underlying ticket sits in `in-review` — leave it `in-progress` and note in the waypoint body that it is awaiting review.
-- Record a review verdict as a short inline note on the waypoint (`Review: approved, see ticket <short-id>`) rather than a separate document, unless the review itself produced a substantial artifact worth its own file (a full [review.agent.md](../../agents/review.agent.md) report) — in that case cite the report by path instead of pasting it.
+- Record a review verdict as a short inline note on the waypoint (`Review: approved, see ticket <short-id>`) rather than a separate document, unless the review itself produced a substantial artifact worth its own file (a full [review.agent.md](../../../../context-engine/.agents/agents/review.agent.md) report) — in that case cite the report by path instead of pasting it.
 - A review that surfaces new scope or a new blocker is handled per [escalation-gate.instructions.md](escalation-gate.instructions.md), not by silently expanding the waypoint's own objective — open a new waypoint or ticket instead.

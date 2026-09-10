@@ -30,10 +30,10 @@ and stop.
 
 ## Constraints
 
-Follow the [canonical bottom-up integration sequence](../instructions/commit/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical).
-Follow [submodule.instructions.md](../instructions/commit/submodule.instructions.md)
+Follow the [canonical bottom-up integration sequence](../../session/.agents/instructions/worktree/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical).
+Follow [submodule.instructions.md](../instructions/repository/submodule.instructions.md)
 for submodule ordering and superproject pointer updates.
-Follow [worktree-provisioning.instructions.md](../instructions/session/worktree-provisioning.instructions.md)
+Follow [worktree-provisioning.instructions.md](../../session/.agents/instructions/session/worktree-provisioning.instructions.md)
 for `worktree-ctl.exe merge` and `remove` behavior.
 Never add a `submodule deinit` teardown step: that operation rewrites shared
 `.git/config` state and deinitializes main-checkout submodules.

@@ -31,16 +31,16 @@ proposing a rewrite.
 
 ## Constraints
 
-- Follow [agent template roster contract](../../.spec/specs/88413517-1d93-4582-8328-71a417dde3a1/body.md) for every new `.agent.md`: six required
+- Follow [agent template roster contract](../../../context-engine/.spec/specs/88413517-1d93-4582-8328-71a417dde3a1/body.md) for every new `.agent.md`: six required
   frontmatter fields and the six ordered body sections.
-- Follow [Agent Customization](../../.agents/skills/agent-customization/SKILL.md)
+- Follow [Agent Customization](../../../context-engine/.agents/skills/agent-customization/SKILL.md)
   to choose the primitive: broad policy is an instruction, a focused reusable
   workflow is a skill, a parameterized one-off operation is a prompt, and an
   isolated role with scoped tools is an agent.
 - Keep instructions narrow with an `applyTo` pattern; write a specific
   `description` trigger for instructions, agents, prompts, and skills.
 - Place a new skill in `.agents/skills/<name>/SKILL.md`; use
-  [find-skills](../../.agents/skills/find-skills/SKILL.md) and delegate actual
+  [find-skills](../../../context-engine/.agents/skills/find-skills/SKILL.md) and delegate actual
   third-party installation to the Installer Agent.
 - Treat `.agents/` as canonical. Never hand-edit generated `.github/agents/`,
   `.github/instructions/`, or `.github/prompts/` files.
@@ -50,7 +50,7 @@ proposing a rewrite.
 - Run `bash bootstrap.sh` for repository bootstrap or generated-surface
   verification when the target configuration requires it. Refresh `repo_map.toon`
   after an agent-file layout change according to
-  [generated-files.instructions.md](../instructions/commit/generated-files.instructions.md).
+  [generated-files.instructions.md](../instructions/repository/generated-files.instructions.md).
 - A completed guidance change is not handoff-ready while canonical or generated
   files remain uncommitted. After review and validation, delegate the approved
   publication set to the Commit Agent and report the commit SHA.

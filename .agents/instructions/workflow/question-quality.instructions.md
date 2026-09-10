@@ -72,6 +72,6 @@ Strong: "Must a handoff package contain an explicit ordered list of next steps b
 
 ## Cross-References
 
-- Escalation over inline clarification: [.agents/instructions/orchestration/escalation-gate.instructions.md](.agents/instructions/orchestration/escalation-gate.instructions.md)
-- Phase separation: [.agents/instructions/orchestration/phase-separation.instructions.md](.agents/instructions/orchestration/phase-separation.instructions.md)
-- Reference formatting: [AGENTS.md](../../../AGENTS.md)
+- Escalation over inline clarification: [.agents/instructions/orchestration/escalation-gate.instructions.md](./escalation-gate.instructions.md)
+- Phase separation: [.agents/instructions/orchestration/phase-separation.instructions.md](./phase-separation.instructions.md)
+- Reference formatting: [AGENTS.md](../../../../context-engine/AGENTS.md)

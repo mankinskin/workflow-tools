@@ -22,9 +22,9 @@ When a handoff package is incomplete or requirements are ambiguous, escalate imm
 
 ## Cross-References
 
-- Iteration loop behavior spec: [.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml](.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml)
-- Handoff package schema: [.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml](.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml)
-- Phase separation enforcement: [.agents/instructions/orchestration/phase-separation.instructions.md](.agents/instructions/orchestration/phase-separation.instructions.md)
+- Iteration loop behavior spec: [.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml](../../../../context-engine/.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml)
+- Handoff package schema: [.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml](../../../../context-engine/.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml)
+- Phase separation enforcement: [.agents/instructions/orchestration/phase-separation.instructions.md](./phase-separation.instructions.md)
 
 ## Escalation Triggers
 

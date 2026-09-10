@@ -9,7 +9,7 @@ agent: "agent"
 
 Use this workflow to orchestrate the Review → Interview → Commit → Handoff transition after an implementation phase completes.
 
-Reference [AGENTS](../../AGENTS.md), [Iteration Loop Workflow spec](.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml), [Handoff Package Schema spec](.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml), [ticket-cli](../../memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../memory-api/tools/cli/spec-cli/README.md), [spec-mcp](../../memory-api/tools/mcp/spec-mcp/README.md), and [session-mcp](../../context-stack/tools/mcp/session-mcp/README.md).
+Reference [AGENTS](../../../context-engine/AGENTS.md), [Iteration Loop Workflow spec](../../../context-engine/.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml), [Handoff Package Schema spec](../../../context-engine/.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../../context-engine/memory-api/tools/cli/spec-cli/README.md), [spec-mcp](../../../context-engine/memory-api/tools/mcp/spec-mcp/README.md), and [session-mcp](../../../context-engine/context-stack/tools/mcp/session-mcp/README.md).
 
 Act as the iteration orchestrator: delegate Review, Interview, Commit, and Handoff to their named agents, enforce the gates, and own everything around the implementation — the commit, the ticket-store reconciliation, and the handoff package.
 
@@ -52,17 +52,17 @@ If a required capability is missing (no edit, terminal, or commit tooling), that
 ## Workflow
 
 1. **Anchor on the track.** Determine the implementation track from the slash-command text (ticket id, current session, or handoff package) and read it. Assume the described work is complete and awaiting review; do not ask the user to confirm this. Proceed directly to step 2.
-2. **Delegate Review.** Invoke the [Review Agent](.agents/agents/review.agent.md) with the target ticket(s). Instruct it to verify acceptance criteria, gather evidence, and return a pass/fail verdict with per-criterion findings, and to perform **no** ticket transitions.
-3. **Delegate Interview.** Enumerate every open question, waiver, conflict, or judgement call from the review, then invoke the [Interview Agent](.agents/agents/interview.agent.md) to put them to the user and collect answers. Apply the answers to tickets and specs. Mandatory on both the pass and fail paths whenever anything is unresolved.
+2. **Delegate Review.** Invoke the [Review Agent](../../ticket/.agents/agents/review.agent.md) with the target ticket(s). Instruct it to verify acceptance criteria, gather evidence, and return a pass/fail verdict with per-criterion findings, and to perform **no** ticket transitions.
+3. **Delegate Interview.** Enumerate every open question, waiver, conflict, or judgement call from the review, then invoke the [Interview Agent](../agents/interview.agent.md) to put them to the user and collect answers. Apply the answers to tickets and specs. Mandatory on both the pass and fail paths whenever anything is unresolved.
 4. **Escalation gate.** Confirm every escalation and review-raised decision is answered. If any remain, return to step 3.
 5. **Reconcile the ticket store.** Apply the interview outcomes: required fields, dependency edges, health-check findings, dangling or disconnected entries, and any follow-up tickets the user approved. This runs on both paths.
 6. **Review gate.**
    - If review passes, proceed to step 7.
-   - If review fails, **author the re-packaged handoff inline** (do not delegate this to the Handoff Agent) satisfying the [handoff-package schema](.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml): **objective**, **target_tickets** (with state and acceptance criteria inlined), **target_files**, **decisions**, **validation**, **non_goals**, **context_anchors**, and an empty **open_escalations** — emptied by the step 3 interview, not by rewording. Every `target_files` entry and every path-shaped `context_anchors` entry must be a repo-root-relative, forward-slash, verified-to-exist physical path (store-qualified for nested-store entities, e.g. `memory-api/.ticket/tickets/<uuid>`) — `session_handoff` rejects the package at creation time otherwise.
-   - **Ask the user whether to commit the partial work as WIP.** If they approve, delegate to the [Commit Agent](.agents/agents/commit.agent.md); if they decline, leave the worktree dirty and report that in the summary.
+   - If review fails, **author the re-packaged handoff inline** (do not delegate this to the Handoff Agent) satisfying the [handoff-package schema](../../../context-engine/.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml): **objective**, **target_tickets** (with state and acceptance criteria inlined), **target_files**, **decisions**, **validation**, **non_goals**, **context_anchors**, and an empty **open_escalations** — emptied by the step 3 interview, not by rewording. Every `target_files` entry and every path-shaped `context_anchors` entry must be a repo-root-relative, forward-slash, verified-to-exist physical path (store-qualified for nested-store entities, e.g. `memory-api/.ticket/tickets/<uuid>`) — `session_handoff` rejects the package at creation time otherwise.
+   - **Ask the user whether to commit the partial work as WIP.** If they approve, delegate to the [Commit Agent](../agents/commit.agent.md); if they decline, leave the worktree dirty and report that in the summary.
    - Move the ticket to `in-implementation` with `mcp_ticket-mcp_update_ticket`, persist the handoff with `mcp_session-mcp_session_handoff`, and stop. The next implementation session loads this package.
-7. **Delegate Commit.** Invoke the [Commit Agent](.agents/agents/commit.agent.md) to commit the approved work (hooks, rule sync, generated files, submodule pointers, conventional messages). Capture the commit sha(s).
-8. **Delegate Handoff.** Invoke the [Handoff Agent](.agents/agents/handoff.agent.md) to author the forward next-handoff package to the same schema.
+7. **Delegate Commit.** Invoke the [Commit Agent](../agents/commit.agent.md) to commit the approved work (hooks, rule sync, generated files, submodule pointers, conventional messages). Capture the commit sha(s).
+8. **Delegate Handoff.** Invoke the [Handoff Agent](../agents/handoff.agent.md) to author the forward next-handoff package to the same schema.
 9. **Close the loop.** Close the ticket yourself with `close_ticket` and persist the handoff with `mcp_session-mcp_session_handoff`. The worktree must be clean and the handoff persisted before you report the summary.
 
 ## Gates
@@ -78,7 +78,7 @@ Sub-agents report verdicts and findings only. **You perform every ticket state t
 - **Review:** one tier above the cheap threshold — prefer "Claude Sonnet 5 (copilot)". Escalate to "GPT-5.3-Codex (copilot)" or "GPT-5.6 Terra (copilot)" only for dense, cross-cutting reviews.
 - **Interview, Commit, Handoff:** at the cheap threshold — prefer "GPT-5 mini (copilot)", stepping to "GPT-5.4 mini (copilot)" when the unit needs real reasoning or "GPT-5.6 Luna (copilot)" when the input exceeds 400k.
 - Among equal-cost models, prefer the latest version or generation, then the larger context window.
-- Choose models from the tier ladder in [model-routing.instructions.md](../instructions/orchestration/model-routing.instructions.md), which also flags the dominated models to route away from.
+- Choose models from the tier ladder in [model-routing.instructions.md](../instructions/workflow/model-routing.instructions.md), which also flags the dominated models to route away from.
 
 ## Output Format
 
@@ -92,4 +92,4 @@ End the run with a single inline summary block using **bold-label bullets**, one
 - **Handoff package:** a clickable link to the persisted handoff plus a one-line restatement of its `objective` — never the full eight fields
 - **Next actions:** the immediate next steps for the human or next agent, phrased as executable directives. **New implementation work only** — never a commit, ticket-hygiene, cleanup, or reconciliation task (you own those), and never a decision, choice, or open question (those are resolved in the Interview phase). Any unresolved escalation is reported here; there is no separate blockers field.
 
-Omit no field: render `none` when a field is empty. Render all ticket/spec/session/handoff references per the Clickable Reference Policy in [AGENTS.md](../../AGENTS.md).
+Omit no field: render `none` when a field is empty. Render all ticket/spec/session/handoff references per the Clickable Reference Policy in [AGENTS.md](../../../context-engine/AGENTS.md).

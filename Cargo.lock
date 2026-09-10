@@ -216,6 +216,7 @@ dependencies = [
  "ignore",
  "memory-kernel",
  "proc-macro2",
+ "pulldown-cmark",
  "rule-api",
  "rusqlite",
  "serde",

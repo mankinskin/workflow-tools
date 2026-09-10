@@ -97,6 +97,6 @@ attempt. Record the command and execution id or PID before waiting for a result.
   `cargo -vV` and `rustc -vV` once when a mismatch is suspected.
 - A benchmark run gets an explicit expected-runtime estimate and a bounded
   timeout before launch; do not wait on it indefinitely. See
-  [benchmarks-timeout.instructions.md](../testing/benchmarks-timeout.instructions.md)
+  [benchmarks-timeout.instructions.md](../../../test/.agents/instructions/testing/benchmarks-timeout.instructions.md)
   for the estimate-then-bound rule and what to register when a run overruns
   its budget.

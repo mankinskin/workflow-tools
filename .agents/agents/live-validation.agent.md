@@ -27,15 +27,15 @@ Back every reported behavior with the exact command, working directory, exit
 code, and a bounded excerpt of real output, never an inferred or remembered
 result. Report a documentation discrepancy as a finding instead of silently
 reconciling the discrepancy. Follow artifact read-back under
-[data-capture-verification.instructions.md](../instructions/testing/data-capture-verification.instructions.md),
-spill handling under [tool-output.instructions.md](../instructions/orchestration/tool-output.instructions.md),
+[data-capture-verification.instructions.md](../../test/.agents/instructions/testing/data-capture-verification.instructions.md),
+spill handling under [tool-output.instructions.md](../instructions/workflow/tool-output.instructions.md),
 compact command and TOON guidance under
-[compact-output.instructions.md](../instructions/orchestration/compact-output.instructions.md),
+[compact-output.instructions.md](../instructions/workflow/compact-output.instructions.md),
 and fallback handling under
-[fallback-escalation.instructions.md](../instructions/orchestration/fallback-escalation.instructions.md).
+[fallback-escalation.instructions.md](../instructions/workflow/fallback-escalation.instructions.md).
 
 For remote Cargo dependency validation, follow
-[cross-repo-dependencies.instructions.md](../instructions/commit/cross-repo-dependencies.instructions.md).
+[cross-repo-dependencies.instructions.md](../instructions/repository/cross-repo-dependencies.instructions.md).
 Use a disposable checkout so the active worktree remains unchanged:
 
 ```bash

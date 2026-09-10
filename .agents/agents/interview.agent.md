@@ -35,7 +35,7 @@ The interview is general-purpose. Depending on the objective and the answers it 
 
 ## Question Quality Contract
 
-The user has not read the files you read and is not tracking the ids you loaded. A question carries its own context. Follow [.agents/instructions/orchestration/question-quality.instructions.md](../instructions/orchestration/question-quality.instructions.md) for every question you ask.
+The user has not read the files you read and is not tracking the ids you loaded. A question carries its own context. Follow [.agents/instructions/orchestration/question-quality.instructions.md](../instructions/workflow/question-quality.instructions.md) for every question you ask.
 
 Mandatory per question:
 
@@ -134,5 +134,5 @@ Return:
 
 ## Cross-References
 
-- Escalation over inline clarification during implementation: [.agents/instructions/orchestration/escalation-gate.instructions.md](../instructions/orchestration/escalation-gate.instructions.md)
-- Discovery/interview happens before implementation: [.agents/instructions/orchestration/phase-separation.instructions.md](../instructions/orchestration/phase-separation.instructions.md)
+- Escalation over inline clarification during implementation: [.agents/instructions/orchestration/escalation-gate.instructions.md](../instructions/workflow/escalation-gate.instructions.md)
+- Discovery/interview happens before implementation: [.agents/instructions/orchestration/phase-separation.instructions.md](../instructions/workflow/phase-separation.instructions.md)

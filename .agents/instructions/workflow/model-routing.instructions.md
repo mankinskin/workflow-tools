@@ -22,7 +22,7 @@ This matters most in sessions driven by a large, expensive model. Treat that mod
 
 This table is the **canonical** tier ladder for the repository. [orchestrator-delegation.instructions.md](orchestrator-delegation.instructions.md) references it rather than restating it — do not fork a second copy.
 
-Prices come from `workflow-tools/session/crates/model-prices/model_prices.json` and are USD per 1M tokens. Re-check with `sync_model_prices.py --query <model>` rather than trusting these numbers indefinitely — see [model-prices.instructions.md](model-prices.instructions.md).
+Prices come from `workflow-tools/session/crates/model-prices/model_prices.json` and are USD per 1M tokens. Re-check with `sync_model_prices.py --query <model>` rather than trusting these numbers indefinitely — see [model-prices.instructions.md](../../../session/.agents/instructions/orchestration/model-prices.instructions.md).
 
 **Context windows are not in the price table.** No `github-copilot` row publishes `context_window`; the `ctx` values below are carried from each model's upstream (genai-prices) row or vendor documentation. Where an entry reads *unpublished*, no source gives a number — treat that as "unknown", not "large".
 
@@ -54,7 +54,7 @@ Routing has two independent controls. Confusing them produces both false bans an
 | Shape | Preference ordering — judgement, applied by you | Graded budget — arithmetic, applied by the middleware |
 | Outcome | A recommended model, deviable with a stated reason | `Allow`, `Delegate`, or `Reject` on an unresolvable `caller_model` |
 
-Neither is a prohibition list. The gate **never denies a model outright** — it computes `base_budget = round((1 − output_mtok / 60) × 100)` and compares it to an empirical per-tool cost, so a pricier model keeps full access to cheap tools and loses only the token-heavy ones. An unmeasured tool costs 0 and is always allowed, and a grant offset can lift any model's budget. See [model-prices.instructions.md](model-prices.instructions.md).
+Neither is a prohibition list. The gate **never denies a model outright** — it computes `base_budget = round((1 − output_mtok / 60) × 100)` and compares it to an empirical per-tool cost, so a pricier model keeps full access to cheap tools and loses only the token-heavy ones. An unmeasured tool costs 0 and is always allowed, and a grant offset can lift any model's budget. See [model-prices.instructions.md](../../../session/.agents/instructions/orchestration/model-prices.instructions.md).
 
 The `X = 15` threshold in [orchestrator-delegation.instructions.md](orchestrator-delegation.instructions.md) belongs to neither column: it decides only **whether a model runs as orchestrator**. Do not reuse it as dispatch eligibility — "at or below X" is not a selection rule, and reading it as one is what lets an arbitrary same-priced model look defensible.
 
@@ -107,11 +107,11 @@ Most delegated volume lands here, so T3 dominates real spend. Route it on the ri
 - **Budget pressure** shifts the whole ladder down one step: T2 work goes to T3, T1 work goes to T2.
 - Among models of equal cost, prefer the latest generation and the larger context window.
 
-## Per-Template `model:` Declaration (Ticket [66acb737](../../../.ticket/tickets/66acb737-71d6-4585-a921-b597f7c88e8e/ticket.toml))
+## Per-Template `model:` Declaration (Ticket [66acb737](../../../../context-engine/.ticket/tickets/66acb737-71d6-4585-a921-b597f7c88e8e/ticket.toml))
 
-This is the canonical contract for the `model:` frontmatter field on every `.agents/agents/*.agent.md` template. Spec [ec3b13f1 Per-template MCP tool grants](../../../.spec/specs/ec3b13f1-ae9f-4f11-b3f9-e8fa3877afbd/spec.toml) explicitly lists this field as a **non-goal** — it does not define this contract. There is no separate spec for `model:`; this instruction file is the sufficient contract surface because the field is a routing default, not a product behavior: it has one producer (the template loader), one consumer (`runSubagent`'s no-`model` path), and its correctness is fully checked by the validation commands below rather than by acceptance-criteria-driven product testing. If the resolution or override mechanics ever need enforcement in code (not just convention), promote this section to a spec at that point.
+This is the canonical contract for the `model:` frontmatter field on every `.agents/agents/*.agent.md` template. Spec [ec3b13f1 Per-template MCP tool grants](../../../../context-engine/.spec/specs/ec3b13f1-ae9f-4f11-b3f9-e8fa3877afbd/spec.toml) explicitly lists this field as a **non-goal** — it does not define this contract. There is no separate spec for `model:`; this instruction file is the sufficient contract surface because the field is a routing default, not a product behavior: it has one producer (the template loader), one consumer (`runSubagent`'s no-`model` path), and its correctness is fully checked by the validation commands below rather than by acceptance-criteria-driven product testing. If the resolution or override mechanics ever need enforcement in code (not just convention), promote this section to a spec at that point.
 
-**Schema.** `model:` is a single string frontmatter field, value equal to a `model_id` in [workflow-tools/session/crates/model-prices/model_prices.json](../../../workflow-tools/session/crates/model-prices/model_prices.json) and to a "Preferred models" entry in the Tiered Model Ladder table above (bare name, no `"(Vendor)"` suffix — the vendor suffix is a `runSubagent` dispatch-time concern, not a template-declaration concern). Every template under `.agents/agents/*.agent.md` MUST declare exactly one `model:` value. A template with no `model:` field is a bug in that template, not a valid "inherit default" state.
+**Schema.** `model:` is a single string frontmatter field, value equal to a `model_id` in [workflow-tools/session/crates/model-prices/model_prices.json](../../../session/crates/model-prices/model_prices.json) and to a "Preferred models" entry in the Tiered Model Ladder table above (bare name, no `"(Vendor)"` suffix — the vendor suffix is a `runSubagent` dispatch-time concern, not a template-declaration concern). Every template under `.agents/agents/*.agent.md` MUST declare exactly one `model:` value. A template with no `model:` field is a bug in that template, not a valid "inherit default" state.
 
 **Resolution (AC2).** When `runSubagent` is invoked against a template and the caller does not pass an explicit `model` argument, the dispatcher resolves the model to that template's declared `model:` value. Explicit `model` arguments on the call always take precedence over the template default — the template value is a fallback, not a floor or ceiling.
 
@@ -158,7 +158,7 @@ This is the canonical contract for the `model:` frontmatter field on every `.age
 
 This satisfies AC3: Explore, Research, and Commit all route to GPT-5 mini, cheaper than Claude Sonnet 4.5 on every priced axis (see "Dominated models" above) and cheaper than the Claude Sonnet 5 default used by the remaining classes.
 
-**AC5 — deferred.** The benchmark in ticket [10d21210 Define a synthetic benchmark session](../../../.ticket/tickets/10d21210-7168-4ed4-8e99-f6fb0e6e08db/ticket.toml) is not yet built as of this ticket's implementation. AC5 ("measured against that benchmark, model distribution is no longer uniform and the mechanical delegation does not run on the strong tier") cannot be validated without fabricating numbers, so it is marked **DEFERRED-pending-10d21210** in ticket 66acb737. The structural change that AC5 will measure (non-uniform per-template tiers, mechanical classes on T3) is in place as of this section.
+**AC5 — deferred.** The benchmark in ticket [10d21210 Define a synthetic benchmark session](../../../../context-engine/.ticket/tickets/10d21210-7168-4ed4-8e99-f6fb0e6e08db/ticket.toml) is not yet built as of this ticket's implementation. AC5 ("measured against that benchmark, model distribution is no longer uniform and the mechanical delegation does not run on the strong tier") cannot be validated without fabricating numbers, so it is marked **DEFERRED-pending-10d21210** in ticket 66acb737. The structural change that AC5 will measure (non-uniform per-template tiers, mechanical classes on T3) is in place as of this section.
 
 ## Delegation Rules
 

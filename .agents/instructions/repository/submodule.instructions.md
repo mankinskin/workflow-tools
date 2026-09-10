@@ -28,7 +28,7 @@ cd .. && git add memory-viewers && git commit -m "chore: update memory-viewers s
 
 ## Branch integration and gitlinks
 
-Commit order is not integration order. Integrate affected submodule branches deepest first, fast-forward each submodule's `main`, then bump and commit its gitlink on the superproject feature branch before fast-forwarding the superproject. The full sequence is [worktree-merge.instructions.md](./worktree-merge.instructions.md#bottom-up-integration-sequence-canonical).
+Commit order is not integration order. Integrate affected submodule branches deepest first, fast-forward each submodule's `main`, then bump and commit its gitlink on the superproject feature branch before fast-forwarding the superproject. The full sequence is [worktree-merge.instructions.md](../../../session/.agents/instructions/worktree/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical).
 
 **Invariant:** every gitlink recorded by the superproject must be contained in the corresponding submodule's `main` branch. `git submodule status` shows `+` when a checked-out HEAD differs from the recorded gitlink and `-` when uninitialized; a clean integration has neither marker for all five submodules.
 

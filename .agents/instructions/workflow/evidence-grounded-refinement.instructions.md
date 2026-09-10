@@ -21,7 +21,7 @@ Escalate through [escalation-gate.instructions.md](escalation-gate.instructions.
 This loop shape is instantiated, not restated, by:
 
 - [intent-refinement.instructions.md](intent-refinement.instructions.md) — applies it twice to a prompt's carried intent, before and after dossier drafting; evidence is `ARTIFACTS.md` (first pass) or the drafted dossier/`ROADMAP.md` (second pass).
-- [ticket-refinement.agent.md](../../agents/ticket-refinement.agent.md) — applies it to a ticket; evidence is the ticket store, board, and spec stack.
-- [mission-planning.agent.md](../../agents/mission-planning.agent.md) — applies it to a raw ask's mission goal; evidence is whatever the dispatching loop above hands over, most often as the interview target of another consumer's own loop rather than a standalone entry point.
+- [ticket-refinement.agent.md](../../../../context-engine/.agents/agents/ticket-refinement.agent.md) — applies it to a ticket; evidence is the ticket store, board, and spec stack.
+- [mission-planning.agent.md](../../../../context-engine/.agents/agents/mission-planning.agent.md) — applies it to a raw ask's mission goal; evidence is whatever the dispatching loop above hands over, most often as the interview target of another consumer's own loop rather than a standalone entry point.
 
 Each consumer states only what evidence means for its unit of work, who it dispatches for the interview step, and what its verdict/output artifact is — the four-step shape itself lives here, once.

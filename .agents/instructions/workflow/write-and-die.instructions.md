@@ -7,7 +7,7 @@ applyTo: "**"
 
 A Worker-tier sub-agent receives exactly one isolated step, executes it, returns its declared result, and terminates. **It does not continue the conversation, does not chain to the next step, and does not remain resident waiting for further instructions.** The next step in the plan is dispatched as a brand-new sub-agent session, not a continuation of the current one.
 
-This is the operational form of the Worker capability boundary defined in spec [1b654f30](../../../.spec/specs/1b654f30-d1a4-4cb4-ab2e-8355dfe5a758/body.md) ("Two-tier Planner/Worker model routing architecture"), which states plainly:
+This is the operational form of the Worker capability boundary defined in spec [1b654f30](../../../../context-engine/.spec/specs/1b654f30-d1a4-4cb4-ab2e-8355dfe5a758/body.md) ("Two-tier Planner/Worker model routing architecture"), which states plainly:
 
 > Stop after completing (or blocking on) its one step — MAY NOT Chain to the next `step_id` on its own initiative.
 > Report a blocker via `{pass: false, blocker: "..."}` — MAY NOT Re-plan around the blocker itself.

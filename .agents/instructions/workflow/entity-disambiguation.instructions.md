@@ -5,12 +5,12 @@ applyTo: "**"
 
 ## Entity Disambiguation Protocol
 
-Ambiguous references ("this", "that", "the engine", "it") force the reader to reconstruct which entity is meant from surrounding context. This protocol applies to all agent responses — chat narration, status summaries, handoffs, and reviews — not only interview questions. Interview-specific reference formatting still lives in [question-quality.instructions.md](question-quality.instructions.md); link format itself is owned by the Clickable Reference Policy in [AGENTS.md](../../../AGENTS.md).
+Ambiguous references ("this", "that", "the engine", "it") force the reader to reconstruct which entity is meant from surrounding context. This protocol applies to all agent responses — chat narration, status summaries, handoffs, and reviews — not only interview questions. Interview-specific reference formatting still lives in [question-quality.instructions.md](question-quality.instructions.md); link format itself is owned by the Clickable Reference Policy in [AGENTS.md](../../../../context-engine/AGENTS.md).
 
 ### The Three Tiers
 
 1. **First mention — full establishment.** The first time an entity appears in a response (or after a context reset, see below), state its type, its fully-qualified name or id, and a short summary or tag. Use a clickable reference per the Clickable Reference Policy where the entity has one (ticket, spec, doc, log).
-   - Template: "Ticket [<ticket-short-id> <ticket-title>](.ticket/tickets/<ticket-uuid>/ticket.toml) (component <component>, priority <priority>) is open with no dependencies."
+   - Template: "Ticket [<ticket-short-id> <ticket-title>](../../../../context-engine/.ticket/tickets/<ticket-uuid>/ticket.toml) (component <component>, priority <priority>) is open with no dependencies."
 2. **Proximity — short id or name only.** Within the same turn or the immediately following turns, while still discussing the same entity, a short id or name is sufficient. Do not re-establish type and summary every sentence.
    - Template, continuing the same turn: "<ticket-short-id> has no linked spec yet."
 3. **Context reset — re-establish.** When the conversation switches file, step, task, or subject, treat the next reference to a previously-mentioned entity as a first mention again: restate type, id, and summary before using shorthand.

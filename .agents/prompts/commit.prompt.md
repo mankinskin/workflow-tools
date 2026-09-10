@@ -9,14 +9,14 @@ agent: "agent"
 
 Commit all pending changes across the root repo and submodules following the repository's commit conventions.
 
-Reference [commit.instructions.md](../instructions/commit/) and [AGENTS.md](./AGENTS.md).
+Reference [commit.instructions.md](../instructions/repository/) and [AGENTS.md](../../../context-engine/AGENTS.md).
 
 ## Workflow
 
 1. Run `git status --short` and `git submodule foreach --recursive 'git status --short'` to survey all changes.
 2. Identify dirty submodules (lowercase `m` in status output) and plan commit order: deepest-first, then parent pointer updates.
-3. Check whether any generated files have drifted and regenerate them before staging (see [generated-files.instructions.md](../instructions/commit/generated-files.instructions.md)).
-4. Stage and commit in logical batches (see [commit.instructions.md](../instructions/commit/) for batch order).
+3. Check whether any generated files have drifted and regenerate them before staging (see [generated-files.instructions.md](../instructions/repository/generated-files.instructions.md)).
+4. Stage and commit in logical batches (see [commit.instructions.md](../instructions/repository/) for batch order).
 5. For each batch, write a conventional-commit message: `<type>(<scope>): <imperative summary>`.
 6. After all root-repo commits are done, update submodule pointers deepest-first.
 7. Verify clean state with `git status --short`.

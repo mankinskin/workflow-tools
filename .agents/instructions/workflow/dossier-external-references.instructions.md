@@ -31,4 +31,4 @@ Follow the authoritative-location-plus-reference pattern already established in 
 
 ## Format
 
-Use the [Clickable Reference Policy](../../../AGENTS.md) format for any reference that has one (ticket, spec, doc, file, log) — this file does not restate that policy, only which category a dossier reference belongs to and when to trust it.
+Use the [Clickable Reference Policy](../../../../context-engine/AGENTS.md) format for any reference that has one (ticket, spec, doc, file, log) — this file does not restate that policy, only which category a dossier reference belongs to and when to trust it.
