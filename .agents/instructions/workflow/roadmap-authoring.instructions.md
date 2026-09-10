@@ -13,7 +13,7 @@ A roadmap is read cold by a fresh session and reread many times during execution
 2. **Relevant artifact IDs** — ticket ids, spec ids/slugs, doc paths, code/config file paths the roadmap depends on, referenced by id/path only. Never re-paste an artifact's body here — see [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for the reference format.
 3. **Active blockers** — anything currently unresolved that would stop an executing session cold. A blocker needing human judgment belongs to the review/interview loop, not this list; by the time `ROADMAP.md` ships it carries none.
 4. **Validation gates** — the exact commands/checks that must pass during and after execution. Name exact commands; never leave a gate as prose like "run the tests."
-5. **Roadmap Waypoints** — the complete ordered route, one scoped stop per waypoint. See "Scoping Guidelines" below for sizing and "Syntax Rules" for how each waypoint is written.
+5. **Roadmap Waypoints** — the complete ordered route, one scoped stop per waypoint, including the session package and prompt that a fresh session should execute. See "Scoping Guidelines" below for sizing and "Syntax Rules" for how each waypoint is written.
 6. **Heads-up notes** — a flat list of quirks, gotchas, and good-to-know information gathered during research that would otherwise cost a fresh session time to rediscover.
 
 **Size constraint.** `ROADMAP.md` is a root anchor for the whole effort, not an exhaustive plan — keep it readable in one pass. A sprawling waypoint list or deeply nested sub-tasks is a signal to push complexity into a ticket (see "Scoping Guidelines"), not to grow the file. The roadmap should read like a table of contents with status, not a full project plan.
@@ -23,6 +23,8 @@ A roadmap is read cold by a fresh session and reread many times during execution
 **One waypoint, one measurable outcome.** A waypoint bundling more than one loosely related change is a scoping defect — split it. Merge only when a prior split was too aggressive and produced trivially small fragments with no independent validation gate.
 
 **The single-session threshold decides waypoint vs. ticket.** A waypoint completable by one session in one sitting stays inline and is marked single-session. A waypoint that is too large for one session, or whose internal dependencies are complex enough to need cross-session tracking, is **not** decomposed inline — it becomes a ticket (per [prompt-ingestion.instructions.md's Ticket Creation During Refinement](prompt-ingestion.instructions.md#ticket-creation-during-refinement)), and the roadmap keeps only the ticket id and a one-line summary.
+
+**Plan the executing sessions explicitly.** Every waypoint names the session package that should execute it and carries one clear prompt for that session. The prompt must describe a proportionate work package: the session's goal, target artifacts, validation, dependencies, and non-goals, with enough context for a cold session to begin from the roadmap without copying whole dossier, ticket, or spec bodies. When two waypoints can run in parallel, give each one its own independent session package and state shared dependencies rather than blending the packages into one prompt.
 
 **No forward references.** A roadmap reads as a dependency-ordered route: a waypoint must never depend on something only introduced by a later waypoint. Reorder before shipping rather than leaving an implicit backward dependency for the reader to untangle.
 
@@ -40,6 +42,8 @@ Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing
 - **Status marker.** Each waypoint opens its body with exactly one status line: `Status: pending | in-progress | blocked | done`. Use `blocked` only when the blocker is named in the waypoint's own text or in "Active blockers" — a bare `blocked` with no stated reason is not acceptable.
 - **Sizing tag.** Immediately after status: `Scope: single-session` or `Scope: ticket <short-id>`. A ticket-scoped waypoint carries no further inline decomposition — see "Scoping Guidelines" above.
 - **Dependency notation.** `Depends: W2, W4` (waypoint ids) and/or `Depends: ticket <short-id>` for a ticket-level prerequisite. Omit the line entirely when a waypoint has no dependency — do not write `Depends: none`.
+- **Session package.** `Session package: <short-kebab-slug>` names the intended execution package for this waypoint. The slug is stable within the roadmap and should describe the session's work, not the person or model expected to run it.
+- **Session prompt.** `Prompt: <one self-contained prompt>` states the single prompt text to hand to the fresh session or delegated worker for this waypoint. Keep it goal-oriented and proportionate: include the outcome, target artifacts, validation expectation, dependency context, and non-goals; point to larger artifacts by id/path instead of pasting their bodies.
 - **Validation line.** `Validate: <exact command>` — one command per line if more than one gate applies. Never a prose description in place of a command.
 - **Artifact references.** Cite an id/path exactly as it appears in `ARTIFACTS.md` (ticket short-id, spec slug, file path) — never a paraphrased name. See [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for citing material outside the dossier.
 - **Versioned-file naming.** When a prior `ROADMAP.md` is superseded, rename it `ROADMAP.v1.md`, `ROADMAP.v2.md`, ... in place before writing the new content to `ROADMAP.md` — see [prompt-ingestion.instructions.md's versioned-supersession pattern](prompt-ingestion.instructions.md#roadmap-compilation-and-versioning) for the full rule; this file owns only the naming syntax.
@@ -48,6 +52,8 @@ Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing
 
 - A waypoint with two unrelated objectives joined by "and".
 - A validation gate written as "make sure it works."
+- A waypoint without a `Session package:` or `Prompt:` line.
+- A session prompt that bundles several unrelated outcomes or forces the next session to rediscover target artifacts, validation, or non-goals.
 - A `Depends:` line pointing at a waypoint number that does not exist in this file (stale after a reorder or version bump).
 - Inlining a ticket's full body into a waypoint instead of citing its short-id.
 - A roadmap that grows past a single-pass read because ticket-worthy complexity was left inline.

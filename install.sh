@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 # Public curl|bash entry point: installs install-ctl into a local workspace
-# directory (never a system bin dir) at a pinned workflow-tools commit, then
-# hands off to it. Ticket/spec bundle + consumer init is bootstrap.sh's job.
+# directory (never a system bin dir) at the latest main branch commit or a
+# requested branch/revision, then hands off to it. Ticket/spec bundle +
+# consumer init is bootstrap.sh's job.
 set -euo pipefail
 
-WORKFLOW_TOOLS_REPOSITORY="https://github.com/mankinskin/workflow-tools"
-WORKFLOW_TOOLS_REVISION="60a96726476e21d13664f4ce86eda886ab58cf6f"
+WORKFLOW_TOOLS_REPOSITORY="${WORKFLOW_TOOLS_REPOSITORY:-https://github.com/mankinskin/workflow-tools}"
+WORKFLOW_TOOLS_BRANCH="${WORKFLOW_TOOLS_BRANCH:-main}"
+WORKFLOW_TOOLS_REVISION="${WORKFLOW_TOOLS_REVISION:-}"
 
 usage() {
     cat <<'EOF'
-Usage: install.sh --root <install-root> [--uninstall] [--dry-run] [-- <install-ctl args>]
+Usage: install.sh --root <install-root> [--branch <branch>] [--rev <revision>] [--repository <url>] [--uninstall] [--dry-run] [-- <install-ctl args>]
 
-Installs install-ctl (pinned workflow-tools commit) into <install-root>/bin
-and, unless --dry-run is given, execs it with any trailing arguments.
+Installs install-ctl into <install-root>/bin and, unless --dry-run is given,
+execs it with any trailing arguments. Defaults to the latest commit on branch 'main'.
 Pass --uninstall to remove install-ctl from <install-root>/bin.
 
 Example:
@@ -30,6 +32,18 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --root)
             install_root="${2:-}"
+            shift 2
+            ;;
+        --branch)
+            WORKFLOW_TOOLS_BRANCH="${2:-}"
+            shift 2
+            ;;
+        --rev)
+            WORKFLOW_TOOLS_REVISION="${2:-}"
+            shift 2
+            ;;
+        --repository)
+            WORKFLOW_TOOLS_REPOSITORY="${2:-}"
             shift 2
             ;;
         --uninstall)
@@ -83,7 +97,15 @@ command=(
     cargo install
     --force
     --git "$WORKFLOW_TOOLS_REPOSITORY"
-    --rev "$WORKFLOW_TOOLS_REVISION"
+)
+
+if [[ -n "$WORKFLOW_TOOLS_REVISION" ]]; then
+    command+=(--rev "$WORKFLOW_TOOLS_REVISION")
+else
+    command+=(--branch "$WORKFLOW_TOOLS_BRANCH")
+fi
+
+command+=(
     --bin install-ctl
     --root "$install_root"
     install-ctl

@@ -10,12 +10,13 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 ## Required Procedure
 
 1. **Read the roadmap and the dossier together.** Before acting on anything, read `ROADMAP.md` in full — starting with its outcome summary — plus the dossier's `README.md` index and `ARTIFACTS.md`, so every cited id/path resolves to a real artifact instead of an assumed one.
-2. **Establish readiness before starting a waypoint.** Confirm that every declared dependency is satisfied, every cited artifact resolves, the intended outcome has unambiguous acceptance criteria, the target setting is known, and the waypoint has an exact validation strategy. A missing, stale, contradictory, or untestable item is a blocker; do not set the waypoint `in-progress` or make a mutation.
+2. **Establish readiness before starting a waypoint.** Confirm that every declared dependency is satisfied, every cited artifact resolves, the intended outcome has unambiguous acceptance criteria, the target setting is known, the session package and roadmap-authored prompt are clear and proportionate, and the waypoint has an exact validation strategy. A missing, stale, contradictory, or untestable item is a blocker; do not set the waypoint `in-progress` or make a mutation.
 3. **Execute waypoints in order.** Walk the Roadmap Waypoints section top to bottom, respecting dependency order. Do not start a waypoint whose declared dependency (an earlier waypoint, a ticket, a decision) is not satisfied. Mark a ready waypoint `in-progress` immediately so the roadmap remains a live progress record.
 4. **Collect per-waypoint context from the dossier before acting.** For each waypoint, resolve its cited artifact ids/paths — tickets, specs, numbered work-package documents (`01-...md`, ...), and code/config paths — via the dossier before writing anything. A waypoint's one-line roadmap summary is a pointer, not sufficient implementation context; the cited work-package document is normative and must be read.
-5. **Use the task routing table.** Route the ready waypoint by task type before dispatching or acting. A task's route is determined by the work still required, not by its heading or a previous session's route.
-6. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
-7. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route.
+5. **Use the roadmap-authored session prompt.** Treat the waypoint's `Prompt:` line as the starting handoff for the fresh session or delegated worker named by `Session package:`. Add only verified execution identity, current status, and any already-satisfied dependency evidence needed by [shared-context-bundle.instructions.md](shared-context-bundle.instructions.md); do not replace the roadmap prompt with a reconstructed prompt from memory.
+6. **Use the task routing table.** Route the ready waypoint by task type before dispatching or acting. A task's route is determined by the work still required, not by its heading or a previous session's route.
+7. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
+8. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route.
 
 ### Execute Ingest Approval Gate
 
@@ -38,6 +39,7 @@ A waypoint is ready only when all of the following are true:
 - Its governing ticket, specification, decision record, and dossier artifacts resolve and agree on the requested outcome.
 - Its acceptance criteria describe observable success and its target setting (repository, worktree, relevant configuration, and applicable constraints) is known.
 - Its scope names the owning files, interfaces, or research question closely enough to prevent an implementation agent from rediscovering requirements.
+- Its `Session package:` line names one proportionate execution package, and its `Prompt:` line is self-contained enough for that package's fresh session to begin without rediscovering the goal, targets, dependencies, validation, or non-goals.
 - Its validation lines name executable commands or an explicitly documented non-executable review method that can prove each criterion.
 - The user has not supplied a newer request that changes or conflicts with the waypoint's objective, scope, order, acceptance criteria, or non-goals.
 
@@ -79,7 +81,7 @@ An Interview Agent batch is a planning interaction, not an implementation workar
 
 ## Delegating a Waypoint
 
-Follow [orchestrator-delegation.instructions.md](orchestrator-delegation.instructions.md) for model-tier selection when dispatching a waypoint. A single-session waypoint routes like any other bounded implementation unit; a ticket-backed waypoint routes to Ticket Refinement, Scoping, or Implement per that ticket's own state, not per the roadmap alone.
+Follow [orchestrator-delegation.instructions.md](orchestrator-delegation.instructions.md) for model-tier selection when dispatching a waypoint. A single-session waypoint routes like any other bounded implementation unit; a ticket-backed waypoint routes to Ticket Refinement, Scoping, or Implement per that ticket's own state, not per the roadmap alone. In both cases, the roadmap-authored session prompt is the seed handoff for the dispatched session, and the dispatcher may only add verified identity, dependency, and validation evidence around it.
 
 ## Handling Drift
 
