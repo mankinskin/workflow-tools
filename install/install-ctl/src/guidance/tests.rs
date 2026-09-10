@@ -1228,3 +1228,41 @@ fn get_installs_all_meta_workspace_guidance() {
         "managed checkout must be cleaned up after installing all guidance"
     );
 }
+
+#[test]
+fn installer_oneliner_updates_existing_installation_with_force_flag() {
+    let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let relative_script = manifest_dir.join("../../install.sh");
+    assert!(
+        relative_script.is_file(),
+        "install.sh must exist at {}",
+        relative_script.display()
+    );
+
+    let output = std::process::Command::new("bash")
+        .current_dir(&manifest_dir)
+        .arg("../../install.sh")
+        .arg("--root")
+        .arg("/tmp/mock-install-root")
+        .arg("--dry-run")
+        .output();
+
+    match output {
+        Ok(out) => {
+            let stdout = String::from_utf8_lossy(&out.stdout);
+            let stderr = String::from_utf8_lossy(&out.stderr);
+            assert!(
+                out.status.success(),
+                "install.sh --dry-run must succeed, status: {:?}, stdout: {stdout}, stderr: {stderr}",
+                out.status
+            );
+            assert!(
+                stdout.contains("cargo install --force"),
+                "installer command must pass --force to ensure re-install/update overwrites an existing install-ctl binary: got {stdout}"
+            );
+        }
+        Err(e) => {
+            eprintln!("skipping install.sh test: bash process launch failed: {e}");
+        }
+    }
+}

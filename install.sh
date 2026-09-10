@@ -57,6 +57,7 @@ fi
 
 command=(
     cargo install
+    --force
     --git "$WORKFLOW_TOOLS_REPOSITORY"
     --rev "$WORKFLOW_TOOLS_REVISION"
     --bin install-ctl

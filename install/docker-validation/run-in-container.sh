@@ -18,6 +18,12 @@ test -x "$install_root/bin/install-ctl" \
     || { echo "[docker-validation] FAIL: install-ctl not found under $install_root/bin" >&2; exit 1; }
 "$install_root/bin/install-ctl" --help >/dev/null
 
+echo "[docker-validation] verifying installer oneliner updates when install-ctl is already installed"
+bash /workflow-tools/install.sh --root "$install_root"
+test -x "$install_root/bin/install-ctl" \
+    || { echo "[docker-validation] FAIL: install-ctl not found after updating via install.sh" >&2; exit 1; }
+"$install_root/bin/install-ctl" --help >/dev/null
+
 echo "[docker-validation] bootstrapping consumer via bootstrap.sh"
 WORKFLOW_TOOLS_BOOTSTRAP=/workflow-tools/bootstrap.sh bash "$consumer_dir/run-tutorial.sh"
 
