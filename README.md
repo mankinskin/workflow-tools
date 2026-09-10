@@ -43,7 +43,7 @@ system-wide bin path) at a pinned `workflow-tools` commit, then hands off to
 it:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/<rev>/install.sh \
+curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/main/install.sh \
   | bash -s -- --root "$HOME/.local/workflow-tools"
 ```
 

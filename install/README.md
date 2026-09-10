@@ -153,8 +153,63 @@ declares; the profile's own `[destination]` table is the default.
   a **separate, network-dependent smoke path**. It is supplementary evidence
   only and never substitutes for the deterministic fixture contract above.
 
-## Quickstart: bootstrap a consumer
+## Quickstart: install guidance in another repository
 
-See `../README.md` for `bootstrap.sh` and the public `install.sh` entry
-point; those cover initial CLI/MCP bundle installation, not guidance corpus
-installation.
+The public `install.sh` entry point installs a pinned `install-ctl` binary
+into a caller-owned directory. The following command is the shortest complete
+path from an arbitrary consumer repository to guidance installed under its
+`.agents/` tree:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mankinskin/workflow-tools/main/install.sh \
+  | bash -s -- --root "$HOME/.local/workflow-tools"
+```
+
+```bash
+install-ctl guidance get \
+  https://github.com/mankinskin/meta-workspace.git \
+  --select workflow-tools/.agents/agents/implement.agent.md \
+  --target "$PWD" \
+  --destination-scope repo
+```
+
+The first command installs `install-ctl`; `guidance get` then shallow-clones
+the source repository, selects the requested repo-relative file, installs its
+guidance dependencies, and removes the temporary checkout. `--target` may
+point at another consumer repository. The default target is the current
+directory, and the synthesized profile defaults to the `repo` destination.
+
+### Install selected agents or guidance files
+
+`--select` accepts repo-relative file paths and can be repeated. When the
+source is the `meta-workspace` monorepo, include the `workflow-tools/` prefix:
+
+```bash
+install-ctl guidance get \
+  https://github.com/mankinskin/meta-workspace.git \
+  --select workflow-tools/.agents/agents/implement.agent.md \
+  --select workflow-tools/.agents/agents/research.agent.md \
+  --target "$PWD" \
+  --destination-scope repo
+```
+
+When cloning the standalone `workflow-tools` repository, the same selections
+start at `.agents/` instead:
+
+```bash
+install-ctl guidance get \
+  https://github.com/mankinskin/workflow-tools.git \
+  --select .agents/agents/implement.agent.md \
+  --select .agents/instructions/workflow/agent-world-model.instructions.md \
+  --target "$PWD" \
+  --destination-scope repo
+```
+
+For a repeatable curated corpus, pass `--profile <repo-relative-path>`; the
+profile is resolved inside the freshly cloned source repository. Without a
+profile, every `--select` value is treated as a direct source path. Use
+`--keep-checkout` when inspecting the fetched source after installation.
+
+See `../README.md` for the initial CLI/MCP bundle installation via
+`bootstrap.sh` and `install.sh`; the commands above cover guidance corpus
+installation after `install-ctl` is available.
