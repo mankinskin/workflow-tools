@@ -25,10 +25,11 @@ the command line.
 ## `guidance` command family
 
 ```bash
-install-ctl guidance plan    --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope repo|user|system|explicit] [--destination-path <path>] [--json]
-install-ctl guidance install --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope ...] [--destination-path ...] [--json]
-install-ctl guidance autofix --repo-root <repo> [--scope <path>] [--rewrite old=new]... (--plan | --apply --yes) [--json]
-install-ctl guidance get <repository-url> --select <id>... [--profile <repo-relative-path>] [--target <repo>] [--destination-scope ...] [--destination-path ...] [--keep-checkout] [--json]
+install-ctl guidance plan      --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope repo|user|system|explicit] [--destination-path <path>] [--json]
+install-ctl guidance install   --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope ...] [--destination-path ...] [--json]
+install-ctl guidance uninstall --source <repo> --profile <profile.toml> --select <id>... --target <repo> [--destination-scope ...] [--destination-path ...] [--json]
+install-ctl guidance autofix   --repo-root <repo> [--scope <path>] [--rewrite old=new]... (--plan | --apply --yes) [--json]
+install-ctl guidance get       <repository-url> --select <id>... [--profile <repo-relative-path>] [--target <repo>] [--destination-scope ...] [--destination-path ...] [--keep-checkout] [--json]
 ```
 
 - `plan` computes a read-only installation plan: no writes, no recipe
@@ -40,6 +41,9 @@ install-ctl guidance get <repository-url> --select <id>... [--profile <repo-rela
   destination completely untouched, and per-file writes are atomic
   (temp file + rename). A second `install` run is idempotent and reports
   unchanged files instead of rewriting them.
+- `uninstall` computes the guidance plan and safely removes installed guidance
+  files mapped by the plan from the target destination, cleaning up empty parent
+  directories up to the destination root.
 - `autofix` targets existing blocking guidance-audit findings (missing
   target, non-guidance target, unsupported dependency, unsafe path,
   unreadable artifact). `--plan` is read-only. `--apply` is the only mutation
@@ -62,6 +66,22 @@ install-ctl guidance get <repository-url> --select <id>... [--profile <repo-rela
   blocking plan, or error — unless `--keep-checkout` is given, in which case
   its path is printed. No Git-client crate is added; the clone shells out to
   `git`, styled after `workflow-tools/session/crates/worktree-ctl/src/git.rs`.
+
+## Artifact & Self Uninstallation
+
+Every software artifact and guidance corpus installed by `install-ctl` defines a full removal path:
+
+```bash
+install-ctl uninstall <selection> [--root <install-root>]
+install-ctl self-uninstall [--root <install-root>]
+install-ctl guidance uninstall --source <repo> --profile <profile.toml> --select <id>... [--target <repo>]
+install.sh --root <install-root> --uninstall [--dry-run]
+```
+
+- `install-ctl uninstall` removes specified binary artifacts (or `all`) from `<install-root>/bin`.
+- `install-ctl self-uninstall` removes the `install-ctl` binary itself from `<install-root>/bin`.
+- `install-ctl guidance uninstall` computes the guidance plan and safely removes installed guidance files mapped by the plan from the target destination, cleaning up empty parent directories.
+- `install.sh --uninstall` provides shell-level removal of `install-ctl` from `<install-root>/bin`, cleaning up empty parent directories.
 
 ## Profile schema
 

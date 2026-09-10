@@ -48,3 +48,23 @@ if [[ -z "$record_count" || "$record_count" -lt 1 ]]; then
 fi
 
 echo "[docker-validation] OK: $record_count ticket record(s) read back from consumer store"
+
+echo "[docker-validation] testing install.sh --uninstall"
+bash /workflow-tools/install.sh --root "$install_root" --uninstall
+if [[ -f "$install_root/bin/install-ctl" ]]; then
+    echo "[docker-validation] FAIL: install-ctl still present after install.sh --uninstall" >&2
+    exit 1
+fi
+
+echo "[docker-validation] re-installing install-ctl for self-uninstall test"
+bash /workflow-tools/install.sh --root "$install_root"
+test -x "$install_root/bin/install-ctl"
+
+echo "[docker-validation] testing install-ctl self-uninstall"
+"$install_root/bin/install-ctl" self-uninstall --root "$install_root"
+if [[ -f "$install_root/bin/install-ctl" ]]; then
+    echo "[docker-validation] FAIL: install-ctl still present after self-uninstall" >&2
+    exit 1
+fi
+
+echo "[docker-validation] OK: uninstallation contract verified"

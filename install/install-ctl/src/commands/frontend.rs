@@ -82,6 +82,19 @@ pub fn install_frontend(cfg: &Config, root: &Path, f: &Frontend) -> Result<(), S
     Ok(())
 }
 
+pub fn uninstall_frontend(cfg: &Config, f: &Frontend) -> Result<(), String> {
+    let tag = f.name.as_str();
+    let dest = cfg.frontend_install_dir(&f.name);
+    if dest.exists() {
+        info!(tag, "uninstalling frontend from {}", disp(&dest));
+        fs::remove_dir_all(&dest).map_err(|e| format!("failed to remove {}: {e}", disp(&dest)))?;
+        info!(tag, "frontend uninstalled.");
+    } else {
+        info!(tag, "frontend install dir {} does not exist", disp(&dest));
+    }
+    Ok(())
+}
+
 fn should_run_prebuild(dir: &Path, step: &PrebuildStep) -> bool {
     let Some(cond) = &step.condition else {
         return true;

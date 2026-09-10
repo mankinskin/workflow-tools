@@ -51,6 +51,19 @@ Use `--dry-run` to preview the pinned `cargo install` command, or append
 `-- <install-ctl args>` to run `install-ctl` immediately after installing it
 (for example `-- --list`).
 
+To uninstall `install-ctl` or any installed artifacts, pass `--uninstall` to
+`install.sh` or use `install-ctl`'s uninstall commands:
+
+```bash
+# Shell-level self-removal:
+bash install.sh --root "$HOME/.local/workflow-tools" --uninstall
+
+# CLI-level uninstallation:
+install-ctl uninstall <selection>
+install-ctl self-uninstall
+install-ctl guidance uninstall --source <repo> --profile <profile.toml> --select <id>...
+```
+
 ## Guidance Corpus Installer
 
 `install-ctl guidance plan|install|autofix|get` plans, fetches, installs, and

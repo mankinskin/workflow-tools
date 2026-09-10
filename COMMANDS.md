@@ -10,7 +10,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: workflow-tools
 - Safety: ApprovalRequired
 - Bin: `install-ctl`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## mcp-toolmon
 
@@ -20,7 +20,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `mcp-toolmon`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## session-capture-hook
 
@@ -30,7 +30,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `session-capture-hook`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## session-record-merge
 
@@ -40,7 +40,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `session-record-merge`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## ticket
 
@@ -50,7 +50,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `ticket`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## ticket-record-merge
 
@@ -60,7 +60,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `ticket-record-merge`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## spec-cli
 
@@ -70,7 +70,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `spec`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## audit-cli
 
@@ -80,7 +80,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `audit`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## rule-cli
 
@@ -90,7 +90,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `rule`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## feedback-cli
 
@@ -100,7 +100,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `feedback`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## session-cli
 
@@ -110,7 +110,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `session`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## peek-cli
 
@@ -120,7 +120,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `peek`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## test-cli
 
@@ -130,7 +130,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `test`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## ticket-mcp
 
@@ -140,7 +140,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `ticket-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## spec-mcp
 
@@ -150,7 +150,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `spec-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## test-mcp
 
@@ -160,7 +160,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `test-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## feedback-mcp
 
@@ -170,7 +170,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `feedback-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## session-mcp
 
@@ -180,7 +180,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `session-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## peek-mcp
 
@@ -190,7 +190,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `peek-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## rule-mcp
 
@@ -200,7 +200,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `rule-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## audit-mcp
 
@@ -210,7 +210,7 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Owner: tooling
 - Safety: ApprovalRequired
 - Bin: `audit-mcp`
-- Lifecycle: Install, Inspect
+- Lifecycle: Install, Inspect, Uninstall
 
 ## doc-viewer
 

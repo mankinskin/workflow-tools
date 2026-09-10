@@ -23,9 +23,9 @@ use crate::{
 };
 
 use self::{
-    extension::{build_extension, install_extension},
-    frontend::{build_frontend, install_frontend},
-    server::{build_server, install_server},
+    extension::{build_extension, install_extension, uninstall_extension},
+    frontend::{build_frontend, install_frontend, uninstall_frontend},
+    server::{build_server, install_server, uninstall_server},
 };
 
 pub use self::{
@@ -166,6 +166,19 @@ pub fn cmd_install(
         Component::Server(s) => install_server(root, s),
         Component::Frontend(f) => install_frontend(cfg, root, f),
         Component::Extension(e) => install_extension(cfg, root, e),
+    })
+}
+
+pub fn cmd_uninstall(
+    cfg: &Config,
+    root: &Path,
+    name: &str,
+    kind: Option<KindArg>,
+) -> Result<(), String> {
+    for_matching(cfg, name, kind, |c| match c {
+        Component::Server(s) => uninstall_server(root, s),
+        Component::Frontend(f) => uninstall_frontend(cfg, f),
+        Component::Extension(e) => uninstall_extension(cfg, root, e),
     })
 }
 

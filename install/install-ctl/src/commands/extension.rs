@@ -118,6 +118,44 @@ fn install_vscode_extension(root: &Path, e: &Extension) -> Result<(), String> {
     Ok(())
 }
 
+pub fn uninstall_extension(_cfg: &Config, root: &Path, e: &Extension) -> Result<(), String> {
+    match e.kind.as_str() {
+        "vscode" => uninstall_vscode_extension(root, e),
+        other => Err(format!(
+            "unknown extension kind `{other}` — install-ctl only knows `vscode`"
+        )),
+    }
+}
+
+fn uninstall_vscode_extension(root: &Path, e: &Extension) -> Result<(), String> {
+    let tag = e.name.as_str();
+    let ext_dir = root.join(&e.source_dir);
+
+    let pkg_path = ext_dir.join(&e.package_json);
+    if let Ok(pkg_text) = fs::read_to_string(&pkg_path)
+        && let Ok(pkg) = serde_json::from_str::<PkgJson>(&pkg_text)
+    {
+        let publisher = pkg.publisher.as_deref().unwrap_or("undefined_publisher");
+        let ext_id = format!("{}.{}", publisher, pkg.name);
+
+        info!(tag, "uninstalling extension `{}` via code CLI...", ext_id);
+        let _ = run_cmd_args("code", &["--uninstall-extension", &ext_id], &ext_dir, tag);
+
+        let dirname = format!("{}.{}-{}", publisher, pkg.name, pkg.version);
+        if let Ok(user_home) = env::var("USERPROFILE").or_else(|_| env::var("HOME")) {
+            let install_dir = PathBuf::from(&user_home)
+                .join(".vscode")
+                .join("extensions")
+                .join(&dirname);
+            if install_dir.is_dir() {
+                info!(tag, "removing extension directory {}", disp(&install_dir));
+                let _ = fs::remove_dir_all(&install_dir);
+            }
+        }
+    }
+    Ok(())
+}
+
 fn find_newest_vsix(dir: &Path) -> Result<PathBuf, String> {
     let mut vsix: Vec<_> = fs::read_dir(dir)
         .map_err(|e| e.to_string())?

@@ -2,6 +2,8 @@ use std::path::{Path, PathBuf};
 
 use serde::Deserialize;
 
+use crate::installable::{InstallReport, Installable, UninstallReport};
+
 #[derive(Debug, Deserialize)]
 pub struct Registry {
     #[serde(rename = "artifact", default)]
@@ -24,6 +26,94 @@ pub struct Artifact {
     #[serde(default)]
     #[allow(dead_code)]
     pub extension_id: Option<String>,
+}
+
+impl Installable for Artifact {
+    fn id(&self) -> &str {
+        &self.id
+    }
+
+    fn is_installed(&self, target_root: &Path) -> Result<bool, String> {
+        if let Some(bin_name) = &self.bin {
+            let bin_dir = target_root.join("bin");
+            let primary = bin_dir.join(bin_name);
+            let exe = bin_dir.join(format!("{bin_name}.exe"));
+            Ok(primary.is_file() || exe.is_file())
+        } else {
+            Ok(false)
+        }
+    }
+
+    fn install(&self, target_root: &Path) -> Result<InstallReport, String> {
+        let repo_root = resolve_repo_root()?;
+        let source_dir = repo_root.join(&self.path);
+
+        let mut cmd = std::process::Command::new("cargo");
+        cmd.arg("install")
+            .arg("--force")
+            .arg("--path")
+            .arg(&source_dir)
+            .arg("--root")
+            .arg(target_root);
+
+        if !self.features.is_empty() {
+            cmd.arg("--features").arg(self.features.join(","));
+        }
+        if let Some(bin) = &self.bin {
+            cmd.arg("--bin").arg(bin);
+        }
+
+        let status = cmd
+            .status()
+            .map_err(|e| format!("failed to execute cargo install for '{}': {e}", self.id))?;
+
+        if !status.success() {
+            return Err(format!("cargo install failed for artifact '{}'", self.id));
+        }
+
+        let bin_name = self.bin.as_deref().unwrap_or(&self.id);
+        let installed_path = target_root.join("bin").join(bin_name);
+
+        Ok(InstallReport {
+            written: vec![crate::paths::disp(&installed_path)],
+            unchanged: vec![],
+        })
+    }
+
+    fn uninstall(&self, target_root: &Path) -> Result<UninstallReport, String> {
+        let mut removed = Vec::new();
+        let mut missing = Vec::new();
+
+        if let Some(bin_name) = &self.bin {
+            let bin_dir = target_root.join("bin");
+            let candidates = [
+                bin_dir.join(bin_name),
+                bin_dir.join(format!("{bin_name}.exe")),
+            ];
+
+            let mut found = false;
+            for candidate in &candidates {
+                if candidate.is_file() {
+                    found = true;
+                    if let Err(e) = std::fs::remove_file(candidate) {
+                        return Err(format!(
+                            "failed to remove artifact binary '{}': {e}",
+                            candidate.display()
+                        ));
+                    }
+                    removed.push(crate::paths::disp(candidate));
+                }
+            }
+
+            if !found {
+                missing.push(crate::paths::disp(&bin_dir.join(bin_name)));
+            }
+        } else {
+            missing.push(self.id.clone());
+        }
+
+        Ok(UninstallReport { removed, missing })
+    }
 }
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Eq)]

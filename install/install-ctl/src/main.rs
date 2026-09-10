@@ -3,6 +3,7 @@ mod commands;
 mod config;
 mod freshness;
 mod guidance;
+pub mod installable;
 mod logging;
 mod paths;
 mod process;
@@ -45,6 +46,20 @@ enum Command {
         /// Skip passing --force to `cargo install` for rust-binary artifacts.
         #[arg(long)]
         no_force: bool,
+    },
+    /// Uninstall one or more artifacts by id, category, or "all".
+    Uninstall {
+        #[arg(required = true)]
+        selection: Vec<String>,
+        /// Target installation root directory.
+        #[arg(long)]
+        root: Option<std::path::PathBuf>,
+    },
+    /// Uninstall install-ctl itself from the installation root.
+    SelfUninstall {
+        /// Installation root directory.
+        #[arg(long)]
+        root: Option<std::path::PathBuf>,
     },
     /// Render the registry projection to COMMANDS.md, or verify it is current.
     Catalog {
@@ -120,6 +135,43 @@ fn main() {
                 run_install(&selected, force);
             }
         }
+        Some(Command::Uninstall { selection, root }) => {
+            let reg = match load_registry() {
+                Ok(reg) => reg,
+                Err(e) => fail(&e),
+            };
+            let selected = match resolve_selection(&reg.artifacts, &selection) {
+                Ok(s) => s,
+                Err(e) => fail(&e),
+            };
+            if selected.is_empty() {
+                fail("selection matched no artifacts");
+            }
+            let target_root = match root {
+                Some(r) => r,
+                None => match std::env::var_os("CARGO_HOME")
+                    .map(std::path::PathBuf::from)
+                    .or_else(|| dirs::home_dir().map(|h| h.join(".cargo")))
+                {
+                    Some(dir) => dir,
+                    None => fail("cannot locate target root directory"),
+                },
+            };
+            run_uninstall(&selected, &target_root);
+        }
+        Some(Command::SelfUninstall { root }) => {
+            let target_root = match root {
+                Some(r) => r,
+                None => match std::env::var_os("CARGO_HOME")
+                    .map(std::path::PathBuf::from)
+                    .or_else(|| dirs::home_dir().map(|h| h.join(".cargo")))
+                {
+                    Some(dir) => dir,
+                    None => fail("cannot locate target root directory"),
+                },
+            };
+            run_self_uninstall(&target_root);
+        }
         Some(Command::Catalog { check }) => {
             if let Err(error) = sync_catalog(check) {
                 fail(&error);
@@ -173,6 +225,7 @@ fn dispatch_viewer(cfg: &Config, root: &Path, command: ViewerCmd) -> Result<(), 
         ViewerCmd::Status { name } => commands::cmd_status(cfg, name.as_deref()),
         ViewerCmd::Build { name, kind } => commands::cmd_build(cfg, root, &name, kind),
         ViewerCmd::Install { name, kind } => commands::cmd_install(cfg, root, &name, kind),
+        ViewerCmd::Uninstall { name, kind } => commands::cmd_uninstall(cfg, root, &name, kind),
         ViewerCmd::Start {
             server,
             foreground,
@@ -212,6 +265,53 @@ fn print_list(artifacts: &[Artifact]) {
         for artifact in artifacts.iter().filter(|a| a.category == category) {
             println!("  {}", artifact.id);
         }
+    }
+}
+
+fn run_uninstall(selected: &[Artifact], target_root: &Path) {
+    use installable::Installable;
+    let mut total_removed = 0;
+    let mut total_missing = 0;
+    for artifact in selected {
+        match artifact.uninstall(target_root) {
+            Ok(report) => {
+                total_removed += report.removed.len();
+                total_missing += report.missing.len();
+                for path in report.removed {
+                    println!("removed: {path}");
+                }
+            }
+            Err(e) => fail(&e),
+        }
+    }
+    println!("uninstalled {total_removed} file(s), {total_missing} missing");
+}
+
+fn run_self_uninstall(target_root: &Path) {
+    let bin_dir = target_root.join("bin");
+    let candidates = [bin_dir.join("install-ctl"), bin_dir.join("install-ctl.exe")];
+
+    let mut removed = false;
+    for candidate in &candidates {
+        if candidate.is_file() {
+            if let Err(e) = std::fs::remove_file(candidate) {
+                fail(&format!("failed to self-uninstall install-ctl binary: {e}"));
+            }
+            println!("removed: {}", candidate.display());
+            removed = true;
+        }
+    }
+
+    if removed {
+        println!(
+            "successfully uninstalled install-ctl from {}",
+            target_root.display()
+        );
+    } else {
+        println!(
+            "install-ctl binary was not found under {}",
+            bin_dir.display()
+        );
     }
 }
 

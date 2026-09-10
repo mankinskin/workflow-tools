@@ -1266,3 +1266,39 @@ fn installer_oneliner_updates_existing_installation_with_force_flag() {
         }
     }
 }
+
+#[test]
+fn guidance_uninstall_removes_installed_plan() {
+    let source = TempDir::new().unwrap();
+    write(source.path(), "prompt.md", "content");
+
+    let target = TempDir::new().unwrap();
+    let explicit = target.path().join("out");
+
+    let mut args = get_args(
+        "unused",
+        vec!["prompt.md".to_string()],
+        target.path().to_path_buf(),
+    );
+    args.destination_path = Some(explicit.clone());
+
+    let (result, _) = run_get(&args, fake_clone_from(source.path().to_path_buf()));
+    result.expect("install should succeed");
+    assert!(explicit.join("prompt.md").is_file());
+
+    let plan_inputs = super::PlanInputs {
+        source_root: source.path(),
+        profile_path: source.path(),
+        select: &["prompt.md".to_string()],
+        target_root: target.path(),
+        scope_override: Some(ScopeKind::Explicit),
+        explicit_override: Some(&explicit),
+        destination_paths: &super::DestinationPaths::platform_default(),
+    };
+    let profile = super::synthesize_direct_profile(&["prompt.md".to_string()]).unwrap();
+    let plan = super::build_plan_with_profile(profile, &plan_inputs).unwrap();
+
+    let report = super::uninstall::uninstall_plan(&plan).unwrap();
+    assert_eq!(report.removed.len(), 1);
+    assert!(!explicit.join("prompt.md").exists());
+}

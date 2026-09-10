@@ -83,6 +83,44 @@ pub fn install_server(root: &Path, s: &Server) -> Result<(), String> {
     }
 }
 
+pub fn uninstall_server(_root: &Path, s: &Server) -> Result<(), String> {
+    let tag = s.name.as_str();
+    let port = port_for(s);
+
+    let listeners = pids_on_port(port);
+    if !listeners.is_empty() {
+        info!(
+            tag,
+            "stopping server on port {port} before uninstallation..."
+        );
+        for pid in &listeners {
+            kill_process(*pid, tag);
+        }
+    }
+
+    let bin_name = if cfg!(target_os = "windows") {
+        format!("{}.exe", s.package)
+    } else {
+        s.package.clone()
+    };
+
+    if let Some(cargo_home) = std::env::var_os("CARGO_HOME")
+        .map(std::path::PathBuf::from)
+        .or_else(|| dirs::home_dir().map(|h| h.join(".cargo")))
+    {
+        let dest = cargo_home.join("bin").join(&bin_name);
+        if dest.is_file() {
+            info!(tag, "removing installed binary {}", disp(&dest));
+            fs::remove_file(&dest)
+                .map_err(|e| format!("failed to remove binary {}: {e}", dest.display()))?;
+        } else {
+            info!(tag, "installed binary {} is already missing", disp(&dest));
+        }
+    }
+
+    Ok(())
+}
+
 pub fn cmd_start(
     cfg: &Config,
     root: &Path,

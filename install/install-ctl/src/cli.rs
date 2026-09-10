@@ -26,6 +26,12 @@ pub enum ViewerCmd {
         #[arg(long)]
         kind: Option<KindArg>,
     },
+    /// Uninstall installed artifacts for a component.
+    Uninstall {
+        name: String,
+        #[arg(long)]
+        kind: Option<KindArg>,
+    },
     /// Start a server. Sets STATIC_DIR if a frontend is linked AND installed.
     Start {
         server: String,

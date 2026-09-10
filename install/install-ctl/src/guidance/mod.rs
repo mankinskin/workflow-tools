@@ -14,6 +14,7 @@ pub mod install;
 pub mod plan;
 pub mod profile;
 pub mod rewrite;
+pub mod uninstall;
 
 #[cfg(test)]
 mod tests;
@@ -38,6 +39,9 @@ pub enum GuidanceCmd {
     /// destination. Refuses to write anything if the plan has a blocking
     /// diagnostic.
     Install(GuidanceArgs),
+    /// Execute uninstallation for a guidance plan: removes installed
+    /// guidance files mapped by the plan.
+    Uninstall(GuidanceArgs),
     /// Explicit, opt-in remediation for blocking guidance-audit findings.
     /// `--plan` is read-only; `--apply` is the only mutation path and
     /// requires `--yes`.
@@ -177,6 +181,16 @@ pub fn run(command: GuidanceCmd) -> Result<(), String> {
                 "installed {} artifact(s), {} unchanged",
                 report.written.len(),
                 report.unchanged.len()
+            );
+            Ok(())
+        }
+        GuidanceCmd::Uninstall(args) => {
+            let plan = build_plan_from_args(&args)?;
+            let report = uninstall::uninstall_plan(&plan)?;
+            println!(
+                "uninstalled {} guidance file(s), {} missing",
+                report.removed.len(),
+                report.missing.len()
             );
             Ok(())
         }
