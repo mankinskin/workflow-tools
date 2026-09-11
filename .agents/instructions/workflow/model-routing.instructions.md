@@ -154,7 +154,7 @@ This is the canonical contract for the `model:` frontmatter field on every `.age
 | `installer.agent.md` | GPT-5 mini | T3 | Handles routine installation work |
 | `bug-report.agent.md` | GPT-5.4 mini | T3 | Captures and structures bug reports |
 | `session-learning.agent.md` | GPT-5.6 Terra | T1 | Extracts durable session learnings |
-| `scoping.agent.md` | GPT-5.6 Terra | T1 | Defines implementation scope and boundaries |
+| `/ticket-scoping.agent.md` | GPT-5.6 Terra | T1 | Defines implementation scope and boundaries |
 
 This satisfies AC3: Explore, Research, and Commit all route to GPT-5 mini, cheaper than Claude Sonnet 4.5 on every priced axis (see "Dominated models" above) and cheaper than the Claude Sonnet 5 default used by the remaining classes.
 

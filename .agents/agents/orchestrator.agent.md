@@ -57,7 +57,7 @@ When the task at hand is executing a prompt-ingestion dossier's `ROADMAP.md`, fo
 |---|---|---|
 | Start or resume a session and claim its worktree | `session-bootstrap.agent.md` | T3 |
 | Frame a long-running session's current goal and anchors | `framing.agent.md` | T3 |
-| Split a goal into sized phases, tickets, and dependencies | `scoping.agent.md` | T2 |
+| Split a goal into sized phases, tickets, and dependencies | `/ticket-scoping.agent.md` | T2 |
 | Refine one ticket's objective, criteria, and plan | `ticket-refinement.agent.md` | T2 |
 | Author or evolve a behavior specification | `spec.agent.md` | T2 |
 | Plan and coordinate a cross-cutting goal | `orchestrator.agent.md` | T0 |

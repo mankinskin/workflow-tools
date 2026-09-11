@@ -52,7 +52,7 @@ If a required capability is missing (no edit, terminal, or commit tooling), that
 ## Workflow
 
 1. **Anchor on the track.** Determine the implementation track from the slash-command text (ticket id, current session, or handoff package) and read it. Assume the described work is complete and awaiting review; do not ask the user to confirm this. Proceed directly to step 2.
-2. **Delegate Review.** Invoke the [Review Agent](../../ticket/.agents/agents/review.agent.md) with the target ticket(s). Instruct it to verify acceptance criteria, gather evidence, and return a pass/fail verdict with per-criterion findings, and to perform **no** ticket transitions.
+2. **Delegate Review.** Invoke the [Review Agent](../../ticket/.agents/agents/ticket-review.agent.md) with the target ticket(s). Instruct it to verify acceptance criteria, gather evidence, and return a pass/fail verdict with per-criterion findings, and to perform **no** ticket transitions.
 3. **Delegate Interview.** Enumerate every open question, waiver, conflict, or judgement call from the review, then invoke the [Interview Agent](../agents/interview.agent.md) to put them to the user and collect answers. Apply the answers to tickets and specs. Mandatory on both the pass and fail paths whenever anything is unresolved.
 4. **Escalation gate.** Confirm every escalation and review-raised decision is answered. If any remain, return to step 3.
 5. **Reconcile the ticket store.** Apply the interview outcomes: required fields, dependency edges, health-check findings, dangling or disconnected entries, and any follow-up tickets the user approved. This runs on both paths.
