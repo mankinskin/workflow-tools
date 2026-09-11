@@ -200,12 +200,12 @@ test('admin panel loads with recorded data', async ({ page }) => {
 export default defineConfig({
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:3000',
+    url: 'localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,
   },
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'localhost:3000',
   },
 });
 ```
@@ -217,8 +217,8 @@ export default defineConfig({
 export default defineConfig({
   use: {
     baseURL: process.env.CI
-      ? 'https://staging.example.com'
-      : 'http://localhost:3000',
+      ? 'staging.example.com'
+      : 'localhost:3000',
   },
 });
 ```
@@ -230,7 +230,7 @@ export default defineConfig({
 export default defineConfig({
   webServer: {
     command: 'docker compose -f docker-compose.test.yml up --wait',
-    url: 'http://localhost:3000/health',
+    url: 'localhost:3000/health',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
@@ -332,12 +332,12 @@ export default defineConfig({
     {
       name: 'ci-fast',
       testMatch: '**/*.spec.ts',
-      use: { baseURL: 'http://localhost:3000' },
+      use: { baseURL: 'localhost:3000' },
     },
     {
       name: 'nightly-full',
       testMatch: '**/*.integration.spec.ts',
-      use: { baseURL: 'https://staging.example.com' },
+      use: { baseURL: 'staging.example.com' },
       timeout: 120_000,
     },
   ],

@@ -21,7 +21,7 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 
 ### Execute Ingest Approval Gate
 
-When [execute-ingest.prompt.md](../../../../.agents/prompts/execute-ingest.prompt.md)
+When [execute-ingest.prompt.md](https://github.com/mankinskin/meta-workspace/blob/main/.agents/prompts/execute-ingest.prompt.md)
 hands a roadmap to this execution procedure, the handoff must contain the
 explicit final user outcome `approve`. The outcome `replan` returns control to
 the planning loop and is not an executable handoff. A planning verdict such as
@@ -36,7 +36,7 @@ roadmap before checking waypoint readiness.
 
 A waypoint is ready only when all of the following are true:
 
-- Its declared dependencies are `done` or otherwise have recorded, verified satisfaction.
+- Its declared dependencies are `done` or otherwise have recorded, verified satisfaction, and every dependency resolves within this roadmap's own waypoints or owned tickets — never a dependency on a separate `ROADMAP.md` or another dossier's plan (see [roadmap-authoring.instructions.md's Self-Containment Requirement](roadmap-authoring.instructions.md#self-containment-requirement)).
 - Its governing ticket, specification, decision record, and dossier artifacts resolve and agree on the requested outcome.
 - Its acceptance criteria describe observable success and its target setting (repository, worktree, relevant configuration, and applicable constraints) is known.
 - Its scope names the owning files, interfaces, or research question closely enough to prevent an implementation agent from rediscovering requirements.
@@ -107,5 +107,5 @@ A waypoint's `Status:` line (see [roadmap-authoring.instructions.md's Syntax Rul
 Some waypoints require a review pass before they can be marked `done`, not just a passing validation command — typically ticket-backed waypoints, per [loop-closure.instructions.md](loop-closure.instructions.md)'s Review → Interview → Commit → Handoff cycle. For a roadmap-tracked waypoint:
 
 - Do not move a waypoint to `done` while its underlying ticket sits in `in-review` — leave it `in-progress` and note in the waypoint body that it is awaiting review.
-- Record a review verdict as a short inline note on the waypoint (`Review: approved, see ticket <short-id>`) rather than a separate document, unless the review itself produced a substantial artifact worth its own file (a full [review.agent.md](../../../../context-engine/.agents/agents/review.agent.md) report) — in that case cite the report by path instead of pasting it.
+- Record a review verdict as a short inline note on the waypoint (`Review: approved, see ticket <short-id>`) rather than a separate document, unless the review itself produced a substantial artifact worth its own file (a full [review.agent.md](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/review.agent.md) report) — in that case cite the report by path instead of pasting it.
 - A review that surfaces new scope or a new blocker is handled per [escalation-gate.instructions.md](escalation-gate.instructions.md), not by silently expanding the waypoint's own objective — open a new waypoint or ticket instead.

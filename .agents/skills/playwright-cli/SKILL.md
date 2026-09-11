@@ -12,7 +12,7 @@ allowed-tools: Bash(playwright-cli:*) Bash(npx:*) Bash(npm:*)
 # open new browser
 playwright-cli open
 # navigate to a page
-playwright-cli goto https://playwright.dev
+playwright-cli goto playwright.dev
 # interact with the page using refs from the snapshot
 playwright-cli click e15
 playwright-cli type "page.click"
@@ -30,8 +30,8 @@ playwright-cli close
 ```bash
 playwright-cli open
 # open and navigate right away
-playwright-cli open https://example.com/
-playwright-cli goto https://playwright.dev
+playwright-cli open example.com/
+playwright-cli goto playwright.dev
 playwright-cli type "search query"
 playwright-cli click e3
 playwright-cli dblclick e7
@@ -107,7 +107,7 @@ playwright-cli pdf --filename=page.pdf
 ```bash
 playwright-cli tab-list
 playwright-cli tab-new
-playwright-cli tab-new https://example.com/page
+playwright-cli tab-new example.com/page
 playwright-cli tab-close
 playwright-cli tab-close 2
 playwright-cli tab-select 0
@@ -148,7 +148,7 @@ playwright-cli sessionstorage-clear
 
 ```bash
 playwright-cli route "**/*.jpg" --status=404
-playwright-cli route "https://api.example.com/**" --body='{"mock": true}'
+playwright-cli route "api.example.com/**" --body='{"mock": true}'
 playwright-cli route-list
 playwright-cli unroute "**/*.jpg"
 playwright-cli unroute
@@ -234,7 +234,7 @@ playwright-cli attach --cdp=chrome
 playwright-cli attach --cdp=msedge
 
 # Connect to a running browser via CDP endpoint
-playwright-cli attach --cdp=http://localhost:9222
+playwright-cli attach --cdp=localhost:9222
 
 # Start with config file
 playwright-cli open --config=my-config.json
@@ -252,11 +252,11 @@ playwright-cli delete-data
 On Windows, `cmd.exe` and PowerShell treat `&` as a command separator, so URLs with multiple query parameters get truncated before `playwright-cli` runs. Escape `&` with `^&` in `cmd.exe`, or use `--%` in PowerShell:
 
 ```batch
-playwright-cli goto "https://example.com/?a=1^&b=2"
+playwright-cli goto "example.com/?a=1^&b=2"
 ```
 
 ```powershell
-playwright-cli --% goto "https://example.com/?a=1&b=2"
+playwright-cli --% goto "example.com/?a=1&b=2"
 ```
 
 ## Snapshots
@@ -264,9 +264,9 @@ playwright-cli --% goto "https://example.com/?a=1&b=2"
 After each command, playwright-cli provides a snapshot of the current browser state.
 
 ```bash
-> playwright-cli goto https://example.com
+> playwright-cli goto example.com
 ### Page
-- Page URL: https://example.com/
+- Page URL: example.com/
 - Page Title: Example Domain
 ### Snapshot
 [Snapshot](.playwright-cli/page-2026-02-14T19-22-42-679Z.yml)
@@ -357,7 +357,7 @@ npm install -g @playwright/cli@latest
 ## Example: Form submission
 
 ```bash
-playwright-cli open https://example.com/form
+playwright-cli open example.com/form
 playwright-cli snapshot
 
 playwright-cli fill e1 "user@example.com"
@@ -370,8 +370,8 @@ playwright-cli close
 ## Example: Multi-tab workflow
 
 ```bash
-playwright-cli open https://example.com
-playwright-cli tab-new https://example.com/other
+playwright-cli open example.com
+playwright-cli tab-new example.com/other
 playwright-cli tab-list
 playwright-cli tab-select 0
 playwright-cli snapshot
@@ -381,7 +381,7 @@ playwright-cli close
 ## Example: Debugging with DevTools
 
 ```bash
-playwright-cli open https://example.com
+playwright-cli open example.com
 playwright-cli click e4
 playwright-cli fill e7 "test"
 playwright-cli console
@@ -390,7 +390,7 @@ playwright-cli close
 ```
 
 ```bash
-playwright-cli open https://example.com
+playwright-cli open example.com
 playwright-cli tracing-start
 playwright-cli click e4
 playwright-cli fill e7 "test"
@@ -403,7 +403,7 @@ playwright-cli close
 Ask the user for UI review or design feedback. The user draws boxes on the live page and types comments; you receive the annotated screenshot, the snapshot of the marked region, and the user's notes. Use this whenever the user asks for "UI review", "design feedback", or to "ask the user what they think / want / mean":
 
 ```bash
-playwright-cli open https://example.com
+playwright-cli open example.com
 playwright-cli show --annotate
 ```
 

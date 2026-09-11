@@ -92,7 +92,7 @@ export default defineConfig({
   expect: { timeout: 5_000 },
 
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:4000',
+    baseURL: process.env.BASE_URL || 'localhost:4000',
     actionTimeout: 10_000,
     navigationTimeout: 15_000,
     trace: 'on-first-retry',
@@ -112,7 +112,7 @@ export default defineConfig({
 
   webServer: {
     command: 'npm run start',
-    url: 'http://localhost:4000',
+    url: 'localhost:4000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     stdout: 'pipe',
@@ -137,9 +137,9 @@ const ENV = process.env.TEST_ENV || 'local';
 dotenv.config({ path: path.resolve(__dirname, `.env.${ENV}`) });
 
 const envConfig: Record<string, { baseURL: string; retries: number }> = {
-  local:   { baseURL: 'http://localhost:4000',      retries: 0 },
-  staging: { baseURL: 'https://staging.myapp.com',  retries: 2 },
-  prod:    { baseURL: 'https://myapp.com',          retries: 2 },
+  local:   { baseURL: 'localhost:4000',      retries: 0 },
+  staging: { baseURL: 'staging.myapp.com',  retries: 2 },
+  prod:    { baseURL: 'myapp.com',          retries: 2 },
 };
 
 export default defineConfig({
@@ -215,12 +215,12 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
-  use: { baseURL: 'http://localhost:4000' },
+  use: { baseURL: 'localhost:4000' },
   webServer: {
     command: process.env.CI
       ? 'npm run build && npm run preview'
       : 'npm run dev',
-    url: 'http://localhost:4000',
+    url: 'localhost:4000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {
@@ -273,17 +273,17 @@ export default async function globalTeardown(config: FullConfig) {
 
 ```bash
 # .env.example (commit this)
-BASE_URL=http://localhost:4000
+BASE_URL=localhost:4000
 TEST_PASSWORD=
 API_KEY=
 
 # .env.local (gitignored)
-BASE_URL=http://localhost:4000
+BASE_URL=localhost:4000
 TEST_PASSWORD=secret123
 API_KEY=dev-key-abc
 
 # .env.staging (gitignored)
-BASE_URL=https://staging.myapp.com
+BASE_URL=staging.myapp.com
 TEST_PASSWORD=staging-pass
 API_KEY=staging-key-xyz
 ```
@@ -381,7 +381,7 @@ export default defineConfig({
 | Don't | Problem | Do Instead |
 |-------|---------|------------|
 | `timeout: 300_000` globally | Masks flaky tests; slow CI | Fix root cause; keep 30s default |
-| Hardcoded URLs: `page.goto('http://localhost:4000/login')` | Breaks in other environments | Use `baseURL` + relative paths |
+| Hardcoded URLs: `page.goto('localhost:4000/login')` | Breaks in other environments | Use `baseURL` + relative paths |
 | All browsers on every PR | 3x CI time | Chromium on PRs; all on main |
 | `trace: 'on'` always | Huge artifacts, slow uploads | `trace: 'on-first-retry'` |
 | `video: 'on'` always | Massive storage; slow tests | `video: 'retain-on-failure'` |
@@ -399,7 +399,7 @@ export default defineConfig({
 
 ```ts
 // Wrong - ignores baseURL
-await page.goto('http://localhost:4000/dashboard');
+await page.goto('localhost:4000/dashboard');
 
 // Correct - uses baseURL
 await page.goto('/dashboard');
@@ -412,7 +412,7 @@ await page.goto('/dashboard');
 ```ts
 webServer: {
   command: 'npm run dev',
-  url: 'http://localhost:4000/api/health',  // use real endpoint
+  url: 'localhost:4000/api/health',  // use real endpoint
   reuseExistingServer: !process.env.CI,
   timeout: 120_000,
 },

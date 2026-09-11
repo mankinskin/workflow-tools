@@ -89,5 +89,5 @@ const fresnel = Fn(([power = 2.0]) => {
 
 ## Resources
 
-- [Three.js TSL Wiki](https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language)
-- [WebGPU Examples](https://github.com/mrdoob/three.js/tree/master/examples) (files prefixed with `webgpu_`)
+- Three.js TSL Wiki
+- WebGPU Examples in the Three.js repository (files prefixed with `webgpu_`)

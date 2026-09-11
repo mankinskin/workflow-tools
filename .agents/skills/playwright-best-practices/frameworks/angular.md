@@ -36,7 +36,7 @@ export default defineConfig({
   workers: process.env.CI ? '50%' : undefined,
 
   use: {
-    baseURL: 'http://localhost:4200',
+    baseURL: 'localhost:4200',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -51,7 +51,7 @@ export default defineConfig({
     command: process.env.CI
       ? 'npx ng build && npx http-server dist/my-app/browser -p 4200 -s'
       : 'npx ng serve',
-    url: 'http://localhost:4200',
+    url: 'localhost:4200',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
@@ -451,7 +451,7 @@ webServer: {
   command: process.env.CI
     ? 'npx ng build --ssr && node dist/my-app/server/server.mjs'
     : 'npx ng serve --ssr',
-  url: 'http://localhost:4200',
+  url: 'localhost:4200',
   reuseExistingServer: !process.env.CI,
   timeout: 180_000,
 },

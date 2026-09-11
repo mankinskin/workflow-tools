@@ -6,7 +6,7 @@ Rust enforces a strict error handling approach, but *how* you handle them define
 
 ## 4.1 Prefer `Result`, avoid panic 🫨
 
-Rust has a powerful type that wraps fallible data, [`Result<T, E>`](https://doc.rust-lang.org/std/result/), this allows us to handle Error cases according to our needs and manage the state of the application based on that.
+Rust has a powerful type that wraps fallible data, `Result<T, E>`, this allows us to handle Error cases according to our needs and manage the state of the application based on that.
 
 * If your function can fail, prefer to return a `Result`:
 ```rust

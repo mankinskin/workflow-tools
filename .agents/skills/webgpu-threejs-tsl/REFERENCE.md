@@ -364,8 +364,8 @@ See `docs/limits-and-features.md` for full details.
 
 ## Resources
 
-- [TSL Wiki](https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language)
-- [TSL Docs](https://threejs.org/docs/pages/TSL.html)
-- [WebGPU Examples](https://github.com/mrdoob/three.js/tree/master/examples)
-- [Three.js Docs](https://threejs.org/docs/)
-- [WebGPU Best Practices - Device Loss](https://toji.dev/webgpu-best-practices/device-loss)
+- TSL Wiki (Three.js repository)
+- TSL Docs (Three.js documentation site)
+- WebGPU Examples (Three.js repository)
+- Three.js Docs
+- WebGPU Best Practices - Device Loss

@@ -9,7 +9,7 @@ agent: "agent"
 
 Create a compact handoff prompt for a new session and formalize the handoff track through the ticket workflow when needed.
 
-Reference [AGENTS](../../AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket](../../ticket/.agents/prompts/ticket.prompt.md), [tickets](../../ticket/.agents/prompts/tickets.prompt.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [rule-target] (no standalone rule-target prompt is present), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
+Reference [AGENTS](../../AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket](../../ticket/.agents/prompts/ticket.prompt.md), [tickets](../../ticket/.agents/prompts/tickets.prompt.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [rule-target] (no standalone rule-target prompt is present), ticket-cli (context-engine/memory-api/tools/cli/ticket-cli/README.md), ticket-mcp (context-engine/memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
 
 ## Workflow
 

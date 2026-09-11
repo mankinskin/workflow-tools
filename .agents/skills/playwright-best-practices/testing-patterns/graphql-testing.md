@@ -162,7 +162,7 @@ type GraphQLFixtures = {
 export const test = base.extend<GraphQLFixtures>({
   gqlClient: async ({ playwright }, use) => {
     const ctx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
       extraHTTPHeaders: {
         Authorization: `Bearer ${process.env.API_TOKEN}`,
         "Content-Type": "application/json",
@@ -174,7 +174,7 @@ export const test = base.extend<GraphQLFixtures>({
 
   adminGqlClient: async ({ playwright }, use) => {
     const loginCtx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
     });
     const loginResp = await loginCtx.post("/graphql", {
       data: {
@@ -198,7 +198,7 @@ export const test = base.extend<GraphQLFixtures>({
     await loginCtx.dispose();
 
     const ctx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
       extraHTTPHeaders: {
         Authorization: `Bearer ${data.login.token}`,
         "Content-Type": "application/json",

@@ -17,7 +17,7 @@ Every action you perform with `playwright-cli` generates corresponding Playwrigh
 
 ```bash
 # Start a session
-playwright-cli open https://example.com/login
+playwright-cli open example.com/login
 
 # Take a snapshot to see elements
 playwright-cli snapshot
@@ -46,7 +46,7 @@ import { test, expect } from '@playwright/test';
 
 test('login flow', async ({ page }) => {
   // Generated code from playwright-cli session:
-  await page.goto('https://example.com/login');
+  await page.goto('example.com/login');
   await page.getByRole('textbox', { name: 'Email' }).fill('user@example.com');
   await page.getByRole('textbox', { name: 'Password' }).fill('password123');
   await page.getByRole('button', { name: 'Sign In' }).click();
@@ -73,7 +73,7 @@ await page.locator('#submit-btn').click();
 Take snapshots to understand the page structure before recording actions:
 
 ```bash
-playwright-cli open https://example.com
+playwright-cli open example.com
 playwright-cli snapshot
 # Review the element structure
 playwright-cli click e5
@@ -170,7 +170,7 @@ Minimum viable seed:
 import { test } from '@playwright/test';
 
 test('seed', async ({ page }) => {
-  await page.goto('https://example.com/');
+  await page.goto('example.com/');
 });
 ```
 
@@ -183,7 +183,7 @@ export { expect } from '@playwright/test';
 
 export const test = baseTest.extend({
   page: async ({ page }, use) => {
-    await page.goto('https://example.com/');
+    await page.goto('example.com/');
     await use(page);
   },
 });

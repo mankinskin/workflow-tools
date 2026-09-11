@@ -59,7 +59,7 @@ async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
 
     // Async operations
-    let result = fetch_data("https://api.example.com").await?;
+    let result = fetch_data("api.example.com").await?;
     println!("Got: {}", result);
 
     Ok(())

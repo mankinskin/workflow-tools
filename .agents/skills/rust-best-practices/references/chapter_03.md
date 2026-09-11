@@ -9,11 +9,11 @@ Rust code is often already pretty fast - don't "optimize" without evidence. Opti
 ### A good first steps
 * Use `--release` flag on you builds (might sound dummy, but it is quite common to hear people complaining that their Rust code is slower than their X language code, and 99% of the time is because they didn't use the `--release` flag).
 * `$ cargo clippy -- -D clippy::perf` gives you important tips on best practices for performance.
-* [`cargo bench`](https://doc.rust-lang.org/cargo/commands/cargo-bench.html) is a cargo tool to create micro-benchmarks and test different code solutions. Write a test scenario and bench you solution against the original code, if your improvement is larger than 5%, might be a good performance improvement.
-* [`cargo flamegraph`](https://github.com/flamegraph-rs/flamegraph) a powerful profiler for Rust code. For MacOS, [samply](https://github.com/mstange/samply) might be a better DX option.
+* `` `cargo bench` `` is a cargo tool to create micro-benchmarks and test different code solutions. Write a test scenario and bench you solution against the original code, if your improvement is larger than 5%, might be a good performance improvement.
+* `` `cargo flamegraph` `` a powerful profiler for Rust code. For MacOS, `samply` might be a better DX option.
 
 > #### Further reading on Benchmarking:
-> - [How to build a Custom Benchmarking Harness in Rust](https://bencher.dev/learn/benchmarking/rust/custom-harness/)
+> - See external benchmarking-harness resources for how to build a custom benchmarking harness in Rust.
 
 
 ## 3.1 Flamegraph
@@ -69,7 +69,7 @@ The result will look like a flame graph where:
 
 > Cloning is cheap... **until it isn't**
 
-In sections [Borrowing over Cloning](./chapter_01.md#11-borrowing-over-cloning) and [Important Clippy lints to respect](./chapter_02.md#23-important-clippy-lints-to-respect) we mentioned the impacts of cloning and the relevant clippy lint [`redundant_clone`](https://rust-lang.github.io/rust-clippy/master/#redundant_clone), so in this section we will explore a bit "when to pass ownership".
+In sections [Borrowing over Cloning](./chapter_01.md#11-borrowing-over-cloning) and [Important Clippy lints to respect](./chapter_02.md#23-important-clippy-lints-to-respect) we mentioned the impacts of cloning and the relevant clippy lint `redundant_clone`, so in this section we will explore a bit "when to pass ownership".
 
 * 🚨 If you really need to clone, leave it to the last moment.
 
@@ -154,7 +154,7 @@ for item in &some_vec {
 
 ### Use `Cow` for `Maybe Owned` data
 
-Sometimes you don't actually need owned data, but that is not clear from the API perspective, so using [`std::borrow::Cow`](https://doc.rust-lang.org/std/borrow/enum.Cow.html) is a way to efficiently address this case:
+Sometimes you don't actually need owned data, but that is not clear from the API perspective, so using `std::borrow::Cow` is a way to efficiently address this case:
 
 ```rust
 use std::borrow::Cow;
@@ -186,7 +186,7 @@ enum OctreeNode<T> {
 
 * Only use `#[inline]` when benchmark proves beneficial, Rust is already pretty good at inlining **without** hints.
 * Avoid massive stack allocations, box them. Example `let buffer: Box<[u8; 65536]> = Box::new(..)` would first allocate `[u8; 65536]` on the stack then box it, a non-const solution to this would be `let buffer: Box<[u8]> = vec![0; 65536].into_boxed_slice()`.
-* For large `const` arrays, considering using [crate smallvec](https://docs.rs/smallvec/latest/smallvec/) as it behaves like an array, but is smart enough to allocate large arrays on the heap.
+* For large `const` arrays, considering using the `smallvec` crate as it behaves like an array, but is smart enough to allocate large arrays on the heap.
 
 ## 3.4 Iterators and Zero-Cost Abstractions
 

@@ -39,7 +39,7 @@ export default defineConfig({
   workers: process.env.CI ? '50%' : undefined,
 
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: 'localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -54,7 +54,7 @@ export default defineConfig({
     command: process.env.CI
       ? 'npm run build && npx vite preview --port 5173'
       : 'npm run dev',
-    url: 'http://localhost:5173',
+    url: 'localhost:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
@@ -77,7 +77,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
 
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -90,11 +90,11 @@ export default defineConfig({
     command: process.env.CI
       ? 'npx nuxi build && npx nuxi preview'
       : 'npx nuxi dev',
-    url: 'http://localhost:3000',
+    url: 'localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {
-      NUXT_PUBLIC_API_BASE: 'http://localhost:3000/api',
+      NUXT_PUBLIC_API_BASE: 'localhost:3000/api',
     },
   },
 });

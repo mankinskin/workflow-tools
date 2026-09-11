@@ -58,7 +58,7 @@ playwright-cli run-code "async page => {
 # Grant permissions for specific origin
 playwright-cli run-code "async page => {
   await page.context().grantPermissions(['clipboard-read'], {
-    origin: 'https://example.com'
+    origin: 'example.com'
   });
 }"
 ```
@@ -219,7 +219,7 @@ playwright-cli run-code "async page => {
 ```bash
 # Login and save state
 playwright-cli run-code "async page => {
-  await page.goto('https://example.com/login');
+  await page.goto('example.com/login');
   await page.getByRole('textbox', { name: 'Email' }).fill('user@example.com');
   await page.getByRole('textbox', { name: 'Password' }).fill('secret');
   await page.getByRole('button', { name: 'Sign in' }).click();
@@ -232,7 +232,7 @@ playwright-cli run-code "async page => {
 playwright-cli run-code "async page => {
   const results = [];
   for (let i = 1; i <= 3; i++) {
-    await page.goto(\`https://example.com/page/\${i}\`);
+    await page.goto(\`example.com/page/\${i}\`);
     const items = await page.locator('.item').allTextContents();
     results.push(...items);
   }

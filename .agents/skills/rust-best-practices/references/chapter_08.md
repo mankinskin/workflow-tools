@@ -154,12 +154,12 @@ Rust provides **first-class documentation tooling** via rustdoc, which makes doc
 
 | Lint | Description |
 |-------------- |------------------------------------------- |
-| [missing_docs](https://doc.rust-lang.org/rustdoc/lints.html#missing_docs) | Warns that a public functions, struct, const, enum has missing documentation |
-| [broken_intra_doc_links](https://doc.rust-lang.org/rustdoc/lints.html#broken_intra_doc_links) | Detects if an internal documentation link is broken. Specially useful when things are renamed. |
-| [empty_docs](https://rust-lang.github.io/rust-clippy/master/#empty_docs) | Disallow empty docs - preventing bypass of `missing_docs` |
-| [missing_panics_doc](https://rust-lang.github.io/rust-clippy/master/#missing_panics_doc) | Warns that documentation should have a `# Panics` section if function can panic |
-| [missing_errors_doc](https://rust-lang.github.io/rust-clippy/master/#missing_errors_doc) | Warns that documentation should have a `# Errors` section if function returns a `Result` explaining `Err` conditions |
-| [missing_safety_doc](https://rust-lang.github.io/rust-clippy/master/#missing_safety_doc) | Warns that documentation should have a `# Safety` section if public facing functions have visible unsafe blocks |
+| `missing_docs` | Warns that a public functions, struct, const, enum has missing documentation |
+| `broken_intra_doc_links` | Detects if an internal documentation link is broken. Specially useful when things are renamed. |
+| `empty_docs` | Disallow empty docs - preventing bypass of `missing_docs` |
+| `missing_panics_doc` | Warns that documentation should have a `# Panics` section if function can panic |
+| `missing_errors_doc` | Warns that documentation should have a `# Errors` section if function returns a `Result` explaining `Err` conditions |
+| `missing_safety_doc` | Warns that documentation should have a `# Safety` section if public facing functions have visible unsafe blocks |
 
 
 ### Difference between `///` and `//!`
@@ -228,7 +228,7 @@ Use `//!` when you want to document the **purpose of a module or a crate**. It i
     - [ ] The role this type plays.
     - [ ] Invariants or expectations.
     - [ ] Example construction or usage.
-- [ ] Consider using [`#[non_exhaustive]`](https://doc.rust-lang.org/reference/attributes/type_system.html#the-non_exhaustive-attribute) if external users may match on it.
+- [ ] Consider using `#[non_exhaustive]` if external users may match on it.
 
 🔧 Functions and Methods
 - `///` doc covers:

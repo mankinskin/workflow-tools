@@ -240,7 +240,7 @@ test("popup sends message to background", async ({ context, extensionId }) => {
 ```typescript
 test("service worker handles messages", async ({ context, extensionId }) => {
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Send message to service worker from page
   const response = await page.evaluate(async (extId) => {
@@ -309,7 +309,7 @@ test("alarm triggers correctly", async ({ context }) => {
 ```typescript
 test("content script injects UI", async ({ context }) => {
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Wait for content script to inject elements
   await expect(page.locator("#my-extension-widget")).toBeVisible();
@@ -330,7 +330,7 @@ test("content script communicates with background", async ({
   extensionId,
 }) => {
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Trigger content script action
   await page.locator("#my-extension-button").click();
@@ -345,7 +345,7 @@ test("content script communicates with background", async ({
 ```typescript
 test("content script modifies page", async ({ context }) => {
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Verify content script modifications
   const hasModification = await page.evaluate(() => {
@@ -405,7 +405,7 @@ test("chrome.tabs operations", async ({ context }) => {
 
   // Create a tab
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Query tabs from service worker
   const tabs = await serviceWorker.evaluate(async () => {
@@ -439,7 +439,7 @@ test("context menu actions", async ({ context, extensionId }) => {
 
   // Simulate context menu click
   const page = await context.newPage();
-  await page.goto("https://example.com");
+  await page.goto("example.com");
 
   // Select text
   await page.evaluate(() => {
@@ -453,7 +453,7 @@ test("context menu actions", async ({ context, extensionId }) => {
     // Simulate the click handler
     chrome.contextMenus.onClicked.dispatch(
       { menuItemId: "test-menu", selectionText: "selected text" },
-      { id: 1, url: "https://example.com" },
+      { id: 1, url: "example.com" },
     );
   });
 });
@@ -469,7 +469,7 @@ test("request permissions", async ({ context, extensionId }) => {
   // Check current permissions
   const hasPermission = await popup.evaluate(async () => {
     return await chrome.permissions.contains({
-      origins: ["https://*.github.com/*"],
+      origins: ["*.github.com/*"],
     });
   });
 
@@ -478,7 +478,7 @@ test("request permissions", async ({ context, extensionId }) => {
   const permissionRequest = popup.evaluate(async () => {
     try {
       return await chrome.permissions.request({
-        origins: ["https://*.github.com/*"],
+        origins: ["*.github.com/*"],
       });
     } catch (e) {
       return false;

@@ -20,11 +20,7 @@ Review files for compliance with Writing Guidelines.
 
 ## Guidelines Source
 
-Fetch fresh guidelines before each review:
-
-```
-https://raw.githubusercontent.com/vercel-labs/writing-guidelines/main/command.md
-```
+Fetch fresh guidelines before each review from the upstream `vercel-labs/writing-guidelines` repository's `command.md` file on the `main` branch.
 
 Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions.
 

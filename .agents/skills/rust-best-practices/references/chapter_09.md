@@ -77,7 +77,7 @@ fn mark_update(s: &mut String) {
 }
 ```
 
-### [`Box<T>`](https://doc.rust-lang.org/std/boxed/struct.Box.html) - Heap Allocated
+### `Box<T>` - Heap Allocated
 
 Single-owner heap-allocated data, great for recursive types and large structs.
 
@@ -89,15 +89,15 @@ pub enum MySubBoxedEnum<T> {
 }
 ```
 
-### [`Rc<T>`](https://doc.rust-lang.org/std/rc/struct.Rc.html) - Reference Counter (single-thread)
+### `Rc<T>` - Reference Counter (single-thread)
 
 You need multiple references to data in a single thread. Most common example is linked-list implementation.
 
-### [`Arc<T>`](https://doc.rust-lang.org/std/sync/struct.Arc.html) - Atomic Reference Counter (multi-thread)
+### `Arc<T>` - Atomic Reference Counter (multi-thread)
 
 You need multiple references to data in multiple threads. Most common use cases is sharing readonly Vec across thread with `Arc<[T]>` and wrapping a `Mutex` so it can be easily shared across threads, `Arc<Mutex<T>>`.
 
-### [`RefCell<T>`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) - Runtime checked interior mutability
+### `RefCell<T>` - Runtime checked interior mutability
 
 Used when you need shared access and the ability to mutate date, borrow rules are enforced at runtime. **It may panic!**.
 
@@ -119,7 +119,7 @@ let borrow = x.borrow();
 let mutable = x.borrow_mut();
 ```
 
-### [`Cell<T>`](https://doc.rust-lang.org/std/cell/struct.Cell.html) - Copy-only interior mutability
+### `Cell<T>` - Copy-only interior mutability
 
 Somewhat the fast and safe version of `RefCell`, but it is limited to types that implement the `Copy` trait:
 
@@ -147,16 +147,16 @@ my_struct.special_field.set(new_value);
 assert_eq!(my_struct.special_field.get(), new_value);
 ```
 
-### [`Mutex<T>`](https://doc.rust-lang.org/std/sync/struct.Mutex.html) - Thread-safe mutability
+### `Mutex<T>` - Thread-safe mutability
 
 An exclusive access pointer that allows a thread to read/write the data contained inside. It is usually wrapped in an `Arc` to allow shared access to the Mutex.
 
-### [`RwLock<T>`](https://doc.rust-lang.org/std/sync/struct.RwLock.html) - Thread-safe mutability
+### `RwLock<T>` - Thread-safe mutability
 
 Similar to a `Mutex`, but it allows multiple threads to read it OR a single thread to write. It is usually wrapped in an `Arc` to allow shared access to the RwLock.
 
 
-### [`*const T/*mut T`](https://doc.rust-lang.org/std/primitive.pointer.html) - Raw pointers
+### `*const T/*mut T` - Raw pointers
 
 Inherently **unsafe** and necessary for FFI. Rust makes their usage explicit to avoid accidental misuse and unwilling manual memory management.
 
@@ -168,7 +168,7 @@ unsafe {
 }
 ```
 
-### [`OnceCell`](https://doc.rust-lang.org/std/cell/struct.OnceCell.html) - Single-thread single initialization container
+### `OnceCell` - Single-thread single initialization container
 
 Most useful when you need to share a configuration between multiple data structures.
 
@@ -203,11 +203,11 @@ fn main() {
 }
 ```
 
-### [`LazyCell`](https://doc.rust-lang.org/std/cell/struct.LazyCell.html) - Lazy initialization of `OnceCell`
+### `LazyCell` - Lazy initialization of `OnceCell`
 
 Useful when the initialized data can be delayed to when it is actually being called.
 
-### [`OnceLock`](https://doc.rust-lang.org/std/sync/struct.OnceLock.html) - thread-safe `OnceCell`
+### `OnceLock` - thread-safe `OnceCell`
 
 Useful when you need a `static` value.
 
@@ -234,7 +234,7 @@ assert_eq!(
 );
 ```
 
-### [`LazyLock`](https://doc.rust-lang.org/std/sync/struct.LazyLock.html) - thread-safe `LazyCell`
+### `LazyLock` - thread-safe `LazyCell`
 
 Similar to `OnceLock`, but the static value is a bit more complex to initialize.
 
@@ -252,5 +252,5 @@ let _ = &*CONFIG;
 ```
 
 ## References
-- [Mara Bos - Rust Atomics and Locks](https://marabos.nl/atomics/)
-- [Semicolon video on pointers](https://www.youtube.com/watch?v=Ag_6Q44PBNs)
+- Mara Bos - Rust Atomics and Locks
+- Semicolon's video on pointers

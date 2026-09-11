@@ -460,4 +460,4 @@ Write access: `tgpu.mutableAccessor(schema, initial?)`.
 
 - **`@typegpu/sdf`** - 2D/3D signed distance primitives (`sdDisk`, `sdBox2d`, `sdRoundedBox2d`, `sdBezier`, `sdSphere`, `sdBox3d`, `sdCapsule`, `sdPlane`, ...) and operators (`opUnion`, `opSmoothUnion`, `opSmoothDifference`, `opExtrudeX/Y/Z`). All `tgpu.fn` with pinned types, callable directly from `'use gpu'`. For ray marching, UI masking, AA vector drawing. See `references/sdf.md`.
 
-- **[`wgpu-matrix`](https://github.com/greggman/wgpu-matrix)** - canonical math library for TypeGPU. TypeGPU vectors/matrices can be passed as `dst` to `wgpu-matrix` calls to avoid allocations. See `references/matrices.md` for full integration patterns.
+- **`wgpu-matrix`** - canonical math library for TypeGPU. TypeGPU vectors/matrices can be passed as `dst` to `wgpu-matrix` calls to avoid allocations. See `references/matrices.md` for full integration patterns.

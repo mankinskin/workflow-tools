@@ -53,9 +53,9 @@ After `session_handoff` succeeds, return the following format. Do not report a h
 
 1. Start with this standalone line, using the `record_path` returned by `session_handoff` and the workspace-relative `handoff.md` path:
 
-	**Persistent handoff:** [Open handoff markdown](.session/sessions/<workspace-session-id>/handoffs/<handoff-id>/handoff.md)
+	**Persistent handoff:** record_path
 
-	The markdown link is mandatory. Do not use an absolute path, a `file://` URI, a session id alone, or a link to the handoff directory.
+	Report the exact `record_path` value returned by `session_handoff` as plain text (a workspace-relative path ending in `handoff.md`), not as a markdown link. Do not use an absolute path, a `file://` URI, a session id alone, or a path to the handoff directory.
 
 2. Follow with a brief reader-oriented summary:
 	- **Scope:** the work scope or session being handed off
@@ -68,7 +68,7 @@ After `session_handoff` succeeds, return the following format. Do not report a h
 	````markdown
 	# Handoff: <scope>
 
-	Persistent record: [handoff.md](.session/sessions/<workspace-session-id>/handoffs/<handoff-id>/handoff.md)
+	Persistent record: [handoff.md](<record_path>)
 	Resume: `<resume-command>`
 
 	## Ready Next

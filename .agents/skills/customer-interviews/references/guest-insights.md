@@ -15,7 +15,7 @@
 - Reconstruct the timeline of events leading up to a purchase to find the true 'push' from the previous solution.
 - Identify the 'four forces' during interviews: the push of the situation, the pull of the new solution, the anxiety of change, and the habit of the present.
 
-*Source: [The ultimate guide to JTBD | Bob Moesta (co-creator of the framework)](https://www.youtube.com/watch?v=xQV7HVyAJjc) @ 00:18:30*
+*Source: The ultimate guide to JTBD | Bob Moesta (co-creator of the framework) @ 00:18:30*
 
 ---
 
@@ -23,7 +23,7 @@
 
 **Insight:** 
 
-*Source: [Lessons from 1,000+ YC startups: Resilience, tar pit ideas, pivoting, more | Dalton Caldwell (Y Combinator, Managing Director)](https://www.youtube.com/watch?v=m7LvNTbaqSI) @ 00:40:57*
+*Source: Lessons from 1,000+ YC startups: Resilience, tar pit ideas, pivoting, more | Dalton Caldwell (Y Combinator, Managing Director) @ 00:40:57*
 
 ---
 
@@ -38,7 +38,7 @@
 - Observe users in their natural environment to find pain points they might not explicitly notice.
 - Borrow research techniques from various industries to find new ways to innovate on the customer's behalf.
 
-*Source: [Be fundamentally different, not incrementally better | Jag Duggal (Nubank, Facebook, Google, Quantcast)](https://www.youtube.com/watch?v=8A7wXK2MncQ) @ 00:25:20*
+*Source: Be fundamentally different, not incrementally better | Jag Duggal (Nubank, Facebook, Google, Quantcast) @ 00:25:20*
 
 ---
 
@@ -53,7 +53,7 @@
 - Ask open-ended questions like "What are you thinking right now?" to uncover the "why" behind user actions.
 - Spot moments of hesitation, confusion, or excitement by paying close attention to facial expressions.
 
-*Source: [How to develop product sense](https://www.lennysnewsletter.com/p/how-to-develop-product-sense)*
+*Source: How to develop product sense*
 
 ---
 
@@ -66,7 +66,7 @@
 - Use the 'magic wand' question to uncover the user's ideal solution without the constraints of current technology.
 - Dig into the pricing conversation early by asking exactly how much they would pay if the product existed today.
 
-*Source: [This Week #3: Finding product/market fit, interviewing for a Director of PM role, and structuring discussions with senior leaders](https://www.lennysnewsletter.com/p/this-week-3-finding-productmarket-fit-interviewing-for-a-director-of-pm-role-and)*
+*Source: This Week #3: Finding product/market fit, interviewing for a Director of PM role, and structuring discussions with senior leaders*
 
 ---
 
@@ -79,7 +79,7 @@
 - Listen for "pain" signals, like an emotional hatred for incumbent products.
 - Distinguish between friends rooting for your success and actual market validation.
 
-*Source: [What to do if your product isn’t taking off](https://www.lennysnewsletter.com/p/what-to-do-if-your-product-isnt-taking-off)*
+*Source: What to do if your product isn’t taking off*
 
 ---
 
@@ -92,7 +92,7 @@
 - Listen for organic problems that members could solve for each other rather than relying on brand-led solutions.
 - Verify that your business goals for the community align with what members are naturally motivated to do.
 
-*Source: [A founder’s guide to community](https://www.lennysnewsletter.com/p/a-founders-guide-to-community)*
+*Source: A founder’s guide to community*
 
 ---
 
@@ -103,7 +103,7 @@
 - Generate a list of open-ended customer interview questions.
 - Ask for follow-up questions that probe deeper into user pain points.
 
-*Source: [How to use ChatGPT in your PM work](https://www.lennysnewsletter.com/p/how-to-use-chatgpt-in-your-pm-work)*
+*Source: How to use ChatGPT in your PM work*
 
 ---
 
@@ -116,7 +116,7 @@
 - Aim for 30 to 75 interviews to deeply understand the pain points of your target persona.
 - Iterate on your value proposition daily based on the feedback from each conversation.
 
-*Source: [How to validate your B2B startup idea](https://www.lennysnewsletter.com/p/how-to-validate-your-b2b-startup-idea)*
+*Source: How to validate your B2B startup idea*
 
 ---
 
@@ -129,7 +129,7 @@
 - Record and re-listen to user calls to internalize exact quotes and connect dots between happy users.
 - Identify a major, non-negotiable pain point that makes life difficult for the user.
 
-*Source: [Prioritizing at startups](https://www.lennysnewsletter.com/p/prioritizing-at-startups)*
+*Source: Prioritizing at startups*
 
 ---
 
@@ -142,7 +142,7 @@
 - Ask open-ended questions to see if the customer brings up the problem without prompting.
 - Study customer interview best practices, such as those found in 'The Mom Test', to improve signal quality.
 
-*Source: [Startup to exit: Lessons from a first-time founder](https://www.lennysnewsletter.com/p/startup-to-exit-lessons-from-a-first-time-founder)*
+*Source: Startup to exit: Lessons from a first-time founder*
 
 ---
 
@@ -155,7 +155,7 @@
 - Look for user indifference rather than hate, as indifferent users are the most common and often signal a lack of utility.
 - Iterate on small improvements and re-test with the same users, as they are usually willing to give products a second chance.
 
-*Source: [Summary: Lessons from working with 600+ YC startups | Gustaf Alströmer (Y Combinator, Airbnb)](https://www.lennysnewsletter.com/p/summary-lessons-from-working-with-600-yc-startups--gustaf-alströmer-y-combinator)*
+*Source: Summary: Lessons from working with 600+ YC startups | Gustaf Alströmer (Y Combinator, Airbnb)*
 
 ---
 
@@ -166,7 +166,7 @@
 - Participate in sales calls or try selling the product yourself to understand prospect objections.
 - Survey customers specifically about their payment and packaging preferences to inform pricing strategy.
 
-*Source: [How to make an impact in your first 90 days](https://www.lennysnewsletter.com/p/how-to-make-an-impact-in-your-first-90-days)*
+*Source: How to make an impact in your first 90 days*
 
 ---
 
@@ -177,7 +177,7 @@
 - Utilize user research platforms to automate the recruitment and incentive process for participants.
 - Maintain a database of previous interviewees to quickly source participants for follow-up studies.
 
-*Source: [SEO keywords, career ladders, backlog tools, copywriting, OnlyFans, AMA with Pete Kazanjy and much more](https://www.lennysnewsletter.com/p/seo-keywords-career-ladders-backlog-tools-copywriting-onlyfans-ama-with-pete-kaz)*
+*Source: SEO keywords, career ladders, backlog tools, copywriting, OnlyFans, AMA with Pete Kazanjy and much more*
 
 ---
 
@@ -190,7 +190,7 @@
 - Integrate engineering and design directly into the user research process to bridge technical and experiential gaps.
 - Incorporate research insights into the vision phase to help the team feel what the user is feeling.
 
-*Source: [Vision, conviction, and hype: How to build 0 to 1 inside a company | Mihika Kapoor (Product at Figma)](https://www.youtube.com/watch?v=uDq6_CPaRjM) @ 00:43:03*
+*Source: Vision, conviction, and hype: How to build 0 to 1 inside a company | Mihika Kapoor (Product at Figma) @ 00:43:03*
 
 ---
 
@@ -203,7 +203,7 @@
 - Focus on identifying the specific negative emotions users want to avoid rather than just collecting a list of features.
 - Use early access user groups to validate whether a solution actually alleviates the user's core frustration.
 
-*Source: [Linear’s secret to building beloved B2B products | Nan Yu (Head of Product)](https://www.youtube.com/watch?v=nTr21kgCFF4) @ 00:30:59*
+*Source: Linear’s secret to building beloved B2B products | Nan Yu (Head of Product) @ 00:30:59*
 
 ---
 
@@ -216,7 +216,7 @@
 - Avoid asking customers directly what to build; ask what they are trying to achieve.
 - Synthesize feedback into broader market trends to inform strategic positioning.
 
-*Source: [10 lessons on bootstrapping a $200m business | Patrick Campbell (ProfitWell)](https://www.youtube.com/watch?v=FjLSCrSg5QY) @ 00:40:27*
+*Source: 10 lessons on bootstrapping a $200m business | Patrick Campbell (ProfitWell) @ 00:40:27*
 
 ---
 
@@ -231,7 +231,7 @@
 - Actively seek out counterfactuals and proof that your hypothesis is wrong during synthesis.
 - Compare actual product usage data against what customers tell you in conversations to find discrepancies.
 
-*Source: [Why great AI products are all about the data | Shaun Clowes (CPO Confluent, ex-Salesforce, Atlassian)](https://www.youtube.com/watch?v=yVS1gTAQYSU) @ 00:11:30*
+*Source: Why great AI products are all about the data | Shaun Clowes (CPO Confluent, ex-Salesforce, Atlassian) @ 00:11:30*
 
 ---
 
@@ -252,7 +252,7 @@
 - Recognize that different user segments will interact with your product in wildly distinct ways.
 - Optimize for ease of use to overcome the adoption friction felt by mainstream users.
 
-*Source: [Lessons from a two-time unicorn builder, 50-time startup advisor, and 20-time company board member | Uri Levine (co-founder of Waze)](https://www.youtube.com/watch?v=Cj4ORGGEJcA) @ 01:04:28*
+*Source: Lessons from a two-time unicorn builder, 50-time startup advisor, and 20-time company board member | Uri Levine (co-founder of Waze) @ 01:04:28*
 
 ---
 

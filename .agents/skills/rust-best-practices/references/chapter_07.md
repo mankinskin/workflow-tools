@@ -2,7 +2,7 @@
 
 Models state at compile time, preventing bugs by making illegal states unrepresentable. It takes advantage of the Rust generics and type system to create sub-types that can only be reached if a certain condition is achieved, making some operations illegal at compile time. 
 
-> Recently it became the standard design pattern of Rust programming. However, it is not exclusive to Rust, as it is achievable and has inspired other languages to do the same [swift](https://swiftology.io/articles/typestate/) and [typescript](https://catchts.com/type-state).
+> Recently it became the standard design pattern of Rust programming. However, it is not exclusive to Rust, as it is achievable and has inspired other languages to do the same, such as Swift and TypeScript.
 
 ## 7.1 What is Type State Pattern?
 
@@ -20,7 +20,7 @@ Models state at compile time, preventing bugs by making illegal states unreprese
 
 ## 7.3 Simple Example: File State
 
-[Github Example](https://github.com/apollographql/rust-best-practices/tree/main/examples/simple-type-state)
+See the `simple-type-state` example in the Apollo GraphQL rust-best-practices repository.
 ```rust
 use std::{io, path::{Path, PathBuf}};
 
@@ -82,7 +82,7 @@ impl File<FileOpened> {
 
 > Forces the user to **set required fields** before calling `.build()`.
 
-[Github Example](https://github.com/apollographql/rust-best-practices/tree/main/examples/type-state-builder)
+See the `type-state-builder` example in the Apollo GraphQL rust-best-practices repository.
 
 A type-state pattern can have more than one associated states:
 

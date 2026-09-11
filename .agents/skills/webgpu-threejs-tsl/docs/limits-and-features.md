@@ -114,7 +114,7 @@ console.log(adapter.features.has('shader-f16'));
 1. **Only request limits you actually need** — requesting maximums hides portability issues where your app works on your GPU but fails on weaker ones
 2. **Check adapter limits before requesting** — gracefully degrade when limits aren't available
 3. **Don't forget storage buffer binding size** — `maxStorageBufferBindingSize` is often the bottleneck, not `maxBufferSize`
-4. **Use [webgpureport.org](https://webgpureport.org)** to check what limits/features different GPUs support
+4. **Use webgpureport.org** to check what limits/features different GPUs support
 
 ## Debugging
 

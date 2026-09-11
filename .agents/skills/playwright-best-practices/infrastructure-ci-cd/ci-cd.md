@@ -186,7 +186,7 @@ services:
       - ./test-results:/app/test-results
     environment:
       - CI=true
-      - BASE_URL=http://app:3000
+      - BASE_URL=app:3000
     depends_on:
       - app
 
@@ -292,7 +292,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV || "development"}` });
 
 export default defineConfig({
   use: {
-    baseURL: process.env.BASE_URL || "http://localhost:3000",
+    baseURL: process.env.BASE_URL || "localhost:3000",
   },
 });
 ```
@@ -310,7 +310,7 @@ jobs:
       - name: Run tests
         run: npx playwright test
         env:
-          BASE_URL: ${{ matrix.environment == 'staging' && 'https://staging.example.com' || 'https://example.com' }}
+          BASE_URL: ${{ matrix.environment == 'staging' && 'staging.example.com' || 'example.com' }}
           TEST_USER: ${{ secrets[format('TEST_USER_{0}', matrix.environment)] }}
 ```
 
@@ -452,7 +452,7 @@ export default defineConfig({
     ? [["github"], ["blob"], ["html"]]
     : [["list"], ["html"]],
   use: {
-    baseURL: process.env.BASE_URL || "http://localhost:3000",
+    baseURL: process.env.BASE_URL || "localhost:3000",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "on-first-retry",

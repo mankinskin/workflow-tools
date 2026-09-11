@@ -50,7 +50,7 @@ rg -n -A 3 'name = "<remote-package>"' Cargo.lock
 ```
 
 Record the build exit code and the matching `source =
-"git+https://...#<commit>"` line from the patch-free `Cargo.lock` as the proof
+"git+...#<commit>"` line from the patch-free `Cargo.lock` as the proof
 artifact. A green build while the root `[patch]` table remains active is not
 proof of remote resolution.
 

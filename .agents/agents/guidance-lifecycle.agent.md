@@ -31,12 +31,15 @@ proposing a rewrite.
 
 ## Constraints
 
-- Follow [agent template roster contract](../../../context-engine/.spec/specs/88413517-1d93-4582-8328-71a417dde3a1/body.md) for every new `.agent.md`: six required
+- Follow the agent template roster contract (spec `88413517`) for every new `.agent.md`: six required
   frontmatter fields and the six ordered body sections.
-- Follow [Agent Customization](../skills/agent-customization/SKILL.md)
-  to choose the primitive: broad policy is an instruction, a focused reusable
-  workflow is a skill, a parameterized one-off operation is a prompt, and an
-  isolated role with scoped tools is an agent.
+- Choose the primitive by its shape, not by convenience: broad policy that
+  applies across many files is an instruction (with a scoped `applyTo`
+  pattern); a focused, reusable, packaged workflow with its own domain
+  knowledge is a skill; a parameterized one-off operation invoked by name is a
+  prompt; and an isolated role with its own scoped tool grants and contract is
+  an agent. When a candidate fits more than one shape, prefer the narrowest
+  primitive that still carries the full contract without duplication.
 - Keep instructions narrow with an `applyTo` pattern; write a specific
   `description` trigger for instructions, agents, prompts, and skills.
 - Place a new skill in `.agents/skills/<name>/SKILL.md`; use

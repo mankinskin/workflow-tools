@@ -56,7 +56,7 @@ Key insight: What you're looking for is really, really deep emotion — not poli
 ### Jobs to Be Done Framework (My favorite product management templates)
 A framework for understanding customer needs by identifying the 'job' they are hiring a product to do
 
-How it works: 8 things to use in the JTBD framework for product development. Focuses on understanding the underlying job customers hire products to accomplish rather than demographic or feature-based analysis. Linked at: https://uxdesign.cc/8-things-to-use-in-jobs-to-be-done-framework-for-product-development-4ae7c6f3c30b
+How it works: 8 things to use in the JTBD framework for product development. Focuses on understanding the underlying job customers hire products to accomplish rather than demographic or feature-based analysis. Linked at: uxdesign.cc/8-things-to-use-in-jobs-to-be-done-framework-for-product-development-4ae7c6f3c30b
 
 ### Jobs-to-be-Done Interrogation Technique (Robby Stein)
 Clayton Christensen's interview/interrogation method for understanding why users hire a product, distinguishing utility jobs from emotional jobs

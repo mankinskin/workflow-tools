@@ -5,7 +5,7 @@ applyTo: "**"
 
 ## Purpose
 
-Resolves Open Question 2 ("Mid-execution failure handling") from spec [1b654f30 Two-tier Planner/Worker model routing architecture](../../../../context-engine/.spec/specs/1b654f30-d1a4-4cb4-ab2e-8355dfe5a758/body.md): *when a Worker's step fails `done_criteria`, does the whole Plan invalidate back to the Planner, or can the Step be patched in place?* This instruction is that answer: **a Worker gets exactly one self-fix retry after a failing test; a second failure on the same step escalates instead of retrying again.**
+Resolves Open Question 2 ("Mid-execution failure handling") from spec `1b654f30` ("Two-tier Planner/Worker model routing architecture"): *when a Worker's step fails `done_criteria`, does the whole Plan invalidate back to the Planner, or can the Step be patched in place?* This instruction is that answer: **a Worker gets exactly one self-fix retry after a failing test; a second failure on the same step escalates instead of retrying again.**
 
 ## Classify Compile Failures Before Applying the Cap
 

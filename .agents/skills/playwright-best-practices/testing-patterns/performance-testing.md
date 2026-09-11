@@ -65,7 +65,7 @@ test("web vitals with library", async ({ page }) => {
   await page.goto("/");
 
   await page.addScriptTag({
-    url: "https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js",
+    url: "unpkg.com/web-vitals@3/dist/web-vitals.iife.js",
   });
 
   await page.evaluate(() => {

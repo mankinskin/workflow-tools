@@ -126,7 +126,7 @@ Re-dispatching the same blocked unit without resolving the blocker is the exact 
 
 ### Research/Explore Delegation
 
-**Purpose**: Verify that a read-only investigation has a bounded question and no capability/mode mismatch. This completes the every-delegation gate mandate for [ticket 46d8b25d](../../../../context-engine/.ticket/tickets/46d8b25d-e80c-4170-9601-1c26a7a0bcb8/ticket.toml) and applies the Implement delegation checks from [ticket 84aa1d3e](../../../../context-engine/.ticket/tickets/84aa1d3e-d98c-4c7c-8352-9ccecb2ca93e/ticket.toml) to read-only work.
+**Purpose**: Verify that a read-only investigation has a bounded question and no capability/mode mismatch. This completes the every-delegation gate mandate for ticket `46d8b25d` and applies the Implement delegation checks from ticket `84aa1d3e` to read-only work.
 
 **Gates**:
 
@@ -162,7 +162,7 @@ Re-dispatching the same blocked unit without resolving the blocker is the exact 
 
 ## Integration with Orchestrator Template
 
-See the "Pre-Dispatch Gate (On-Demand Dry-Run)" section of [orchestrator.agent.md](../../../../context-engine/.agents/agents/orchestrator.agent.md) for the canonical statement of this contract.
+See the "Pre-Dispatch Gate (On-Demand Dry-Run)" section of [orchestrator.agent.md](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/orchestrator.agent.md) for the canonical statement of this contract.
 
 ## Integration with Delegation Instructions
 
@@ -180,7 +180,7 @@ This is prose-only guidance that cannot be mechanically tested. The acceptance c
 
 ## Relation to Benchmark
 
-Benchmark ticket `10d21210` (now DONE) publishes the combined-baseline `redispatch_count` in [.benchmark/10d21210/README.md](../../../../context-engine/.benchmark/10d21210/README.md)'s thresholds table: **baseline 10 → target 0**, measured as `runSubagent` dispatches sharing `(agent_name, description)` with an earlier dispatch whose span recorded a failure. When the orchestrator reaches for the gate on a risky compiled prompt, the blocker is caught BEFORE dispatch, which is the mechanism this threshold measures — a post-change session replayed through the same harness is expected to show `redispatch_count = 0` on the units where the gate was used. Actual measurement of a post-change run is not owed by this ticket; only the evidence path is cited here. The gate cost (≤5 turns) is far cheaper than a full delegation loop (20-64 turns in the measured sessions), which is why it is worth reaching for on risky units even though it is not run on every delegation.
+Benchmark ticket `10d21210` (now DONE) publishes the combined-baseline `redispatch_count` in its benchmark record's thresholds table: **baseline 10 → target 0**, measured as `runSubagent` dispatches sharing `(agent_name, description)` with an earlier dispatch whose span recorded a failure. When the orchestrator reaches for the gate on a risky compiled prompt, the blocker is caught BEFORE dispatch, which is the mechanism this threshold measures — a post-change session replayed through the same harness is expected to show `redispatch_count = 0` on the units where the gate was used. Actual measurement of a post-change run is not owed by this ticket; only the evidence path is cited here. The gate cost (≤5 turns) is far cheaper than a full delegation loop (20-64 turns in the measured sessions), which is why it is worth reaching for on risky units even though it is not run on every delegation.
 
 ## Schema Gaps Discovered
 

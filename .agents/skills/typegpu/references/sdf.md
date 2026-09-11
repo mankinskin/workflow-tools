@@ -119,7 +119,4 @@ Two common forms:
 
 ## Further reading
 
-For SDFs the package doesn't ship (ellipse, torus, triangle, CSG over meshes):
-- **2D:** https://iquilezles.org/articles/distfunctions2d/
-- **3D:** https://iquilezles.org/articles/distfunctions/
-- **Smooth min:** https://iquilezles.org/articles/smin/
+For SDFs the package doesn't ship (ellipse, torus, triangle, CSG over meshes), see Inigo Quilez's articles on distance functions (2D and 3D) and smooth minimum blending.

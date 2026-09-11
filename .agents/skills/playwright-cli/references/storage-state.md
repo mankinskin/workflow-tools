@@ -23,7 +23,7 @@ playwright-cli state-save my-auth-state.json
 playwright-cli state-load my-auth-state.json
 
 # Reload page to apply cookies
-playwright-cli open https://example.com
+playwright-cli open example.com
 ```
 
 ### Storage State File Format
@@ -46,7 +46,7 @@ The saved file contains:
   ],
   "origins": [
     {
-      "origin": "https://example.com",
+      "origin": "example.com",
       "localStorage": [
         { "name": "theme", "value": "dark" },
         { "name": "user_id", "value": "12345" }
@@ -233,7 +233,7 @@ playwright-cli run-code "async page => {
 
 ```bash
 # Step 1: Login and save state
-playwright-cli open https://app.example.com/login
+playwright-cli open app.example.com/login
 playwright-cli snapshot
 playwright-cli fill e1 "user@example.com"
 playwright-cli fill e2 "password123"
@@ -244,7 +244,7 @@ playwright-cli state-save auth.json
 
 # Step 2: Later, restore state and skip login
 playwright-cli state-load auth.json
-playwright-cli open https://app.example.com/dashboard
+playwright-cli open app.example.com/dashboard
 # Already logged in!
 ```
 
@@ -252,7 +252,7 @@ playwright-cli open https://app.example.com/dashboard
 
 ```bash
 # Set up authentication state
-playwright-cli open https://example.com
+playwright-cli open example.com
 playwright-cli eval "() => { document.cookie = 'session=abc123'; localStorage.setItem('user', 'john'); }"
 
 # Save state to file
@@ -262,7 +262,7 @@ playwright-cli state-save my-session.json
 
 # Restore state
 playwright-cli state-load my-session.json
-playwright-cli open https://example.com
+playwright-cli open example.com
 # Cookies and localStorage are restored!
 ```
 

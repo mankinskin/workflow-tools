@@ -439,7 +439,7 @@ export default defineConfig({
   workers: process.env.CI ? '50%' : undefined,
 
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: 'localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -452,7 +452,7 @@ export default defineConfig({
 
   webServer: {
     command: process.env.CI ? 'npm run build && npx vite preview --port 5173' : 'npm run dev',
-    url: 'http://localhost:5173',
+    url: 'localhost:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

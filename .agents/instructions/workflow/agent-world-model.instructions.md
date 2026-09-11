@@ -7,7 +7,7 @@ applyTo: "**"
 
 This document is the compact guidance entry point for understanding how an
 agent moves through the repository. The more extensively authored narrative is
-available in [narrative/README.md](../../../../narrative/README.md). Read the
+available in narrative/README.md. Read the
 narrative chapters in order when the world model needs explanation; use this
 document when the same model must guide an active task.
 
@@ -30,7 +30,7 @@ their owning workspace rather than inferred from a command directory.
 ## Chapter 2: Exploration
 
 Exploration turns a request into a bounded slice of evidence. The
-[research agent](../../../../context-engine/.agents/agents/research.agent.md) gathers the owning files,
+The [research agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) gathers the owning files,
 existing records, dependencies, and validation surfaces. Exploration remains
 read-only until the goal and ownership are clear; the result is a compact map
 of the relevant world, not an implementation guess.
@@ -52,7 +52,7 @@ contract before execution starts.
 
 ## Chapter 5: Execution
 
-The [implement agent](../../../../context-engine/.agents/agents/implement.agent.md) performs one bounded
+The [implement agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/implement.agent.md) performs one bounded
 implementation unit from a complete handoff. [phase-separation.instructions.md](phase-separation.instructions.md)
 keeps discovery before implementation, while
 [write-and-die.instructions.md](write-and-die.instructions.md) keeps a worker
@@ -71,7 +71,7 @@ Execution has four observable action types:
 
 An edit, commit, tool call, or program run changes the observable repository
 world. Commit discipline belongs to the repository workflow and the
-[commit agent](../../../../context-engine/.agents/agents/commit.agent.md); delegation economics belong to
+[commit agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/commit.agent.md); delegation economics belong to
 [model-routing.instructions.md](model-routing.instructions.md). The agent must
 keep the requested world-state change distinct from changes that improve the
 toolset itself.
@@ -81,9 +81,9 @@ toolset itself.
 Validation converts execution into evidence. The return contract in
 [subagent-return-contract.instructions.md](subagent-return-contract.instructions.md)
 requires command-backed success claims and explicit blockers. The
-[iteration prompt](../../../../context-engine/.agents/prompts/iteration.prompt.md) closes the loop through
+[iteration prompt](https://github.com/mankinskin/context-engine/blob/main/.agents/prompts/iteration.prompt.md) closes the loop through
 review, interview when needed, commit, and handoff; the
-[handoff agent](../../../../context-engine/.agents/agents/handoff.agent.md) packages the next implementation
+[handoff agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/handoff.agent.md) packages the next implementation
 unit.
 
 ## Chapter 8: Improving the Tools

@@ -187,7 +187,7 @@ test("copy button works", async ({ page, context }) => {
     navigator.clipboard.readText(),
   );
 
-  expect(clipboardContent).toContain("https://example.com/share/");
+  expect(clipboardContent).toContain("example.com/share/");
 });
 ```
 

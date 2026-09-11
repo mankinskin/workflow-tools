@@ -43,19 +43,19 @@ export default defineConfig({
     {
       name: "staging",
       use: {
-        baseURL: "https://staging.example.com",
+        baseURL: "staging.example.com",
       },
     },
     {
       name: "production",
       use: {
-        baseURL: "https://example.com",
+        baseURL: "example.com",
       },
     },
     {
       name: "local",
       use: {
-        baseURL: "http://localhost:3000",
+        baseURL: "localhost:3000",
       },
     },
   ],
@@ -75,7 +75,7 @@ export default defineConfig({
     {
       name: "api",
       testDir: "./tests/api",
-      use: { baseURL: "http://localhost:3000" },
+      use: { baseURL: "localhost:3000" },
     },
     {
       name: "visual",

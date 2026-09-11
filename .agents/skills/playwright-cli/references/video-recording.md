@@ -15,7 +15,7 @@ playwright-cli video-start demo.webm
 playwright-cli video-chapter "Getting Started" --description="Opening the homepage" --duration=2000
 
 # Navigate and perform actions
-playwright-cli goto https://example.com
+playwright-cli goto example.com
 playwright-cli snapshot
 playwright-cli click e1
 
@@ -51,7 +51,7 @@ It allows inserting appropriate pauses between the actions and annotating the vi
 ```js
 async page => {
   await page.screencast.start({ path: 'video.webm', size: { width: 1280, height: 800 } });
-  await page.goto('https://demo.playwright.dev/todomvc');
+  await page.goto('demo.playwright.dev/todomvc');
 
   // Show a chapter card — blurs the page and shows a dialog.
   // Blocks until duration expires, then auto-removes.

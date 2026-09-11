@@ -20,7 +20,7 @@ docker run --rm \
   -v $(pwd):/app \
   -w /app \
   -e CI=true \
-  -e BASE_URL=http://host.docker.internal:3000 \
+  -e BASE_URL=host.docker.internal:3000 \
   mcr.microsoft.com/playwright:v1.48.0-noble \
   bash -c "npm ci && npx playwright test"
 ```
@@ -108,7 +108,7 @@ services:
       - /app/node_modules
     environment:
       - CI=true
-      - BASE_URL=http://app:3000
+      - BASE_URL=app:3000
     depends_on:
       - app
     command: bash -c "npm ci && npx playwright test"
@@ -238,7 +238,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || 'localhost:3000',
   },
 });
 ```
@@ -246,7 +246,7 @@ export default defineConfig({
 ```yaml
 e2e:
   environment:
-    - BASE_URL=http://app:3000
+    - BASE_URL=app:3000
 ```
 
 ### Permission denied on mounted volumes

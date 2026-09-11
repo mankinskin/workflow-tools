@@ -112,7 +112,7 @@ Many small batches, dispatched all at once, would spawn an unmanageable number o
 
 1. `PHASE_WIDTH` — maximum concurrent `runSubagent` dispatches per phase, default **6**. Lower it if the surface signals dispatch contention; do not raise it without a stated reason.
 2. Number every constructed batch `1..m` in anchor order (per Anchor-Fixed Batching). Compute `num_phases = ceil(m / PHASE_WIDTH)`.
-3. For phase `p = 1 .. num_phases`: dispatch batches `[(p-1) × PHASE_WIDTH + 1 .. min(p × PHASE_WIDTH, m)]` in parallel, each targeting [Duplication Batch Worker Agent](../../../../context-engine/.agents/agents/duplication-batch-worker.agent.md) on the T3 worker model.
+3. For phase `p = 1 .. num_phases`: dispatch batches `[(p-1) × PHASE_WIDTH + 1 .. min(p × PHASE_WIDTH, m)]` in parallel, each targeting [Duplication Batch Worker Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/duplication-batch-worker.agent.md) on the T3 worker model.
 4. Wait for every dispatch in phase `p` to return, merge its findings into `pair-ledger.md` and `duplicate-passages.md`, and only then start phase `p + 1`. Do not overlap phases.
 5. If a batch worker returns an incomplete or malformed set of rows (fewer findings than its assigned pair count), re-dispatch only that batch once, within the same phase, before escalating.
 

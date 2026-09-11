@@ -29,7 +29,7 @@ type ApiFixtures = {
 export const test = base.extend<ApiFixtures>({
   authApi: async ({ playwright }, use) => {
     const ctx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
       extraHTTPHeaders: {
         Authorization: `Bearer ${process.env.API_TOKEN}`,
         Accept: "application/json",
@@ -41,7 +41,7 @@ export const test = base.extend<ApiFixtures>({
 
   adminApi: async ({ playwright }, use) => {
     const loginCtx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
     });
     const loginResp = await loginCtx.post("/auth/login", {
       data: {
@@ -54,7 +54,7 @@ export const test = base.extend<ApiFixtures>({
     await loginCtx.dispose();
 
     const ctx = await playwright.request.newContext({
-      baseURL: "https://api.myapp.io",
+      baseURL: "api.myapp.io",
       extraHTTPHeaders: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -161,7 +161,7 @@ export default defineConfig({
       name: "api",
       testDir: "./tests/api",
       use: {
-        baseURL: "https://api.myapp.io",
+        baseURL: "api.myapp.io",
         extraHTTPHeaders: { Accept: "application/json" },
       },
     },
@@ -169,7 +169,7 @@ export default defineConfig({
       name: "e2e",
       testDir: "./tests/e2e",
       use: {
-        baseURL: "https://myapp.io",
+        baseURL: "myapp.io",
         browserName: "chromium",
       },
     },
@@ -663,10 +663,10 @@ test("GET /api/items matches schema", async ({ request }) => {
 export default defineConfig({
   webServer: {
     command: "npm run start:api",
-    url: "http://localhost:3000/api/health",
+    url: "localhost:3000/api/health",
     reuseExistingServer: !process.env.CI,
   },
-  use: { baseURL: "http://localhost:3000" },
+  use: { baseURL: "localhost:3000" },
 });
 ```
 

@@ -28,6 +28,6 @@ the user's next judgment. It complements [phase separation](phase-separation.ins
 ## Owning Workflows
 
 - [phase-separation.instructions.md](phase-separation.instructions.md) owns request discovery, planning, and implementation boundaries.
-- [spec.prompt.md](../../../../context-engine/.agents/prompts/spec.prompt.md) owns spec authoring.
+- [spec.prompt.md](https://github.com/mankinskin/context-engine/blob/main/.agents/prompts/spec.prompt.md) owns spec authoring.
 - [ticket workflow](../../../ticket/.agents/instructions/ticket/workflow.instructions.md) and [ticket lifecycle](../../../ticket/.agents/instructions/ticket/lifecycle.instructions.md) own ticket planning, transitions, review, and closing.
 - [loop-closure.instructions.md](loop-closure.instructions.md) owns the final Review -> Interview -> Commit -> Handoff iteration workflow.

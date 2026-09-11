@@ -309,7 +309,7 @@ Anything that changes at runtime must go through a buffer, uniform, slot, or acc
 
 ## `std` standard library
 
-`std` wraps WGSL built-in functions ([WGSL spec section 16](https://www.w3.org/TR/WGSL/#builtin-functions)) plus some TypeGPU additions. The WGSL documentation applies.
+`std` wraps WGSL built-in functions (see the WGSL spec's built-in functions section) plus some TypeGPU additions. The WGSL documentation applies.
 
 ```ts
 import { std } from 'typegpu';

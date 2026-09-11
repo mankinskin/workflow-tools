@@ -223,7 +223,7 @@ npx playwright show-trace results/my-test/trace.zip
 # From HTML report (click Traces tab)
 npx playwright show-report
 
-# Online viewer: https://trace.playwright.dev
+# Online viewer: trace.playwright.dev
 ```
 
 ## Screenshot & Video Settings

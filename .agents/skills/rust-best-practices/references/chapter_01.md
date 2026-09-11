@@ -492,7 +492,7 @@ When deeper justification is needed, prefer to:
 
 ## 1.7 Use Declarations - "imports"
 
-Different languages have different ways of sorting their imports, in the Rust ecosystem the [standard way](https://github.com/rust-lang/rustfmt/issues/4107) is:
+Different languages have different ways of sorting their imports, in the Rust ecosystem the standard way is:
 
 - `std` (`core`, `alloc` would also fit here).
 - External crates (what is in your Cargo.toml `[dependencies]`).

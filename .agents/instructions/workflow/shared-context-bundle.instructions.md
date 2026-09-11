@@ -139,7 +139,7 @@ Compiled prompt:
 
 ## Integration with Orchestrator Template
 
-See the "Compiled Delegation Prompts" section of [orchestrator.agent.md](../../../../context-engine/.agents/agents/orchestrator.agent.md) for the canonical statement of this contract.
+See the "Compiled Delegation Prompts" section of [orchestrator.agent.md](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/orchestrator.agent.md) for the canonical statement of this contract.
 
 ## Integration with Delegation Instructions
 

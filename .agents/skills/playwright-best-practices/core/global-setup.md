@@ -218,7 +218,7 @@ async function globalSetup() {
   });
 
   // Wait for server to be ready
-  await waitForServer("http://localhost:3000/health", 30000);
+  await waitForServer("localhost:3000/health", 30000);
 
   // Store PID for teardown
   process.env.SERVER_PID = serverProcess.pid.toString();

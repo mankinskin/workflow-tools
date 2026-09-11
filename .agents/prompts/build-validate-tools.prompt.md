@@ -69,7 +69,7 @@ These servers start up and listen on a port. Do a quick bind-and-exit check:
 > For a deeper check, start the server in the background, hit a health
 > endpoint, then kill it:
 > ```bash
-> ./target/release/ticket-http &; sleep 1; curl -s http://localhost:3003/api/health; kill %1
+> ./target/release/ticket-http &; sleep 1; curl -s localhost:3003/api/health; kill %1
 > ```
 
 ## Step 4 — Validate viewer apps in the browser
@@ -78,24 +78,24 @@ Use `install-ctl` to start each viewer, verify it returns HTTP 200, then stop it
 Run them one at a time (each blocks until killed).
 
 ```bash
-# doc-viewer  — http://localhost:3001
+# doc-viewer  — localhost:3001
 install-ctl start doc-viewer --no-build &
-sleep 2 && curl -sf http://localhost:3001/ -o /dev/null && echo "doc-viewer OK"
+sleep 2 && curl -sf localhost:3001/ -o /dev/null && echo "doc-viewer OK"
 install-ctl viewer stop doc-viewer
 
-# log-viewer  — http://localhost:3000
+# log-viewer  — localhost:3000
 install-ctl start log-viewer --no-build &
-sleep 2 && curl -sf http://localhost:3000/ -o /dev/null && echo "log-viewer OK"
+sleep 2 && curl -sf localhost:3000/ -o /dev/null && echo "log-viewer OK"
 install-ctl viewer stop log-viewer
 
-# ticket-viewer — http://localhost:3002
+# ticket-viewer — localhost:3002
 install-ctl start ticket-viewer --no-build &
-sleep 2 && curl -sf http://localhost:3002/ -o /dev/null && echo "ticket-viewer OK"
+sleep 2 && curl -sf localhost:3002/ -o /dev/null && echo "ticket-viewer OK"
 install-ctl viewer stop ticket-viewer
 
-# spec-viewer — http://localhost:4002
+# spec-viewer — localhost:4002
 install-ctl start spec-viewer --no-build &
-sleep 2 && curl -sf http://localhost:4002/ -o /dev/null && echo "spec-viewer OK"
+sleep 2 && curl -sf localhost:4002/ -o /dev/null && echo "spec-viewer OK"
 install-ctl viewer stop spec-viewer
 ```
 
@@ -195,10 +195,10 @@ HTTP servers
   [x] spec-http
 
 Viewer apps (HTTP 200 + browser load)
-  [x] doc-viewer   http://localhost:3001
-  [x] log-viewer   http://localhost:3000
-  [x] ticket-viewer http://localhost:3002
-  [x] spec-viewer   http://localhost:4002
+  [x] doc-viewer   localhost:3001
+  [x] log-viewer   localhost:3000
+  [x] ticket-viewer localhost:3002
+  [x] spec-viewer   localhost:4002
 
 MCP servers (initialize handshake)
   [x] ticket-mcp

@@ -325,7 +325,7 @@ export const test = base.extend<EmailFixtures>({
     await use(async (inbox) => {
       // Poll Mailinator API for new email
       const response = await request.get(
-        `https://api.mailinator.com/v2/domains/public/inboxes/${inbox}`,
+        `api.mailinator.com/v2/domains/public/inboxes/${inbox}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.MAILINATOR_API_KEY}`,
@@ -338,7 +338,7 @@ export const test = base.extend<EmailFixtures>({
 
       // Get full message
       const msgResponse = await request.get(
-        `https://api.mailinator.com/v2/domains/public/inboxes/${inbox}/messages/${latest.id}`,
+        `api.mailinator.com/v2/domains/public/inboxes/${inbox}/messages/${latest.id}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.MAILINATOR_API_KEY}`,

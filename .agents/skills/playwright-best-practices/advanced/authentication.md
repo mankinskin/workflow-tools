@@ -54,7 +54,7 @@ async function generateAuthState() {
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  await page.goto("http://localhost:4000/login");
+  await page.goto("localhost:4000/login");
   await page.getByLabel("Username").fill("testuser@example.com");
   await page.getByLabel("Password").fill("secretPass123");
   await page.getByRole("button", { name: "Log in" }).click();
@@ -73,7 +73,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   use: {
-    baseURL: "http://localhost:4000",
+    baseURL: "localhost:4000",
     storageState: ".auth/session.json",
   },
 });
@@ -124,7 +124,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   globalSetup: require.resolve("./global-setup"),
   use: {
-    baseURL: "http://localhost:4000",
+    baseURL: "localhost:4000",
     storageState: ".auth/session.json",
   },
 });
@@ -349,8 +349,8 @@ test("admin sees remove button, guest does not", async ({ loginAs }) => {
 
 A typical OAuth flow works like this:
 
-1. User clicks "Sign in with Provider" → browser navigates to `https://accounts.provider.com/authorize?...`
-2. User authenticates on the provider's page → provider redirects back to your app's **callback route** (e.g. `http://localhost:4000/auth/callback?code=ABC&state=XYZ`)
+1. User clicks "Sign in with Provider" → browser navigates to `accounts.provider.com/authorize?...`
+2. User authenticates on the provider's page → provider redirects back to your app's **callback route** (e.g. `localhost:4000/auth/callback?code=ABC&state=XYZ`)
 3. Your backend exchanges the `code` for an access token, creates a session, and redirects the user to a logged-in page
 
 In tests you can short-circuit step 2 with `page.route()`: intercept the outbound request to the provider and respond with a `302` redirect straight to your callback route, supplying a mock `code` and `state`. Your backend still executes its normal callback handler — the only part that's mocked is the provider's authorization page.
@@ -362,8 +362,8 @@ For cases where you want to skip the browser redirect entirely, a second approac
 import { test, expect } from "@playwright/test";
 
 test("login via mocked OAuth flow", async ({ page }) => {
-  await page.route("https://accounts.provider.com/**", async (route) => {
-    const callbackUrl = new URL("http://localhost:4000/auth/callback");
+  await page.route("accounts.provider.com/**", async (route) => {
+    const callbackUrl = new URL("localhost:4000/auth/callback");
     callbackUrl.searchParams.set("code", "mock-auth-code-xyz");
     callbackUrl.searchParams.set("state", "expected-state-value");
     await route.fulfill({
@@ -649,7 +649,7 @@ import { test as base } from "@playwright/test";
 export const test = base.extend({
   authenticatedPage: async ({ browser, playwright }, use) => {
     const apiContext = await playwright.request.newContext({
-      baseURL: "http://localhost:4000",
+      baseURL: "localhost:4000",
     });
 
     await apiContext.post("/api/auth/login", {

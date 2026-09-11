@@ -34,7 +34,7 @@ export default defineConfig({
   workers: process.env.CI ? '50%' : undefined,
 
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -48,7 +48,7 @@ export default defineConfig({
     command: process.env.CI
       ? 'npm run build && npm run start'
       : 'npm run dev',
-    url: 'http://localhost:3000',
+    url: 'localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {
@@ -64,7 +64,7 @@ Next.js loads `.env.test` when `NODE_ENV=test`:
 
 ```bash
 # .env.test (commit this)
-NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_API_URL=localhost:3000/api
 DATABASE_URL=postgresql://localhost:5432/test_db
 
 # .env.test.local (gitignored)
@@ -427,7 +427,7 @@ webServer: {
   command: process.env.CI
     ? 'npm run build && npm run start'
     : 'npx next dev --turbopack',
-  url: 'http://localhost:3000',
+  url: 'localhost:3000',
   reuseExistingServer: !process.env.CI,
 },
 ```
@@ -438,12 +438,12 @@ webServer: {
 webServer: [
   {
     command: 'npm run dev:api',
-    url: 'http://localhost:4000/health',
+    url: 'localhost:4000/health',
     reuseExistingServer: !process.env.CI,
   },
   {
     command: 'npm run dev',
-    url: 'http://localhost:3000',
+    url: 'localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
 ],
@@ -456,7 +456,7 @@ webServer: [
 | `await page.waitForTimeout(3000)` | Arbitrary waits are fragile | `await page.waitForURL('/path')` or `await expect(locator).toBeVisible()` |
 | Test `getServerSideProps` directly | Depends on req/res context | Navigate to page and verify rendered output |
 | Mock your own API routes | Hides real API bugs | Let real API handle requests; mock only external services |
-| `page.goto('http://localhost:3000/path')` | Breaks when port changes | Use `page.goto('/path')` with `baseURL` |
+| `page.goto('localhost:3000/path')` | Breaks when port changes | Use `page.goto('/path')` with `baseURL` |
 | Run `npm run build` locally for every test | Extremely slow | Use `npm run dev` locally with `reuseExistingServer: true` |
 | Test `next/image` by checking exact URLs | Paths change between dev/prod | Assert on `alt`, visibility, `naturalWidth > 0`, `srcset` |
 | Test server actions by calling as functions | Server actions need Next.js runtime | Trigger through UI (forms, buttons) |

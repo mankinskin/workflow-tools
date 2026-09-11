@@ -18,6 +18,14 @@ A roadmap is read cold by a fresh session and reread many times during execution
 
 **Size constraint.** `ROADMAP.md` is a root anchor for the whole effort, not an exhaustive plan — keep it readable in one pass. A sprawling waypoint list or deeply nested sub-tasks is a signal to push complexity into a ticket (see "Scoping Guidelines"), not to grow the file. The roadmap should read like a table of contents with status, not a full project plan.
 
+## Self-Containment Requirement
+
+A roadmap is a complete route from the current state to the stated outcome, not a summary that assumes surrounding context. Every precondition and piece of prior work the outcome depends on — setup, missing infrastructure, an unresolved decision, another team's prerequisite change — must be represented as a waypoint or an owned ticket inside this roadmap. A roadmap must be executable starting from its first waypoint without first completing a separate roadmap.
+
+- **No cross-roadmap dependencies.** A `Depends:` line may reference only another waypoint in this same file or a ticket owned by this roadmap's own scope. A `Depends:` line pointing at a different `ROADMAP.md`, a different dossier, or prose such as "assumes `<other roadmap>` is done" is a scoping defect — pull the prerequisite work in as an early waypoint (or a ticket tracked here) instead of leaving it external.
+- **Rationale.** Splitting prerequisite planning across multiple roadmaps distributes ownership of the plan across files that are revised independently and drift out of sync. Keeping every precondition inside one self-contained roadmap keeps that roadmap the single source of truth for reaching its own outcome.
+- **Check during compilation.** Before publishing `ROADMAP.md`, verify every precondition of the stated outcome is represented by a waypoint or an owned ticket in this file. A precondition satisfied only "elsewhere" is unresolved from this roadmap's perspective and must be resolved — by inlining a waypoint or creating an owned ticket — before shipping.
+
 ## Scoping Guidelines
 
 **One waypoint, one measurable outcome.** A waypoint bundling more than one loosely related change is a scoping defect — split it. Merge only when a prior split was too aggressive and produced trivially small fragments with no independent validation gate.
@@ -59,5 +67,6 @@ Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing
 - A repository-changing waypoint without a `Commit checkpoint:` line.
 - A session prompt that bundles several unrelated outcomes or forces the next session to rediscover target artifacts, validation, or non-goals.
 - A `Depends:` line pointing at a waypoint number that does not exist in this file (stale after a reorder or version bump).
+- A `Depends:` line pointing at another `ROADMAP.md`, another dossier, or an unrepresented precondition instead of an inlined waypoint or owned ticket.
 - Inlining a ticket's full body into a waypoint instead of citing its short-id.
 - A roadmap that grows past a single-pass read because ticket-worthy complexity was left inline.

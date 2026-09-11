@@ -28,7 +28,7 @@ Everything else — the full Stage 3/5 review-and-interview loops, the numbered 
 ## Allowed Operations in Idea-Workspace Mode
 
 - Append new `input-N.md`/`input-N.clean.md` parts using the same multi-part convention [prompt-ingestion.instructions.md's Resuming an In-Progress Dossier](prompt-ingestion.instructions.md#resuming-an-in-progress-dossier) defines, each time a new session contributes to the same idea.
-- Keep freeform notes files (e.g. `notes.md`, `options.md`) capturing candidate directions and their tradeoffs. When comparing distinct directions in a structured way, dispatch the [Brainstorm Agent](../../../../context-engine/.agents/agents/brainstorm.agent.md) rather than inventing an ad hoc comparison format.
+- Keep freeform notes files (e.g. `notes.md`, `options.md`) capturing candidate directions and their tradeoffs. When comparing distinct directions in a structured way, dispatch the [Brainstorm Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/brainstorm.agent.md) rather than inventing an ad hoc comparison format.
 - Update `README.md`'s summary as the idea's shape changes, without needing to version it the way a shipped `ROADMAP.md` is versioned — an idea workspace is expected to be edited in place until it is promoted.
 
 ## Promotion Path

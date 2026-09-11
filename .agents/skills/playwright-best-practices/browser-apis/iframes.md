@@ -39,7 +39,7 @@ await frameLocator.getByRole("button").click();
 // frame() - for Frame object operations (navigation, evaluation)
 const frame = page.frame({ name: "my-frame" });
 if (frame) {
-  await frame.goto("https://example.com");
+  await frame.goto("example.com");
   const title = await frame.title();
 }
 
@@ -243,7 +243,7 @@ test("iframe internal navigation", async ({ page }) => {
   if (!frame) throw new Error("Frame not found");
 
   // Navigate within iframe
-  await frame.goto("https://embedded-app.com/page2");
+  await frame.goto("embedded-app.com/page2");
 
   // Wait for navigation
   await frame.waitForURL("**/page2");

@@ -157,7 +157,7 @@ fn test_valid_inputs() {
 ```
 
 If you are testing separate behaviors, make multiple tests each with descriptive names.
-To avoid boilerplate, either use a shared setup function or [rstest](https://crates.io/crates/rstest) cases *with descriptive test names*:
+To avoid boilerplate, either use a shared setup function or `rstest` cases *with descriptive test names*:
 ```rust
 #[rstest]
 #[case::single("a")]
@@ -248,7 +248,7 @@ Tests that go under the `tests/` directory, they are entirely external to your l
 > Their purpose is to test whether many parts of the code work together correctly, units of code that work correctly on their own could have problems when integrated.
 
 * Test for happy paths and common use cases.
-* Allow external states and side effects, [testcontainers](https://rust.testcontainers.org/) might help.
+* Allow external states and side effects, the `testcontainers` crate might help.
 * if testing binaries, try to break **executable** and **functions** into `src/main.rs` and `src/lib.rs`, respectively.
 
 ```
@@ -288,8 +288,8 @@ assert!(matches!(error, MyError::BadInput(_), "Expected `BadInput`, found {error
 ```
 * Use `#[should_panic]` wisely. It should only be used when panic is the desired behavior, prefer result instead of panic.
 * There are some other that can enhance your testing experience like:
-    * [`rstest`](https://crates.io/crates/rstest): fixture based test framework with procedural macros.
-    * [`pretty_assertions`](https://crates.io/crates/pretty_assertions): overrides `assert_eq` and `assert_ne`, and creates colorful diffs between them.
+    * `rstest`: fixture based test framework with procedural macros.
+    * `pretty_assertions`: overrides `assert_eq` and `assert_ne`, and creates colorful diffs between them.
 
 ## 5.5 Snapshot Testing with `cargo insta`
 
@@ -318,7 +318,7 @@ fn test_split_words() {
 
 4. Run `cargo insta test` to execute, and `cargo insta review` to review conflicts.
 
-To learn more about `cargo insta` check out its [documentation](https://insta.rs/docs/quickstart/) as it is a very complete and well documented tool.
+To learn more about `cargo insta` check out its official documentation as it is a very complete and well documented tool.
 
 ### What is snapshot testing?
 
@@ -362,7 +362,7 @@ assert_eq!(meaning_of_life, 42);
 assert_snapshot!("the_meaning_of_life", meaning_of_life); // meaning_of_life == 42
 ```
 
-* Use [redactions](https://insta.rs/docs/redactions/) for unstable fields (randomly generated, timestamps, uuid, etc):
+* Use redactions (see the `insta` documentation on redactions) for unstable fields (randomly generated, timestamps, uuid, etc):
 ```rust
 use insta::assert_json_snapshot;
 
