@@ -44,6 +44,41 @@ A roadmap is a complete route from the current state to the stated outcome, not 
 
 **Uneven flow is a decomposition defect.** A roadmap with a few tiny waypoints followed by one sprawling one should push the sprawling waypoint's internal complexity into a ticket rather than leave it lumpy in the roadmap.
 
+## Waypoint schema
+
+New or revised roadmaps use one compact, copyable Markdown table for every
+Waypoint. The table uses an empty technical header row so ordinary Markdown
+renderers remain compatible without requiring HTML, CSS, MDX, or a special
+renderer:
+
+```markdown
+### W1. Example objective
+
+| | |
+|---|---|
+| **Status** | pending |
+| **Scope** | single-session |
+| **Depends** | W0 |
+| **Session package** | example |
+| **Part** | [01-example.md](01-example.md) |
+| **Prompt** | One self-contained outcome... |
+| **Artifacts** | - `path/to/artifact.md`<br>- `path/to/second-artifact.md` |
+| **Non-goal** | Explicit boundary... |
+| **Validate** | - `format-check`<br>- `link-audit` |
+| **Commit checkpoint** | logical checkpoint... |
+```
+
+The required properties are `Status`, `Scope`, `Session package`, `Part`,
+`Prompt`, `Artifacts`, `Non-goal`, `Validate`, and `Commit checkpoint`.
+`Depends` is included when a dependency exists. Every Waypoint has exactly one
+dedicated Part Markdown file in the same dossier, linked from the `Part` row.
+Long-form values remain in the value column. For lists in a table cell, start
+the first item directly after the cell separator. Insert <br> only between subsequent items. Do not begin the value with <br>.
+
+The schema applies when a roadmap is created or revised. Historical roadmaps
+are not automatically migrated; legacy roadmap formats remain readable under
+the execution compatibility rule.
+
 ## Syntax Rules
 
 Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing prose each time. Use these conventions in every `ROADMAP.md`:

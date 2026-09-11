@@ -47,6 +47,28 @@ A waypoint is ready only when all of the following are true:
 
 Evaluate the readiness gate before the first mutation and again whenever new evidence changes the waypoint's premises. Do not infer that a waypoint is ready from an `in-progress` status left by a prior session.
 
+### Waypoint schema readiness
+
+For a new or revised roadmap, the readiness gate must find one ordinary
+Markdown table containing the Waypoint properties. The table must include rows
+for `Status`, `Scope`, `Session package`, `Part`, `Prompt`, `Artifacts`,
+`Non-goal`, `Validate`, and `Commit checkpoint`; a `Depends` row is required
+when the Waypoint has dependencies. The `Part` row must resolve to exactly one
+dedicated Part Markdown file in the same dossier, and the `Validate` row must
+reference named gates from the roadmap's global validation table.
+
+Missing, duplicated, contradictory, or non-executable schema values are
+readiness blockers. The executor must read the complete table before changing
+the Waypoint status or making repository mutations. Lists must remain readable
+in ordinary Markdown: the first item starts directly in the value cell and
+`<br>` appears only between subsequent items. HTML, CSS, MDX, and a special
+renderer are not required.
+
+This schema check applies to newly created or revised roadmaps. Historical
+roadmaps may use the legacy numbered format and remain executable under the
+existing dependency, validation, approval, and blocker rules; execution must
+not require retroactive migration before applying those rules.
+
 ## Blocker and User-Escalation Protocol
 
 An unexpected hurdle, unresolved requirement, failed prerequisite, stale artifact, inconsistent validation result, or conflict between a newer user request and the roadmap is a blocker. A blocker terminates work on the current waypoint immediately.
