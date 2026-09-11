@@ -26,7 +26,7 @@ Your job is to commit all pending changes correctly: regenerating generated outp
 - Commit submodules in deepest-first order before updating parent pointers.
 - Do not use `git commit --no-verify` unless the hook failure is a confirmed false positive; document why if used.
 - Keep each commit focused on one logical concern (source changes, generated outputs, ticket/spec store, submodule pointers).
-- Commit on the task's feature branch inside its own worktree for worktree-backed work. Never commit that branch to `main`, and never merge a feature branch into `main` — the root orchestrator session holds the merge monopoly. See [worktree-commit.instructions.md](../../session/.agents/instructions/worktree/worktree-commit.instructions.md). A validated main-checkout task (per [AGENTS.md task routing](../../../context-engine/AGENTS.md#task-routing)) may commit its explicitly staged paths directly to `main`.
+- Commit on the task's feature branch inside its own worktree for worktree-backed work. Never commit that branch to `main`, and never merge a feature branch into `main` — the root orchestrator session holds the merge monopoly. See [worktree-commit.instructions.md](../../session/.agents/instructions/worktree/worktree-commit.instructions.md). A validated main-checkout task (per [AGENTS.md task routing](../../AGENTS.md#task-routing)) may commit its explicitly staged paths directly to `main`.
 - Stage only files claimed by the task's board entry; `git add -A` from an implementation session is forbidden because it swallows concurrent agents' uncommitted work.
 
 ## Submodule commit order
@@ -55,7 +55,7 @@ Examples:
 
 ## Required Workflow
 
-1. Confirm the checkout matches the task's execution context per [AGENTS.md task routing](../../../context-engine/AGENTS.md#task-routing). For worktree-backed work, `git branch --show-current` must print the task's `agent/<ticket-short-id>-<slug>` branch — stop and escalate if it prints `main`. For a main-checkout task, `main` is expected.
+1. Confirm the checkout matches the task's execution context per [AGENTS.md task routing](../../AGENTS.md#task-routing). For worktree-backed work, `git branch --show-current` must print the task's `agent/<ticket-short-id>-<slug>` branch — stop and escalate if it prints `main`. For a main-checkout task, `main` is expected.
 2. For worktree-backed work, detect accidental `.ticket/`, `.spec/`, `.rule/`, `.test/`, or `.session/` records in the root checkout. Recreate or migrate each record through the store's CLI or MCP API with `workspace` set to the assigned worktree, then restore only the accidental root paths. Never hand-edit TOML or JSON records; `worktree_path` does not redirect the resolved workspace.
 3. Survey changes: `git status --short` and `git submodule foreach --recursive 'git status --short'`.
 4. Identify dirty submodules and plan bottom-up commit order.

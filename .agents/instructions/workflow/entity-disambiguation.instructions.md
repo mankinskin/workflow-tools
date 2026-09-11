@@ -5,7 +5,7 @@ applyTo: "**"
 
 ## Entity Disambiguation Protocol
 
-Ambiguous references ("this", "that", "the engine", "it") force the reader to reconstruct which entity is meant from surrounding context. This protocol applies to all agent responses — chat narration, status summaries, handoffs, and reviews — not only interview questions. Interview-specific reference formatting still lives in [question-quality.instructions.md](question-quality.instructions.md); link format itself is owned by the Clickable Reference Policy in [AGENTS.md](../../../../context-engine/AGENTS.md).
+Ambiguous references ("this", "that", "the engine", "it") force the reader to reconstruct which entity is meant from surrounding context. This protocol applies to all agent responses — chat narration, status summaries, handoffs, and reviews — not only interview questions. Interview-specific reference formatting still lives in [question-quality.instructions.md](question-quality.instructions.md); link format itself is owned by the Clickable Reference Policy in [AGENTS.md](../../../AGENTS.md).
 
 ### The Three Tiers
 

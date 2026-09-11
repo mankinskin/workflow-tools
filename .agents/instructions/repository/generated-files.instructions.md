@@ -11,4 +11,4 @@ git add repo_map.toon
 
 ## Agent ownership and global rules
 
-Agent customization files and global policy live in AGENTS.md. See [AGENTS.md](../../../../context-engine/AGENTS.md) for repository-wide principles and ownership rules.
+Agent customization files and global policy live in AGENTS.md. See [AGENTS.md](../../../AGENTS.md) for repository-wide principles and ownership rules.

@@ -14,7 +14,7 @@ document when the same model must guide an active task.
 ## Chapter 0: Arrival
 
 The agent is a client-side worker operating through a harness. Repository-wide
-operating principles live in [context-engine/AGENTS.md](../../../../context-engine/AGENTS.md),
+operating principles live in [workflow-tools/AGENTS.md](../../../AGENTS.md),
 while the canonical agent templates and instructions live under
 `workflow-tools/.agents/`. The retained `context-engine/.agents/` directory is
 catalog and evidence material, not a second guidance root.

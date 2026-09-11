@@ -9,7 +9,7 @@ agent: "agent"
 
 Use this workflow to orchestrate the Review → Interview → Commit → Handoff transition after an implementation phase completes.
 
-Reference [AGENTS](../../../context-engine/AGENTS.md), [Iteration Loop Workflow spec](../../../context-engine/.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml), [Handoff Package Schema spec](../../../context-engine/.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../../context-engine/memory-api/tools/cli/spec-cli/README.md), [spec-mcp](../../../context-engine/memory-api/tools/mcp/spec-mcp/README.md), and [session-mcp](../../../context-engine/context-stack/tools/mcp/session-mcp/README.md).
+Reference [AGENTS](../../AGENTS.md), [Iteration Loop Workflow spec](../../../context-engine/.spec/specs/b71658f1-8de2-444a-9be1-64b1d8ecce70/spec.toml), [Handoff Package Schema spec](../../../context-engine/.spec/specs/5e52039d-aabc-434d-bdf3-eca63e312476/spec.toml), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../../context-engine/memory-api/tools/cli/spec-cli/README.md), [spec-mcp](../../../context-engine/memory-api/tools/mcp/spec-mcp/README.md), and [session-mcp](../../../context-engine/context-stack/tools/mcp/session-mcp/README.md).
 
 Act as the iteration orchestrator: delegate Review, Interview, Commit, and Handoff to their named agents, enforce the gates, and own everything around the implementation — the commit, the ticket-store reconciliation, and the handoff package.
 
@@ -92,4 +92,4 @@ End the run with a single inline summary block using **bold-label bullets**, one
 - **Handoff package:** a clickable link to the persisted handoff plus a one-line restatement of its `objective` — never the full eight fields
 - **Next actions:** the immediate next steps for the human or next agent, phrased as executable directives. **New implementation work only** — never a commit, ticket-hygiene, cleanup, or reconciliation task (you own those), and never a decision, choice, or open question (those are resolved in the Interview phase). Any unresolved escalation is reported here; there is no separate blockers field.
 
-Omit no field: render `none` when a field is empty. Render all ticket/spec/session/handoff references per the Clickable Reference Policy in [AGENTS.md](../../../context-engine/AGENTS.md).
+Omit no field: render `none` when a field is empty. Render all ticket/spec/session/handoff references per the Clickable Reference Policy in [AGENTS.md](../../AGENTS.md).

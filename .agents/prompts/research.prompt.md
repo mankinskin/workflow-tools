@@ -14,13 +14,13 @@ Use this workflow when module behavior is unclear or the task requires non-trivi
 
 2. Collect documentation context
 - Search project docs and crate-level guides for relevant APIs and invariants.
-- Read crate-level `README.md` and `HIGH_LEVEL_GUIDE.md`, per [AGENTS.md](../../../context-engine/AGENTS.md#discovery-protocol-before-editing)'s static-reference rule, for known gotchas.
+- Read crate-level `README.md` and `HIGH_LEVEL_GUIDE.md`, per [AGENTS.md](../../AGENTS.md#discovery-protocol-before-editing)'s static-reference rule, for known gotchas.
 
 3. Check issue history
 - Review ticket history for related bugs, plans, or design notes.
 
 4. Inspect source and tests
-- Read the implementation and adjacent tests, per [AGENTS.md](../../../context-engine/AGENTS.md#operating-principles)'s existing-tests rule, to infer expected behavior.
+- Read the implementation and adjacent tests, per [AGENTS.md](../../AGENTS.md#operating-principles)'s existing-tests rule, to infer expected behavior.
 - Track data flow and boundaries across involved crates/tools.
 
 5. Synthesize findings

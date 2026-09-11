@@ -8,7 +8,7 @@ A duplication review finds every duplicated or semantically similar passage acro
 
 ## Scope Resolution
 
-- **Default scope** (no scope given by the caller): every file under `.agents/` — `.agents/agents/*.agent.md`, `.agents/instructions/**/*.instructions.md`, `.agents/prompts/*.prompt.md`, `.agents/skills/**/SKILL.md` — plus the repository-root [AGENTS.md](../../../../context-engine/AGENTS.md).
+- **Default scope** (no scope given by the caller): every file under `.agents/` — `.agents/agents/*.agent.md`, `.agents/instructions/**/*.instructions.md`, `.agents/prompts/*.prompt.md`, `.agents/skills/**/SKILL.md` — plus the repository-root [AGENTS.md](../../../AGENTS.md).
 - **Narrowed scope**: the caller (a human argument to the agent, or the argument text passed to the `/duplication-review` prompt) may limit the review to a named subdirectory (e.g. `.agents/instructions/ticket/`) or an explicit file subset. A narrowed scope still includes `AGENTS.md` only if the caller names it or names the whole `.agents/` tree; otherwise treat the named subset as the complete scope.
 - Treat an ambiguous narrowing request (a name that could match more than one directory or file) as a blocker to clarify before comparing, rather than guessing.
 - This resolved scope is the **comparison scope**: the fixed file universe every pair is drawn from, and the input to the stable sort order `F_1 .. F_n` (see Coverage and Efficiency Rules). It does not change across runs of the same campaign — see Anchor-Subset Scope for Large Corpora for the separate, run-scoped `anchor scope`.
@@ -123,6 +123,6 @@ Many small batches, dispatched all at once, would spawn an unmanageable number o
 
 ## Reporting Contract
 
-- Render every file reference as a clickable link with repository-relative path and line range per the Clickable Reference Policy in [AGENTS.md](../../../../context-engine/AGENTS.md).
+- Render every file reference as a clickable link with repository-relative path and line range per the Clickable Reference Policy in [AGENTS.md](../../../AGENTS.md).
 - Report counts by verdict and confirm the pairs-evaluated count matches `pair-ledger.md`'s row count (`n × (n-1) / 2`).
 - Close with a handoff note pointing to Simplify Agent for any consolidation of the reported duplicates; do not apply consolidation in this workflow.

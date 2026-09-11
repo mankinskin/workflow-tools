@@ -9,7 +9,7 @@ agent: "agent"
 
 Commit all pending changes across the root repo and submodules following the repository's commit conventions.
 
-Reference [commit.instructions.md](../instructions/repository/) and [AGENTS.md](../../../context-engine/AGENTS.md).
+Reference [commit.instructions.md](../instructions/repository/) and [AGENTS.md](../../AGENTS.md).
 
 ## Workflow
 

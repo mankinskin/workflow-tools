@@ -40,7 +40,7 @@ For each concept, choose exactly one occurrence's file as the authoritative sour
 
 For every non-authoritative occurrence:
 
-1. Replace the duplicated passage with a short reference to the authoritative location: a clickable link (repository-relative path, with a line range once the authoritative edit is applied) per the Clickable Reference Policy in [AGENTS.md](../../../../context-engine/AGENTS.md).
+1. Replace the duplicated passage with a short reference to the authoritative location: a clickable link (repository-relative path, with a line range once the authoritative edit is applied) per the Clickable Reference Policy in [AGENTS.md](../../../AGENTS.md).
 2. Keep only the occurrence's genuinely local content next to the reference — a short clause naming how the rule applies in that file's context — per the Authoring Contract rule that a template "may state only the local application of a rule needed to establish the template's responsibility, input, output, or boundary." Do not reproduce the full rule text next to the reference.
 3. Record the exact `oldString`/`newString` pair for the replacement before moving to the next occurrence; do not apply it yet.
 

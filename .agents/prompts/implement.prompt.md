@@ -11,4 +11,4 @@ Delegate to the Implement Agent for the full surgical workflow.
 
 Use this prompt as a thin wrapper: provide the concrete target, rely on the agent contract for the detailed implementation loop, and return only the evidence-backed summary needed for the user.
 
-Reference [AGENTS.md](../../../context-engine/AGENTS.md) and [commit.instructions.md](../instructions/repository/) when the implementing agent needs repository-specific guardrails.
+Reference [AGENTS.md](../../AGENTS.md) and [commit.instructions.md](../instructions/repository/) when the implementing agent needs repository-specific guardrails.

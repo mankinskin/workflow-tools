@@ -9,7 +9,7 @@ agent: "agent"
 
 Create a compact handoff prompt that a new session can use to resume a specific implementation track quickly. Carry over the current session's hard-won context: decisions, findings, blockers, suggested next steps, and entity references that would be expensive or error-prone to rediscover.
 
-Reference [AGENTS](../../../context-engine/AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [next](../../../.agents/prompts/next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../../context-engine/memory-api/tools/cli/spec-cli/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
+Reference [AGENTS](../../AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [next](../../../.agents/prompts/next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), [spec-cli](../../../context-engine/memory-api/tools/cli/spec-cli/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
 
 Act as a session summarizer and agent orchestrator: summarize the current session's useful state, then shape it into the first prompt the next agent should receive.
 
@@ -56,7 +56,7 @@ Return:
 - findings, decisions, blockers, and suggested goals in structured lists
 - key entities (tickets, specs, logs, sessions, rules, ...) as markdown links with a short reason each matters
 - all file references must use markdown links with forward slashes only
-- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](../../../context-engine/AGENTS.md)`)
+- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](../../AGENTS.md)`)
 - do not emit bare file paths or Windows-style backslashes
 - strict ticket references using full UUIDs
 - a `Shorthand And Placeholder Legend` section near the top that defines all shorthand and placeholders used later in the handoff, if any

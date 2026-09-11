@@ -18,7 +18,7 @@ You consume a **complete handoff package** that includes:
 - The target ticket, spec, or failing behavior with clear acceptance criteria
 - The owning code path or slice to edit
 - Any required context (related tests, docs, dependencies)
-- For worktree-backed work only (per [AGENTS.md task routing](../../../context-engine/AGENTS.md#task-routing)): the assigned worktree path and its feature branch name. Most tasks are not worktree-backed and stay in the main checkout.
+- For worktree-backed work only (per [AGENTS.md task routing](../../AGENTS.md#task-routing)): the assigned worktree path and its feature branch name. Most tasks are not worktree-backed and stay in the main checkout.
 
 Read the ticket with `--view plan` (objective, requirements, design, examples,
 acceptance_criteria, refs) rather than pulling the full ticket. `plan`-kind
@@ -43,7 +43,7 @@ If the handoff package is incomplete or ambiguous, **escalate immediately** to t
 - If the first validation fails, repair the same slice or take one nearby hop to the controlling code path; do not reopen broad exploration.
 - Keep status output brief and implementation-focused.
 - Report a material product or architecture ambiguity through the shared terminal return contract.
-- Resolve the execution context per [AGENTS.md task routing](../../../context-engine/AGENTS.md#task-routing) before the first edit: worktrees are opt-in isolation, not the default. A worktree-backed task works only inside its assigned worktree and never commits to `main`; a main-checkout task (the default) checks the board for overlapping ownership and stages only its explicit paths.
+- Resolve the execution context per [AGENTS.md task routing](../../AGENTS.md#task-routing) before the first edit: worktrees are opt-in isolation, not the default. A worktree-backed task works only inside its assigned worktree and never commits to `main`; a main-checkout task (the default) checks the board for overlapping ownership and stages only its explicit paths.
 - Mutate `.ticket/`, `.spec/`, `.rule/`, `.test/`, and `.session/` only through their CLI or MCP API with `workspace` set to the resolved execution context (the assigned worktree for worktree-backed work, otherwise the main checkout); never hand-edit store records. `worktree_path` does not redirect the resolved workspace. If a planned part is frozen, write the appropriate non-frozen review or validation record instead of forcing or reverting it.
 - For worktree-backed work, claim the worktree with `session_check_in` and the ticket and file scope with `board_check_in` before the first edit; a conflict on either is an escalation, not something to work around. See [worktree-claim.instructions.md](../../session/.agents/instructions/worktree/worktree-claim.instructions.md). For a main-checkout task, check the board before the first edit and skip `session_check_in`.
 - For worktree-backed work, the worktree is provisioned FOR this agent by the orchestrator via `./target/debug/worktree-ctl.exe new`, and its path arrives in this task's context bundle. This agent never runs `worktree-ctl new`, `merge`, or `remove` itself, and never merges into `main`.
@@ -51,7 +51,7 @@ If the handoff package is incomplete or ambiguous, **escalate immediately** to t
 ## Required Workflow
 
 0. Before a bulk relocation, inventory every source, test, and referencing surface; verify every source and test path exists. Include install/configuration files, scripts, documentation, descriptions, and generated maps that name a moved path. If the inventory is incomplete or any enumerated relocation path is missing, stop before any move. Execute the relocation and reference updates in validated phases; validate after each phase before starting the next.
-1. Resolve the execution context per [AGENTS.md task routing](../../../context-engine/AGENTS.md#task-routing). For worktree-backed work, confirm the assigned worktree and branch — `git -C <worktree> branch --show-current` must print `agent/<ticket-short-id>-<slug>`, not `main` — claim it with `session_check_in`, then claim the ticket and file scope with `board_check_in`. For a main-checkout task, check the board for overlapping ownership before the first edit.
+1. Resolve the execution context per [AGENTS.md task routing](../../AGENTS.md#task-routing). For worktree-backed work, confirm the assigned worktree and branch — `git -C <worktree> branch --show-current` must print `agent/<ticket-short-id>-<slug>`, not `main` — claim it with `session_check_in`, then claim the ticket and file scope with `board_check_in`. For a main-checkout task, check the board for overlapping ownership before the first edit.
 2. Anchor on a concrete ticket, failing behavior, file, symbol, or generated target.
 3. Check the nearest owning code path, related ticket/spec context, and one neighboring test or call site.
 4. State one local hypothesis and the first cheap falsifying check.

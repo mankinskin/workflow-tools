@@ -33,14 +33,14 @@ proposing a rewrite.
 
 - Follow [agent template roster contract](../../../context-engine/.spec/specs/88413517-1d93-4582-8328-71a417dde3a1/body.md) for every new `.agent.md`: six required
   frontmatter fields and the six ordered body sections.
-- Follow [Agent Customization](../../../context-engine/.agents/skills/agent-customization/SKILL.md)
+- Follow [Agent Customization](../skills/agent-customization/SKILL.md)
   to choose the primitive: broad policy is an instruction, a focused reusable
   workflow is a skill, a parameterized one-off operation is a prompt, and an
   isolated role with scoped tools is an agent.
 - Keep instructions narrow with an `applyTo` pattern; write a specific
   `description` trigger for instructions, agents, prompts, and skills.
 - Place a new skill in `.agents/skills/<name>/SKILL.md`; use
-  [find-skills](../../../context-engine/.agents/skills/find-skills/SKILL.md) and delegate actual
+  [find-skills](../skills/find-skills/SKILL.md) and delegate actual
   third-party installation to the Installer Agent.
 - Treat `.agents/` as canonical. Never hand-edit generated `.github/agents/`,
   `.github/instructions/`, or `.github/prompts/` files.

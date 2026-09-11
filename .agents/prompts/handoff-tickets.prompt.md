@@ -9,7 +9,7 @@ agent: "agent"
 
 Create a compact handoff prompt for a new session and formalize the handoff track through the ticket workflow when needed.
 
-Reference [AGENTS](../../../context-engine/AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket](../../ticket/.agents/prompts/ticket.prompt.md), [tickets](../../ticket/.agents/prompts/tickets.prompt.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [rule-target] (no standalone rule-target prompt is present), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
+Reference [AGENTS](../../AGENTS.md), [session-optimization instructions](../../session/.agents/instructions/session/session-optimization.instructions.md), [ticket](../../ticket/.agents/prompts/ticket.prompt.md), [tickets](../../ticket/.agents/prompts/tickets.prompt.md), [ticket-next](../../ticket/.agents/prompts/ticket-next.prompt.md), [ticket-system instructions](../../ticket/.agents/instructions/ticket/), [rule-target] (no standalone rule-target prompt is present), [ticket-cli](../../../context-engine/memory-api/tools/cli/ticket-cli/README.md), [ticket-mcp](../../../context-engine/memory-api/tools/mcp/ticket-mcp/README.md), and [audit-cli](../../audit/crates/audit-cli/README.md).
 
 ## Workflow
 
@@ -48,7 +48,7 @@ Return:
 - the short handoff prompt in one paragraph
 - created or matched tickets, rendered as canonical markdown links when available
 - all file references must use markdown links with forward slashes only
-- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](../../../context-engine/AGENTS.md)`)
+- for files in the current directory, use `./`-prefixed links (for example `[./AGENTS.md](../../AGENTS.md)`)
 - do not emit bare file paths or Windows-style backslashes
 - strict ticket references using full UUIDs
 - a `Shorthand And Placeholder Legend` section near the top that defines all shorthand/placeholders used later in the handoff, or `None used.` when none are introduced
