@@ -47,9 +47,6 @@ proposing a rewrite.
   third-party installation to the Installer Agent.
 - Treat `.agents/` as canonical. Never hand-edit generated `.github/agents/`,
   `.github/instructions/`, or `.github/prompts/` files.
-- Before changing generated guidance, inspect its target with `rule
-  explain-target`; regenerate with `rule sync-targets` and verify the result
-  with `rule sync-targets --check` when a configured target applies.
 - Run `bash bootstrap.sh` for repository bootstrap or generated-surface
   verification when the target configuration requires it. Refresh `repo_map.toon`
   after an agent-file layout change according to
