@@ -1,0 +1,5 @@
+# viewer-api-dioxus's graph3d module uses WebGPU web-sys bindings, which are
+# gated behind this unstable-API cfg flag regardless of the web-sys Cargo
+# features enabled. Scoped to wasm32 so native cargo build/test is unaffected.
+[target.wasm32-unknown-unknown]
+rustflags = ["--cfg=web_sys_unstable_apis"]

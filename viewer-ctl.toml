@@ -1,0 +1,87 @@
+# viewer-ctl component registry
+#
+# Lists every server and frontend viewer-ctl can manage in this repository.
+# All paths are relative to the repository root (the directory containing
+# this file). This mirrors context-engine/viewer-ctl.toml, adapted to the
+# workflow-tools layout (viewers live under <domain>/[crates/]<name>-viewer,
+# not memory-viewers/<name>).
+#
+# Lifecycle commands:
+#   viewer-ctl list                       # show all components
+#   viewer-ctl status [<name>]            # show running state
+#   viewer-ctl build   <name>             # build artifacts (no install)
+#   viewer-ctl install <name>             # install artifacts to install_root
+#   viewer-ctl start   <server>           # launch server
+#   viewer-ctl stop    <server>           # kill process on server's port
+#   viewer-ctl restart <server>           # stop + start
+#   viewer-ctl task    <name>             # run a named multi-step task
+
+[defaults]
+# Where installed frontend bundles live. Each frontend is installed to
+# <frontend_install_root>/<frontend.name>/. The path supports a leading
+# `~` which expands to the user's home directory.
+#
+# Servers receive STATIC_DIR=<frontend_install_root>/<linked frontend name>
+# when launched via `viewer-ctl start`.
+frontend_install_root = "~/.workflow-tools/static"
+
+# ── Servers ──────────────────────────────────────────────────────────────────
+
+[[server]]
+name = "doc-viewer"
+package = "doc-viewer"
+port = 3001
+source_dir = "doc/crates/doc-viewer"
+
+[[server]]
+name = "log-viewer"
+package = "log-viewer"
+port = 3000
+source_dir = "log/crates/log-viewer"
+start_args = ["--static"]
+
+[[server]]
+name = "ticket-viewer"
+package = "ticket-viewer"
+port = 3002
+source_dir = "ticket/ticket-viewer"
+
+[[server]]
+name = "spec-viewer"
+package = "spec-viewer"
+port = 4002
+source_dir = "spec/spec-viewer"
+
+# ── Frontends ────────────────────────────────────────────────────────────────
+
+[[frontend]]
+name = "doc-viewer"
+serves = "doc-viewer"
+source_dir = "doc/crates/doc-viewer/frontend/dioxus"
+build_cmd = ["trunk", "build", "--release"]
+build_output = "doc/crates/doc-viewer/frontend/dioxus/dist"
+extra_assets = ["doc/crates/doc-viewer/frontend/dioxus/public"]
+
+[[frontend]]
+name = "log-viewer"
+serves = "log-viewer"
+source_dir = "log/crates/log-viewer/frontend/dioxus"
+build_cmd = ["trunk", "build", "--release"]
+build_output = "log/crates/log-viewer/frontend/dioxus/dist"
+extra_assets = ["log/crates/log-viewer/frontend/dioxus/public"]
+
+[[frontend]]
+name = "ticket-viewer"
+serves = "ticket-viewer"
+source_dir = "ticket/ticket-viewer/frontend/dioxus"
+build_cmd = ["trunk", "build", "--release", "--features", "profile-browser"]
+build_output = "ticket/ticket-viewer/frontend/dioxus/dist"
+extra_assets = ["ticket/ticket-viewer/frontend/dioxus/public"]
+
+[[frontend]]
+name = "spec-viewer"
+serves = "spec-viewer"
+source_dir = "spec/spec-viewer/frontend/dioxus"
+build_cmd = ["trunk", "build", "--release", "--features", "profile-browser"]
+build_output = "spec/spec-viewer/frontend/dioxus/dist"
+extra_assets = ["spec/spec-viewer/frontend/dioxus/public"]
