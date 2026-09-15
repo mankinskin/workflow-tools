@@ -10,7 +10,7 @@ A roadmap is read cold by a fresh session and reread many times during execution
 ## Required Structure (six sections, this order)
 
 1. **Outcome summary** — two to four sentences stating what this roadmap achieves and why, so a reader grasps the objective before reading anything else. State the destination in the reader's terms, not a restatement of the raw request.
-2. **Relevant artifact IDs** — ticket ids, spec ids/slugs, doc paths, code/config file paths the roadmap depends on, referenced by id/path only. Never re-paste an artifact's body here — see [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for the reference format.
+2. **Relevant artifacts** — ticket and spec artifacts must be clickable links to their canonical `.workflow-tools/ticket/tickets/<uuid>/ticket.toml` or `.workflow-tools/spec/specs/<uuid>/spec.toml` files. Dossier, code, and configuration artifacts must also use clickable Markdown links. Never re-paste an artifact's body here — see [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for the reference format.
 3. **Active blockers** — anything currently unresolved that would stop an executing session cold. A blocker needing human judgment belongs to the review/interview loop, not this list; by the time `ROADMAP.md` ships it carries none.
 4. **Validation gates** — the exact commands/checks that must pass during and after execution. Name exact commands; never leave a gate as prose like "run the tests."
 5. **Roadmap Waypoints** — the complete ordered route, one scoped stop per waypoint, including the session package, prompt, validation, and commit checkpoint that a fresh session should execute. See "Scoping Guidelines" below for sizing and "Syntax Rules" for how each waypoint is written.
@@ -62,7 +62,7 @@ renderer:
 | **Session package** | example |
 | **Part** | [01-example.md](01-example.md) |
 | **Prompt** | One self-contained outcome... |
-| **Artifacts** | - `path/to/artifact.md`<br>- `path/to/second-artifact.md` |
+| **Artifacts** | - [path/to/artifact.md](path/to/artifact.md)<br>- [ticket abc12345 Example ticket](../../.workflow-tools/ticket/tickets/00000000-0000-0000-0000-000000000000/ticket.toml)<br>- [spec def67890 Example spec](../../.workflow-tools/spec/specs/00000000-0000-0000-0000-000000000000/spec.toml) |
 | **Non-goal** | Explicit boundary... |
 | **Validate** | - `format-check`<br>- `link-audit` |
 | **Commit checkpoint** | logical checkpoint... |
@@ -74,6 +74,10 @@ The required properties are `Status`, `Scope`, `Session package`, `Part`,
 dedicated Part Markdown file in the same dossier, linked from the `Part` row.
 Long-form values remain in the value column. For lists in a table cell, start
 the first item directly after the cell separator. Insert <br> only between subsequent items. Do not begin the value with <br>.
+
+Every Part file starts with a compact navigation line linking to the preceding
+and following Part files in roadmap order. The first Part uses `Previous Part:
+none`; the last Part uses `Next Part: none`.
 
 The schema applies when a roadmap is created or revised. Historical roadmaps
 are not automatically migrated; legacy roadmap formats remain readable under
@@ -91,7 +95,8 @@ Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing
 - **Session prompt.** `Prompt: <one self-contained prompt>` states the single prompt text to hand to the fresh session or delegated worker for this waypoint. Keep it goal-oriented and proportionate: include the outcome, target artifacts, validation expectation, dependency context, and non-goals; point to larger artifacts by id/path instead of pasting their bodies.
 - **Validation line.** `Validate: <exact command>` — one command per line if more than one gate applies. Never a prose description in place of a command.
 - **Commit checkpoint.** `Commit checkpoint: <logical checkpoint and expected conventional commit scope>` states when the session must commit the validated stable state. Use `Commit checkpoint: none (<reason>)` only for read-only or no-change waypoints. Checkpoints follow the repository commit workflow; they are not permission to stage unrelated files.
-- **Artifact references.** Cite an id/path exactly as it appears in `ARTIFACTS.md` (ticket short-id, spec slug, file path) — never a paraphrased name. See [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for citing material outside the dossier.
+- **Artifact references.** Cite an id/path exactly as it appears in `ARTIFACTS.md` and make every artifact reference clickable. Ticket and spec references link to their verified canonical manifest files under `.workflow-tools/`; dossier-local files link relatively within the dossier. Never use an unlinked bare ticket/spec id in a new or revised roadmap. See [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for citing material outside the dossier.
+- **Part navigation.** Add `Previous Part: [<filename>](<relative-path>)` and `Next Part: [<filename>](<relative-path>)` to every dedicated Part file. Use `none` at the corresponding boundary, and keep links in the same order as the roadmap waypoints.
 - **Versioned-file naming.** When a prior `ROADMAP.md` is superseded, rename it `ROADMAP.v1.md`, `ROADMAP.v2.md`, ... in place before writing the new content to `ROADMAP.md` — see [prompt-ingestion.instructions.md's versioned-supersession pattern](prompt-ingestion.instructions.md#roadmap-compilation-and-versioning) for the full rule; this file owns only the naming syntax.
 
 ## Anti-Patterns

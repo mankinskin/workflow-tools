@@ -5230,6 +5230,7 @@ dependencies = [
  "tempfile",
  "test-api",
  "thiserror 2.0.20",
+ "ticket-api",
  "toml 0.8.23",
  "tracing",
  "uuid",

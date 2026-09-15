@@ -54,7 +54,10 @@ Markdown table containing the Waypoint properties. The table must include rows
 for `Status`, `Scope`, `Session package`, `Part`, `Prompt`, `Artifacts`,
 `Non-goal`, `Validate`, and `Commit checkpoint`; a `Depends` row is required
 when the Waypoint has dependencies. The `Part` row must resolve to exactly one
-dedicated Part Markdown file in the same dossier, and the `Validate` row must
+dedicated Part Markdown file in the same dossier. That Part file must expose
+clickable `Previous Part` and `Next Part` navigation, using `none` at either
+boundary. Ticket and spec entries must resolve through clickable canonical
+manifest links, and the `Validate` row must
 reference named gates from the roadmap's global validation table.
 
 Missing, duplicated, contradictory, or non-executable schema values are
