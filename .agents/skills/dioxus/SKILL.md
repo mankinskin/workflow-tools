@@ -99,6 +99,11 @@ fn Counter(start: i32) -> Element {
   managed flow.
 - Browser verification follows [AGENTS.md](../../../AGENTS.md#quality-gates)'s mandatory external fullscreen Chromium-family browser check; add/extend the shared
   Playwright E2E suites under `viewer-api/viewer-api/frontend/dioxus/e2e/shared/`.
+- `context-engine/context-stack/tools/context-editor/sandbox-app` is **not** a managed viewer: it
+  embeds this same Dioxus component/signal model as a DOM overlay atop a Bevy 0.18 render kernel.
+  Use this skill for the Dioxus/DOM half of that surface and the
+  [bevy](../bevy/SKILL.md) skill for the ECS/render-graph/WGSL half and the Dioxus-to-Bevy event
+  boundary.
 
 ## 5. Styling / asset handling
 
