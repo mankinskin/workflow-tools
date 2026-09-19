@@ -22,18 +22,20 @@ Do not use a feedback entry as a substitute for a fix that was explicitly reques
 
 ## Mandatory End-Of-Turn Visibility Check
 
-Near the end of every substantive response, call the `feedback_session_summary` MCP tool (see [workflow-tools/feedback/crates/feedback-mcp/src/server.rs](../../../feedback/crates/feedback-mcp/src/server.rs)) with the current `session_id`, and surface the result so new entries are visible rather than buried in the transcript.
+Near the end of every substantive response, derive your current turn number, then call the `feedback_session_summary` MCP tool (see [workflow-tools/feedback/crates/feedback-mcp/src/server.rs](../../../feedback/crates/feedback-mcp/src/server.rs)) with the current `session_id` and that turn number, and surface the result so new entries are visible rather than buried in the transcript.
 
-- This call is session-scoped, not turn-scoped, for this increment: it returns every feedback entry recorded for the current `session_id` so far, not only the entries created in the current turn. Read the count as "feedback so far this session," not "feedback this turn."
+- **Deriving the turn number.** There is no live, authoritative "what turn am I on" signal. Derive a best-effort number from the currently running session — call `session_peek_skeleton` for the current `session_id` and use its returned `total_turns` as your current turn. This is a **best-effort** number, not an authoritative capture-time stamp: state it as such if you ever report it to the user (e.g. "turn ~4", not "turn 4 exactly").
+- **Stamping new entries.** When calling `feedback_ingest` to log a finding during the turn, pass this same derived number as `turn_sequence` so the entry is attributable to this turn specifically.
+- **Querying.** Call `feedback_session_summary` with `session_id` and the derived `turn_sequence` to see only this turn's entries. Omit `turn_sequence` (or call it once without, once with) when you also want the whole-session count for context — both are valid; the turn-scoped call is the one this instruction mandates.
 - Render the result via the feedback-summary segment of the existing Closing Traceability Footer (see [session-identity-and-handoff.instructions.md](../../../session/.agents/instructions/session/session-identity-and-handoff.instructions.md)) rather than inventing a second, separate report block.
 - When the summary has zero entries, still include the footer segment showing zero — omitting it silently is indistinguishable from forgetting the check.
 
 ## Cost Discipline
 
-This is one bounded tool call per response, not a second interview or research pass. Per [routine-actions.instructions.md](routine-actions.instructions.md), do not spend reasoning budget narrating why the check is being made — call the tool and report its result.
+This is two bounded tool calls per response (derive the turn, then query/ingest with it), not a second interview or research pass. Per [routine-actions.instructions.md](routine-actions.instructions.md), do not spend reasoning budget narrating why the check is being made — call the tools and report the result.
 
 ## Non-Goals
 
-- This instruction does not require turn-level (`turn_sequence`) filtering — that granularity is deferred to a future increment (see `transcripts/19-09-2026_feedback-turn-summary-workflow/ROADMAP.md`).
+- This instruction does not require hook-side automatic backfill of `turn_sequence` for every entry — that remains the separate, retroactive recovery mechanism in `session-api/src/transcript_feedback/*`, unrelated to this agent-side self-reported number.
 - This instruction does not change any individual `.agents/agents/*.agent.md` template — the `applyTo: "**"` scope here is the single enforcement point.
 </content>
