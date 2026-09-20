@@ -1,0 +1,7 @@
+id = "4f69b73e-8352-4b4a-8a8b-93ad6b65c056"
+created_at = "2026-04-30T12:42:00.407782100+00:00"
+title = "[spec-viewer][P5.6] URL routing via PathCodec + tree expand"
+state = "done"
+depends_on = ["2d2c3e94-3d55-457f-8c06-ace46f4b3d89"]
+type = "tracker-improvement"
+component = "spec"

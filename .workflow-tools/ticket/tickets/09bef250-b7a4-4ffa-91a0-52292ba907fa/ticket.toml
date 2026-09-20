@@ -1,0 +1,10 @@
+id = "09bef250-b7a4-4ffa-91a0-52292ba907fa"
+created_at = "2026-07-14T23:14:52.079322500+00:00"
+title = "[viewer-platform][perf] Enforce browser and WASM regression budgets"
+state = "planning"
+component = "doc"
+depends_on = ["099ac71e-bffa-4a5b-89f3-2ca3bc875bac", "26a73130-c631-4168-8030-fade31c5cf55"]
+effort = "2600"
+priority = "high"
+risk_level = "high"
+type = "tracker-improvement"

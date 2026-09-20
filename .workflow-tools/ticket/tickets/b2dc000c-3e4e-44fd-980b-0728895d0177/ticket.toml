@@ -1,0 +1,6 @@
+id = "b2dc000c-3e4e-44fd-980b-0728895d0177"
+created_at = "2026-04-30T12:41:35.810562200+00:00"
+title = "[spec-viewer][P5.3] CategoryPage uses CardGrid/CardSection"
+state = "done"
+type = "tracker-improvement"
+component = "spec"

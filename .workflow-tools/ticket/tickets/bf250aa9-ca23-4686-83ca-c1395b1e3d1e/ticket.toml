@@ -1,0 +1,7 @@
+id = "bf250aa9-ca23-4686-83ca-c1395b1e3d1e"
+created_at = "2026-05-10T11:52:14.253699300+00:00"
+title = "[spec-viewer][nav-4] browser verification for reachable page graph + entry×view"
+state = "planning"
+effort = "1200"
+type = "tracker-improvement"
+component = "spec"

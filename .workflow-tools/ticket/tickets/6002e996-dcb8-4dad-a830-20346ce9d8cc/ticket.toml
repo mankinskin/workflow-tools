@@ -1,0 +1,10 @@
+id = "6002e996-dcb8-4dad-a830-20346ce9d8cc"
+created_at = "2026-07-14T23:13:55.470810100+00:00"
+title = "[viewer-platform][e2e] Canonical shared Playwright harness and all-viewer runner"
+state = "planning"
+component = "doc"
+effort = "2600"
+linked = ["80631f3c-4a75-491e-876a-8bf2a5e0ab4f"]
+priority = "high"
+risk_level = "high"
+type = "tracker-improvement"

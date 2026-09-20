@@ -1,0 +1,10 @@
+id = "ef3f4a91-734f-47aa-a9cf-fdfdb60ac2db"
+created_at = "2026-06-06T22:33:16.903952800+00:00"
+title = "[profiling] Performance profiling & benchmark matrix (tracker)"
+state = "planning"
+component = "test"
+depends_on = ["099ac71e-bffa-4a5b-89f3-2ca3bc875bac", "09bef250-b7a4-4ffa-91a0-52292ba907fa", "26a73130-c631-4168-8030-fade31c5cf55", "2d59b99c-0205-4bf6-bad9-ecb69a52830a", "459022a5-3900-4f7b-8fbd-2de1fbb79bdd", "6a19ae5f-8695-47e1-8b21-1062e0546fda", "c37ea985-3647-421f-99eb-75860a0728e0", "d8d18128-656e-4a13-9983-946d6af33c27"]
+effort = "9000"
+priority = "high"
+risk_level = "high"
+type = "tracker-improvement"

@@ -1,0 +1,6 @@
+id = "b2b02558-4620-49ed-b3db-092e5cee840c"
+created_at = "2026-04-30T12:41:27.680667800+00:00"
+title = "[spec-viewer][P5.2] Breadcrumbs above spec detail tabs"
+state = "done"
+type = "tracker-improvement"
+component = "spec"

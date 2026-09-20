@@ -1,0 +1,7 @@
+id = "10009542-af00-44e8-9b43-ea5d12bf1d6c"
+created_at = "2026-04-30T12:42:09.822058500+00:00"
+title = "[spec-viewer][P5.7] Prefetcher for sibling specs"
+state = "done"
+depends_on = ["2d2c3e94-3d55-457f-8c06-ace46f4b3d89"]
+type = "tracker-improvement"
+component = "spec"

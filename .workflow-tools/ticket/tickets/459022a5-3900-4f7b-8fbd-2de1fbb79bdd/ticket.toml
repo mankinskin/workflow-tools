@@ -1,0 +1,10 @@
+id = "459022a5-3900-4f7b-8fbd-2de1fbb79bdd"
+created_at = "2026-07-14T23:14:52.147079700+00:00"
+title = "[viewer-platform][perf] Add browser/WASM soak and resource-leak detection"
+state = "planning"
+component = "doc"
+depends_on = ["09bef250-b7a4-4ffa-91a0-52292ba907fa", "9202bc21-b11f-4464-b66b-af19dd6e7078"]
+effort = "3000"
+priority = "medium"
+risk_level = "high"
+type = "tracker-improvement"

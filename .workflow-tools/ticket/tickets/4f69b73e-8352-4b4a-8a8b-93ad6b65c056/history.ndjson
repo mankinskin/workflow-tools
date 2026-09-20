@@ -1,0 +1,5 @@
+{"rev":1,"ts":"2026-04-30T12:42:00.748128800+00:00","fields":{"state":"new","title":"[spec-viewer][P5.6] URL routing via PathCodec + tree expand","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-04-30T13:09:39.787289300+00:00","fields":{"state":"ready","title":"[spec-viewer][P5.6] URL routing via PathCodec + tree expand","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-04-30T13:09:40.016588300+00:00","fields":{"state":"in-implementation","title":"[spec-viewer][P5.6] URL routing via PathCodec + tree expand","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-04-30T13:09:40.488352600+00:00","fields":{"state":"in-review","title":"[spec-viewer][P5.6] URL routing via PathCodec + tree expand","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-04-30T13:09:40.635292300+00:00","fields":{"state":"done","title":"[spec-viewer][P5.6] URL routing via PathCodec + tree expand","type":"tracker-improvement"}}

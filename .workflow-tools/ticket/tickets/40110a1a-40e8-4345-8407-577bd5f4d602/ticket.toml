@@ -1,0 +1,10 @@
+id = "40110a1a-40e8-4345-8407-577bd5f4d602"
+created_at = "2026-07-14T23:13:55.400869600+00:00"
+title = "[viewer-platform][ux-test] Accessibility, responsive, focus, and visual regression gates"
+state = "planning"
+component = "doc"
+effort = "2400"
+linked = ["08c86dbd-72b8-446b-a930-30ef3352d604"]
+priority = "high"
+risk_level = "medium"
+type = "tracker-improvement"

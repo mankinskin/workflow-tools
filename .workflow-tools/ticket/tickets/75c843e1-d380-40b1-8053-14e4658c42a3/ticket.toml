@@ -1,0 +1,11 @@
+id = "75c843e1-d380-40b1-8053-14e4658c42a3"
+created_at = "2026-05-12T12:33:49.369968300+00:00"
+title = "[spec-viewer] Bug: sidebar overlay blocks spec list clicks"
+state = "done"
+bug_validity = "reported"
+component = "spec"
+parts = [{ id = "5b01c11c-cb24-46d5-a69f-ba45b38e6993", kind = "objective", path = "parts/5b01c11c-cb24-46d5-a69f-ba45b38e6993.md", frozen = false, created_at = "2026-07-30T21:05:26.211730Z" }, { id = "4145342f-1bea-43f4-a63f-1a15198f7511", kind = "validation", path = "parts/4145342f-1bea-43f4-a63f-1a15198f7511.md", frozen = false, created_at = "2026-07-30T21:05:26.215416200Z" }]
+priority = "high"
+risk_level = "medium"
+tags = "spec-viewer,sidebar,overlay,bug"
+type = "tracker-improvement"

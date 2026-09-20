@@ -1,0 +1,7 @@
+id = "8a3fe2eb-511a-4d2d-9e98-c17b9b812399"
+created_at = "2026-05-10T11:52:13.722410200+00:00"
+title = "[spec-viewer][nav-2] fold tree into /specs + restore click-through reachability"
+state = "planning"
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

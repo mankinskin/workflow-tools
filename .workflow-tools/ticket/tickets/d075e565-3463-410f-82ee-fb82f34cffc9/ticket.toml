@@ -1,0 +1,7 @@
+id = "d075e565-3463-410f-82ee-fb82f34cffc9"
+created_at = "2026-04-30T12:41:50.896503900+00:00"
+title = "[spec-viewer][P5.5] HeaderActions replaces manual nav buttons"
+state = "done"
+depends_on = ["74424d6f-327d-4de3-8dd2-3f26962c171d"]
+type = "tracker-improvement"
+component = "spec"

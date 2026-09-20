@@ -1,0 +1,7 @@
+id = "57db7e0f-1189-4b06-8cd2-718f8d9beace"
+created_at = "2026-05-10T11:52:14.121799300+00:00"
+title = "[spec-viewer][nav-3] preserve active view while switching specs"
+state = "planning"
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

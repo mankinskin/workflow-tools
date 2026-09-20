@@ -1,0 +1,7 @@
+id = "a76ce0b4-e906-4ecd-8513-0cb763ec305c"
+created_at = "2026-05-10T11:52:13.593775200+00:00"
+title = "[spec-viewer][nav-1] canonical entry×view route contract + URL normalization"
+state = "planning"
+effort = "1200"
+type = "tracker-improvement"
+component = "spec"

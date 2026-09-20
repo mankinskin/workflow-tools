@@ -1,0 +1,8 @@
+id = "06399bb2-eb06-40a9-8de9-26f6d0854753"
+created_at = "2026-04-20T22:39:35.949140600+00:00"
+title = "[spec-viewer] GPU-accelerated spec browser — Dioxus SPA + spec-http backend"
+state = "done"
+component = "spec"
+depends_on = ["0feb20f3-205a-4e71-9902-31c8c5bb13eb", "10009542-af00-44e8-9b43-ea5d12bf1d6c", "2d2c3e94-3d55-457f-8c06-ace46f4b3d89", "4f69b73e-8352-4b4a-8a8b-93ad6b65c056", "521e18b7-bed4-4588-886c-e25d6c8ddc8b", "57db7e0f-1189-4b06-8cd2-718f8d9beace", "74424d6f-327d-4de3-8dd2-3f26962c171d", "75c843e1-d380-40b1-8053-14e4658c42a3", "8a3fe2eb-511a-4d2d-9e98-c17b9b812399", "a76ce0b4-e906-4ecd-8513-0cb763ec305c", "b2b02558-4620-49ed-b3db-092e5cee840c", "b2dc000c-3e4e-44fd-980b-0728895d0177", "bf250aa9-ca23-4686-83ca-c1395b1e3d1e", "d075e565-3463-410f-82ee-fb82f34cffc9"]
+priority = "high"
+type = "tracker-improvement"
