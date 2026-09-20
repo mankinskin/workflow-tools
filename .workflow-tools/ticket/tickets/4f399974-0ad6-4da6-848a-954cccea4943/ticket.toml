@@ -1,0 +1,11 @@
+id = "4f399974-0ad6-4da6-848a-954cccea4943"
+created_at = "2026-03-24T13:53:30.811538900+00:00"
+title = "Feature: Share themes and effects from log-viewer to ticket-viewer"
+state = "done"
+acceptance_criteria = "1) viewer-api exports ColorTheme (name, description, colors: ThemeColors) and EffectTheme (name, description, effects: EffectSettings) as separate types. 2) ThemePreset composes ColorTheme + optional EffectTheme. 3) ThemeSettings component shared from viewer-api; each viewer provides its own preset list via props. 4) EffectSettings interface and DEFAULT_EFFECT_SETTINGS exported from viewer-api. 5) ticket-viewer defines its own preset palette (not log-viewer's). 6) Effects are off by default in ticket-viewer. 7) ticket-viewer has effectSettings signal with localStorage persistence. 8) CSS variables injected reactively from ColorTheme."
+component = "ticket"
+depends_on = ["1789cdfa-cd7e-45c4-a683-815b80c39970"]
+risk_level = "medium"
+tags = "themes,effects,gpu,viewer-api,ticket-viewer"
+type = "tracker-improvement"
+workflow_stage = "plan"

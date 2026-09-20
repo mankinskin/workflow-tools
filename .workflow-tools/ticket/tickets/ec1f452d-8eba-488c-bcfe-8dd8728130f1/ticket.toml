@@ -1,0 +1,9 @@
+id = "ec1f452d-8eba-488c-bcfe-8dd8728130f1"
+created_at = "2026-08-20T13:46:30.063417300+00:00"
+title = "[presentation] Materialize and statically validate conceptual decks"
+state = "planning"
+depends_on = ["1500a9e6-293f-4803-969d-0dcabeaa470a", "693763fc-e4c1-4c93-b39f-5e0958b57d19"]
+epic = "0ee95228-475d-4706-a108-fd208f7c4098"
+spec = "2ccde9ee-85ac-4c87-9601-f6099f5be01c"
+type = "tracker-improvement"
+component = "log"

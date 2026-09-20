@@ -1,0 +1,10 @@
+id = "24d47244-fcb4-46cf-9bc8-c78c29fe7ff2"
+created_at = "2026-07-25T13:55:56.606374900+00:00"
+title = "[workflow-tools][skill] Define skill scope/precedence for root and nested installs (single active install, self-uninstall)"
+state = "planning"
+component = "workflow-tools"
+depends_on = ["b9a52b79-2beb-4710-958d-25582ed79dcf"]
+effort = "1200"
+priority = "high"
+risk_level = "medium"
+type = "task"

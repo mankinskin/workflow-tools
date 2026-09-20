@@ -1,0 +1,10 @@
+id = "44d22e8f-bdc5-4268-b678-023dc0154c0f"
+created_at = "2026-04-08T14:20:30.629696100+00:00"
+title = "Arch: ticket-viewer dioxus-frontend crate scaffold with trunk serve"
+state = "done"
+acceptance_criteria = "New crate at tools/viewer/ticket-viewer/frontend/dioxus; Cargo.toml with dioxus 0.7 web + viewer-api-dioxus dep; Trunk.toml; index.html; builds and serves on dev port via trunk serve; TicketBackend trait wired to HTTP client; ticket-viewer-specific router and app shell; trunk build --release produces deployable WASM"
+component = "ticket"
+depends_on = ["7346feae-045f-4da9-bf1c-47535132ffa1"]
+priority = "critical"
+risk_level = "low"
+type = "tracker-improvement"

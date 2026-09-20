@@ -1,0 +1,15 @@
+id = "a2f5460c-1e7e-481b-a250-e9def213ba55"
+created_at = "2026-05-12T15:23:54.789605400+00:00"
+title = "[ticket-viewer] Explorer filtering + local keyboard follow-up"
+state = "planning"
+acceptance_criteria = "Combined query+state filtering fixed; multi-state explorer filter shipped; sidebar tree and quick-search support arrow/enter navigation; browser coverage added"
+component = "ticket"
+depends_on = ["0b7da330-a38d-49e5-853c-cf1d40633b6f", "cccf5d99-d7e9-43e6-8aea-90480ad3cf0d", "f121b24b-61b0-41b4-9567-8ffc2417d7cb"]
+effort = "1200"
+linked = ["4e0dc8fb-18fa-4be1-a43d-37008d0453e3"]
+priority = "high"
+risk_level = "medium"
+spec_refs = "33e731c2-a0cf-41f7-bd7c-2df6c4545bf3, 5bd4fd1a-cd0e-4893-9d83-452cd5b533bb, 5650b307-8408-4ca0-922f-c515dd0bfa27"
+tags = "ticket-viewer,viewer-api,tree-view,filters,keyboard"
+type = "tracker-improvement"
+workflow_stage = "plan"

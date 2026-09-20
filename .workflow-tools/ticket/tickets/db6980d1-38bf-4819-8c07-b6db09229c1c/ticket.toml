@@ -1,0 +1,8 @@
+id = "db6980d1-38bf-4819-8c07-b6db09229c1c"
+created_at = "2026-08-08T14:20:54.157200400+00:00"
+title = "Worktree provisioning and session-worktree lifecycle"
+state = "planning"
+component = "session"
+linked = ["0afe45b5-9ec8-4f4a-af74-f46f06cc7516", "2b657154-df78-4bb3-807a-66c9ff811ceb", "326bfe38-6f5e-4000-9ffc-e5be0839194f", "3d535b2c-7361-4f08-bfb4-63b0b3174afc", "40349f3f-8d04-4bf6-9241-b79425c10a97", "4ef88dbc-cb39-4724-9f2c-53ab09cf90c5", "503b9711-3f69-4765-88f9-83779b71c8f8", "565ae4b1-dd93-4685-955d-58490a0dd3fb", "5e6cf4f8-120c-4674-95de-d7b79c99f5b3", "614fae19-cb51-4f38-96cc-40012d1adaae", "68a49ca7-a6f6-42a8-b820-0a86e6a4de2e", "69e69b4b-77d8-4519-99cc-f9c95362fce4", "72314c5e-6cc6-40f9-af58-96b66004d4d7", "723c2bea-3b5d-4cf2-a519-958bcab036a3", "a1b911ab-9394-4ba8-9134-1b2687e96ccd", "b6af9f40-e1f7-4f68-92e7-0a063a4ac020", "bd044e88-1aea-45c9-8823-8f879467d0e4", "c060bf94-2435-4cc5-8016-ca1d2c8264f5", "e068602b-d6d0-425c-9e65-9cf3825bea65", "e2189e9d-8ea7-4747-bda9-51e573ba51ca", "e38c258e-4502-4a92-95c7-1dac38fd24b7", "e70471d4-611a-4e8b-a612-5b4573868986", "fa2ba34b-59ec-4321-a4ce-a3c3a9295ea3", "ff83caf7-059b-4f2e-a0fb-eaa7757096a8"]
+priority = "high"
+type = "epic"

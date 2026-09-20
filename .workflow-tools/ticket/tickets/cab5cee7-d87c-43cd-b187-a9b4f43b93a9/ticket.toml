@@ -1,0 +1,9 @@
+id = "cab5cee7-d87c-43cd-b187-a9b4f43b93a9"
+created_at = "2026-08-20T14:47:55.214726300+00:00"
+title = "[presentation] Topology visual preset: legend, node/edge roles, density limits, baseline screenshots"
+state = "planning"
+depends_on = ["1500a9e6-293f-4803-969d-0dcabeaa470a"]
+epic = "0ee95228-475d-4706-a108-fd208f7c4098"
+spec = "2ccde9ee-85ac-4c87-9601-f6099f5be01c"
+type = "tracker-improvement"
+component = "log"

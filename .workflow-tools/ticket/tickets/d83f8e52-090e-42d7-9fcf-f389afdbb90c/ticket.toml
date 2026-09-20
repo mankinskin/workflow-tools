@@ -1,0 +1,10 @@
+id = "d83f8e52-090e-42d7-9fcf-f389afdbb90c"
+created_at = "2026-03-28T15:08:49.740978900+00:00"
+title = "Port: ticket-viewer Leptos frontend"
+state = "cancelled"
+acceptance_criteria = "Ticket-viewer runs as Leptos WASM app; reuses viewer-api-leptos for layout/sidebar/theme/GPU; domain-specific: workspace picker, ticket tree, ticket description viewer, dependency graph; uses ticket-api Rust crate for backend"
+component = "ticket"
+depends_on = ["ca0f6ccc-545d-45df-bbbb-74a3daf0d18c"]
+interview_answers = "Q1: Reuse WgpuOverlay GPU pipeline with ticket-specific node rendering (state-colored badges, ticket cards). Q2: Full SSE streaming via /api/stream for live ticket graph updates. Q3: Full interaction — pan/zoom/drag to rearrange nodes + click to open ticket details."
+risk_level = "medium"
+type = "tracker-improvement"

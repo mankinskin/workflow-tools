@@ -1,0 +1,4 @@
+Implement normalized extraction adapters for authoritative specification facts plus distinct Git/submodule containment, Cargo workspace/crate membership, and Cargo dependency projections. Every node and edge carries projection/type/source evidence; declarative workflows are normative and telemetry is illustrative only. Excludes rendering, cross-language parsing, live telemetry, docs/CLI/MCP/test-derived content, and expanding Peek into a universal graph.
+
+Validation: fixture tests independently prove each projection and diagnostics; telemetry cannot yield normative workflow claims.
+This ticket and `1500a9e6` must agree a short shared adapter-interface note early so both can proceed in parallel once interfaces are frozen.

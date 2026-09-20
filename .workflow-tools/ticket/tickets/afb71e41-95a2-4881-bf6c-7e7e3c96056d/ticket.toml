@@ -1,0 +1,11 @@
+id = "afb71e41-95a2-4881-bf6c-7e7e3c96056d"
+created_at = "2026-07-25T13:57:29.564237100+00:00"
+title = "[workflow-tools][per-tool] Extract audit tool as a single `audit` domain crate (api + transport bins)"
+state = "planning"
+component = "audit"
+depends_on = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9", "1c452ff1-6edc-47c8-a73d-d07ce9b4d473", "21893f5f-e57f-4cdf-b5de-39f42ae5d89d", "dbe0e955-c1b4-414d-820c-10c3fbbb5d3d"]
+effort = "1200"
+parts = [{ id = "f320db5b-253c-4446-a89f-e1cdb0a5f46d", kind = "implementation_plan", path = "parts/f320db5b-253c-4446-a89f-e1cdb0a5f46d.md", frozen = false, created_at = "2026-08-13T17:28:39.682233600Z" }, { id = "6d01edf2-46ce-472a-80b7-00256d9ea670", kind = "amendment", path = "parts/6d01edf2-46ce-472a-80b7-00256d9ea670.md", frozen = false, created_at = "2026-08-19T00:33:45.272997900Z", supersedes = "f320db5b-253c-4446-a89f-e1cdb0a5f46d" }]
+priority = "high"
+risk_level = "medium"
+type = "task"

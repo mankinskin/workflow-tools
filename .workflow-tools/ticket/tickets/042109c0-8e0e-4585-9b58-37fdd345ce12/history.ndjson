@@ -1,0 +1,3 @@
+{"rev":1,"ts":"2026-07-25T20:40:49.550915600+00:00","fields":{"state":"open","title":"Rust MCP middleware: require active model per request (supersedes file sync)","type":"feature"}}
+{"rev":2,"ts":"2026-07-25T20:41:00.493314100+00:00","fields":{"depends_on":["a5ad2721-2d07-47dd-85f5-f180d4a030fa"],"state":"open","title":"Rust MCP middleware: require active model per request (supersedes file sync)","type":"feature"}}
+{"rev":3,"ts":"2026-07-25T21:25:34.638310300+00:00","fields":{"depends_on":["a5ad2721-2d07-47dd-85f5-f180d4a030fa"],"state":"open","title":"Rust MCP middleware: require active model per request (supersedes file sync)","type":"feature"}}

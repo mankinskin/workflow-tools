@@ -1,0 +1,8 @@
+id = "afcf2759-9c91-433c-b62c-ae8adcb0cdd5"
+created_at = "2026-05-21T11:54:17.058386+00:00"
+title = "Project tracker: workflow traceability redesign"
+state = "planning"
+depends_on = ["02bf9cf0-7e14-46f8-b80a-9e66b38878f9", "0fb5a2e5-af2b-4b52-81a5-c3a49ffc3274", "1031c748-ba1e-43c0-ab4a-8ad2a0e9e97b", "74b32430-cd23-43ad-94dd-086ff752e2b4", "75e9fef3-b624-4e12-9709-5d800222908c", "762d9ac9-e0e0-4f02-b60f-21c79e3c26f6"]
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

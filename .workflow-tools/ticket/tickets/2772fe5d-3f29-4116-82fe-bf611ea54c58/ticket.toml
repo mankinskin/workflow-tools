@@ -1,0 +1,13 @@
+id = "2772fe5d-3f29-4116-82fe-bf611ea54c58"
+created_at = "2026-03-21T04:38:42.854550100+00:00"
+title = "Impl: hypergraph dependency view reusing log-viewer graph patterns"
+state = "done"
+acceptance_criteria = "Hypergraph renders depends_on/blocks edges, active states, deterministic DAG layering, and workspace-aware filters"
+component = "ticket"
+depends_on = ["08e3f042-f690-4d0e-907a-b4ffb9508e50", "5e68c2e1-e93e-415f-a3c3-c1a396f36395", "a1259318-f992-44e3-9cdf-0ea4c224f6f3", "e79fdc1f-2bfb-410f-931c-dbb744cd209e"]
+execution_wave = "2"
+parallel_track = "G"
+risk_level = "high"
+type = "tracker-improvement"
+validation_summary = "Implemented GraphView using /api/graph/subgraph, added typed API contract, and verified with Playwright graph success+error e2e tests (3/3 passing)."
+workflow_stage = "implementation"

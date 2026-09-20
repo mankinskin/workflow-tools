@@ -1,0 +1,10 @@
+id = "55403b85-104c-4559-afd0-9af63fb30a75"
+created_at = "2026-08-11T09:01:02.459368700+00:00"
+title = "Add two-worktree deletion isolation regression harness"
+state = "planning"
+component = "memory-kernel"
+depends_on = ["461ddbb1-f88f-4585-bf65-b7e721f1101e", "8130027d-557b-4797-9fc2-a57cb51fd01e", "968e863b-8469-4de8-ba12-dff1c927ca24", "f7a0f5b5-c584-46c2-9033-e54fbd2ac670", "fde76de2-1543-4eca-9d43-b40f24ec8241"]
+parent_ticket_id = "3a624bf6-f240-4ea8-b0bb-1bceac883b6b"
+priority = "high"
+risk_level = "high"
+type = "task"

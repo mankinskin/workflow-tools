@@ -1,0 +1,15 @@
+id = "b7c61f0e-ed42-4eef-8d3b-da934d7c0628"
+created_at = "2026-07-27T10:54:02.884524600+00:00"
+title = "[delegation-cost][session-api] Promote the sub-agent cost analyzer into session-api with real token attribution"
+state = "done"
+component = "session"
+depends_on = ["9d527ad1-616b-45fb-b67c-64e0396841fe"]
+effort = "12000"
+linked = ["41ff230b-cedf-4ec3-86cf-9b48a89b8325", "6549b6a7-8957-4df0-ada5-8fefb49c015c", "8ad2581e-d9c0-4d24-b913-2b5ee77b2eeb"]
+parts = [{ id = "ac73643a-794c-4c63-8866-bb12a45a8e41", kind = "review", path = "parts/ac73643a-794c-4c63-8866-bb12a45a8e41.md", frozen = false, created_at = "2026-07-30T21:02:33.142476400Z" }]
+priority = "high"
+review_recommendation = "done"
+review_verdict = "pass-with-note"
+tags = "delegation-cost,session-api,telemetry,tooling"
+type = "tracker-improvement"
+workflow_stage = "planning"

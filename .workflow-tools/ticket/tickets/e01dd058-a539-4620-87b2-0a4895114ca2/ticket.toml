@@ -1,0 +1,10 @@
+id = "e01dd058-a539-4620-87b2-0a4895114ca2"
+created_at = "2026-07-28T14:44:31.927858800+00:00"
+title = "[presentation] Embed shared repo graph component as standalone WASM inside slides"
+state = "planning"
+depends_on = ["89b0c64a-b573-4f7b-b692-fa3d383e386c"]
+effort = "22k tokens"
+epic = "0ee95228-475d-4706-a108-fd208f7c4098"
+spec = "2ccde9ee-85ac-4c87-9601-f6099f5be01c"
+type = "tracker-improvement"
+component = "log"

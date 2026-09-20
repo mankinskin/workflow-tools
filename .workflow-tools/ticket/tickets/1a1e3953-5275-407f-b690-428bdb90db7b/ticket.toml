@@ -1,0 +1,8 @@
+id = "1a1e3953-5275-407f-b690-428bdb90db7b"
+created_at = "2026-05-21T11:54:17.712309500+00:00"
+title = "Project tracker: Dioxus theme settings backlog"
+state = "planning"
+depends_on = ["03b7ce45-f2cb-4a5f-9b57-ef4c442b3515", "0ae1faf1-3554-45de-9d79-dc1be97de707", "47438a4f-64f8-4619-93ff-ea4355092606", "6b51228e-1686-41fc-ac0c-7e19f58d657f", "fe9b450e-94c2-4d01-9ac9-ff993f45a591"]
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

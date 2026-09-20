@@ -1,0 +1,12 @@
+id = "21893f5f-e57f-4cdf-b5de-39f42ae5d89d"
+created_at = "2026-07-25T13:56:52.302565600+00:00"
+title = "[workflow-tools][per-tool] Extract rule tool as a single `rule` domain crate (api + transport bins)"
+state = "in-review"
+component = "rule"
+depends_on = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9", "1c452ff1-6edc-47c8-a73d-d07ce9b4d473", "dbe0e955-c1b4-414d-820c-10c3fbbb5d3d"]
+effort = "1200"
+parts = [{ id = "8e847acb-a98d-431d-9cf6-5295e0a93e46", kind = "implementation_plan", path = "parts/8e847acb-a98d-431d-9cf6-5295e0a93e46.md", frozen = false, created_at = "2026-08-13T17:28:27.406362400Z" }, { id = "5dec2cc9-dae6-4bb0-96d5-7ff07f05488b", kind = "objective", path = "parts/5dec2cc9-dae6-4bb0-96d5-7ff07f05488b.md", frozen = true, created_at = "2026-08-19T02:25:40.459838Z" }, { id = "bcf65777-0d4e-4167-ad16-e09139f2397f", kind = "requirements", path = "parts/bcf65777-0d4e-4167-ad16-e09139f2397f.md", frozen = true, created_at = "2026-08-19T02:25:40.460621200Z" }, { id = "c28b7373-6175-488a-b284-559f68efb110", kind = "design", path = "parts/c28b7373-6175-488a-b284-559f68efb110.md", frozen = true, created_at = "2026-08-19T02:25:40.460820600Z" }, { id = "23f0f1aa-de4e-4b61-ac1c-5ee768cdfb17", kind = "examples", path = "parts/23f0f1aa-de4e-4b61-ac1c-5ee768cdfb17.md", frozen = true, created_at = "2026-08-19T02:25:40.460967800Z" }, { id = "27da115b-a453-4297-adb9-4162c46c70f3", kind = "acceptance_criteria", path = "parts/27da115b-a453-4297-adb9-4162c46c70f3.md", frozen = true, created_at = "2026-08-19T02:25:40.461219300Z" }, { id = "7d056922-250f-47d6-b4f2-baf1096387cb", kind = "amendment", path = "parts/7d056922-250f-47d6-b4f2-baf1096387cb.md", frozen = false, created_at = "2026-08-19T03:03:22.149085700Z", supersedes = "8e847acb-a98d-431d-9cf6-5295e0a93e46" }, { id = "d2b24981-3883-457f-951c-359d4aed20fc", kind = "review", path = "parts/d2b24981-3883-457f-951c-359d4aed20fc.md", frozen = false, created_at = "2026-08-26T00:11:29.594844900Z" }]
+plan_revision = 1
+priority = "high"
+risk_level = "medium"
+type = "task"

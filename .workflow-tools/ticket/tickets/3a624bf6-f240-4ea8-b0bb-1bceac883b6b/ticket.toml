@@ -1,0 +1,11 @@
+id = "3a624bf6-f240-4ea8-b0bb-1bceac883b6b"
+created_at = "2026-08-10T17:36:38.997727500+00:00"
+title = "Worktree stores must be isolated: no cross-worktree path persistence, discovery, or shared caches"
+state = "planning"
+component = "memory-kernel"
+depends_on = ["461ddbb1-f88f-4585-bf65-b7e721f1101e", "55403b85-104c-4559-afd0-9af63fb30a75", "8130027d-557b-4797-9fc2-a57cb51fd01e", "968e863b-8469-4de8-ba12-dff1c927ca24", "f7a0f5b5-c584-46c2-9033-e54fbd2ac670", "fde76de2-1543-4eca-9d43-b40f24ec8241"]
+effort = "6000"
+linked = ["3d535b2c-7361-4f08-bfb4-63b0b3174afc", "5e6cf4f8-120c-4674-95de-d7b79c99f5b3", "614fae19-cb51-4f38-96cc-40012d1adaae", "723c2bea-3b5d-4cf2-a519-958bcab036a3", "c060bf94-2435-4cc5-8016-ca1d2c8264f5", "fa2ba34b-59ec-4321-a4ce-a3c3a9295ea3", "ff83caf7-059b-4f2e-a0fb-eaa7757096a8"]
+priority = "high"
+spec_refs = "2a710b29-13e9-40b8-8a53-c0ea366bd0bf"
+type = "task"

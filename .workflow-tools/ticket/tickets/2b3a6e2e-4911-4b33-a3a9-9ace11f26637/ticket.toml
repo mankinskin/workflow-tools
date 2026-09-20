@@ -1,0 +1,11 @@
+id = "2b3a6e2e-4911-4b33-a3a9-9ace11f26637"
+created_at = "2026-05-02T21:38:29.206567100+00:00"
+title = "Bug: TicketDetail right panel hardcoded colors — port to theme variables"
+state = "cancelled"
+component = "ticket"
+depends_on = ["a34d9891-5cd3-403c-8576-f3a55a50047e", "f00204fc-f33f-4cd6-9b5f-395071f4e118"]
+linked = ["c892904f-6aff-4892-baf1-1f832837cde5"]
+priority = "high"
+risk_level = "low"
+type = "tracker-improvement"
+workflow_stage = "ready"

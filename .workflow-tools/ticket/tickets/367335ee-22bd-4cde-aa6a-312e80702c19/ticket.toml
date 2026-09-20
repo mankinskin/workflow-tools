@@ -1,0 +1,7 @@
+id = "367335ee-22bd-4cde-aa6a-312e80702c19"
+created_at = "2026-03-27T23:40:16.272417200+00:00"
+title = "Impl: URL hash routing for ticket-viewer (workspace + ticket ID)"
+state = "done"
+depends_on = ["68912b00-e189-4dc1-8124-ca41d9aab953"]
+type = "tracker-improvement"
+component = "ticket"

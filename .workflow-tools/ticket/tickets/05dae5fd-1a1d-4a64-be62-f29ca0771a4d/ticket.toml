@@ -1,0 +1,12 @@
+id = "05dae5fd-1a1d-4a64-be62-f29ca0771a4d"
+created_at = "2026-05-25T11:48:36.092170700+00:00"
+title = "[ticket-viewer][ticket-http][viewer-api] Improve main layout ticket documents and focused full-graph navigation"
+state = "planning"
+component = "ticket"
+depends_on = ["322ba030-160c-41d3-8a12-42936ae92858", "397fa45b-a0bd-43d2-b430-2dfa44d80c5c", "60092819-f725-48ec-93f0-aba195ef81eb", "6e7a15c9-d8e6-4bbe-bb34-b83bd651896b", "8f5d611f-0033-423e-b2f6-17683feb8e34", "eeda4039-d82d-4573-9d79-0bc89e152a76"]
+effort = "1200"
+priority = "high"
+risk_level = "medium"
+spec_refs = "8c4d51ef-c0b6-437d-bc14-672b0802cef2"
+tags = "ticket-viewer,ticket-http,viewer-api,graph,layout,document,ux"
+type = "tracker-improvement"

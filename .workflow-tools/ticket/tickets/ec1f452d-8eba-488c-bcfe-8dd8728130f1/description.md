@@ -1,0 +1,3 @@
+Consume the conceptual contract and typed extractors to generate deterministic managed conceptual decks with presenter notes and disagreement sidecars, enforce stale/replace behavior, build static output, and validate every slide at a fixed viewport. Excludes custom theme implementation, flagship topology visuals, live visual provenance, viewer work, and new cross-language or telemetry automation.
+
+Validation: presentation-api deterministic materialization tests; Slidev static build; Playwright visits each manifest slide, captures screenshots, verifies citations/legends/notes, and fails on console errors or missing assets.

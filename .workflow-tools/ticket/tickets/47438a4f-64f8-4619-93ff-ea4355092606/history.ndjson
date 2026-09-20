@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-04-22T23:00:58.582381100+00:00","fields":{"priority":"medium","state":"open","title":"Dioxus theme settings: full ColorRows for all ThemeColors","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:16.860062500+00:00","fields":{"effort":"1200","priority":"medium","state":"open","title":"Dioxus theme settings: full ColorRows for all ThemeColors","type":"tracker-improvement"},"author":"github-copilot"}

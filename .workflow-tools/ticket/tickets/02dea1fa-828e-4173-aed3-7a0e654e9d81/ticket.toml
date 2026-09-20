@@ -1,0 +1,13 @@
+id = "02dea1fa-828e-4173-aed3-7a0e654e9d81"
+created_at = "2026-03-21T04:38:32.045729200+00:00"
+title = "Impl: ticket-viewer shell reusing doc-viewer tree and file display"
+state = "done"
+acceptance_criteria = "Ticket viewer app shows workspace-aware file tree and renders description.md/ticket.toml with tabbed navigation"
+component = "ticket"
+depends_on = ["08e3f042-f690-4d0e-907a-b4ffb9508e50", "91e22471-4895-4fcf-bab2-63efd7d9262d", "a1259318-f992-44e3-9cdf-0ea4c224f6f3"]
+execution_wave = "2"
+impl_status = "complete"
+parallel_track = "F"
+risk_level = "medium"
+type = "tracker-improvement"
+workflow_stage = "implementation"

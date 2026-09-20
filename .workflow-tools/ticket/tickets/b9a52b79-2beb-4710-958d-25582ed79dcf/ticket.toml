@@ -1,0 +1,12 @@
+id = "b9a52b79-2beb-4710-958d-25582ed79dcf"
+created_at = "2026-07-25T13:55:56.819760900+00:00"
+title = "[workflow-tools][skill] Author workflow-skill skills.sh package as the installable entry point"
+state = "planning"
+component = "workflow-tools"
+depends_on = ["0a5ee413-7e59-4bcf-a6d9-cca37b17049a", "26d7dddb-a026-49ed-a4e8-20a1f568c3dc", "7cb1693e-d542-4261-b891-102dee33c578", "b525a7fa-f59d-4a14-b234-2ec7b8a42e95", "c2e341a1-8767-48b7-a8a1-75d96604c709"]
+effort = "2200"
+linked = ["b13c5d89-db09-46e7-9061-dbed85c4ab41"]
+priority = "high"
+related_specs = [{ spec_id = "bc639ab3-8eda-4268-a7a2-34289bfeba4d", workspace = "default", store_root = ".spec" }]
+risk_level = "high"
+type = "task"

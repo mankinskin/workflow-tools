@@ -1,0 +1,11 @@
+id = "6f71ca0b-b922-4f6b-9b09-bf0cbd9b228c"
+created_at = "2026-03-24T14:13:39.145993400+00:00"
+title = "Impl: GPU dependency graph in ticket-viewer replacing SVG GraphView"
+state = "done"
+acceptance_criteria = "1) ticket-viewer imports Graph3DView from viewer-api. 2) DependencyGraph component replaces SVG GraphView.tsx. 3) Ticket subgraph data (nodes with state/title, edges with kind) mapped to Graph3DNode/Graph3DEdge. 4) Ticket states mapped to node colors. 5) Edge kinds (depends_on, blocks, linked) visually distinguished. 6) Root ticket highlighted. 7) Click node navigates to ticket. 8) SVG GraphView kept as non-WebGPU fallback or removed. 9) Loading/error/empty states preserved. 10) Responsive rendering at desktop/tablet/mobile widths."
+component = "ticket"
+depends_on = ["c826869a-d40c-425d-ba5c-4003c222cfde"]
+risk_level = "medium"
+tags = "gpu,3d-rendering,ticket-viewer,dependency-graph"
+type = "tracker-improvement"
+workflow_stage = "plan"

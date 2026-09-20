@@ -1,0 +1,8 @@
+id = "18e7a4d1-6ac3-402a-be3f-9f588795f006"
+created_at = "2026-07-08T19:09:47.871881600+00:00"
+title = "[instruction-governance] Narrow over-broad applyTo patterns in instruction files"
+state = "done"
+linked = ["f227c217-6fda-452e-ae35-4208eb3974f5"]
+parts = [{ id = "b4b27d5a-e7df-4c8e-946a-80a561113e74", kind = "objective", path = "parts/b4b27d5a-e7df-4c8e-946a-80a561113e74.md", frozen = false, created_at = "2026-07-30T21:05:26.881210400Z" }, { id = "fa42d0fc-00e9-4490-8bb5-caed001d34c0", kind = "validation", path = "parts/fa42d0fc-00e9-4490-8bb5-caed001d34c0.md", frozen = false, created_at = "2026-07-30T21:05:26.885219200Z" }]
+type = "tracker-improvement"
+component = "rule"

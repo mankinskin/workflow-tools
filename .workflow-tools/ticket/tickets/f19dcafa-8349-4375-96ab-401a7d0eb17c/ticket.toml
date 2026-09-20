@@ -1,0 +1,8 @@
+id = "f19dcafa-8349-4375-96ab-401a7d0eb17c"
+created_at = "2026-07-08T19:09:45.551466500+00:00"
+title = "[instruction-governance] Deduplicate spec-system.instructions and add explicit exceptions"
+state = "done"
+linked = ["f18e6885-c193-4159-82c5-d164e470437b"]
+parts = [{ id = "f6788216-9cf9-434e-ad5e-183eca772582", kind = "objective", path = "parts/f6788216-9cf9-434e-ad5e-183eca772582.md", frozen = false, created_at = "2026-07-30T21:05:26.436773500Z" }, { id = "d46ec33b-399a-4140-952d-e66a01b22a3a", kind = "validation", path = "parts/d46ec33b-399a-4140-952d-e66a01b22a3a.md", frozen = false, created_at = "2026-07-30T21:05:26.440532700Z" }]
+type = "tracker-improvement"
+component = "doc"

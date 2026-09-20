@@ -1,0 +1,4 @@
+Implement the specification-derived conceptual-deck contract under presentation-api: versioned serialized claims/citations, source locks, structured disagreement sidecars, managed-output and human-overlay boundaries, explicit replacement, and legacy/import discovery. This extends the existing presentation epic and Phase 2 API/store work; it excludes rendering, topology extraction, telemetry, and automatic contradiction reconciliation.
+
+Validation: focused presentation-api fixture tests for stale locks, explicit replacement, path/symlink containment, legacy singleton discovery, deterministic imports, citation classification, and unresolved material sidecar publication qualification/blocking.
+This ticket and `693763fc` must agree a short shared adapter-interface note early so both can proceed in parallel once interfaces are frozen.

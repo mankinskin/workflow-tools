@@ -1,0 +1,15 @@
+id = "6d4d9a66-ed28-45e1-93f6-a6595c4593b3"
+created_at = "2026-03-21T04:38:44.575695600+00:00"
+title = "Validation: ticket-viewer + ticket-serve E2E, scale envelope, and regression suite"
+state = "done"
+acceptance_criteria = "E2E validates auth, SSE live updates, workspace switching, and performance envelope near 2k tickets/10k edges"
+component = "interview"
+depends_on = ["00ee9f46-7d24-4c3e-8961-00ed760e7ca2", "02dea1fa-828e-4173-aed3-7a0e654e9d81", "2772fe5d-3f29-4116-82fe-bf611ea54c58", "43dedd9b-46cd-46c7-96f8-6683ded2cc4d", "46d94c15-7a2d-4190-a1dc-93cd2b3a293b", "5e68c2e1-e93e-415f-a3c3-c1a396f36395", "8fe78950-a043-4f23-a5ef-8e4d7fc5c322", "9676914b-ffbc-41d1-b3dd-f3c8de863a61", "a1259318-f992-44e3-9cdf-0ea4c224f6f3", "b594864a-008c-423d-bf86-df940ed9dc54"]
+execution_wave = "3"
+interview_file_type = "interview"
+interview_files = { answers = "assets/interviews/answers.md", questions = "assets/interviews/questions.md" }
+parallel_track = "Z"
+risk_level = "high"
+type = "tracker-improvement"
+validation_summary = "Ran ticket-viewer frontend validation: TypeScript no-emit check passed and Playwright e2e regression suite passed (11/11), including graph success and failure paths."
+workflow_stage = "validation"

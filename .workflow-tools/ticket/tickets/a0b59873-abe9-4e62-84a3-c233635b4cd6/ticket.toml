@@ -1,0 +1,9 @@
+id = "a0b59873-abe9-4e62-84a3-c233635b4cd6"
+created_at = "2026-07-25T22:34:07.554885900+00:00"
+title = "spec + validation"
+state = "done"
+component = "spec"
+depends_on = ["4e7e53f5-b3de-477f-8cbd-f88b6c103bb5", "66c85d65-98bc-4432-b6f6-6c41664645f8", "6737a239-60fa-44af-8bf3-a60f8eb1e8a8", "b64cc71d-8594-4617-b3fb-3057fca0b56b", "c81f3938-0b4b-42a0-bbf1-888ddd9d2262"]
+risk_level = "low"
+type = "task"
+workflow_stage = "planning"

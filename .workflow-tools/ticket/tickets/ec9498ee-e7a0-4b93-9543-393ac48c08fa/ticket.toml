@@ -1,0 +1,13 @@
+id = "ec9498ee-e7a0-4b93-9543-393ac48c08fa"
+created_at = "2026-05-21T16:58:44.474670+00:00"
+title = "[ticket-api][ticket-http][ticket-viewer] Harden workspace linking and search architecture"
+state = "planning"
+acceptance_criteria = "Design and linked implementation tickets close the remaining workspace-linking/search integrity gaps; search/list/get/detail/history/files/asset flows agree on visibility and ownership; duplicate workspace names are collision-safe; filtered explorer remains authoritative under overlapping requests and live updates; every child ticket adds explicit focused validation commands and required test layers; regression coverage locks deleted-drift, unresolved-hit, duplicate-name, and live-filter cases"
+component = "ticket"
+depends_on = ["02723a9b-23ff-47b1-8306-0480be087ddd", "3554ee9e-35fb-447d-8905-258298c37ef6", "416ebd52-447d-44e4-a4ad-23162d37e0b1", "4a9b49fd-58e0-404c-a120-47ef277dcf9f", "91011568-ae0b-4b23-b060-b0c018e1e912", "cb562da4-a873-4537-9301-b800b2ab660d", "cccf5d99-d7e9-43e6-8aea-90480ad3cf0d", "dd2947da-d4d2-4c8a-9a9a-3633060ff4c5"]
+effort = "1200"
+priority = "high"
+risk_level = "high"
+tags = "ticket-api,ticket-http,ticket-viewer,workspaces,search,tracker"
+type = "tracker-improvement"
+workflow_stage = "plan"

@@ -1,0 +1,10 @@
+id = "969ffba0-6bff-4a58-9d74-18368ac87875"
+created_at = "2026-07-28T14:45:01.083536800+00:00"
+title = "[presentation] First real deck: workflow-tools suite introduction and overview"
+state = "planning"
+depends_on = ["134b953b-1294-4d27-9479-1662a2f5e250", "345528ff-a9ca-4d0d-ba94-a5365a14c54e", "60222b57-095d-4c9e-b83a-70c3dd8690ba", "e01dd058-a539-4620-87b2-0a4895114ca2"]
+effort = "15k tokens"
+epic = "0ee95228-475d-4706-a108-fd208f7c4098"
+spec = "2ccde9ee-85ac-4c87-9601-f6099f5be01c"
+type = "tracker-improvement"
+component = "workflow-tools"

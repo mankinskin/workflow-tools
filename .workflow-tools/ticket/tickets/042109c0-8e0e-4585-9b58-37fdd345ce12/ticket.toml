@@ -1,0 +1,7 @@
+id = "042109c0-8e0e-4585-9b58-37fdd345ce12"
+created_at = "2026-07-25T20:40:49.495823500+00:00"
+title = "Rust MCP middleware: require active model per request (supersedes file sync)"
+state = "planning"
+depends_on = ["a5ad2721-2d07-47dd-85f5-f180d4a030fa"]
+type = "feature"
+component = "install"

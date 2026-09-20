@@ -1,0 +1,10 @@
+id = "3e79be12-cf02-4976-9d66-23cafb3276eb"
+created_at = "2026-04-08T14:20:46.754455500+00:00"
+title = "Port: TicketTree with state grouping, search, filter, sort"
+state = "done"
+acceptance_criteria = "Hierarchical FileTree grouped by ticket state (9 state groups: new, in-refinement, ready, in-implementation, in-review, in-validation, done, cancelled + any custom); full-text search filter (title+id); state dropdown filter with multi-select; sort by title/modified/created; state badges with color coding; per-ticket checkbox for multi-select (batch operations, see b21604c1); select-all and range-select (shift+click); collapsible state groups; empty state group handling; keyboard navigation"
+component = "ticket"
+depends_on = ["31739fc3-bb79-4b56-8dd6-ea789340ac8a", "44d22e8f-bdc5-4268-b678-023dc0154c0f"]
+priority = "critical"
+risk_level = "medium"
+type = "tracker-improvement"
