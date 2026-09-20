@@ -72,19 +72,45 @@ roadmaps may use the legacy numbered format and remain executable under the
 existing dependency, validation, approval, and blocker rules; execution must
 not require retroactive migration before applying those rules.
 
-## Blocker and User-Escalation Protocol
+## Blocker-to-Waypoint Insertion Protocol
 
-An unexpected hurdle, unresolved requirement, failed prerequisite, stale artifact, inconsistent validation result, or conflict between a newer user request and the roadmap is a blocker. A blocker terminates work on the current waypoint immediately.
+An unexpected hurdle, unresolved requirement, failed prerequisite, stale
+artifact, inconsistent validation result, or conflict between a newer user
+request and the roadmap is a blocker. A blocker stops the current waypoint
+long enough to plan its resolution, but it is not a passive terminal status or
+a reason to freeze the whole roadmap.
 
 When a blocker is found:
 
-1. Stop the current waypoint. Do not make further mutations, start a dependent waypoint, substitute a requirement, or work around the hurdle by widening scope.
-2. Mark the waypoint `blocked` in `ROADMAP.md` and add a dated entry to **Active blockers** containing the waypoint id, exact unmet condition, evidence pointer, impact, and the single decision needed to resume.
-3. Inform the user before taking another implementation action. Explain the current plan, conflicting fact or request, blocked consequence, and concrete resolution options. Ask one self-contained, verifiable decision at a time using [question-quality.instructions.md](question-quality.instructions.md).
-4. Route the resolution through a user-interactive planning or review batch. The batch updates the roadmap and the affected dossier artifact, ticket, or specification until the blocker is removed rather than treating the user answer as permission to bypass the plan.
-5. Re-run the readiness gate after the roadmap update. Resume only when the blocked waypoint has complete requirements, a known setting, and validation evidence strategy.
-
-Do not continue with unrelated roadmap work after detecting a blocker in the current execution route unless the user explicitly defers the blocked waypoint and approves the independent next waypoint. Record the deferral and its reason in `ROADMAP.md`; a deferral is not a completed dependency.
+1. Stop the current waypoint immediately. Do not make further mutations, start
+	a dependent waypoint, substitute a requirement, or widen scope around the
+	hurdle.
+2. Classify the blocker using the existing single-session threshold from the
+	authoring [Blocker-to-Waypoint Policy](roadmap-authoring.instructions.md#blocker-to-waypoint-policy).
+3. For a single-session blocker, insert a pending resolution waypoint directly
+	into `ROADMAP.md` at the discovery point. Use the full waypoint schema and
+	put the problem statement and resolution plan in `Prompt`, with `Depends`,
+	`Validate`, and `Commit checkpoint` defined.
+4. For a blocker too large for one session, insert a pending
+	`Scope: single-session` planning/interview waypoint first. Route that
+	waypoint through an Interview Agent batch to establish problem scope,
+	acceptance criteria, dependencies, validation strategy, and the ticket
+	decision. Only after the planning/interview waypoint completes may a
+	ticket-backed resolution waypoint be added; never invent a large
+	ticket-backed implementation from an underspecified blocker.
+5. Resequence only the affected dependency branch. Update the branch's
+	`Depends:` lines so the affected dependency branch waits on the newly
+	inserted waypoint. A waypoint whose declared dependencies remain satisfied
+	may proceed unaffected; insertion is local resequencing, not a global
+	roadmap freeze.
+6. Inform the user of the inserted waypoint or waypoints and the resequencing.
+	A single-session resolution waypoint needs no approval before proceeding.
+	For a planning/interview waypoint, ask only the one self-contained decision
+	still required, using [question-quality.instructions.md](question-quality.instructions.md).
+7. Re-run the waypoint readiness gate on the inserted waypoint before marking
+	it `in-progress`. The original waypoint must not remain `blocked` once its
+	resolution waypoint exists; record the resolution relationship in the
+	waypoint text or completion note.
 
 ### User-Request Consistency Check
 
@@ -112,7 +138,7 @@ Follow [orchestrator-delegation.instructions.md](orchestrator-delegation.instruc
 
 ## Handling Drift
 
-If a waypoint's dossier context has gone stale — a cited artifact no longer resolves, a validation command no longer exists, or source behavior contradicts the plan — do not silently improvise a substitute. Treat drift as a blocker and follow the blocker and user-escalation protocol. The resumed plan must replace the stale reference with a verified artifact and complete validation strategy.
+If a waypoint's dossier context has gone stale — a cited artifact no longer resolves, a validation command no longer exists, or source behavior contradicts the plan — do not silently improvise a substitute. Treat drift as a blocker and follow the [Blocker-to-Waypoint Insertion Protocol](#blocker-to-waypoint-insertion-protocol). The resumed plan must replace the stale reference with a verified artifact and complete validation strategy.
 
 **Completion record.** Immediately after a waypoint's validation, required review, and commit checkpoint pass, change `Status: in-progress` to `Status: done` in `ROADMAP.md`. Add a short completion note naming the validation command or evidence record, the commit id or no-change reason from `Commit checkpoint:`, and, for a ticket-backed waypoint, the terminal ticket state. A completed waypoint is never merely implied by a later waypoint starting.
 
@@ -122,7 +148,7 @@ A waypoint's `Status:` line (see [roadmap-authoring.instructions.md's Syntax Rul
 
 1. **`pending`** — not yet started; its declared dependencies may or may not be satisfied yet.
 2. **`in-progress`** — the executing session has started work on it. Set this the moment work begins, not after it finishes, so a concurrent or later reader sees accurate live state.
-3. **`blocked`** — work stopped on an unmet precondition. A waypoint MUST NOT sit at `blocked` without a stated reason in its own text or in "Active blockers" (per "Handling Drift" above).
+3. **`blocked`** — work stopped transiently on an unmet precondition while the Blocker-to-Waypoint Insertion Protocol adds a resolution waypoint. A waypoint MUST NOT remain `blocked` once its resolution waypoint exists.
 4. **`done`** — its validation gate passed and its commit checkpoint is complete or explicitly recorded as no-change. Never mark a waypoint `done` before running its `Validate:` command and satisfying its `Commit checkpoint:` line per "Required Procedure".
 
 **Ticket-backed waypoints track two lifecycles at once.** A waypoint whose `Scope:` names a ticket (per [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md#scoping-guidelines)) has its own `Status:` line in the roadmap AND the ticket's own state machine (see [lifecycle.instructions.md](../../../ticket/.agents/instructions/ticket/lifecycle.instructions.md)). Keep the two in sync at the coarse level a roadmap needs: `pending`/`in-progress` maps loosely to the ticket being unclaimed/claimed, and the waypoint moves to `done` only once the ticket itself reaches a terminal `done` state — never mark the waypoint `done` while its ticket is still `in-review` or earlier.

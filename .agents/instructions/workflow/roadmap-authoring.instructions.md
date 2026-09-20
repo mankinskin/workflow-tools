@@ -11,7 +11,7 @@ A roadmap is read cold by a fresh session and reread many times during execution
 
 1. **Outcome summary** — two to four sentences stating what this roadmap achieves and why, so a reader grasps the objective before reading anything else. State the destination in the reader's terms, not a restatement of the raw request.
 2. **Relevant artifacts** — ticket and spec artifacts must be clickable links to their canonical `.workflow-tools/ticket/tickets/<uuid>/ticket.toml` or `.workflow-tools/spec/specs/<uuid>/spec.toml` files. Dossier, code, and configuration artifacts must also use clickable Markdown links. Never re-paste an artifact's body here — see [dossier-external-references.instructions.md](dossier-external-references.instructions.md) for the reference format.
-3. **Active blockers** — anything currently unresolved that would stop an executing session cold. A blocker needing human judgment belongs to the review/interview loop, not this list; by the time `ROADMAP.md` ships it carries none.
+3. **Active blockers** — legacy compatibility only. For a new or revised roadmap, follow [Blocker-to-Waypoint Policy](#blocker-to-waypoint-policy) instead of recording a passive blocker entry. Historical roadmaps may retain this section and remain readable under the execution compatibility rule.
 4. **Validation gates** — the exact commands/checks that must pass during and after execution. Name exact commands; never leave a gate as prose like "run the tests."
 5. **Roadmap Waypoints** — the complete ordered route, one scoped stop per waypoint, including the session package, prompt, validation, and commit checkpoint that a fresh session should execute. See "Scoping Guidelines" below for sizing and "Syntax Rules" for how each waypoint is written.
 6. **Heads-up notes** — a flat list of quirks, gotchas, and good-to-know information gathered during research that would otherwise cost a fresh session time to rediscover.
@@ -43,6 +43,35 @@ A roadmap is a complete route from the current state to the stated outcome, not 
 **Watch for implicit dependencies.** A waypoint's real dependency is sometimes undeclared code coupling or a shared file rather than a stated blocker. Check candidate waypoints against the dossier's artifact inventory (`ARTIFACTS.md`) before finalizing order, not just against the stated blocker list.
 
 **Uneven flow is a decomposition defect.** A roadmap with a few tiny waypoints followed by one sprawling one should push the sprawling waypoint's internal complexity into a ticket rather than leave it lumpy in the roadmap.
+
+## Blocker-to-Waypoint Policy
+
+A discovered blocker is a missing or unmet work item, not a passive terminal
+record. Add a normal roadmap waypoint that states the blocking problem, the
+resolution plan, its dependencies, its validation gate, and its commit or
+no-change checkpoint. Use the complete Waypoint schema; do not leave the
+roadmap with only an `Active blockers` note that tells a later human to decide
+what to do.
+
+Use the existing single-session threshold from the Scoping Guidelines. A
+blocker resolvable in one session becomes a `Scope: single-session` resolution
+waypoint directly. A blocker too large for one session first becomes a
+dedicated `Scope: single-session` planning/interview waypoint. The
+planning/interview waypoint establishes the problem scope, acceptance
+criteria, dependencies, validation strategy, and ticket decision before a
+ticket-backed resolution waypoint is added. Do not invent a large
+ticket-backed implementation from an underspecified blocker during execution.
+
+Splice the inserted waypoint into dependency order at the point where the
+blocker was discovered. The affected dependency branch waits on the newly inserted waypoint,
+with its `Depends:` lines updated accordingly. Waypoints
+outside that branch may proceed when their own declared dependencies remain
+satisfied. Inserting a blocker waypoint is local resequencing, not a global
+roadmap freeze.
+
+This policy applies to newly created or revised roadmaps. Historical roadmaps
+are not automatically migrated; legacy `Active blockers` sections remain
+readable under the execution compatibility rule.
 
 ## Waypoint schema
 

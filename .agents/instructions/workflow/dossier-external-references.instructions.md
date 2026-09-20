@@ -17,7 +17,7 @@ Every outward reference falls into exactly one of three categories. State which 
 
 ## Verification Before Citing
 
-- A repository artifact reference must be checked to resolve at the time it is written into the dossier. A ticket id that no longer resolves, or a file path that has moved, is a drift signal — record it against the roadmap's "Active blockers" (per [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md)) rather than citing it anyway.
+- A repository artifact reference must be checked to resolve at the time it is written into the dossier. A ticket id that no longer resolves, or a file path that has moved, is a drift signal — add a resolution waypoint according to [roadmap-authoring.instructions.md's Blocker-to-Waypoint Policy](roadmap-authoring.instructions.md#blocker-to-waypoint-policy) rather than citing it anyway.
 - A true external reference cannot always be re-verified live. When it can't, mark it with an as-of date (`as of 03-09-2026`) instead of asserting it is still current — this tells a later reader the citation is a snapshot, not a live guarantee.
 - Never assert a fact about an external reference's content beyond what was actually read or quoted. If only a title or URL is known, say so plainly rather than inferring the content.
 
