@@ -53,6 +53,12 @@ Common workflow-tools validation anchors:
 
 Record validation results in the final response. If a validation command cannot run, report the exact blocker and the strongest evidence gathered instead.
 
+## Problem and Feedback Visibility
+
+When a turn reveals an unexpected tool behavior, contradictory evidence, stale instruction, or another deferred issue that is not being fixed in the same response, record it through `feedback_ingest` before continuing. Use `source: "agent"`, target the relevant entity URN when one exists, and otherwise point at the tool or file most responsible. This is for genuinely surprising problems and tooling drift, not for the normal blockers that are already being resolved in the active task.
+
+Before closing any substantive response, derive a best-effort current turn from the live session skeleton, call `feedback_session_summary` with the current `session_id` and that `turn_sequence`, and surface the result in the closing traceability footer as `| feedback: <n> new entries this turn` or `| feedback: none`. Do not silently omit the summary. The canonical rule lives in `.agents/instructions/workflow/feedback-turn-visibility.instructions.md`.
+
 ## Guidance Authoring
 
 Guidance files should be small, owned, and easy to route:

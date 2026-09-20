@@ -1,0 +1,6 @@
+id = "a880d8ad-151b-4adc-b495-283cceb43ecc"
+created_at = "2026-09-09T17:22:42.966987800+00:00"
+title = "Add Markdown link-coherence rule to audit tool"
+state = "planning"
+type = "task"
+component = "workflow-tools"
