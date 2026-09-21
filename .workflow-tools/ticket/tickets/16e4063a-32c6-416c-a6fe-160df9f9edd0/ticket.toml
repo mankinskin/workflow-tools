@@ -1,0 +1,11 @@
+id = "16e4063a-32c6-416c-a6fe-160df9f9edd0"
+created_at = "2026-07-27T13:50:27.033006300+00:00"
+title = "Track-scoped multi-session execution"
+state = "planning"
+blocks = ["185a00a2-a849-48b1-b4ce-08cc8fd3552d", "3a77487e-71c9-41bb-b584-d8b2c076e177", "490f1cbc-8ae9-434a-9eef-d09433b25798", "648a64a6-5bea-41a1-b31f-2a4b0ed9d6fc", "7bb007e9-be8d-4821-a91a-f25a00dcbdbc", "938a7ae9-570e-40c4-91f5-d32d2fae0b4f", "9cd9440e-ec01-47db-a67f-ec0ee9509ac7", "ab02e15a-df68-41bc-a2dc-638f1fd01694", "b43363e1-a89e-4c7e-a540-304d04eaa3f9", "be1552ba-99d8-4b9b-ac86-4163f5c5af54", "c410ca60-e079-430c-93b0-5db144dd99ad", "fd7737ec-814b-4ba1-a9da-33db36cdea94"]
+component = "session"
+depends_on = ["0a45bedb-6dfe-466e-893f-fddfd225f1f6", "3eaceaae-254e-4a9f-ab19-c1eed2080931"]
+linked = ["effba966-f0a8-4d7d-b289-b7feba826cf8"]
+risk_level = "high"
+status = "new"
+type = "epic"

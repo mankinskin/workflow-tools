@@ -1,0 +1,11 @@
+{"rev":1,"ts":"2026-03-29T05:12:16.441528900+00:00","fields":{"state":"open","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-03-29T06:49:15.948844+00:00","fields":{"state":"in-refinement","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-03-29T06:49:16.116745700+00:00","fields":{"state":"planned","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-03-29T06:52:41.058987500+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-03-29T06:53:24.124305600+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":6,"ts":"2026-03-29T06:53:37.513910700+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Panel Interaction (3D Ray-Cast Hit Testing + Input)","type":"tracker-improvement"}}
+{"rev":7,"ts":"2026-03-29T07:48:47.433899800+00:00","fields":{"priority":"high","state":"planned","title":"Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling","type":"tracker-improvement"}}
+{"rev":8,"ts":"2026-03-29T23:54:00.668848500+00:00","fields":{"priority":"high","state":"in-implementation","title":"Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling","type":"tracker-improvement"}}
+{"rev":9,"ts":"2026-03-29T23:57:46.973513200+00:00","fields":{"priority":"high","state":"in-review","title":"Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling","type":"tracker-improvement"}}
+{"rev":10,"ts":"2026-03-29T23:57:47.552282300+00:00","fields":{"priority":"high","state":"in-validation","title":"Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling","type":"tracker-improvement"}}
+{"rev":11,"ts":"2026-03-29T23:57:48.096713400+00:00","fields":{"priority":"high","state":"done","title":"Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling","type":"tracker-improvement"}}

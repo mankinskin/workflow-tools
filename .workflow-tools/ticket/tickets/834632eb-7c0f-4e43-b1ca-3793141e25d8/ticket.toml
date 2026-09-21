@@ -1,0 +1,9 @@
+id = "834632eb-7c0f-4e43-b1ca-3793141e25d8"
+created_at = "2026-06-17T14:04:04.025455900+00:00"
+title = "[architecture][observability] CLI and MCP extended error envelope adoption"
+state = "planning"
+depends_on = ["d8b5cfd0-8516-4dbe-84da-be112f6e5a57"]
+effort = "2500"
+priority = "high"
+type = "tracker-improvement"
+component = "rule"

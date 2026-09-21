@@ -1,0 +1,7 @@
+id = "1ff57502-ad4e-4c40-a852-18752c18f44c"
+created_at = "2026-08-04T13:23:36.091265+00:00"
+title = "[ticket-api] Defer inverse \"sessions that worked on this ticket\" query to a follow-up ticket"
+state = "backlog"
+depends_on = ["bba9b313-ff13-4fd1-91d4-6485a6c2f4de"]
+type = "task"
+component = "interview"

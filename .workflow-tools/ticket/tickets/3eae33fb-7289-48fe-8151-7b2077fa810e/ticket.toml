@@ -1,0 +1,11 @@
+id = "3eae33fb-7289-48fe-8151-7b2077fa810e"
+created_at = "2026-08-06T00:21:28.440829300+00:00"
+title = "Plan schema modernization release validation"
+state = "planning"
+depends_on = ["2def6b85-63f6-4e00-a9c0-ae05e3369f48"]
+effort = "1500"
+priority = "high"
+target_schema_type = "planning"
+type = "tracker-improvement"
+workflow_role = "planning"
+component = "rule"

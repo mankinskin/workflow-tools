@@ -1,0 +1,7 @@
+id = "577df498-d468-448f-afc1-3e35e48e5f12"
+created_at = "2026-06-02T15:26:28.587294500+00:00"
+title = "[workflow] Homogeneously migrate remaining expectation-oriented specs and tickets"
+state = "done"
+depends_on = ["6e5306fb-c1b3-4aec-991d-fabaf3096e23"]
+type = "tracker-improvement"
+component = "doc"

@@ -1,0 +1,5 @@
+{"rev":1,"ts":"2026-05-25T22:17:02.315945100+00:00","fields":{"state":"open","title":"[spec] Migrate shared workflow validation sections to spec-doc rules","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-05-25T22:17:06.245961600+00:00","fields":{"state":"planned","title":"[spec] Migrate shared workflow validation sections to spec-doc rules","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-05-25T22:17:06.310083+00:00","fields":{"state":"in-implementation","title":"[spec] Migrate shared workflow validation sections to spec-doc rules","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-05-25T22:22:59.776856+00:00","fields":{"state":"in-review","title":"[spec] Migrate shared workflow validation sections to spec-doc rules","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-05-25T22:22:59.840444200+00:00","fields":{"state":"done","title":"[spec] Migrate shared workflow validation sections to spec-doc rules","type":"tracker-improvement"}}

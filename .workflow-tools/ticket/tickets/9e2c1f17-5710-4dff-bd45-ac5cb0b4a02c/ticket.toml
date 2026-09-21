@@ -1,0 +1,11 @@
+id = "9e2c1f17-5710-4dff-bd45-ac5cb0b4a02c"
+created_at = "2026-08-06T00:21:27.989961900+00:00"
+title = "Plan catalog-driven client implementation"
+state = "planning"
+depends_on = ["5e1e799e-860c-43f3-ac1a-598d29780b23"]
+effort = "1500"
+priority = "high"
+target_schema_type = "planning"
+type = "tracker-improvement"
+workflow_role = "planning"
+component = "log"

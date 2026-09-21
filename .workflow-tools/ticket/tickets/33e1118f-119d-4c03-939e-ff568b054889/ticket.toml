@@ -1,0 +1,10 @@
+id = "33e1118f-119d-4c03-939e-ff568b054889"
+created_at = "2026-08-05T13:48:33.671012700+00:00"
+title = "Phase 2: Establish test foundations"
+state = "planning"
+component = "test"
+depends_on = ["274c5119-02cb-4306-b017-b998659ea514", "45671e0e-24d6-4f51-b216-07e80f2ff302", "7c3e47db-90fa-4ad1-8f0d-b52deaeb65b8", "905d05ae-b367-44f8-9988-a671702d8a32", "956485ad-2e80-4a4c-b5ec-42bac2c7c295", "a0bc8bd8-3fe0-4768-a895-b1bacee42759", "a72e3aca-1e95-4fc5-a5b9-701112dcc37e", "c01ace60-4794-48fd-a22c-f4745ad2ca3c", "e26373a3-3049-43e0-8b2f-f55867cf39d2", "e9109814-45e9-4597-a55a-be736325c18e", "eab4cd40-e8b3-4d5e-8985-91e3ffce519b", "eea328bf-339e-4d1a-b88b-ee1ec1bc9192"]
+effort = "4000"
+linked = ["124c6621-b39d-4009-b599-a3e5503d08f6", "274c5119-02cb-4306-b017-b998659ea514", "45671e0e-24d6-4f51-b216-07e80f2ff302", "6f3dcdfc-bf2f-45d7-9776-0f0a360ac199", "7c3e47db-90fa-4ad1-8f0d-b52deaeb65b8", "905d05ae-b367-44f8-9988-a671702d8a32", "956485ad-2e80-4a4c-b5ec-42bac2c7c295", "a0bc8bd8-3fe0-4768-a895-b1bacee42759", "a72e3aca-1e95-4fc5-a5b9-701112dcc37e", "c01ace60-4794-48fd-a22c-f4745ad2ca3c", "e26373a3-3049-43e0-8b2f-f55867cf39d2", "eab4cd40-e8b3-4d5e-8985-91e3ffce519b", "eea328bf-339e-4d1a-b88b-ee1ec1bc9192"]
+priority = "high"
+type = "task"

@@ -1,0 +1,1 @@
+Adopt the Entity Kernel contracts in rule-api. Preserve existing rule and generated-target schemas, including the existing multiple-entity-type domain shape. Wire domain manifest activation/versioning and generic kernel contracts without changing rule business fields.

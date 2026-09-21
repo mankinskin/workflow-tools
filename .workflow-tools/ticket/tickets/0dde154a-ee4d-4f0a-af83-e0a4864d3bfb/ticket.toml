@@ -1,0 +1,7 @@
+id = "0dde154a-ee4d-4f0a-af83-e0a4864d3bfb"
+created_at = "2026-06-08T18:58:10.165353100+00:00"
+title = "[peek-cli] --grep does not support regex alternation (\\\\|)"
+state = "planning"
+effort = "1200"
+type = "bug"
+component = "doc"

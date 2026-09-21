@@ -1,0 +1,8 @@
+id = "780a6aa1-e4d6-43fb-a923-9fbb275fcece"
+created_at = "2026-08-13T19:10:02.619696400+00:00"
+title = "Add a pre-dispatch gate set for read-only research delegations"
+state = "planning"
+component = "doc"
+priority = "medium"
+risk_level = "low"
+type = "task"

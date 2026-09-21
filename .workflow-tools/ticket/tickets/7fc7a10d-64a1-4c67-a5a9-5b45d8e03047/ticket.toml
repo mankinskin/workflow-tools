@@ -1,0 +1,11 @@
+id = "7fc7a10d-64a1-4c67-a5a9-5b45d8e03047"
+created_at = "2026-06-05T14:32:26.534811800+00:00"
+title = "Project tracker: expressive ticket query and ordering interface"
+state = "planning"
+component = "ticket"
+depends_on = ["8ab31960-f3fa-4a2b-b2ac-f807e1a15fdc", "f6aa9048-c300-4f64-bf20-157d439dd7ca"]
+effort = "1200"
+priority = "high"
+risk_level = "medium"
+tags = "ticket,query,ordering,search,workflow,combinators"
+type = "tracker-improvement"

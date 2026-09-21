@@ -1,0 +1,8 @@
+id = "db3ebe07-6517-4625-9652-538b0681890f"
+created_at = "2026-09-01T14:46:06.564133300+00:00"
+title = "Eliminate \"default\" as an ambient workspace_slug/workspace-selector value across entity stores"
+state = "planning"
+linked = ["31e70dab-c379-47a9-8164-77bcb50b038d", "db6980d1-38bf-4819-8c07-b6db09229c1c"]
+parts = [{ id = "0b6cd40a-ba11-4a7d-901a-b04e28b81f72", kind = "resolution", path = "parts/0b6cd40a-ba11-4a7d-901a-b04e28b81f72.md", frozen = false, created_at = "2026-09-01T14:59:19.084907Z" }]
+type = "bug"
+component = "workflow-tools"

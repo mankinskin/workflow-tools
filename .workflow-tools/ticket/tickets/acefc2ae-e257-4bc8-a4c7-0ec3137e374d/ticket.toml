@@ -1,0 +1,9 @@
+id = "acefc2ae-e257-4bc8-a4c7-0ec3137e374d"
+created_at = "2026-06-17T14:47:41.392228700+00:00"
+title = "[ticket-api] Validation-aware dependency requirements and health model"
+state = "planning"
+effort = "800"
+linked = ["6f3dcdfc-bf2f-45d7-9776-0f0a360ac199"]
+priority = "high"
+type = "tracker-improvement"
+component = "spec"

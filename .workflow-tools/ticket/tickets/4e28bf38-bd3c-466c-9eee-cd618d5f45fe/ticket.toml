@@ -1,0 +1,8 @@
+id = "4e28bf38-bd3c-466c-9eee-cd618d5f45fe"
+created_at = "2026-04-09T13:48:39.342045300+00:00"
+title = "[AOH] Epic: Agent Orchestration Harness — Complete Agentic Workflow System"
+state = "cancelled"
+depends_on = ["0135d961-c76b-44d2-97d6-c3f08ee7d806", "02412b9a-bccd-46f7-bded-0fbd7a067478", "09b68366-486e-4e39-a610-1d14676368aa", "1b681754-84bf-4d4c-934a-e31c67eb91f4", "34bc4938-fe4a-4ab1-94da-9d8d3697b268", "49d6fe2e-e205-402a-84a6-7acb9c61e27c", "51471c3e-a088-47d4-9922-ba49d914af17", "5af54f6c-6192-49d8-8a35-c8581066a586", "65d8e6c7-78ea-48ce-a6bd-8bc1eb712c4f", "6e6b8cf6-3dd8-4b82-939e-a879248271ce", "7cf1044a-ae6a-4d08-a96f-436a5d4d9863", "89701593-7e97-470e-b836-ee28866515fd", "8c185de3-88f9-4565-915e-220d5656d9ac", "8db8ef2f-e33c-4234-a39a-64a481b27984", "a8632357-fce3-4191-9283-3de2b53c2e82", "a92569e5-3582-4191-9513-80ce6938cda4", "cba080b5-3c38-495d-8b67-d690b52de4d6", "d0cc3c8b-efc8-44c4-bbca-5daf4ddcdb8b", "d3f76335-15de-40e7-97ef-18c400e32268", "d45826cd-18dd-446c-a4dc-cc94050ad780", "d5ced7e2-fc67-4a37-a621-96a54a71e51f", "db784443-2e6c-4665-8e29-8e334ff74ffc", "dd5872f4-0267-42f2-a896-29403db2f47a", "f345b954-7b4b-4d90-84cf-c6d7099dfa4f", "f3c6ed90-18a5-4bdb-8d76-9070ec24d3aa", "ffa5361a-892f-4e9d-9aa7-f79ed8f97638"]
+priority = "high"
+type = "tracker-improvement"
+component = "doc"

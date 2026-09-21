@@ -1,0 +1,9 @@
+id = "01ebb34b-7559-4b87-b535-ad6f44354b57"
+created_at = "2026-07-28T13:21:51.353626200+00:00"
+title = "T0: PDF crate verification spike (versions, licenses, capability coverage)"
+state = "cancelled"
+component = "doc"
+effort = "1500"
+parts = [{ id = "1ea6d81f-d2b1-4899-8221-302fccb82ea7", kind = "objective", path = "parts/1ea6d81f-d2b1-4899-8221-302fccb82ea7.md", frozen = false, created_at = "2026-07-30T21:02:31.475775200Z" }, { id = "f73038b1-0568-403f-80e9-5907d7023575", kind = "validation", path = "parts/f73038b1-0568-403f-80e9-5907d7023575.md", frozen = false, created_at = "2026-07-30T21:02:31.480076700Z" }]
+risk_level = "low"
+type = "task"

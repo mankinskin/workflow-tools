@@ -1,0 +1,11 @@
+id = "9019477b-586d-4f42-ad57-04e0ff6b9b53"
+created_at = "2026-08-06T00:21:27.783024900+00:00"
+title = "Plan resolved catalog and JSON built-ins implementation"
+state = "planning"
+depends_on = ["0887b8d6-8c2a-46ee-9550-90b55720a757"]
+effort = "1500"
+priority = "high"
+target_schema_type = "planning"
+type = "tracker-improvement"
+workflow_role = "planning"
+component = "log"

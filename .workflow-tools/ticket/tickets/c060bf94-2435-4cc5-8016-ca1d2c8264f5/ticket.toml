@@ -1,0 +1,11 @@
+id = "c060bf94-2435-4cc5-8016-ca1d2c8264f5"
+created_at = "2026-07-31T18:47:11.757809200+00:00"
+title = "[ticket-api][board][session-api] Bind board entries to sessions and worktrees; add active-worktree discovery"
+state = "done"
+component = "ticket"
+depends_on = ["e38c258e-4502-4a92-95c7-1dac38fd24b7"]
+linked = ["fa2ba34b-59ec-4321-a4ce-a3c3a9295ea3"]
+parts = [{ id = "b0137c52-77bb-4cd7-a398-b7010d5870e8", kind = "objective", path = "parts/b0137c52-77bb-4cd7-a398-b7010d5870e8.md", frozen = true, created_at = "2026-07-31T18:47:37.797955800Z" }, { id = "2caf1c9d-d13e-4fda-8308-33644c86ff18", kind = "requirements", path = "parts/2caf1c9d-d13e-4fda-8308-33644c86ff18.md", frozen = true, created_at = "2026-07-31T18:47:37.798263800Z" }, { id = "89077d4f-83ed-4239-b9a8-14c3a8f3212e", kind = "design", path = "parts/89077d4f-83ed-4239-b9a8-14c3a8f3212e.md", frozen = true, created_at = "2026-07-31T18:47:37.798877700Z" }, { id = "cd314a81-f17b-453c-97a5-b811a6cef3af", kind = "examples", path = "parts/cd314a81-f17b-453c-97a5-b811a6cef3af.md", frozen = true, created_at = "2026-07-31T18:47:37.799162300Z" }, { id = "76666bf5-2ad3-4c38-80f9-6e38374474c8", kind = "acceptance_criteria", path = "parts/76666bf5-2ad3-4c38-80f9-6e38374474c8.md", frozen = true, created_at = "2026-07-31T18:47:37.799399300Z" }, { id = "a68aee77-8c1c-4b27-a633-12a6fdca4eb8", kind = "review", path = "parts/a68aee77-8c1c-4b27-a633-12a6fdca4eb8.md", frozen = false, created_at = "2026-07-31T19:22:38.976872800Z" }, { id = "a9d922af-f122-4d38-9fb5-65d27bfa2e41", kind = "extension", path = "parts/a9d922af-f122-4d38-9fb5-65d27bfa2e41.md", frozen = false, created_at = "2026-08-06T14:10:51.860959900Z" }, { id = "275d9b7a-ecb1-4cb1-92f7-d1e45e7b8ab0", kind = "notes", path = "parts/275d9b7a-ecb1-4cb1-92f7-d1e45e7b8ab0.md", frozen = false, created_at = "2026-08-06T15:16:16.183341100Z" }]
+plan_revision = 1
+priority = "high"
+type = "feature"

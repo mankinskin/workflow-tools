@@ -1,0 +1,7 @@
+id = "2e52bd26-1a93-4c62-b712-024a567a934a"
+created_at = "2026-05-17T10:11:38.245536900+00:00"
+title = "[handoff][ticket-workflow] Work package: regression-resistant best-next-ticket workflow"
+state = "done"
+depends_on = ["51671748-8933-4955-9bf4-7bdea961df40"]
+type = "tracker-improvement"
+component = "doc"

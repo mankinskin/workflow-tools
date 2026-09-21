@@ -1,0 +1,8 @@
+id = "7bb007e9-be8d-4821-a91a-f25a00dcbdbc"
+created_at = "2026-07-27T13:50:27.184418300+00:00"
+title = "Blocking goal-conformance gate on handoff"
+state = "planning"
+component = "session"
+depends_on = ["0647a212-9d2e-4943-9627-f854ce3f14c4", "ab02e15a-df68-41bc-a2dc-638f1fd01694", "d3af78d7-9486-43c0-aae7-ddd5681d9807"]
+risk_level = "high"
+type = "task"

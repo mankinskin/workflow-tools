@@ -1,0 +1,12 @@
+id = "756fed27-96b3-4572-a986-a4f70986984a"
+created_at = "2026-07-02T11:22:26.002568500+00:00"
+title = "[memory-api] Extract shared tracing initialization for all transports"
+state = "done"
+component = "memory-kernel"
+depends_on = ["84673399-75e6-4f36-8a17-4c666001e530"]
+effort = "2.5k tokens"
+priority = "high"
+risk_level = "medium"
+type = "tracker-improvement"
+validation_status = "passed"
+validation_summary = "Extracted shared memory-api transport tracing initializer in memory-api::runtime::init_transport_tracing and wired representative binaries to it: ticket-cli (CLI), ticket-mcp (MCP), and ticket-http/spec-http/doc-http (HTTP). File logging support remains available for ticket-http via the shared helper. Validation passed via cargo check over memory-api, ticket-cli, ticket-http, spec-http, doc-http, and ticket-mcp."

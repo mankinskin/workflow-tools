@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-03-30T20:34:53.466208100+00:00","fields":{"priority":"medium","state":"open","title":"[context-editor][SDF-DAG] Phase 2: DAG-Persistent Edit Operations with Hash Consing","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:24.931111200+00:00","fields":{"depends_on":["52ed521c-2774-40f9-95e1-7deca81d2f09"],"effort":"1200","priority":"medium","state":"open","title":"[context-editor][SDF-DAG] Phase 2: DAG-Persistent Edit Operations with Hash Consing","type":"tracker-improvement"},"author":"github-copilot"}

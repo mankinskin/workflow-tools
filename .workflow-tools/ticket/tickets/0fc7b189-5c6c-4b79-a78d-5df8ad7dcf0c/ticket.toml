@@ -1,0 +1,9 @@
+id = "0fc7b189-5c6c-4b79-a78d-5df8ad7dcf0c"
+created_at = "2026-06-17T15:34:46.861807800+00:00"
+title = "[interview-api] Actionable answer-sheet synthesis and iteration loop"
+state = "planning"
+depends_on = ["7639449a-22a9-4bea-9fcf-517810bc9ddf"]
+effort = "500"
+priority = "high"
+type = "tracker-improvement"
+component = "interview"

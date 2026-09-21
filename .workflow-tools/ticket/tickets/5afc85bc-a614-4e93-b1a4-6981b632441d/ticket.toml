@@ -1,0 +1,11 @@
+id = "5afc85bc-a614-4e93-b1a4-6981b632441d"
+created_at = "2026-08-23T18:13:03.355727900+00:00"
+title = "[spec-system][W6.6] Implement ticket governance and proportional satisfaction"
+state = "planning"
+component = "workflow-tools"
+depends_on = ["30bbbace-7ce3-4f7e-acb4-202d08cf91d7", "50dc45df-0c22-496f-af02-adf4de8e124e", "73b2cd22-942b-4205-86e5-333df2373211"]
+effort = "6500"
+priority = "high"
+risk_level = "high"
+roadmap_status = "scoped"
+type = "tracker-improvement"

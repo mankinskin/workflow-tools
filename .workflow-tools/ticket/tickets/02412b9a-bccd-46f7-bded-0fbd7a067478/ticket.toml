@@ -1,0 +1,7 @@
+id = "02412b9a-bccd-46f7-bded-0fbd7a067478"
+created_at = "2026-04-09T15:24:38.887656700+00:00"
+title = "[AOH][Refinement] Reconcile AOH architecture with existing Phase 2 execution tickets"
+state = "done"
+priority = "high"
+type = "tracker-improvement"
+component = "doc"

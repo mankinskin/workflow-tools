@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-05-03T17:13:17.064907700+00:00","fields":{"state":"open","title":"[LOG-3b] Log full-text search: add search_text MCP tool with regex and context-lines support","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:28.891976200+00:00","fields":{"depends_on":["1d8d82b5-8e40-463f-adaf-30d2f5625844","60a2a388-c8b6-4e25-a80a-0ba686f11bf9"],"effort":"1200","state":"open","title":"[LOG-3b] Log full-text search: add search_text MCP tool with regex and context-lines support","type":"tracker-improvement"},"author":"github-copilot"}

@@ -1,0 +1,8 @@
+id = "f5483b58-732d-44d3-a787-4bd6431dd55c"
+created_at = "2026-09-01T11:31:47.703200200+00:00"
+title = "Run all move benchmarks and compile cross-domain report"
+state = "planning"
+depends_on = ["6d4ac04f-45c9-42a5-8c27-e25be46f36f6", "bb192c09-e693-45d6-b5c7-a7ae5a7b4e79", "d7099a0c-ed63-4c62-bf8c-0eacfdb3b2ec"]
+linked = ["ed079a15-c360-4f4e-ac39-e84f0e530a56"]
+type = "task"
+component = "audit"

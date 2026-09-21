@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-05-03T17:13:37.837297800+00:00","fields":{"state":"open","title":"[LOG-4a] Log-to-Mermaid: convert filtered log session to sequenceDiagram","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:16.117628800+00:00","fields":{"depends_on":["12197242-b7b4-4212-83a8-4b0b65a4bd7b","159a9862-6ea3-4966-a2b1-992e1d03b578"],"effort":"1200","state":"open","title":"[LOG-4a] Log-to-Mermaid: convert filtered log session to sequenceDiagram","type":"tracker-improvement"},"author":"github-copilot"}

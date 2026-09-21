@@ -1,0 +1,6 @@
+id = "37d7fac3-cc7d-44b9-b6e1-f199fca8e901"
+created_at = "2026-07-08T21:08:00.136407900+00:00"
+title = "[repo-guidance][spec-api] Overhaul behavior-first spec contract and guidance"
+state = "done"
+type = "tracker-improvement"
+component = "doc"

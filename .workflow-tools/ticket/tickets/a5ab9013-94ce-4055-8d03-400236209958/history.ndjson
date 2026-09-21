@@ -1,0 +1,14 @@
+{"rev":1,"ts":"2026-03-29T05:12:02.798286400+00:00","fields":{"state":"open","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-03-29T06:49:16.633635600+00:00","fields":{"state":"in-refinement","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-03-29T06:49:16.810766900+00:00","fields":{"state":"planned","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-03-29T06:52:41.386902300+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-03-29T06:53:24.460508300+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":6,"ts":"2026-03-29T06:53:37.896790300+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Rapier Collision Bridge (SVO Chunk Colliders)","type":"tracker-improvement"}}
+{"rev":7,"ts":"2026-03-29T07:48:47.580466100+00:00","fields":{"priority":"high","state":"planned","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":8,"ts":"2026-03-29T08:29:22.596739200+00:00","fields":{"priority":"high","state":"in-implementation","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":9,"ts":"2026-03-29T08:39:25.461576600+00:00","fields":{"priority":"high","state":"in-review","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":10,"ts":"2026-03-29T08:39:30.876845700+00:00","fields":{"priority":"high","state":"in-validation","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":11,"ts":"2026-03-29T08:39:33.067508900+00:00","fields":{"priority":"high","state":"done","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":12,"ts":"2026-03-29T08:50:07.314193500+00:00","fields":{"priority":"high","state":"in-review","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":13,"ts":"2026-03-29T18:32:43.662506800+00:00","fields":{"priority":"high","state":"in-validation","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}
+{"rev":14,"ts":"2026-03-29T18:32:55.036466+00:00","fields":{"priority":"high","state":"done","title":"Rapier Collision Bridge: SVO → Chunk Colliders for Physics","type":"tracker-improvement"}}

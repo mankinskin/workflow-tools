@@ -1,0 +1,12 @@
+id = "9c1de000-0000-4000-8000-000000000009"
+created_at = "2026-07-27T21:02:29.623587100+00:00"
+title = "[guidance][p2] Author the GitHub Copilot / VS Code client profile"
+state = "planning"
+component = "rule"
+depends_on = ["9c1de000-0000-4000-8000-000000000008"]
+effort = "900"
+phase = "2"
+priority = "high"
+risk_level = "medium"
+spec_refs = "43b9a6ac-89d6-479a-876b-3d1a5e2d39e6"
+type = "task"

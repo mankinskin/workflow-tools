@@ -1,0 +1,10 @@
+id = "feb5784c-ece7-40d3-9617-3faee2f6a753"
+created_at = "2026-07-30T14:36:26.476824100+00:00"
+title = "Spec: two-tier Planner/Worker model routing architecture"
+state = "done"
+component = "spec"
+effort = "~2.5k tokens"
+linked = ["9cd886d5-330e-40b4-b972-071e2609fe35"]
+parts = [{ id = "4247d624-0cef-4023-b55b-fa0cd29f1e11", kind = "objective", path = "parts/4247d624-0cef-4023-b55b-fa0cd29f1e11.md", frozen = false, created_at = "2026-07-30T21:02:31.668229400Z" }, { id = "c98e0ff1-11ae-44a7-abbd-1340b110a49f", kind = "notes", path = "parts/c98e0ff1-11ae-44a7-abbd-1340b110a49f.md", frozen = false, created_at = "2026-07-30T21:02:31.672512400Z" }]
+priority = "medium"
+type = "task"

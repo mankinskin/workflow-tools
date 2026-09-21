@@ -1,0 +1,11 @@
+id = "dde37b0b-6e67-4af0-b04c-ce2e81dac529"
+created_at = "2026-03-21T04:43:03.496822500+00:00"
+title = "[bootstrap] add first-class batch commands for bulk ticket/edge operations"
+state = "done"
+acceptance_criteria = "ticket supports first-class batch input via file/stdin without multiline shell scripts; supports bulk create and bulk link operations; includes tests and docs"
+component = "doc"
+interview_file_type = "interview"
+interview_files = { answers = "assets/interviews/answers.md", questions = "assets/interviews/questions.md" }
+risk_level = "medium"
+rollout_stage = "mirror"
+type = "tracker-improvement"

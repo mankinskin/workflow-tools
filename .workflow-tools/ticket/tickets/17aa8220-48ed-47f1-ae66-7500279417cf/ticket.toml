@@ -1,0 +1,11 @@
+id = "17aa8220-48ed-47f1-ae66-7500279417cf"
+created_at = "2026-08-23T18:13:03.009764100+00:00"
+title = "[spec-system][W6.3] Implement TypedTarget, document provider, and projections"
+state = "planning"
+component = "workflow-tools"
+depends_on = ["30bbbace-7ce3-4f7e-acb4-202d08cf91d7"]
+effort = "7000"
+priority = "high"
+risk_level = "high"
+roadmap_status = "scoped"
+type = "tracker-improvement"

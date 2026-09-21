@@ -1,0 +1,11 @@
+id = "88f87410-e0fa-4196-a461-805050670d08"
+created_at = "2026-06-05T14:03:36.372167500+00:00"
+title = "[spec-viewer] Integrate graph improvements (selection, rendering tiers, panel framing, 2D mode)"
+state = "planning"
+component = "spec"
+depends_on = ["254ac30d-26c0-4bfe-8a66-b10ab9e4843a"]
+effort = "1200"
+priority = "high"
+risk_level = "medium"
+tags = "spec-viewer,viewer-api,graph,integration"
+type = "tracker-improvement"

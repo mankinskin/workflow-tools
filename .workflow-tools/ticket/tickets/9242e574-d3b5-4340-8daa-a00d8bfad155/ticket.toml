@@ -1,0 +1,11 @@
+id = "9242e574-d3b5-4340-8daa-a00d8bfad155"
+created_at = "2026-08-06T00:21:28.328358500+00:00"
+title = "Plan legacy migration implementation"
+state = "planning"
+depends_on = ["d8bd4c53-898e-4984-97e5-6ef605569f91"]
+effort = "2k"
+priority = "high"
+target_schema_type = "planning"
+type = "tracker-improvement"
+workflow_role = "planning"
+component = "rule"

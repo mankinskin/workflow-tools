@@ -1,0 +1,1 @@
+Adopt the Entity Kernel in rule-api using its existing multi-entity-type shape (`rule-entry`, `generated-target`). Preserve rule business schemas. Add a rule domain manifest adapter with independent entity-type versions/activation and focused compatibility tests.

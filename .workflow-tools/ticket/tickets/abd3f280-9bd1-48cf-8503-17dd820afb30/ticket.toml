@@ -1,0 +1,12 @@
+id = "abd3f280-9bd1-48cf-8503-17dd820afb30"
+created_at = "2026-08-05T22:28:21.026322700+00:00"
+title = "Generate resolved schema catalog and JSON built-ins"
+state = "planning"
+component = "ticket"
+depends_on = ["1f8e6e6d-c8ea-461d-83c9-c26daf0e3cd3", "9019477b-586d-4f42-ad57-04e0ff6b9b53"]
+effort = "3k"
+priority = "high"
+risk_level = "medium"
+target_schema_type = "implementation"
+type = "tracker-improvement"
+workflow_role = "implementation"

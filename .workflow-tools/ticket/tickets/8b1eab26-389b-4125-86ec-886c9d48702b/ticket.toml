@@ -1,0 +1,9 @@
+id = "8b1eab26-389b-4125-86ec-886c9d48702b"
+created_at = "2026-07-04T06:07:07.529886800+00:00"
+title = "[observability][contract] Define deterministic replay vs profiling evidence boundary"
+state = "done"
+component = "log"
+effort = "1k tokens"
+parts = [{ id = "ed81d782-8f67-4f29-85e4-697fdfa44983", kind = "objective", path = "parts/ed81d782-8f67-4f29-85e4-697fdfa44983.md", frozen = false, created_at = "2026-07-30T21:02:28.827612700Z" }, { id = "7f270196-c8a0-4125-9650-4970f5e5ee56", kind = "validation", path = "parts/7f270196-c8a0-4125-9650-4970f5e5ee56.md", frozen = false, created_at = "2026-07-30T21:02:28.831426200Z" }, { id = "fd001378-52c2-41a2-8eb4-55321a925a76", kind = "objective", path = "parts/fd001378-52c2-41a2-8eb4-55321a925a76.md", frozen = false, created_at = "2026-07-30T21:02:28.835222900Z" }]
+priority = "high"
+type = "tracker-improvement"

@@ -1,0 +1,9 @@
+id = "53b14bf8-3243-4cd6-909e-17c431812441"
+created_at = "2026-08-15T15:04:42.340133900+00:00"
+title = "[workflow-tools] Rename reference CLI binary to bare domain name"
+state = "done"
+linked = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9"]
+parts = [{ id = "1bc36492-95e5-4745-b37a-b0733023d231", kind = "objective", path = "parts/1bc36492-95e5-4745-b37a-b0733023d231.md", frozen = true, created_at = "2026-08-15T15:04:49.305483100Z" }, { id = "45ece300-8746-4430-85ff-27d55c9b029b", kind = "requirements", path = "parts/45ece300-8746-4430-85ff-27d55c9b029b.md", frozen = true, created_at = "2026-08-15T15:08:58.659886200Z" }, { id = "37dbbeb4-f8c2-4b88-b1dd-df5af48bda96", kind = "design", path = "parts/37dbbeb4-f8c2-4b88-b1dd-df5af48bda96.md", frozen = true, created_at = "2026-08-15T15:08:58.660359400Z" }, { id = "d205b7ed-5fc5-44bc-bf36-06d2e0ddba6b", kind = "examples", path = "parts/d205b7ed-5fc5-44bc-bf36-06d2e0ddba6b.md", frozen = true, created_at = "2026-08-15T15:08:58.660608700Z" }, { id = "706db88c-716b-49ac-8620-43f3ad38c43e", kind = "acceptance_criteria", path = "parts/706db88c-716b-49ac-8620-43f3ad38c43e.md", frozen = true, created_at = "2026-08-15T15:08:58.660777600Z" }, { id = "6605b7d1-0dc6-46af-b085-3dabedea8bbe", kind = "review", path = "parts/6605b7d1-0dc6-46af-b085-3dabedea8bbe.md", frozen = false, created_at = "2026-08-15T15:25:29.483018700Z" }]
+plan_revision = 1
+type = "bug"
+component = "workflow-tools"

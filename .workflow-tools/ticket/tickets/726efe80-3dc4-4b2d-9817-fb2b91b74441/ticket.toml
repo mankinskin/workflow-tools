@@ -1,0 +1,9 @@
+id = "726efe80-3dc4-4b2d-9817-fb2b91b74441"
+created_at = "2026-06-17T14:04:04.178132+00:00"
+title = "[architecture][observability] HTTP extended error envelope adoption"
+state = "planning"
+depends_on = ["d8b5cfd0-8516-4dbe-84da-be112f6e5a57"]
+effort = "2200"
+priority = "high"
+type = "tracker-improvement"
+component = "spec"

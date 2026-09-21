@@ -1,0 +1,11 @@
+id = "e12d8343-24f2-4b5d-8023-5a071238904a"
+created_at = "2026-07-25T13:55:02.635084500+00:00"
+title = "[workflow-tools][foundations] Extract shared storage kernel into memory-kernel repository"
+state = "done"
+component = "memory-kernel"
+depends_on = ["4f284d45-e520-4d22-945e-f54bdd3c0175"]
+effort = "2200"
+linked = ["13912e44-fee8-4aa5-b28f-68bbc22af401", "2b1279bd-c42f-4b0e-8835-d0d645a733ab"]
+priority = "high"
+risk_level = "high"
+type = "task"

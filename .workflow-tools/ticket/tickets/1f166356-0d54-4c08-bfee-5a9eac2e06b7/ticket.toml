@@ -1,0 +1,8 @@
+id = "1f166356-0d54-4c08-bfee-5a9eac2e06b7"
+created_at = "2026-08-05T13:49:15.445817400+00:00"
+title = "Define model rejection guidance for spec 9f0b9e30"
+state = "planning"
+component = "spec"
+effort = "4000"
+priority = "high"
+type = "task"

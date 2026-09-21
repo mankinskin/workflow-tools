@@ -1,0 +1,7 @@
+id = "eb687360-5765-4efb-b3d6-380a7691fc66"
+created_at = "2026-07-26T01:06:52.997192200+00:00"
+title = "[ticket-api] Review the added 'feature' delivered ticket type schema"
+state = "planning"
+component = "ticket"
+linked = ["a0b59873-abe9-4e62-84a3-c233635b4cd6"]
+type = "task"

@@ -1,0 +1,1 @@
+Implement automated end-to-end regression testing for scaffold prompts, validating generated store correctness, compile/test health, and architecture-conformance checks across representative prompt suites.

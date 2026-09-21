@@ -1,0 +1,9 @@
+id = "d86c66a9-ebe1-4b13-a3a4-87f4246b3062"
+created_at = "2026-06-17T14:03:38.418388700+00:00"
+title = "[architecture][contracts] Domain extension contracts and first provider"
+state = "planning"
+depends_on = ["65ea4528-af24-4300-8e5f-3b68e54711d0"]
+effort = "2600"
+priority = "high"
+type = "tracker-improvement"
+component = "doc"

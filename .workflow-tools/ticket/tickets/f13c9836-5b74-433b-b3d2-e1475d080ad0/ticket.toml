@@ -1,0 +1,9 @@
+id = "f13c9836-5b74-433b-b3d2-e1475d080ad0"
+created_at = "2026-07-30T14:50:14.599834500+00:00"
+title = "[epic] Worker-tier dispatch contract"
+state = "done"
+depends_on = ["1a240fdc-7de2-4494-8714-b2c81de09158", "44c6cc5c-35c0-4cf0-b607-186914c21e5d", "7563ce30-bf9e-43fe-bca5-68473b1d9d79", "feb5784c-ece7-40d3-9617-3faee2f6a753"]
+effort = "~4.8k tokens (rollup)"
+priority = "medium"
+type = "epic"
+component = "log"

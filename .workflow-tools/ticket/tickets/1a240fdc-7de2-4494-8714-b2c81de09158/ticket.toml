@@ -1,0 +1,10 @@
+id = "1a240fdc-7de2-4494-8714-b2c81de09158"
+created_at = "2026-07-30T14:36:26.635243400+00:00"
+title = "Retry-limit escalation policy for worker-tier test failures"
+state = "done"
+component = "spec"
+depends_on = ["feb5784c-ece7-40d3-9617-3faee2f6a753"]
+effort = "~700 tokens"
+parts = [{ id = "c5786e8c-87b0-486f-82c7-4ae59a63d55a", kind = "notes", path = "parts/c5786e8c-87b0-486f-82c7-4ae59a63d55a.md", frozen = false, created_at = "2026-07-30T15:57:21.090898600Z" }]
+priority = "medium"
+type = "feature"

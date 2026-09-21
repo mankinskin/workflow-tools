@@ -1,0 +1,11 @@
+id = "d8bd4c53-898e-4984-97e5-6ef605569f91"
+created_at = "2026-08-05T22:55:35.317215900+00:00"
+title = "Research deterministic legacy-ticket classifier"
+state = "planning"
+depends_on = ["9e7a5f1a-a2ce-43ce-9c8f-bdce7cf712d2"]
+effort = "2k"
+priority = "high"
+target_schema_type = "research"
+type = "tracker-improvement"
+workflow_role = "research"
+component = "interview"

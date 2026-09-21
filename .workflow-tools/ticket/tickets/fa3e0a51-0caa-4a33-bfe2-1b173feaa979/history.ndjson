@@ -1,0 +1,4 @@
+{"rev":1,"ts":"2026-06-17T14:03:38.999232100+00:00","fields":{"effort":"2600","priority":"high","state":"open","title":"[architecture][workspace] Recursive automatic store discovery","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-29T01:15:24.592233700+00:00","fields":{"effort":"2600","priority":"high","state":"in-implementation","title":"[architecture][workspace] Recursive automatic store discovery","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-06-29T01:16:43.580305700+00:00","fields":{"effort":"2600","priority":"high","state":"in-review","title":"[architecture][workspace] Recursive automatic store discovery","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-06-29T01:16:54.364015+00:00","fields":{"effort":"2600","priority":"high","state":"done","title":"[architecture][workspace] Recursive automatic store discovery","type":"tracker-improvement"}}

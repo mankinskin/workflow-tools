@@ -1,0 +1,11 @@
+id = "0887b8d6-8c2a-46ee-9550-90b55720a757"
+created_at = "2026-08-06T00:21:27.596908100+00:00"
+title = "Research resolved catalog and JSON built-ins design"
+state = "planning"
+depends_on = ["1f8e6e6d-c8ea-461d-83c9-c26daf0e3cd3"]
+effort = "1500"
+priority = "high"
+target_schema_type = "research"
+type = "tracker-improvement"
+workflow_role = "research"
+component = "log"

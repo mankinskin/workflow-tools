@@ -1,0 +1,9 @@
+id = "a756fcf5-b1e6-476d-900f-ae2534dcdff3"
+created_at = "2026-08-05T13:50:25.540147400+00:00"
+title = "Test session transport workflows and lease contention"
+state = "planning"
+component = "session"
+depends_on = ["cc516b85-e8fd-4184-83d2-ac3b9b120b49", "e26373a3-3049-43e0-8b2f-f55867cf39d2"]
+effort = "8000"
+priority = "high"
+type = "task"

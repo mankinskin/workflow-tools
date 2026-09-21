@@ -1,0 +1,6 @@
+id = "665b727c-09b1-43e0-8795-eb67e2758aea"
+created_at = "2026-06-03T13:34:36.921184700+00:00"
+title = "[rule-cli][rule-api] Allow rule-targets directories for generate-target configs"
+state = "done"
+type = "tracker-improvement"
+component = "rule"

@@ -1,0 +1,10 @@
+id = "0e375356-b74e-48c4-8f1d-77cd28e055bc"
+created_at = "2026-05-26T21:16:37.643087400+00:00"
+title = "[ticket-api][ticket-cli][ticket-mcp][ticket-http] Implement scoped selectors for board and next"
+state = "done"
+component = "ticket"
+depends_on = ["10cf2a19-356c-4e69-b0f3-b930d68dc0ce", "68a08b34-000b-4585-8354-4b1a26a15f4b", "790df512-d8a9-42bd-b3d6-6e2b4d5eda9c"]
+priority = "high"
+risk_level = "medium"
+tags = "ticket-api,ticket-cli,ticket-mcp,ticket-http,workflow,selector,board,next"
+type = "tracker-improvement"

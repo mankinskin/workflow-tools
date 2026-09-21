@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-08-06T00:21:27.945652300+00:00","fields":{"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research catalog-driven client integration","type":"tracker-improvement","workflow_role":"research"}}
+{"rev":2,"ts":"2026-08-06T00:21:45.270402300+00:00","fields":{"depends_on":["abd3f280-9bd1-48cf-8503-17dd820afb30"],"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research catalog-driven client integration","type":"tracker-improvement","workflow_role":"research"}}

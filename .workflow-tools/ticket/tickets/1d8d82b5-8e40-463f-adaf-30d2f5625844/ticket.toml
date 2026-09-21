@@ -1,0 +1,8 @@
+id = "1d8d82b5-8e40-463f-adaf-30d2f5625844"
+created_at = "2026-05-03T17:11:40.759603800+00:00"
+title = "[LOG-1a] ticket-viewer: wire init_tracing_full with file logging to target/logs/\""
+state = "planning"
+depends_on = ["8f349d96-a307-400b-a90e-3aceb2250166"]
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

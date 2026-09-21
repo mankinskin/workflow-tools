@@ -1,0 +1,12 @@
+id = "1f8e6e6d-c8ea-461d-83c9-c26daf0e3cd3"
+created_at = "2026-08-05T22:28:21.372696400+00:00"
+title = "Add deterministic dual-format schema loading"
+state = "planning"
+component = "ticket"
+depends_on = ["7ef3f8db-d4a9-4135-99eb-3c006070a328", "d4233399-b986-401d-aed1-67c96dec84cf"]
+effort = "3k"
+priority = "high"
+risk_level = "medium"
+target_schema_type = "implementation"
+type = "tracker-improvement"
+workflow_role = "implementation"

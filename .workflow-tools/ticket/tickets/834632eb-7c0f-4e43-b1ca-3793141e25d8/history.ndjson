@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-17T14:04:04.084645100+00:00","fields":{"effort":"2500","priority":"high","state":"open","title":"[architecture][observability] CLI and MCP extended error envelope adoption","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-17T14:04:29.957203600+00:00","fields":{"depends_on":["d8b5cfd0-8516-4dbe-84da-be112f6e5a57"],"effort":"2500","priority":"high","state":"open","title":"[architecture][observability] CLI and MCP extended error envelope adoption","type":"tracker-improvement"}}

@@ -1,0 +1,11 @@
+id = "5584da3b-73a9-495e-b8c4-596d1cd41c78"
+created_at = "2026-09-10T14:27:47.039581+00:00"
+title = "[guidance-installer] Define install-ctl guidance profile and dependency graph contract"
+state = "done"
+acceptance_criteria = "Implement a deterministic guidance profile/recipe contract, typed dependency graph and closure, safe repository/user/system/explicit destination resolution, submodule preference with canonical fallback and rewritten links, plan-before-write behavior, and focused unit/integration evidence for success and rejection cases."
+component = "workflow-tools"
+effort = "12k"
+parts = [{ id = "e6e0e5e6-0e32-4431-83ff-74bba8a6a686", kind = "requirements", path = "parts/e6e0e5e6-0e32-4431-83ff-74bba8a6a686.md", frozen = false, created_at = "2026-09-10T15:08:30.362883700Z" }, { id = "8261262a-ef9e-4914-bc58-3dce2e11df85", kind = "design", path = "parts/8261262a-ef9e-4914-bc58-3dce2e11df85.md", frozen = false, created_at = "2026-09-10T15:08:46.214852900Z" }, { id = "c0e895c1-ca19-4080-bc33-a3547e17d0da", kind = "examples", path = "parts/c0e895c1-ca19-4080-bc33-a3547e17d0da.md", frozen = false, created_at = "2026-09-10T15:09:01.426247100Z" }, { id = "dbe22cfe-b3c3-43d6-90d7-39d9a686c90b", kind = "acceptance_criteria", path = "parts/dbe22cfe-b3c3-43d6-90d7-39d9a686c90b.md", frozen = false, created_at = "2026-09-10T15:09:18.629950800Z" }, { id = "9c1c4b9b-0c1a-454a-b697-9317bfb1adbc", kind = "validation", path = "parts/9c1c4b9b-0c1a-454a-b697-9317bfb1adbc.md", frozen = false, created_at = "2026-09-10T15:09:32.694966400Z" }]
+priority = "high"
+type = "task"
+validation_plan = "cargo test -p install-ctl guidance; cargo run -p install-ctl -- guidance plan --help; cargo run -p install-ctl -- guidance install --help; fixture plan snapshots for corpus, recipe, dependency, destination, submodule, and rejection cases"

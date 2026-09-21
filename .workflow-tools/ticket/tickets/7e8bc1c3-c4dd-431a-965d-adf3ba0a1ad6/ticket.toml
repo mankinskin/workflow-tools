@@ -1,0 +1,9 @@
+id = "7e8bc1c3-c4dd-431a-965d-adf3ba0a1ad6"
+created_at = "2026-07-30T14:50:14.528966200+00:00"
+title = "[epic] Guidance corpus quick-win track"
+state = "done"
+depends_on = ["6426c891-8d9b-40cc-a163-1ec421ce9d62", "95403a71-cb2a-45ea-b48d-3444904e66dd", "9cd886d5-330e-40b4-b972-071e2609fe35"]
+effort = "~4.5k tokens (rollup)"
+priority = "high"
+type = "epic"
+component = "audit"

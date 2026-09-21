@@ -1,0 +1,7 @@
+id = "bc19467f-b4d4-48c3-be92-b551d4fe6679"
+created_at = "2026-06-02T15:00:55.111226900+00:00"
+title = "[workflow] Expectation-oriented spec contract rollout"
+state = "done"
+depends_on = ["577df498-d468-448f-afc1-3e35e48e5f12", "aaa90ee6-1358-41ad-b19e-61abdc3f1dc2", "b744bcf5-05a5-4601-bbe1-caae9d42ea5f"]
+type = "tracker-improvement"
+component = "audit"

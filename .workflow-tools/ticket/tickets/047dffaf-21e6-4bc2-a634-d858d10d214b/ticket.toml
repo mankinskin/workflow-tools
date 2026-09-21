@@ -1,0 +1,11 @@
+id = "047dffaf-21e6-4bc2-a634-d858d10d214b"
+created_at = "2026-08-06T00:21:27.498824200+00:00"
+title = "Research dual-format schema loader design"
+state = "planning"
+depends_on = ["7ef3f8db-d4a9-4135-99eb-3c006070a328"]
+effort = "1500"
+priority = "high"
+target_schema_type = "research"
+type = "tracker-improvement"
+workflow_role = "research"
+component = "ticket"

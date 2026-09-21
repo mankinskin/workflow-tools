@@ -1,0 +1,3 @@
+{"rev":1,"ts":"2026-08-14T13:10:18.974618400+00:00","fields":{"state":"open","title":"session_check_in rejects a single nested worktree unless a persisted assignment exists","type":"bug"}}
+{"rev":2,"ts":"2026-08-14T13:10:26.096618900+00:00","fields":{"component":"session","linked":["7bc328d7-5168-4f93-938d-09e4e09dcdb4"],"priority":"high","state":"open","title":"session_check_in rejects a single nested worktree unless a persisted assignment exists","type":"bug"}}
+{"rev":3,"ts":"2026-08-14T13:10:26.146980800+00:00","fields":{"component":"session","priority":"high","state":"open","title":"session_check_in rejects a single nested worktree unless a persisted assignment exists","type":"bug"}}

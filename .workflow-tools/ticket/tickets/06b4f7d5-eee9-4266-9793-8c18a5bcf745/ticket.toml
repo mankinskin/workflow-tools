@@ -1,0 +1,8 @@
+id = "06b4f7d5-eee9-4266-9793-8c18a5bcf745"
+created_at = "2026-05-21T11:54:17.271407+00:00"
+title = "Project tracker: log tooling and viewer migration"
+state = "planning"
+depends_on = ["12197242-b7b4-4212-83a8-4b0b65a4bd7b", "159a9862-6ea3-4966-a2b1-992e1d03b578", "40a4bc9e-7ecd-4fa4-b842-633891bd5cba", "4c1167a0-9262-4850-bf47-2a6729eb6e76", "501d4932-a48e-4c8a-a4f3-8c31be0bdd23", "5b4330f6-f1d0-4e80-8a3e-296f557c5a99", "6d0dc335-693a-450e-92ba-9cdaa4087afa", "972c239e-e110-49da-9449-8bdcfaea5f18", "b22b2a49-1e3a-40f4-b534-0f5e86610da7", "b3fc711c-8c8d-4e3f-a76b-f00c551d9d49", "bfb95499-ac12-4cd4-808f-879795a938e5", "c179ef57-6866-451d-ba7f-f7923ad1374b", "f37bdd68-b2d7-4c4b-93b9-fa9d4f61c4a6"]
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

@@ -1,0 +1,12 @@
+id = "9c1de000-0000-4000-8000-000000000014"
+created_at = "2026-07-27T21:02:30.522163+00:00"
+title = "[guidance][p3] install-guidance.sh top-level wrapper"
+state = "planning"
+component = "rule"
+depends_on = ["9c1de000-0000-4000-8000-000000000013"]
+effort = "500"
+phase = "3"
+priority = "high"
+risk_level = "low"
+spec_refs = "43b9a6ac-89d6-479a-876b-3d1a5e2d39e6"
+type = "task"

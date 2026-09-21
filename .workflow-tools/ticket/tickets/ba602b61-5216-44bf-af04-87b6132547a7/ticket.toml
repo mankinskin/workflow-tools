@@ -1,0 +1,7 @@
+id = "ba602b61-5216-44bf-af04-87b6132547a7"
+created_at = "2026-08-06T00:22:33.243127800+00:00"
+title = "C — Coordination: overlap reconciliation for tickets e4f84414, 25b5f3e7, 742dbc65, ba8f5528 (non-blocking)"
+state = "planning"
+linked = ["25b5f3e7-cace-4822-a955-bc2e3202be77", "742dbc65-a100-4278-9274-7d99a3e2afc4", "ba8f5528-5af3-4de2-8904-442a4691854a", "e4f84414-ef2e-4012-9cfe-da08fe2c077c"]
+type = "task"
+component = "doc"

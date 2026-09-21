@@ -1,0 +1,10 @@
+id = "8a90a63c-0a07-439f-90e8-9124212b2dc8"
+created_at = "2026-06-17T15:34:31.104224600+00:00"
+title = "[program][multi-store] Store expansion and operational health program"
+state = "planning"
+depends_on = ["66fae806-203d-4235-9151-4272eb0bb603", "913fdd33-77b3-4e40-914a-db6873bf004d", "b1e9e744-aeac-474a-91d9-07e3a362dc76", "bd1c7cc0-2850-418d-b701-981b95c587ee"]
+effort = "2600"
+linked = ["671d4e47-b53d-4a04-aa1d-30f2aa8a2bbe"]
+priority = "high"
+type = "tracker-improvement"
+component = "audit"

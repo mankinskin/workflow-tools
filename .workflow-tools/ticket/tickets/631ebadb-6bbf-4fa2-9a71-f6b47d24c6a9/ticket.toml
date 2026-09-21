@@ -1,0 +1,9 @@
+id = "631ebadb-6bbf-4fa2-9a71-f6b47d24c6a9"
+created_at = "2026-08-05T13:51:06.977982500+00:00"
+title = "Build hardware-adaptive index performance harness"
+state = "planning"
+component = "memory-kernel"
+depends_on = ["f49fbb27-8b76-4f56-85d3-6e7365aa4a45"]
+effort = "4000"
+priority = "medium"
+type = "task"

@@ -1,0 +1,15 @@
+id = "be1a3de7-f44f-496d-b4c6-b4f8a120dc97"
+created_at = "2026-03-21T01:48:38.232903500+00:00"
+title = "[bootstrap] add merge queue scheduler with lease conflict overlay"
+state = "cancelled"
+acceptance_criteria = "merge queue honors dependency and conflict constraints; queue output is machine-readable"
+bootstrap_blocker = "false"
+component = "audit"
+depends_on = ["5e4727f9-53a6-4d36-a98f-4c9a6db81216"]
+doc_category = "research"
+parts = [{ id = "25f3dcf2-ad9d-4daa-83dc-ccae086aadaa", kind = "objective", path = "parts/25f3dcf2-ad9d-4daa-83dc-ccae086aadaa.md", frozen = false, created_at = "2026-07-30T21:05:26.537943200Z" }, { id = "795bb8ab-0b3a-44d5-9f21-6798334d7b61", kind = "validation", path = "parts/795bb8ab-0b3a-44d5-9f21-6798334d7b61.md", frozen = false, created_at = "2026-07-30T21:05:26.541831900Z" }, { id = "f6a2073a-2e4e-47d2-ba21-88ae5acb562d", kind = "objective", path = "parts/f6a2073a-2e4e-47d2-ba21-88ae5acb562d.md", frozen = false, created_at = "2026-07-30T21:05:26.545757Z" }]
+risk_level = "medium"
+rollout_stage = "hybrid"
+source_agent_files = "research/20260320_TASK_TRACKER_PLAN/PROTOCOL_LAYER.md"
+type = "tracker-improvement"
+workflow_stage = "plan"

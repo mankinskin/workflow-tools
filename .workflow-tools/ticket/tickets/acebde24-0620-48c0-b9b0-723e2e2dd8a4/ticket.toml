@@ -1,0 +1,9 @@
+id = "acebde24-0620-48c0-b9b0-723e2e2dd8a4"
+created_at = "2026-08-05T13:51:11.437864500+00:00"
+title = "Repair weak and superseded tests"
+state = "planning"
+component = "test"
+depends_on = ["69525949-295b-4308-afd5-06dd87f4e25c", "b8ff29d0-613a-416f-93d2-d0befc487d17", "c38436d8-08a0-45db-bc49-4aa2906bdf57"]
+effort = "8000"
+priority = "medium"
+type = "task"

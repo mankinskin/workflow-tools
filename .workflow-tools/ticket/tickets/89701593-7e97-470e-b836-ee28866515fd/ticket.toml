@@ -1,0 +1,8 @@
+id = "89701593-7e97-470e-b836-ee28866515fd"
+created_at = "2026-04-09T13:48:40.699569+00:00"
+title = "[AOH][Research] Messaging service APIs for async user interaction"
+state = "done"
+parts = [{ id = "4b2d621b-3aff-4eec-af66-1ccb60ce8d03", kind = "objective", path = "parts/4b2d621b-3aff-4eec-af66-1ccb60ce8d03.md", frozen = false, created_at = "2026-07-30T21:05:26.626150400Z" }, { id = "1a941dcd-7315-4f0f-9f57-7fa67ccaacf6", kind = "notes", path = "parts/1a941dcd-7315-4f0f-9f57-7fa67ccaacf6.md", frozen = false, created_at = "2026-07-30T21:05:26.630225900Z" }, { id = "8ed5e3d8-9362-4572-b8d4-13dabc2b147d", kind = "objective", path = "parts/8ed5e3d8-9362-4572-b8d4-13dabc2b147d.md", frozen = false, created_at = "2026-07-30T21:05:26.633820600Z" }]
+priority = "medium"
+type = "tracker-improvement"
+component = "doc"

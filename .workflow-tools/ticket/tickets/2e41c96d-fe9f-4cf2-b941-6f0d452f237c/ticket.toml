@@ -1,0 +1,10 @@
+id = "2e41c96d-fe9f-4cf2-b941-6f0d452f237c"
+created_at = "2026-07-02T11:22:26.521469+00:00"
+title = "[memory-api] Create domain instrumentation and journaling coverage map"
+state = "done"
+component = "memory-kernel"
+depends_on = ["6c859ac3-14c9-4d9d-b428-5b0cca03e23a", "84673399-75e6-4f36-8a17-4c666001e530"]
+effort = "2k tokens"
+priority = "high"
+risk_level = "medium"
+type = "tracker-improvement"

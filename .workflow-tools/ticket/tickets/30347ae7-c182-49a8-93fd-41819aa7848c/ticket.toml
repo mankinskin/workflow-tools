@@ -1,0 +1,7 @@
+id = "30347ae7-c182-49a8-93fd-41819aa7848c"
+created_at = "2026-08-06T00:22:17.689087500+00:00"
+title = "A — Opt-in legacy handoff migration & re-render support"
+state = "planning"
+linked = ["25b5f3e7-cace-4822-a955-bc2e3202be77"]
+type = "task"
+component = "doc"

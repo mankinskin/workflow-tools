@@ -1,0 +1,12 @@
+id = "52724aed-7215-471b-b2d8-7fb425f5ed61"
+created_at = "2026-08-08T15:12:29.220889200+00:00"
+title = "Startup artifact pollution: MCP servers/viewers must not create stores or log dirs on mere startup in storeless workspaces"
+state = "in-implementation"
+component = "memory-kernel"
+effort = "18k"
+linked = ["fa2ba34b-59ec-4321-a4ce-a3c3a9295ea3"]
+parts = [{ id = "e3df492d-5a7f-401b-9e2a-faa36a3f3de1", kind = "objective", path = "parts/e3df492d-5a7f-401b-9e2a-faa36a3f3de1.md", frozen = true, created_at = "2026-08-08T16:05:42.170837900Z" }, { id = "9f4b7a3b-435f-4951-9c3d-bfb3e3185034", kind = "requirements", path = "parts/9f4b7a3b-435f-4951-9c3d-bfb3e3185034.md", frozen = true, created_at = "2026-08-08T16:05:42.171099400Z" }, { id = "4f8fa5e9-bbba-4ba0-93ff-099c74ff9409", kind = "design", path = "parts/4f8fa5e9-bbba-4ba0-93ff-099c74ff9409.md", frozen = true, created_at = "2026-08-08T16:05:42.171794100Z" }, { id = "70e77676-0bd4-4863-a3f3-507e2a66e01a", kind = "examples", path = "parts/70e77676-0bd4-4863-a3f3-507e2a66e01a.md", frozen = true, created_at = "2026-08-08T16:05:42.172029800Z" }, { id = "991a96ea-8e82-4bb6-9178-f3369fc6a2c3", kind = "acceptance_criteria", path = "parts/991a96ea-8e82-4bb6-9178-f3369fc6a2c3.md", frozen = true, created_at = "2026-08-08T16:05:42.172307Z" }, { id = "35083924-45cf-413c-b014-d400e0216b9c", kind = "notes", path = "parts/35083924-45cf-413c-b014-d400e0216b9c.md", frozen = false, created_at = "2026-08-08T16:10:43.733842500Z" }, { id = "a23aba7e-1fb4-444d-8eea-bd966ff2a683", kind = "review", path = "parts/a23aba7e-1fb4-444d-8eea-bd966ff2a683.md", frozen = false, created_at = "2026-08-08T18:55:09.140328500Z" }, { id = "4c54ce48-4c24-4e5c-84e6-58edf0b253ef", kind = "notes", path = "parts/4c54ce48-4c24-4e5c-84e6-58edf0b253ef.md", frozen = false, created_at = "2026-08-08T18:57:59.552785100Z" }]
+plan_revision = 1
+priority = "high"
+risk_level = "medium"
+type = "bug"

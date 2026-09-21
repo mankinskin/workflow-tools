@@ -1,0 +1,12 @@
+id = "30bbbace-7ce3-4f7e-acb4-202d08cf91d7"
+created_at = "2026-08-23T18:12:16.454937900+00:00"
+title = "[spec-system][W6.1] Implement v2 model, storage, and explicit migration"
+state = "planning"
+component = "spec"
+depends_on = ["73b2cd22-942b-4205-86e5-333df2373211"]
+effort = "10000"
+parts = [{ id = "671bcfd8-2864-46ab-a440-b0836c8aa3db", kind = "notes", path = "parts/671bcfd8-2864-46ab-a440-b0836c8aa3db.md", frozen = false, created_at = "2026-09-09T18:45:58.062342100Z" }]
+priority = "high"
+risk_level = "high"
+roadmap_status = "scoped"
+type = "tracker-improvement"

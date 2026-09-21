@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-05-03T17:14:53.113560500+00:00","fields":{"state":"open","title":"[LOG-5c] Add live-tail view to log-viewer-dioxus: SSE endpoint and real-time browser component","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:29.960609600+00:00","fields":{"depends_on":["1d8d82b5-8e40-463f-adaf-30d2f5625844","972c239e-e110-49da-9449-8bdcfaea5f18"],"effort":"1200","state":"open","title":"[LOG-5c] Add live-tail view to log-viewer-dioxus: SSE endpoint and real-time browser component","type":"tracker-improvement"},"author":"github-copilot"}

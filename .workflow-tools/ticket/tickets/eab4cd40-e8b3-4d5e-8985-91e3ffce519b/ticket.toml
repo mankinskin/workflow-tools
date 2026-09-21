@@ -1,0 +1,11 @@
+id = "eab4cd40-e8b3-4d5e-8985-91e3ffce519b"
+created_at = "2026-07-25T13:57:12.339120300+00:00"
+title = "[workflow-tools][per-tool] Extract test tool as a single `test` domain crate (api + transport bins)"
+state = "planning"
+component = "test"
+depends_on = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9", "1c452ff1-6edc-47c8-a73d-d07ce9b4d473", "866049e7-48c9-4b63-b0d2-dd4f987823dd", "a6d38372-0df2-437b-b06d-3984c290dbd1", "dbe0e955-c1b4-414d-820c-10c3fbbb5d3d"]
+effort = "1200"
+parts = [{ id = "6a46bcc2-38ed-428d-8ef7-8dc2a0193fc1", kind = "implementation_plan", path = "parts/6a46bcc2-38ed-428d-8ef7-8dc2a0193fc1.md", frozen = false, created_at = "2026-08-13T17:28:47.166152100Z" }, { id = "3e2d484d-52a1-4d5a-aa32-b508e8925614", kind = "amendment", path = "parts/3e2d484d-52a1-4d5a-aa32-b508e8925614.md", frozen = false, created_at = "2026-08-19T00:36:16.604035500Z", supersedes = "6a46bcc2-38ed-428d-8ef7-8dc2a0193fc1" }]
+priority = "high"
+risk_level = "medium"
+type = "task"

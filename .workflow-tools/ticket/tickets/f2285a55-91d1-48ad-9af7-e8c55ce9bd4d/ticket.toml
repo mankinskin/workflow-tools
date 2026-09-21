@@ -1,0 +1,10 @@
+id = "f2285a55-91d1-48ad-9af7-e8c55ce9bd4d"
+created_at = "2026-05-13T13:14:03.450537900+00:00"
+title = "[spec] spec-api <-> ticket-api: link component entities and detect drift"
+state = "planning"
+acceptance_criteria = "Canonical component mapping between spec-api and ticket-api; health check detects stale, unknown, and newly inserted component values including log-viewer-leptos"
+component = "ticket"
+depends_on = ["f22d5297-3f60-4161-bf90-1eb56f3ced5d"]
+effort = "1200"
+risk_level = "high"
+type = "tracker-improvement"

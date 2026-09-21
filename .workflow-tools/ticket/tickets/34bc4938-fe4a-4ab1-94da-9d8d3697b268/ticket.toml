@@ -1,0 +1,9 @@
+id = "34bc4938-fe4a-4ab1-94da-9d8d3697b268"
+created_at = "2026-04-09T13:48:41.108406100+00:00"
+title = "[AOH][Design] Full system architecture — orchestrator, sessions, sandbox, messaging, PR"
+state = "done"
+depends_on = ["02412b9a-bccd-46f7-bded-0fbd7a067478", "09b68366-486e-4e39-a610-1d14676368aa", "1b681754-84bf-4d4c-934a-e31c67eb91f4", "49d6fe2e-e205-402a-84a6-7acb9c61e27c", "65d8e6c7-78ea-48ce-a6bd-8bc1eb712c4f", "7cf1044a-ae6a-4d08-a96f-436a5d4d9863", "89701593-7e97-470e-b836-ee28866515fd", "cba080b5-3c38-495d-8b67-d690b52de4d6", "d3f76335-15de-40e7-97ef-18c400e32268", "d45826cd-18dd-446c-a4dc-cc94050ad780", "db784443-2e6c-4665-8e29-8e334ff74ffc", "f345b954-7b4b-4d90-84cf-c6d7099dfa4f", "f3c6ed90-18a5-4bdb-8d76-9070ec24d3aa", "ffa5361a-892f-4e9d-9aa7-f79ed8f97638"]
+parts = [{ id = "fa2c5684-7956-49fa-995c-1970eb58a1ed", kind = "objective", path = "parts/fa2c5684-7956-49fa-995c-1970eb58a1ed.md", frozen = false, created_at = "2026-07-30T21:05:26.801693600Z" }, { id = "5d35795f-d132-4d5e-b09e-bed7d4b35897", kind = "notes", path = "parts/5d35795f-d132-4d5e-b09e-bed7d4b35897.md", frozen = false, created_at = "2026-07-30T21:05:26.805820600Z" }, { id = "f3c6b333-8701-4651-a538-b01402e96a1a", kind = "objective", path = "parts/f3c6b333-8701-4651-a538-b01402e96a1a.md", frozen = false, created_at = "2026-07-30T21:05:26.809535900Z" }]
+priority = "high"
+type = "tracker-improvement"
+component = "audit"

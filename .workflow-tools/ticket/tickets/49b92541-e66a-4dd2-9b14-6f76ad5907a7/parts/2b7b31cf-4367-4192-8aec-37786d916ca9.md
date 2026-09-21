@@ -1,0 +1,1 @@
+Adopt the Entity Kernel contracts in spec-api. Preserve specification business schemas and cross-store references. Wire domain/entity schema metadata, external URN constraints, migration adapter, hooks, workspace capability reporting, and ticket+spec composed migration fixture.

@@ -1,0 +1,9 @@
+id = "c64f2384-0a65-420e-9dfc-e8814f111805"
+created_at = "2026-06-24T11:33:21.700956500+00:00"
+title = "[memory-index] Spec index: single-line hierarchical entries, collapsible component groups, clickable spec links"
+state = "planning"
+component = "spec"
+depends_on = ["b9757ba7-3b2c-4f92-919d-f3c443ceb69c"]
+effort = "2800"
+priority = "high"
+type = "tracker-improvement"

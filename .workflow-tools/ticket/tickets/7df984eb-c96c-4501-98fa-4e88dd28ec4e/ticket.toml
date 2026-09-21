@@ -1,0 +1,12 @@
+id = "7df984eb-c96c-4501-98fa-4e88dd28ec4e"
+created_at = "2026-08-05T22:28:21.254239500+00:00"
+title = "Inventory and migrate legacy ticket schemas"
+state = "planning"
+component = "ticket"
+depends_on = ["9242e574-d3b5-4340-8daa-a00d8bfad155", "9e7a5f1a-a2ce-43ce-9c8f-bdce7cf712d2", "d8bd4c53-898e-4984-97e5-6ef605569f91"]
+effort = "5k"
+priority = "high"
+risk_level = "high"
+target_schema_type = "implementation"
+type = "tracker-improvement"
+workflow_role = "implementation"

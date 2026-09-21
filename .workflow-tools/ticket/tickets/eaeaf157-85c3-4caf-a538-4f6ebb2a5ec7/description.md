@@ -1,0 +1,1 @@
+Fix `spec refs <id> validate` so its JSON `workspace_root` output uses slash-normalized paths on Windows, matching existing expectations in the command tests and the output contract already used by `sync-generated`.

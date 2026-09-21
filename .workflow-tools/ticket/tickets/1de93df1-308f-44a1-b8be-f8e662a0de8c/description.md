@@ -1,0 +1,1 @@
+Adopt the Entity Kernel contracts in ticket-api. Preserve ticket business schemas and lifecycle behavior. Wire ticket schema registry/domain manifest, migration adapter, event hooks, workspace capability reporting, and compatibility fixtures against the completed kernel specs and current ticket tests.

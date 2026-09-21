@@ -1,0 +1,1 @@
+Starting SpecStore tracing implementation: add structured spans/events for open/init/open_or_init/scan and slug-index rebuild flows, then validate targeted spec-api tests.

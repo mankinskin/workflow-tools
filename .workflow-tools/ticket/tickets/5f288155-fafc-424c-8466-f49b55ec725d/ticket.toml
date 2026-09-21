@@ -1,0 +1,12 @@
+id = "5f288155-fafc-424c-8466-f49b55ec725d"
+created_at = "2026-09-10T14:28:10.261252+00:00"
+title = "[guidance-installer] Integrate guidance command catalog and documentation"
+state = "done"
+acceptance_criteria = "Document the guidance command family, profile/recipe schema, dependency and portability classes, destination safety, submodule fallback, plan/install/autofix mutation boundaries, fixture contract, Docker and network validation commands, and keep generated command catalog synchronized."
+component = "workflow-tools"
+depends_on = ["5584da3b-73a9-495e-b8c4-596d1cd41c78", "76abb9a1-cf92-4c2d-a330-6f48792dd337"]
+effort = "6k"
+parts = [{ id = "4994c53a-a9c9-4aa0-9c43-d7cf90316d14", kind = "requirements", path = "parts/4994c53a-a9c9-4aa0-9c43-d7cf90316d14.md", frozen = false, created_at = "2026-09-10T15:12:21.850870500Z" }, { id = "98c06b51-e284-41f6-aa9e-8fbbb348e677", kind = "design", path = "parts/98c06b51-e284-41f6-aa9e-8fbbb348e677.md", frozen = false, created_at = "2026-09-10T15:12:36.300800600Z" }, { id = "8d35ff8c-b4c6-4882-a427-d0caac393b72", kind = "examples", path = "parts/8d35ff8c-b4c6-4882-a427-d0caac393b72.md", frozen = false, created_at = "2026-09-10T15:12:50.838554300Z" }, { id = "324b88d8-ca62-47c7-97c5-fa68d3acd6c7", kind = "acceptance_criteria", path = "parts/324b88d8-ca62-47c7-97c5-fa68d3acd6c7.md", frozen = false, created_at = "2026-09-10T15:13:05.941757900Z" }, { id = "d5cf381d-e186-404b-ab83-c0372d1f4a2a", kind = "validation", path = "parts/d5cf381d-e186-404b-ab83-c0372d1f4a2a.md", frozen = false, created_at = "2026-09-10T15:13:20.230424500Z" }]
+priority = "medium"
+type = "task"
+validation_plan = "cargo run -p install-ctl -- catalog --check; audit links workflow-tools; documentation command examples and safety assertions reviewed against implementation"

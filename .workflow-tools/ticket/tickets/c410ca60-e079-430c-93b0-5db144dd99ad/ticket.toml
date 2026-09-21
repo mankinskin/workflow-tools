@@ -1,0 +1,9 @@
+id = "c410ca60-e079-430c-93b0-5db144dd99ad"
+created_at = "2026-07-27T14:40:32.147673+00:00"
+title = "Sub-agent session creation and routing"
+state = "planning"
+component = "session"
+depends_on = ["fd7737ec-814b-4ba1-a9da-33db36cdea94"]
+linked = ["effba966-f0a8-4d7d-b289-b7feba826cf8"]
+risk_level = "high"
+type = "task"

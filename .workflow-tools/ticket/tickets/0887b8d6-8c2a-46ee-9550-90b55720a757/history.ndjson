@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-08-06T00:21:27.652753600+00:00","fields":{"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research resolved catalog and JSON built-ins design","type":"tracker-improvement","workflow_role":"research"}}
+{"rev":2,"ts":"2026-08-06T00:21:45.778555100+00:00","fields":{"depends_on":["1f8e6e6d-c8ea-461d-83c9-c26daf0e3cd3"],"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research resolved catalog and JSON built-ins design","type":"tracker-improvement","workflow_role":"research"}}

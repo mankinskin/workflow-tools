@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-17T14:47:41.501770+00:00","fields":{"effort":"800","priority":"high","state":"open","title":"[ticket-api] Validation-aware dependency requirements and health model","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-17T14:50:15.948765300+00:00","fields":{"effort":"800","linked":["6f3dcdfc-bf2f-45d7-9776-0f0a360ac199"],"priority":"high","state":"open","title":"[ticket-api] Validation-aware dependency requirements and health model","type":"tracker-improvement"}}

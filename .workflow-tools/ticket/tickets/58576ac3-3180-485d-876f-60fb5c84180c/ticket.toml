@@ -1,0 +1,12 @@
+id = "58576ac3-3180-485d-876f-60fb5c84180c"
+created_at = "2026-07-25T13:56:52.509791600+00:00"
+title = "[workflow-tools][per-tool] Extract spec tool as a single `spec` domain crate (api + transport bins) + viewer frontend"
+state = "done"
+component = "spec"
+depends_on = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9", "1c452ff1-6edc-47c8-a73d-d07ce9b4d473", "dbe0e955-c1b4-414d-820c-10c3fbbb5d3d"]
+effort = "1500"
+note = "Decision 2026-07-27 (recorded for later, ticket NOT started): when spec is extracted, its transport reference-proof mirrors the ticket pilot using `spec get {id}` — success returns manifest + body; unknown id yields a not-found domain error mapped to HTTP 404. Sequencing decision: spec is NOT next; the `ticket` domain is being finished end-to-end first (consolidation 26da8f59, then repo split ba4aaa9c) so exactly one domain is in flight at a time."
+parts = [{ id = "ad022325-d931-4d9e-90e4-fe24b74b1f80", kind = "implementation_plan", path = "parts/ad022325-d931-4d9e-90e4-fe24b74b1f80.md", frozen = false, created_at = "2026-08-13T17:21:48.601757700Z" }, { id = "924c79e3-6fc3-4957-b78e-f1731f4393c1", kind = "amendment", path = "parts/924c79e3-6fc3-4957-b78e-f1731f4393c1.md", frozen = false, created_at = "2026-08-19T00:02:35.447616400Z", supersedes = "ad022325-d931-4d9e-90e4-fe24b74b1f80" }]
+priority = "high"
+risk_level = "high"
+type = "task"

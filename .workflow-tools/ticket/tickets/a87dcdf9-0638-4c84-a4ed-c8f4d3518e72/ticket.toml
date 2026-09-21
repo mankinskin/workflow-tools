@@ -1,0 +1,9 @@
+id = "a87dcdf9-0638-4c84-a4ed-c8f4d3518e72"
+created_at = "2026-06-17T15:58:30+00:00"
+title = "[scaffold] Rollout guardrails, feature flags, and rollback protocol"
+state = "planning"
+depends_on = ["70222986-3325-4d45-892e-31e7f4d09aa6"]
+effort = "450"
+priority = "high"
+type = "tracker-improvement"
+component = "doc"

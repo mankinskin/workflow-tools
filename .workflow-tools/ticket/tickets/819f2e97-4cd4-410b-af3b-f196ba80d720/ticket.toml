@@ -1,0 +1,8 @@
+id = "819f2e97-4cd4-410b-af3b-f196ba80d720"
+created_at = "2026-07-05T19:02:58.389476300+00:00"
+title = "[audit-roadmap][static_complexity][batch-5] viewer-api (6)"
+state = "planning"
+depends_on = ["99bdcf44-58de-480d-ab9d-a1951c053400"]
+effort = "1200"
+type = "tracker-improvement"
+component = "audit"

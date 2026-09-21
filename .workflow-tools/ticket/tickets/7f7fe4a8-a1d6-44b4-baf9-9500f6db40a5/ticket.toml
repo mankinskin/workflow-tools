@@ -1,0 +1,10 @@
+id = "7f7fe4a8-a1d6-44b4-baf9-9500f6db40a5"
+created_at = "2026-06-09T09:01:04.470441800+00:00"
+title = "[memory-index] Define domain digest input contract for generated index entries"
+state = "done"
+component = "memory-kernel"
+depends_on = ["db667eed-f507-49ee-b1b6-b7b3edca98ce"]
+effort = "3600"
+priority = "high"
+risk_level = "high"
+type = "tracker-improvement"

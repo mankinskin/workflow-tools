@@ -1,0 +1,8 @@
+id = "c3e01552-88d2-446c-955d-f3902a224a56"
+created_at = "2026-07-25T13:05:07.617666100+00:00"
+title = "[ticket-api][ticket-cli][ticket-mcp] Generate capability catalog programmatically from live CLI/MCP shapes (drift-checked)"
+state = "on-hold"
+depends_on = ["69eb4118-19ec-4b5b-bb12-30e314029cc5"]
+relates = ["7d857543-be6b-42ba-8b7e-608b5bd7c046"]
+type = "tracker-improvement"
+component = "workflow-tools"

@@ -1,0 +1,9 @@
+id = "7c3e47db-90fa-4ad1-8f0d-b52deaeb65b8"
+created_at = "2026-08-05T13:50:05.768454900+00:00"
+title = "Adopt property-based testing foundations"
+state = "planning"
+component = "test"
+depends_on = ["e9109814-45e9-4597-a55a-be736325c18e"]
+effort = "4000"
+priority = "high"
+type = "task"

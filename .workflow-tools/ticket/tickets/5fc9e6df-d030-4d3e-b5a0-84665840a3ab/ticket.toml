@@ -1,0 +1,8 @@
+id = "5fc9e6df-d030-4d3e-b5a0-84665840a3ab"
+created_at = "2026-07-30T21:56:48.018892500+00:00"
+title = "E2E structured-parts fixture"
+state = "planning"
+parts = [{ id = "2a44fd1d-c43f-4414-a6df-a509a6b6a30f", kind = "objective", path = "parts/2a44fd1d-c43f-4414-a6df-a509a6b6a30f.md", frozen = true, created_at = "2026-07-30T21:56:48.111782400Z" }, { id = "28c066e0-eeca-43f5-ba9d-5337ae4b834a", kind = "requirements", path = "parts/28c066e0-eeca-43f5-ba9d-5337ae4b834a.md", frozen = true, created_at = "2026-07-30T21:56:48.123914Z" }, { id = "b16b9c90-cd12-4d26-aa8c-e56d79b25bab", kind = "design", path = "parts/b16b9c90-cd12-4d26-aa8c-e56d79b25bab.md", frozen = true, created_at = "2026-07-30T21:56:48.132691300Z" }, { id = "912e95b4-60d6-4f60-8f9b-6881b3c37fee", kind = "examples", path = "parts/912e95b4-60d6-4f60-8f9b-6881b3c37fee.md", frozen = true, created_at = "2026-07-30T21:56:48.140771400Z" }, { id = "0581baca-28c1-48dd-abbd-fcc36498f599", kind = "acceptance_criteria", path = "parts/0581baca-28c1-48dd-abbd-fcc36498f599.md", frozen = true, created_at = "2026-07-30T21:56:48.149448200Z" }, { id = "36975330-8aaf-459a-bcbd-bd745e74a89d", kind = "review", path = "parts/36975330-8aaf-459a-bcbd-bd745e74a89d.md", frozen = false, created_at = "2026-07-30T21:56:48.158605200Z" }, { id = "b1b2e558-2ae4-418d-9d19-1e073f183b40", kind = "amendment", path = "parts/b1b2e558-2ae4-418d-9d19-1e073f183b40.md", frozen = false, created_at = "2026-07-30T21:56:48.252273Z", supersedes = "2a44fd1d-c43f-4414-a6df-a509a6b6a30f" }]
+plan_revision = 1
+type = "task"
+component = "spec"

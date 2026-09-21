@@ -1,0 +1,11 @@
+id = "d4233399-b986-401d-aed1-67c96dec84cf"
+created_at = "2026-08-06T00:21:27.150171300+00:00"
+title = "Plan dual-format schema loader implementation"
+state = "planning"
+depends_on = ["047dffaf-21e6-4bc2-a634-d858d10d214b"]
+effort = "1500"
+priority = "high"
+target_schema_type = "planning"
+type = "tracker-improvement"
+workflow_role = "planning"
+component = "spec"

@@ -1,0 +1,9 @@
+id = "a72e3aca-1e95-4fc5-a5b9-701112dcc37e"
+created_at = "2026-06-07T17:53:44.191004900+00:00"
+title = "[memory-index] Test store catalog generator"
+state = "planning"
+component = "test"
+depends_on = ["0805fb76-f99b-45a5-87c6-5a8e65bdb2da", "0dba399a-4691-4173-b921-17e5e6f6ebb8", "501d4932-a48e-4c8a-a4f3-8c31be0bdd23", "855a1e5d-d998-4caf-b60c-d75a13ca3264", "86bf3da2-b6cc-4fc7-898d-044403283550", "c2409055-c489-441b-9a60-f3b3aa608522", "e7a0ee3c-dc2f-42dd-8c02-5070a747c156"]
+effort = "4600"
+priority = "medium"
+type = "tracker-improvement"

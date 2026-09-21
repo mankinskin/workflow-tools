@@ -1,0 +1,8 @@
+id = "d8b5cfd0-8516-4dbe-84da-be112f6e5a57"
+created_at = "2026-06-17T14:04:03.873089+00:00"
+title = "[architecture][observability] Extended error envelope schema and mapping rules"
+state = "planning"
+effort = "1600"
+priority = "high"
+type = "tracker-improvement"
+component = "doc"

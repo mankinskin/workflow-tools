@@ -32,12 +32,54 @@ successful planning verdict never implies execution approval.
 
 Run each stage as a distinct pass; do not collapse them. Each stage has one job and one exit artifact.
 
-1. **Denoise (cheap).** Delegate entirely to [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md) and the [Transcription Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/transcription.agent.md) — the same three-stage denoise/restructure/verify pipeline and the same multi-part naming convention. Output: `input.md`/`input-2.md`/... (raw) and the matching `input.clean.md`/`input-2.clean.md`/... (denoised), plus `merged.clean.md` once more than one part exists.
+1. **Denoise (cheap).** Delegate entirely to [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md) and the [Transcription Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/transcription.agent.md) — the same three-stage denoise/restructure/verify pipeline and the same multi-part naming convention. Output: `input.md`/`input-2.md`/... (raw) and the matching `input.clean.md`/`input-2.clean.md`/... (denoised), plus `merged.clean.md` once more than one part exists. **This stage is not complete while the clean artifact carries a flagged ambiguity** — see "Ambiguity Resolution Gate" immediately below, which runs before Stage 2 starts.
 2. **Research and artifact inventory.** Dispatch a read-only [Explore Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/explore.agent.md) or [Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) pass to gather every existing artifact relevant to the cleaned prompt: tickets (ids + state), specs (ids + slugs), docs, prior transcripts/dossiers, and concrete code/config file paths the eventual work will touch or depend on. Do not re-derive this list later — every downstream stage cites entries from it instead of re-discovering paths. Output: `ARTIFACTS.md`, one row per artifact with id/path, a one-line relevance note, and its current state (e.g. ticket state, spec state, file exists/does not exist yet).
 3. **First informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the cleaned prompt against the research just gathered — never against the raw words alone — then apply that file's [interview-dispatch rule](intent-refinement.instructions.md#applying-the-refinement-loop-here) (interview only what the research cannot resolve). Output: `REVIEW.md` with an `Approved as scoped` verdict and a scope decision.
-4. **Fully informed dossier creation or restructure.** With the scope decision and the artifact inventory both in hand, dispatch [Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) or [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) (dialectic pass, when a conclusion needs adversarial testing) to check each reviewed concern against actual repository capability and produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. Each work package carries an outcome, a non-goal, and a validation method.
+4. **Fully informed dossier creation or restructure.** With the scope decision and the artifact inventory both in hand, dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) to produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. Each work package carries an outcome, a non-goal, and a validation method. When a reviewed concern needs adversarial testing before it can be trusted, dispatch [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) first and hand its synthesis to the Roadmap Authoring Agent as input evidence — Structured Research Agent has no `edit` tool and must never be the one writing the dossier or `ROADMAP.md` itself.
 5. **Second informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the drafted dossier and `ROADMAP.md` for anything newly ambiguous or low-confidence that the drafting pass surfaced, and interview the requester to close it. This loop replaces a separate traceability-checklist stage — coverage already lives in `ARTIFACTS.md` and `ROADMAP.md`, and open questions get resolved by interview, not logged and left open.
-6. **Adjustments and roadmap compilation (iterative).** Apply the second loop's resolved answers, then dry-run and refine `ROADMAP.md`/`README.md`/the work packages until no new blocker or open question surfaces. See "Roadmap Compilation and Versioning" and "Roadmap Improvement Loop" below for required contents, dry-run procedure, and the iteration rule. `ROADMAP.md` must ship with zero open questions — that is this stage's exit condition, not an aspiration.
+6. **Adjustments and roadmap compilation (iterative).** Dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) again to apply the second loop's resolved answers, then dry-run and refine `ROADMAP.md`/`README.md`/the work packages until no new blocker or open question surfaces. See "Roadmap Compilation and Versioning" and "Roadmap Improvement Loop" below for required contents, dry-run procedure, and the iteration rule. `ROADMAP.md` must ship with zero open questions — that is this stage's exit condition, not an aspiration.
+
+## Ambiguity Resolution Gate (before Stage 2)
+
+Resolving every transcript ambiguity is the pipeline's actual first step, not a
+by-product of the later review loops. [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md)
+permits a standalone denoise pass to ship with an explicitly flagged
+ambiguity (an unresolved mis-transcription, an ambiguous referent, a term
+without an unambiguous reading) — that is the correct behavior for a
+standalone transcription. Inside this pipeline it is not: no dossier note,
+research pass, work-package document, or `ROADMAP.md` line may be written
+while `input.clean.md` / `merged.clean.md` still carries an open ambiguity
+flag.
+
+- **Check the gate immediately after Stage 1**, before Stage 2 (research and
+  artifact inventory) begins. Read the delivered clean artifact's flagged
+  ambiguities (Stage 3's "Verify" checklist in `audio-transcript.instructions.md`
+  produces these as explicit notes, not silent guesses) and enumerate each one.
+- **Resolve every flag through interview, not inference.** Dispatch the
+  [Interview Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/interview.agent.md)
+  with the exact ambiguous term/referent/phrase and its surrounding context
+  from the transcript, and ask the requester to confirm the intended reading.
+  Do not resolve a flagged ambiguity from repository evidence alone and do not
+  guess a "most likely" reading yourself — the flag exists precisely because
+  the transcript did not make the intended reading unambiguous, and only the
+  requester can supply the missing fact.
+- **Fold the answer back into the clean artifact.** Update `input.clean.md`
+  (or the relevant `input-N.clean.md` and `merged.clean.md`) with the resolved
+  reading before moving on, so every later stage — research, both informed
+  review loops, drafting, and roadmap compilation — reads a transcript that is
+  already unambiguous. Do not carry a resolved-in-conversation answer forward
+  only in memory; the artifact itself must reflect the resolution.
+- **Exit condition**: zero remaining ambiguity flags in the clean artifact(s)
+  for this dossier. This gate is binding for every dossier, including a
+  continuation (see "Resuming an In-Progress Dossier" below) — a newly added
+  `input-N.md` part gets its own clean pass and its own ambiguity check before
+  `merged.clean.md` is updated or any later stage re-runs.
+- **Do not conflate this gate with Stage 3/5's review loops.** Those loops
+  interview the requester about scope, requirements, and drafted-content
+  gaps discovered against research; this gate resolves literal transcript
+  ambiguity (an unclear term, a mis-heard word, an ambiguous referent) before
+  any of that later reasoning starts. A transcript that still contains an
+  unresolved ambiguity flag is not a valid input to Stage 2.
 
 ## Resuming an In-Progress Dossier
 

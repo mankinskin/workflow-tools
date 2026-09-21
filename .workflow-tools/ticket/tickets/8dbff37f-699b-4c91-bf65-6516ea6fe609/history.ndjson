@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-17T14:47:41.347656800+00:00","fields":{"effort":"700","priority":"high","state":"open","title":"[audit-api] Workspace graph health and board check-in validation enforcement","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-17T14:47:47.645421800+00:00","fields":{"depends_on":["acefc2ae-e257-4bc8-a4c7-0ec3137e374d"],"effort":"700","priority":"high","state":"open","title":"[audit-api] Workspace graph health and board check-in validation enforcement","type":"tracker-improvement"}}

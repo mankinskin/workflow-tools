@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-08-06T00:21:28.620193200+00:00","fields":{"effort":"1500","priority":"high","state":"open","target_schema_type":"review","title":"Review schema modernization completion evidence","type":"tracker-improvement","workflow_role":"review"}}
+{"rev":2,"ts":"2026-08-06T00:21:46.798996300+00:00","fields":{"depends_on":["3bb41fb2-9907-4b54-83b1-c62a0ce96756"],"effort":"1500","priority":"high","state":"open","target_schema_type":"review","title":"Review schema modernization completion evidence","type":"tracker-improvement","workflow_role":"review"}}

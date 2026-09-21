@@ -1,0 +1,7 @@
+id = "3ca6f36f-fa19-46c6-9415-7d0290371f7f"
+created_at = "2026-08-06T19:06:55.012736+00:00"
+title = "Add minimal terminal command agent"
+state = "planning"
+parts = [{ id = "86e56b7f-eab1-433d-91d1-a98682cd25f9", kind = "requirements", path = "parts/86e56b7f-eab1-433d-91d1-a98682cd25f9.md", frozen = false, created_at = "2026-08-06T19:07:01.479555600Z" }]
+type = "task"
+component = "peek"

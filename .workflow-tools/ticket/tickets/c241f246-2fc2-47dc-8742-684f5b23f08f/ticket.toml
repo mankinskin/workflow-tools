@@ -1,0 +1,8 @@
+id = "c241f246-2fc2-47dc-8742-684f5b23f08f"
+created_at = "2026-03-29T05:11:50.122043400+00:00"
+title = "VoxelWorld API: Octree Data Structure, Manipulation, and Dirty-Range Tracking"
+state = "done"
+depends_on = ["0cfa8404-ca21-4761-b754-54bfd3c174f1"]
+priority = "high"
+type = "tracker-improvement"
+component = "test"

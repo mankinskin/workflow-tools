@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-05-03T17:11:41.278784400+00:00","fields":{"state":"new","title":"[LOG-1a] ticket-viewer: wire init_tracing_full with file logging to target/logs/\"","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-23T13:33:12.577825800+00:00","fields":{"depends_on":["8f349d96-a307-400b-a90e-3aceb2250166"],"effort":"1200","state":"new","title":"[LOG-1a] ticket-viewer: wire init_tracing_full with file logging to target/logs/\"","type":"tracker-improvement"},"author":"github-copilot"}

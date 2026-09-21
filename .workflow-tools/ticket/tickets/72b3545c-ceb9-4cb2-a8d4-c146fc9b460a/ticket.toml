@@ -1,0 +1,9 @@
+id = "72b3545c-ceb9-4cb2-a8d4-c146fc9b460a"
+created_at = "2026-07-04T06:07:07.663456300+00:00"
+title = "[observability][governance] Define profiling metadata retention and redaction policy"
+state = "done"
+component = "log"
+effort = "1k tokens"
+parts = [{ id = "c24e61f0-9ef5-46e5-b936-cdc45ca42a90", kind = "objective", path = "parts/c24e61f0-9ef5-46e5-b936-cdc45ca42a90.md", frozen = false, created_at = "2026-07-30T21:02:28.852626Z" }, { id = "8f118dfa-b4dc-461a-8947-745177327bde", kind = "validation", path = "parts/8f118dfa-b4dc-461a-8947-745177327bde.md", frozen = false, created_at = "2026-07-30T21:02:28.856538100Z" }, { id = "db519ee3-4833-487d-b0ee-8425ae88f562", kind = "objective", path = "parts/db519ee3-4833-487d-b0ee-8425ae88f562.md", frozen = false, created_at = "2026-07-30T21:02:28.860190200Z" }]
+priority = "medium"
+type = "tracker-improvement"

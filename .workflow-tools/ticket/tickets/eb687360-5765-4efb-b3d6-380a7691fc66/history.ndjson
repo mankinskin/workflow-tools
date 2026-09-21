@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-07-26T01:06:53.062871500+00:00","fields":{"component":"ticket-api","state":"open","title":"[ticket-api] Review the added 'feature' delivered ticket type schema","type":"task"}}
+{"rev":2,"ts":"2026-07-26T01:08:00.410488800+00:00","fields":{"component":"ticket-api","linked":["a0b59873-abe9-4e62-84a3-c233635b4cd6"],"state":"open","title":"[ticket-api] Review the added 'feature' delivered ticket type schema","type":"task"}}

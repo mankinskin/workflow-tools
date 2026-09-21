@@ -1,0 +1,11 @@
+id = "bdd35984-235a-45eb-971d-a57719bf2c74"
+created_at = "2026-07-25T13:57:12.413098+00:00"
+title = "[workflow-tools][per-tool] Extract feedback tool as a single `feedback` domain crate (api + transport bins)"
+state = "planning"
+component = "feedback"
+depends_on = ["0da6894c-dcbb-4196-8ac7-b6fae7c40ec9", "1c452ff1-6edc-47c8-a73d-d07ce9b4d473", "dbe0e955-c1b4-414d-820c-10c3fbbb5d3d"]
+effort = "1200"
+parts = [{ id = "dbf98fa3-0be3-4feb-9d10-3549812fb1fa", kind = "implementation_plan", path = "parts/dbf98fa3-0be3-4feb-9d10-3549812fb1fa.md", frozen = false, created_at = "2026-08-13T17:28:43.337287500Z" }, { id = "3296911b-a247-4446-bee4-7d0be122da2c", kind = "amendment", path = "parts/3296911b-a247-4446-bee4-7d0be122da2c.md", frozen = false, created_at = "2026-08-19T00:35:48.964285600Z", supersedes = "dbf98fa3-0be3-4feb-9d10-3549812fb1fa" }]
+priority = "high"
+risk_level = "medium"
+type = "task"

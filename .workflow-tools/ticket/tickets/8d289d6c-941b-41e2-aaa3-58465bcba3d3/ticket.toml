@@ -1,0 +1,8 @@
+id = "8d289d6c-941b-41e2-aaa3-58465bcba3d3"
+created_at = "2026-03-29T05:12:16.166096200+00:00"
+title = "Panel Interaction: 3D Ray-Cast Hit Testing and Input Handling"
+state = "done"
+depends_on = ["4cf4eeb7-2421-438a-a05c-f081125a3617", "d02afc1f-7e0c-483f-a70d-86c7b1e088ad"]
+priority = "high"
+type = "tracker-improvement"
+component = "test"

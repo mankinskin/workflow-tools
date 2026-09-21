@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-27T12:52:38.595489800+00:00","fields":{"effort":"2500","priority":"high","state":"open","title":"[ticket-api][bug] update_ticket resets state to `new` on field/description patch; transition_states silently no-ops","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-27T12:56:11.825322700+00:00","fields":{"effort":"2500","priority":"high","state":"cancelled","title":"[ticket-api][bug] update_ticket resets state to `new` on field/description patch; transition_states silently no-ops","type":"tracker-improvement"},"author":"copilot-design"}

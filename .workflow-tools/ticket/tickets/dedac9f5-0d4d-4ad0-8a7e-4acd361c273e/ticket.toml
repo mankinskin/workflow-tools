@@ -1,0 +1,9 @@
+id = "dedac9f5-0d4d-4ad0-8a7e-4acd361c273e"
+created_at = "2026-06-17T15:38:13.306473500+00:00"
+title = "[validation] Rule-target generation drift checks for scaffold guidance assets"
+state = "planning"
+depends_on = ["23e81ad8-b67c-49af-97b5-f90f8bb0ae2c"]
+effort = "450"
+priority = "high"
+type = "tracker-improvement"
+component = "rule"

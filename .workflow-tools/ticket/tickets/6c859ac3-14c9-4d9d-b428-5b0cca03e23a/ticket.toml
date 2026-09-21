@@ -1,0 +1,10 @@
+id = "6c859ac3-14c9-4d9d-b428-5b0cca03e23a"
+created_at = "2026-07-02T11:22:26.137330400+00:00"
+title = "[journal] Define generic operation journal schema and store contract"
+state = "done"
+component = "memory-kernel"
+depends_on = ["84673399-75e6-4f36-8a17-4c666001e530"]
+effort = "2.5k tokens"
+priority = "high"
+risk_level = "high"
+type = "tracker-improvement"

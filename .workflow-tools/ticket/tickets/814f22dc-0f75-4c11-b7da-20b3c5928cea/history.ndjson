@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-14T12:41:40.572598400+00:00","fields":{"state":"open","title":"[ticket-vscode] Fix VS Code CLI discovery in VSIX installer","type":"bug"}}
+{"rev":2,"ts":"2026-07-23T13:33:23.576601400+00:00","fields":{"effort":"1200","state":"open","title":"[ticket-vscode] Fix VS Code CLI discovery in VSIX installer","type":"bug"},"author":"github-copilot"}

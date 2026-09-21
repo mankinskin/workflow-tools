@@ -1,0 +1,9 @@
+id = "50092f61-f4fb-49a1-ac67-64c8cb7c513e"
+created_at = "2026-07-31T15:55:42.419390500+00:00"
+title = "Investigate workspace/root-resolution divergence behind assumed ticket-index staleness (cf. 1d6a033e)"
+state = "planning"
+component = "ticket"
+linked = ["1d6a033e-c263-4a93-8b31-f62e69345867"]
+priority = "medium"
+risk_level = "low"
+type = "bug"

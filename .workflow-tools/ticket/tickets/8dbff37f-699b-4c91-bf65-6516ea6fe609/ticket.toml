@@ -1,0 +1,9 @@
+id = "8dbff37f-699b-4c91-bf65-6516ea6fe609"
+created_at = "2026-06-17T14:47:41.297104800+00:00"
+title = "[audit-api] Workspace graph health and board check-in validation enforcement"
+state = "planning"
+depends_on = ["acefc2ae-e257-4bc8-a4c7-0ec3137e374d"]
+effort = "700"
+priority = "high"
+type = "tracker-improvement"
+component = "audit"

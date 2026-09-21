@@ -1,0 +1,12 @@
+id = "8ab31960-f3fa-4a2b-b2ac-f807e1a15fdc"
+created_at = "2026-06-05T14:32:26.838821900+00:00"
+title = "[memory-api][ticket-api][ticket-cli][ticket-mcp][ticket-http] Implement expressive ticket query and ordering"
+state = "planning"
+component = "memory-kernel"
+depends_on = ["68e3c713-3c35-4d7e-af0c-b4a55a3253c0", "f6aa9048-c300-4f64-bf20-157d439dd7ca"]
+effort = "1200"
+linked = ["7fc7a10d-64a1-4c67-a5a9-5b45d8e03047"]
+priority = "high"
+risk_level = "high"
+tags = "memory-api,ticket-api,ticket-cli,ticket-mcp,ticket-http,query,ordering,search"
+type = "tracker-improvement"

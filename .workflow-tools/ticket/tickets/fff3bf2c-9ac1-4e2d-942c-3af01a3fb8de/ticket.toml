@@ -1,0 +1,6 @@
+id = "fff3bf2c-9ac1-4e2d-942c-3af01a3fb8de"
+created_at = "2026-09-15T15:05:25.035284100+00:00"
+title = "Adopt Entity Kernel in rule domain"
+state = "cancelled"
+type = "task"
+component = "rule"

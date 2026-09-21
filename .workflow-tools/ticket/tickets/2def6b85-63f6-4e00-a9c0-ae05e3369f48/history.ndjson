@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-08-06T00:21:28.290967600+00:00","fields":{"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research schema modernization release validation","type":"tracker-improvement","workflow_role":"research"}}
+{"rev":2,"ts":"2026-08-06T00:21:45.546471700+00:00","fields":{"depends_on":["7df984eb-c96c-4501-98fa-4e88dd28ec4e"],"effort":"1500","priority":"high","state":"open","target_schema_type":"research","title":"Research schema modernization release validation","type":"tracker-improvement","workflow_role":"research"}}

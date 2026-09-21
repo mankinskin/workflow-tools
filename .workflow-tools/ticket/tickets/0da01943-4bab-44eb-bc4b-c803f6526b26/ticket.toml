@@ -1,0 +1,6 @@
+id = "0da01943-4bab-44eb-bc4b-c803f6526b26"
+created_at = "2026-06-03T12:54:17.283187+00:00"
+title = "[rules][copilot] Integrate RTK section into generated copilot instructions"
+state = "done"
+type = "tracker-improvement"
+component = "rule"

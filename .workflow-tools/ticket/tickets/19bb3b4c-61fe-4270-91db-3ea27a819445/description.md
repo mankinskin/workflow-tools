@@ -1,0 +1,1 @@
+Migrate a first set of root workflow architecture specs to rule-backed `spec-doc` generation so repeated important sections stop drifting. Start with the three workflow metadata specs that share a planning-spec scaffold, extract the repeated validation-results section into a canonical shared rule, and wire each spec through `generated.toml` plus `spec sync-generated`.

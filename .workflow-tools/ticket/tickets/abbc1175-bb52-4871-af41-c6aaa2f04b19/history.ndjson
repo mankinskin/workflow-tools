@@ -1,0 +1,11 @@
+{"rev":1,"ts":"2026-03-29T05:12:35.624220200+00:00","fields":{"state":"open","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-03-29T06:49:13.563712+00:00","fields":{"state":"in-refinement","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-03-29T06:49:13.738703800+00:00","fields":{"state":"planned","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-03-29T06:52:41.773002300+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-03-29T06:53:24.869824200+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":6,"ts":"2026-03-29T06:53:38.253809900+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Editor UX (Undo/Redo, Symmetry, Preview, Material Picker)","type":"tracker-improvement"}}
+{"rev":7,"ts":"2026-03-29T07:48:47.926679+00:00","fields":{"priority":"high","state":"planned","title":"Editor UX: Undo/Redo, Symmetry, Live Preview, Material Picker","type":"tracker-improvement"}}
+{"rev":8,"ts":"2026-03-30T00:27:52.257521700+00:00","fields":{"priority":"high","state":"in-implementation","title":"Editor UX: Undo/Redo, Symmetry, Live Preview, Material Picker","type":"tracker-improvement"}}
+{"rev":9,"ts":"2026-03-30T00:27:52.685294300+00:00","fields":{"priority":"high","state":"in-review","title":"Editor UX: Undo/Redo, Symmetry, Live Preview, Material Picker","type":"tracker-improvement"}}
+{"rev":10,"ts":"2026-03-30T00:27:53.162475+00:00","fields":{"priority":"high","state":"in-validation","title":"Editor UX: Undo/Redo, Symmetry, Live Preview, Material Picker","type":"tracker-improvement"}}
+{"rev":11,"ts":"2026-03-30T00:27:53.634200200+00:00","fields":{"priority":"high","state":"done","title":"Editor UX: Undo/Redo, Symmetry, Live Preview, Material Picker","type":"tracker-improvement"}}

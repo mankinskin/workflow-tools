@@ -1,0 +1,9 @@
+id = "c0386fb6-2f5d-4f13-a189-5d068b72ba26"
+created_at = "2026-03-29T03:46:49.439968800+00:00"
+title = "Impl: Documentation editor — markdown, doc-viewer API integration"
+state = "done"
+component = "doc"
+depends_on = ["55e30448-e34d-423f-9625-b32425cfbfdc"]
+phase = "editor-tools"
+priority = "high"
+type = "tracker-improvement"

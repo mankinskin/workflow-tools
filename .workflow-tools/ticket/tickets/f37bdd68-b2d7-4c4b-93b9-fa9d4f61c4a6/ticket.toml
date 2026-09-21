@@ -1,0 +1,8 @@
+id = "f37bdd68-b2d7-4c4b-93b9-fa9d4f61c4a6"
+created_at = "2026-05-03T17:13:52.183273700+00:00"
+title = "[LOG-4b] Log-to-table: render filtered log view as ASCII/Markdown table (MCP + HTTP)"
+state = "planning"
+depends_on = ["159a9862-6ea3-4966-a2b1-992e1d03b578", "1d8d82b5-8e40-463f-adaf-30d2f5625844"]
+effort = "1200"
+type = "tracker-improvement"
+component = "doc"

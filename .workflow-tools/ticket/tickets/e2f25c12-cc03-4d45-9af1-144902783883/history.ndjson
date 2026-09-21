@@ -1,0 +1,3 @@
+{"rev":1,"ts":"2026-07-31T13:13:37.878506100+00:00","fields":{"state":"in-implementation","title":"Retire the rule system: delete rule stores and rule-targets, freeze generated docs","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-31T13:35:03.485261100+00:00","fields":{"state":"in-review","title":"Retire the rule system: delete rule stores and rule-targets, freeze generated docs","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-08-10T19:50:25.679444600+00:00","fields":{"state":"done","title":"Retire the rule system: delete rule stores and rule-targets, freeze generated docs","type":"tracker-improvement"},"author":"github-copilot"}

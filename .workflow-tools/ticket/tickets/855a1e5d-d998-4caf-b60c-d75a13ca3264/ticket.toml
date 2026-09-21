@@ -1,0 +1,13 @@
+id = "855a1e5d-d998-4caf-b60c-d75a13ca3264"
+created_at = "2026-06-07T17:53:49.111433400+00:00"
+title = "[memory-index] Audit store status summary generator"
+state = "done"
+component = "audit"
+depends_on = ["0dba399a-4691-4173-b921-17e5e6f6ebb8", "52dfd793-6fd4-463f-8c0e-7a8e5c67dd48", "7f7fe4a8-a1d6-44b4-baf9-9500f6db40a5", "94c56f3d-774a-4b55-a13e-69c782ce9707", "98bc6b1c-fe7e-4c5f-b0a3-b05586f442e0", "c5e9bb39-d784-4d0c-8de1-3885013cddce", "d3a95908-fc43-4bbe-9572-998cc61d9102", "db667eed-f507-49ee-b1b6-b7b3edca98ce", "e7a0ee3c-dc2f-42dd-8c02-5070a747c156"]
+effort = "3600"
+parts = [{ id = "fc0468c7-1ebe-4d15-8d41-323f80d93bda", kind = "objective", path = "parts/fc0468c7-1ebe-4d15-8d41-323f80d93bda.md", frozen = false, created_at = "2026-07-30T21:02:31.796861400Z" }, { id = "6eea499d-4747-4a8f-8ab2-6c785820fc33", kind = "review", path = "parts/6eea499d-4747-4a8f-8ab2-6c785820fc33.md", frozen = false, created_at = "2026-07-30T21:02:31.802764Z" }]
+priority = "medium"
+review_findings = "Source-level review complete 2026-07-03: audit store-index generator (audit-cli cmd_store_index) is deterministic and digest-stable — categories via sorted BTreeSet, prepare_generated_output normalizes line endings for content-only diffs, --check is read-only, write mode emits the 3 required artifacts (.audit/README.md, .audit/index.toon, .agents/audit-catalog.md). No defects. Close-gate satisfied: same-snapshot checks report audit drift:false (findings 536, categories 6) and spec drift:false (specs 185). Audit input drift reappeared mid-review (534->536) from stale board entry a11d4f8f advancing memory-api; treated as concurrency/input drift and resolved by regenerating repo-root .audit/ only."
+review_status = "approved"
+type = "tracker-improvement"
+validation_status = "passed"

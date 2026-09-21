@@ -1,0 +1,9 @@
+id = "bd1c7cc0-2850-418d-b701-981b95c587ee"
+created_at = "2026-06-17T15:34:30.832412900+00:00"
+title = "[audit-api] Continuous store health scoring and cleanup loops"
+state = "planning"
+depends_on = ["11fb9bcf-fcd5-4eff-b380-64b80f4a5c9c", "67b6117b-5978-4c89-9cd4-4c8b043f4fba", "89f21dd2-6307-4f30-b0f8-7b36b3cfce66", "8f021514-6d53-45f3-a0cf-667fb3865a4d", "acefc2ae-e257-4bc8-a4c7-0ec3137e374d", "b1e9e744-aeac-474a-91d9-07e3a362dc76", "f6ee97de-c7c9-46d3-878b-c6df5f4a4bc9"]
+effort = "1600"
+priority = "high"
+type = "tracker-improvement"
+component = "audit"

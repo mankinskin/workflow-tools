@@ -1,0 +1,8 @@
+id = "9df4ef26-5168-4bbb-adf4-7f0e4f7ae3cf"
+created_at = "2026-05-21T15:09:05.435205400+00:00"
+title = "Project tracker: ticket/spec/rule operator workflow and discoverability"
+state = "planning"
+depends_on = ["51671748-8933-4955-9bf4-7bdea961df40", "59d96577-09a8-44a7-b0ea-3d51b3a6fb05", "5ad77aba-c7f7-4058-854e-dd0412746c7c", "61cb6557-e559-4eae-8e59-ea0d520a3bee", "7d857543-be6b-42ba-8b7e-608b5bd7c046", "8bb97b73-9dbc-43ee-9939-46b3ddf2612f", "d241a482-6fc7-468e-b0a3-748cb72d07eb", "def7fa82-6f4a-4354-b52d-ae7ea9623648", "fdf53556-2d84-4964-9575-f40032a02e85"]
+effort = "1200"
+type = "tracker-improvement"
+component = "log"

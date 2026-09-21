@@ -1,0 +1,10 @@
+id = "43fc22b3-9b36-4a54-b520-f51000330a46"
+created_at = "2026-06-17T14:47:41.544946300+00:00"
+title = "[ticket-graph] Tracker: validation-aware graph tooling and audit enforcement"
+state = "planning"
+depends_on = ["8dbff37f-699b-4c91-bf65-6516ea6fe609", "acefc2ae-e257-4bc8-a4c7-0ec3137e374d", "f3305925-7217-4ff3-8c4e-820ebc1e6de5"]
+effort = "900"
+linked = ["671d4e47-b53d-4a04-aa1d-30f2aa8a2bbe"]
+priority = "high"
+type = "tracker-improvement"
+component = "audit"

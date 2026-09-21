@@ -1,0 +1,4 @@
+{"rev":1,"ts":"2026-07-05T19:02:58.444905200+00:00","fields":{"state":"open","title":"[audit-roadmap][static_complexity][batch-5] viewer-api (6)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-05T19:03:02.441841600+00:00","fields":{"depends_on":["99bdcf44-58de-480d-ab9d-a1951c053400"],"state":"open","title":"[audit-roadmap][static_complexity][batch-5] viewer-api (6)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-07-05T20:02:55.714710500+00:00","fields":{"depends_on":["99bdcf44-58de-480d-ab9d-a1951c053400"],"state":"open","title":"[audit-roadmap][static_complexity][batch-5] viewer-api (6)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-07-23T13:33:23.657835200+00:00","fields":{"depends_on":["99bdcf44-58de-480d-ab9d-a1951c053400"],"effort":"1200","state":"open","title":"[audit-roadmap][static_complexity][batch-5] viewer-api (6)","type":"tracker-improvement"},"author":"github-copilot"}

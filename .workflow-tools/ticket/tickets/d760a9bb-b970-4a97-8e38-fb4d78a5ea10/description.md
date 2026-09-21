@@ -1,0 +1,1 @@
+Starting benchmark/perf tracing implementation: inspect ticket-api perf tests and representative Criterion benches, then add structured run-level tracing that preserves benchmark usefulness.

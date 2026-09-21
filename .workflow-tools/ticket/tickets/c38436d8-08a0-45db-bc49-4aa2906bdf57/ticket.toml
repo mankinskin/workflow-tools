@@ -1,0 +1,10 @@
+id = "c38436d8-08a0-45db-bc49-4aa2906bdf57"
+created_at = "2026-08-05T13:48:37.064141600+00:00"
+title = "Phase 3: Harden capture-hook reliability"
+state = "planning"
+component = "session"
+depends_on = ["33e1118f-119d-4c03-939e-ff568b054889", "5ed70069-b080-4a95-8dc5-ddf495007bdd", "7d685c20-ebd8-4505-8fc0-6a42b0847750", "8210d2d4-1b8b-4e19-b72d-8665500ad07f", "8858888a-173e-4c48-8059-8a291fc52d16"]
+effort = "4000"
+linked = ["5ed70069-b080-4a95-8dc5-ddf495007bdd", "7d685c20-ebd8-4505-8fc0-6a42b0847750", "8210d2d4-1b8b-4e19-b72d-8665500ad07f", "8858888a-173e-4c48-8059-8a291fc52d16"]
+priority = "high"
+type = "task"

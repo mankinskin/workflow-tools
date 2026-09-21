@@ -1,0 +1,10 @@
+id = "278d22d1-6de1-4426-b022-07262c9657ce"
+created_at = "2026-07-28T21:49:22.920928600+00:00"
+title = "[delegation-cost] Reconcile substitutable_shell_count vs classify_shell_command cd-chain divergence"
+state = "planning"
+component = "session"
+effort = "5000"
+linked = ["77eb143b-0322-4c91-b3c4-deccc2b2927c", "10d21210-7168-4ed4-8e99-f6fb0e6e08db"]
+priority = "medium"
+tags = "delegation-cost,tech-debt,measurement-integrity"
+type = "tracker-improvement"

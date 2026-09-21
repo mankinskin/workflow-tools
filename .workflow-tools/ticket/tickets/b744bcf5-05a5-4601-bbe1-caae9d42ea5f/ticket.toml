@@ -1,0 +1,7 @@
+id = "b744bcf5-05a5-4601-bbe1-caae9d42ea5f"
+created_at = "2026-06-02T15:00:55.522060900+00:00"
+title = "[spec-api] Expectation-oriented spec contract and model"
+state = "done"
+depends_on = ["0b6e1bf3-2478-40a5-a619-085d8691835a", "c666f0b3-f1e6-4073-852f-e494bf5c1272", "c73d4a6b-2610-4e69-9fc3-bfedcf2ec53d"]
+type = "tracker-improvement"
+component = "rule"

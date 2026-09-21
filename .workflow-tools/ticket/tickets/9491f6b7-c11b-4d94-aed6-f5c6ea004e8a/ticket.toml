@@ -1,0 +1,12 @@
+id = "9491f6b7-c11b-4d94-aed6-f5c6ea004e8a"
+created_at = "2026-06-02T23:11:32.217878500+00:00"
+title = "[session-api] Plan and scaffold Copilot chat-session capture in memory-api"
+state = "done"
+acceptance_criteria = "1. The ticket defines a bounded first slice for session capture that does not overreach into full production synchronization. 2. A basic session-api scaffold exists under memory-viewers/memory-api with clear ownership boundaries. 3. The design names how Copilot hook payloads map into stored session records. 4. Follow-up test/doc/log evidence work is linked to the existing workflow metadata direction rather than duplicating it."
+component = "memory-kernel"
+depends_on = ["eaa42703-11f8-42dc-8c18-aec48101ed5e"]
+priority = "high"
+risk_level = "medium"
+spec_refs = "96dc0068-d05d-4e61-b785-144272119fa9"
+tags = "session-api,memory-api,workflow,copilot-hooks"
+type = "tracker-improvement"

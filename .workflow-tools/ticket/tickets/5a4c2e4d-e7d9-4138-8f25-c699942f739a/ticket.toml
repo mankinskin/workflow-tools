@@ -1,0 +1,12 @@
+id = "5a4c2e4d-e7d9-4138-8f25-c699942f739a"
+created_at = "2026-05-17T15:21:09.670178900+00:00"
+title = "[test-api] Add first-class validation spec and result storage"
+state = "planning"
+acceptance_criteria = "test-api crate exists for validation specs and results; native identifiers cover plans, executions, and outcomes; links to tickets/specs/docs/logs are first-class; design replaces standalone workflow artifact storage with shared-library behavior"
+component = "test"
+depends_on = ["0fb5a2e5-af2b-4b52-81a5-c3a49ffc3274", "75e9fef3-b624-4e12-9709-5d800222908c"]
+effort = "1200"
+priority = "high"
+risk_level = "high"
+tags = "test-api,workflow,validation,memory-api"
+type = "tracker-improvement"

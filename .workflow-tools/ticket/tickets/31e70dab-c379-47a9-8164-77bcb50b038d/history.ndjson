@@ -1,0 +1,1 @@
+{"rev":1,"ts":"2026-09-01T13:25:41.159005+00:00","fields":{"state":"open","title":"Fix resolve_store_root_from_with_diagnostics no-marker fallback returning bare directory instead of appending store dir_name","type":"bug"}}

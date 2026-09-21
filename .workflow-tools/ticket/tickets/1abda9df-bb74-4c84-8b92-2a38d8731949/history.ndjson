@@ -1,0 +1,4 @@
+{"rev":1,"ts":"2026-07-05T19:02:59.125665800+00:00","fields":{"state":"open","title":"[audit-roadmap][file_length][batch-3] tools (27)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-07-05T19:03:02.606111900+00:00","fields":{"depends_on":["936cdd9f-5736-468e-a41d-fa3da20b7e3d"],"state":"open","title":"[audit-roadmap][file_length][batch-3] tools (27)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-07-05T20:02:56.103161600+00:00","fields":{"depends_on":["936cdd9f-5736-468e-a41d-fa3da20b7e3d"],"state":"open","title":"[audit-roadmap][file_length][batch-3] tools (27)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-07-23T13:33:12.402709500+00:00","fields":{"depends_on":["936cdd9f-5736-468e-a41d-fa3da20b7e3d"],"effort":"1200","state":"open","title":"[audit-roadmap][file_length][batch-3] tools (27)","type":"tracker-improvement"},"author":"github-copilot"}

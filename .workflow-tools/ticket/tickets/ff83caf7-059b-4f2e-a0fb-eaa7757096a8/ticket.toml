@@ -1,0 +1,9 @@
+id = "ff83caf7-059b-4f2e-a0fb-eaa7757096a8"
+created_at = "2026-08-06T14:11:23.357945700+00:00"
+title = "[session-api][tooling] Managed session-worktree lifecycle: preserve, reuse, rename, and finish"
+state = "planning"
+component = "session"
+linked = ["3d535b2c-7361-4f08-bfb4-63b0b3174afc", "503b9711-3f69-4765-88f9-83779b71c8f8", "e2189e9d-8ea7-4747-bda9-51e573ba51ca", "fa2ba34b-59ec-4321-a4ce-a3c3a9295ea3"]
+parts = [{ id = "7b728b55-d017-4a8a-ad9c-28c34e065498", kind = "requirements", path = "parts/7b728b55-d017-4a8a-ad9c-28c34e065498.md", frozen = false, created_at = "2026-08-07T23:58:07.656552300Z" }, { id = "2123a7e9-c17b-4748-a53f-5a19c49d4dd2", kind = "requirements", path = "parts/2123a7e9-c17b-4748-a53f-5a19c49d4dd2.md", frozen = false, created_at = "2026-08-24T15:43:46.949528400Z" }]
+priority = "high"
+type = "feature"

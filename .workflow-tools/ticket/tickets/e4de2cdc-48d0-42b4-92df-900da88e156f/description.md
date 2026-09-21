@@ -1,0 +1,1 @@
+Rename ticket schema/display wording for dependency relationship fields: `dependees` label should become `dependee_count`, and `depends_on` should render as `Dependencies` in ticket schema/display formatting to better match the upstream/downstream relationship naming.

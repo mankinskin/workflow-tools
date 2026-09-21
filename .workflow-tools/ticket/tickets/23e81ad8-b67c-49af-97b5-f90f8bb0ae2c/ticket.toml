@@ -1,0 +1,8 @@
+id = "23e81ad8-b67c-49af-97b5-f90f8bb0ae2c"
+created_at = "2026-06-17T15:34:46.507663500+00:00"
+title = "[rule+skill] Rule-store sources for domain-store scaffolding instructions"
+state = "planning"
+effort = "700"
+priority = "high"
+type = "tracker-improvement"
+component = "rule"

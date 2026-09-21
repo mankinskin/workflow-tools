@@ -1,0 +1,8 @@
+id = "427d52aa-dcc9-4974-9b7d-3586fc44e584"
+created_at = "2026-09-15T15:44:13.466107900+00:00"
+title = "Adopt Entity Kernel in rule domain"
+state = "done"
+parts = [{ id = "608776b0-ec8b-4e3e-b478-51984a740839", kind = "objective", path = "parts/608776b0-ec8b-4e3e-b478-51984a740839.md", frozen = true, created_at = "2026-09-15T15:48:18.463354600Z" }, { id = "2bc76944-97a2-4f04-862a-176051c72373", kind = "requirements", path = "parts/2bc76944-97a2-4f04-862a-176051c72373.md", frozen = true, created_at = "2026-09-15T15:48:18.463702900Z" }, { id = "3e18fe8f-ffc4-4a82-a26c-23e740668cc3", kind = "design", path = "parts/3e18fe8f-ffc4-4a82-a26c-23e740668cc3.md", frozen = true, created_at = "2026-09-15T15:48:18.464078800Z" }, { id = "1097be39-4aa8-4f75-9c42-a17abc00ab9f", kind = "examples", path = "parts/1097be39-4aa8-4f75-9c42-a17abc00ab9f.md", frozen = true, created_at = "2026-09-15T15:48:18.464412200Z" }, { id = "1a710596-0686-4084-b6e9-b24735e58e60", kind = "acceptance_criteria", path = "parts/1a710596-0686-4084-b6e9-b24735e58e60.md", frozen = true, created_at = "2026-09-15T15:48:18.464705900Z" }]
+plan_revision = 1
+type = "task"
+component = "rule"

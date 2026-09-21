@@ -1,0 +1,7 @@
+id = "7f4dcf79-c37c-4234-9ec7-99f35491b8b9"
+created_at = "2026-08-14T16:10:58.502771400+00:00"
+title = "Repair hook-capture E2E payload drift and add a subagent fixture"
+state = "planning"
+component = "doc"
+linked = ["7bc328d7-5168-4f93-938d-09e4e09dcdb4"]
+type = "bug"

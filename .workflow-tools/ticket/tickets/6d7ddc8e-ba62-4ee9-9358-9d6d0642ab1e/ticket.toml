@@ -1,0 +1,9 @@
+id = "6d7ddc8e-ba62-4ee9-9358-9d6d0642ab1e"
+created_at = "2026-03-29T03:47:42.218437500+00:00"
+title = "World Editor: Voxel Paint/Carve with Live Splat Regeneration"
+state = "done"
+component = "feedback"
+depends_on = ["55e30448-e34d-423f-9625-b32425cfbfdc", "86b0a60e-9e9b-41c5-ba1e-a0f372587dbe", "abbc1175-bb52-4871-af41-c6aaa2f04b19", "dcc6ad3f-6266-4940-96e1-2f26656cae57", "de697c71-9328-4133-8c77-d01e8b885940", "f7340416-1d2f-4ff9-b27e-237958ac00ca"]
+phase = "editor-tools"
+priority = "high"
+type = "tracker-improvement"

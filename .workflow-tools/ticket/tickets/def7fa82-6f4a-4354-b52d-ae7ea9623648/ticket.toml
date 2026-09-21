@@ -1,0 +1,7 @@
+id = "def7fa82-6f4a-4354-b52d-ae7ea9623648"
+created_at = "2026-05-21T15:09:06.086085200+00:00"
+title = "[ticket-cli][ticket-mcp] Make stale board entries directly check-outable"
+state = "planning"
+effort = "1200"
+type = "tracker-improvement"
+component = "doc"

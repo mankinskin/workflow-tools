@@ -1,0 +1,6 @@
+id = "e2f25c12-cc03-4d45-9af1-144902783883"
+created_at = "2026-07-31T13:13:37.727209600+00:00"
+title = "Retire the rule system: delete rule stores and rule-targets, freeze generated docs"
+state = "done"
+type = "tracker-improvement"
+component = "doc"

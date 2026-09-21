@@ -1,0 +1,8 @@
+id = "45ff05c9-7608-43c4-a98a-e1c44e4b7fbd"
+created_at = "2026-07-05T20:18:02.221606400+00:00"
+title = "[audit-roadmap][ticket_graph][retro] Rules, specs & agent-guidance work stream"
+state = "planning"
+depends_on = ["19bb3b4c-61fe-4270-91db-3ea27a819445", "37dfe6cc-0d8d-4b85-b1cb-e9c262a9de5f", "45379405-d7c3-41bf-bd6d-059354c4291b", "5d3cd5da-99e5-4320-979c-595fedf24a88", "665b727c-09b1-43e0-8795-eb67e2758aea", "68c61b92-af6b-4331-99fd-5a77dd3512e1", "6d4c4777-3dd9-4aa3-9c7b-1780cf1175ee", "720609b0-8bd2-4d29-a96e-667f88a069d5", "857593ec-11d6-4c73-b5d8-7bf3b7eadd37", "87a35ccb-d91c-4ce8-93b3-e150bb5afe1d", "8cfdce69-a8b5-49dd-8ad7-96518bf0b8cc", "bf8ef22e-ea06-45de-9f90-a2fee0e4cc6e", "cf3f8a76-62f0-4b7c-bef4-9190cf12a260", "e4f6e712-b3b6-493a-9ca2-d5f0d91f61b9", "e663f9e9-ac52-4c0e-8e07-d17c8a15b48d", "e7a31e70-e8f8-4369-aae4-98cc7f35db7c", "eaeaf157-85c3-4caf-a538-4f6ebb2a5ec7", "f147eb0e-c758-459b-a956-a1162c3e1af6", "f18e6885-c193-4159-82c5-d164e470437b", "f4f955b0-a827-4fce-882d-4df2f5903891", "fe5232d9-537a-4217-b8c0-b8e3ca81d95b"]
+effort = "1200"
+type = "tracker-improvement"
+component = "audit"

@@ -1,0 +1,9 @@
+id = "7e318b2a-a381-49a1-aee9-18758a4b80fd"
+created_at = "2026-06-17T14:03:39.254853300+00:00"
+title = "[architecture][workspace] Late store onboarding reconciliation"
+state = "done"
+depends_on = ["82d6ada4-ac35-45a7-9df6-7b7501d58e70", "fa3e0a51-0caa-4a33-bfe2-1b173feaa979"]
+effort = "2200"
+priority = "high"
+type = "tracker-improvement"
+component = "test"

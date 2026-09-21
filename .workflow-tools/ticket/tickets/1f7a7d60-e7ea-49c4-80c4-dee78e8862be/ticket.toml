@@ -1,0 +1,6 @@
+id = "1f7a7d60-e7ea-49c4-80c4-dee78e8862be"
+created_at = "2026-06-03T13:13:21.139658700+00:00"
+title = "[hooks][rule] Show sync-targets failure output in pre-commit"
+state = "done"
+type = "tracker-improvement"
+component = "rule"

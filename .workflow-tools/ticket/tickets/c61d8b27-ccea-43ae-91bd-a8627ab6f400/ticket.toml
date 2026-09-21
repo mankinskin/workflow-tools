@@ -1,0 +1,11 @@
+id = "c61d8b27-ccea-43ae-91bd-a8627ab6f400"
+created_at = "2026-08-23T18:13:02.894587200+00:00"
+title = "[spec-system][W6.2] Implement criteria, provider edges, and templates"
+state = "planning"
+component = "spec"
+depends_on = ["30bbbace-7ce3-4f7e-acb4-202d08cf91d7"]
+effort = "8000"
+priority = "high"
+risk_level = "high"
+roadmap_status = "scoped"
+type = "tracker-improvement"

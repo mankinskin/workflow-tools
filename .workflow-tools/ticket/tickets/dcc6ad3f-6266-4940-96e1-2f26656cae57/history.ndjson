@@ -1,0 +1,11 @@
+{"rev":1,"ts":"2026-03-29T05:12:29.403947+00:00","fields":{"state":"open","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-03-29T06:49:13.235504500+00:00","fields":{"state":"in-refinement","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":3,"ts":"2026-03-29T06:49:13.410100800+00:00","fields":{"state":"planned","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":4,"ts":"2026-03-29T06:52:43.703272800+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":5,"ts":"2026-03-29T06:53:26.897155100+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":6,"ts":"2026-03-29T06:53:40.236049200+00:00","fields":{"priority":"high","state":"planned","title":"[context-editor] Advanced Voxel Tools (Fill, Smooth, Extrude, Clone)","type":"tracker-improvement"}}
+{"rev":7,"ts":"2026-03-29T07:48:49.411195100+00:00","fields":{"priority":"high","state":"planned","title":"Advanced Voxel Tools: Fill, Smooth, Extrude, Clone","type":"tracker-improvement"}}
+{"rev":8,"ts":"2026-03-29T23:58:06.707683+00:00","fields":{"priority":"high","state":"in-implementation","title":"Advanced Voxel Tools: Fill, Smooth, Extrude, Clone","type":"tracker-improvement"}}
+{"rev":9,"ts":"2026-03-30T00:04:57.575969600+00:00","fields":{"priority":"high","state":"in-review","title":"Advanced Voxel Tools: Fill, Smooth, Extrude, Clone","type":"tracker-improvement"}}
+{"rev":10,"ts":"2026-03-30T00:04:58.199077+00:00","fields":{"priority":"high","state":"in-validation","title":"Advanced Voxel Tools: Fill, Smooth, Extrude, Clone","type":"tracker-improvement"}}
+{"rev":11,"ts":"2026-03-30T00:04:58.938734800+00:00","fields":{"priority":"high","state":"done","title":"Advanced Voxel Tools: Fill, Smooth, Extrude, Clone","type":"tracker-improvement"}}

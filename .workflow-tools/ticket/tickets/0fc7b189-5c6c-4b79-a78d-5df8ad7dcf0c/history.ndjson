@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-17T15:34:46.917301300+00:00","fields":{"effort":"500","priority":"high","state":"open","title":"[interview-api] Actionable answer-sheet synthesis and iteration loop","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-17T15:35:13.934486700+00:00","fields":{"depends_on":["7639449a-22a9-4bea-9fcf-517810bc9ddf"],"effort":"500","priority":"high","state":"open","title":"[interview-api] Actionable answer-sheet synthesis and iteration loop","type":"tracker-improvement"}}

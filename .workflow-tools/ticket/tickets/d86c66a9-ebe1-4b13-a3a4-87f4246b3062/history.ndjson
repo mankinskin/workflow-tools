@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-06-17T14:03:38.476613500+00:00","fields":{"effort":"2600","priority":"high","state":"open","title":"[architecture][contracts] Domain extension contracts and first provider","type":"tracker-improvement"}}
+{"rev":2,"ts":"2026-06-17T14:04:28.369094600+00:00","fields":{"depends_on":["65ea4528-af24-4300-8e5f-3b68e54711d0"],"effort":"2600","priority":"high","state":"open","title":"[architecture][contracts] Domain extension contracts and first provider","type":"tracker-improvement"}}

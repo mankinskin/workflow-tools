@@ -1,0 +1,8 @@
+id = "86b0a60e-9e9b-41c5-ba1e-a0f372587dbe"
+created_at = "2026-03-29T05:12:22.262379200+00:00"
+title = "Core Voxel Editor: Paint, Carve, and Ray-Octree Intersection"
+state = "done"
+depends_on = ["4cf4eeb7-2421-438a-a05c-f081125a3617", "b29d49db-f9d9-4e53-a9ab-60de8bd25f80", "c241f246-2fc2-47dc-8742-684f5b23f08f"]
+priority = "high"
+type = "tracker-improvement"
+component = "feedback"

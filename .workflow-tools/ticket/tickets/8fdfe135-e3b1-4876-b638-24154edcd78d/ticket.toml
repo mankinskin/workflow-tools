@@ -1,0 +1,14 @@
+id = "8fdfe135-e3b1-4876-b638-24154edcd78d"
+created_at = "2026-08-05T22:28:01.896282400+00:00"
+title = "Schema modernization implementation track"
+state = "planning"
+acceptance_criteria = "All six child tracks are validated and the schema modernization spec is review-ready."
+component = "ticket"
+depends_on = ["1f8e6e6d-c8ea-461d-83c9-c26daf0e3cd3", "3bb41fb2-9907-4b54-83b1-c62a0ce96756", "7df984eb-c96c-4501-98fa-4e88dd28ec4e", "7ef3f8db-d4a9-4135-99eb-3c006070a328", "9e7a5f1a-a2ce-43ce-9c8f-bdce7cf712d2", "abd3f280-9bd1-48cf-8503-17dd820afb30", "d8bd4c53-898e-4984-97e5-6ef605569f91", "e03eb731-877a-4498-832f-d1e41526423a"]
+effort = "10k"
+parts = [{ id = "e47b5043-66ac-4b44-938d-b9baeb93d8ee", kind = "review", path = "parts/e47b5043-66ac-4b44-938d-b9baeb93d8ee.md", frozen = false, created_at = "2026-08-06T01:42:05.051771400Z" }, { id = "6fd660ca-cae8-4f34-afe3-674590a8ee02", kind = "notes", path = "parts/6fd660ca-cae8-4f34-afe3-674590a8ee02.md", frozen = false, created_at = "2026-08-06T01:52:03.934167200Z" }]
+priority = "high"
+risk_level = "high"
+target_schema_type = "epic"
+type = "epic"
+workflow_role = "epic"

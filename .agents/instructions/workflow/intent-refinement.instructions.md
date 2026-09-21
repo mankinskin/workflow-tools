@@ -16,6 +16,13 @@ Follow the four-step loop in [evidence-grounded-refinement.instructions.md](evid
 - **Verdict**: `Changes requested` or `Approved as scoped`, plus a findings table and an explicit scope decision — or, for the second loop, a plain statement that no open question remains.
 - **Interview dispatch**: the [Mission Planning Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/mission-planning.agent.md) for a mission-goal-level gap, or the [Interview Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/interview.agent.md) for a narrower requirement/acceptance-criteria gap. Hand the dispatched agent the research already gathered and interview only what that evidence cannot resolve, so every question is grounded in a concrete finding, not a guess dressed up as a question.
 
+This file owns only the two interview-loop dispatches above. Drafting the
+dossier itself — the numbered work packages, `ROADMAP.md`, and `README.md` at
+Stage 4/6 — is a separate role owned by the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md);
+do not conflate the two. Mission Planning Agent and Interview Agent interview
+the requester and record decisions; the Roadmap Authoring Agent turns an
+already-resolved decision into the dossier's written artifacts.
+
 ## Where the Loop Runs
 
 - **First loop** (`prompt-ingestion.instructions.md` Stage 3): runs once research and the artifact inventory exist, before anything is drafted, so both the critique and any interview question are informed by real repository findings instead of the raw prompt alone. See [prompt-ingestion.instructions.md's Six Stages](prompt-ingestion.instructions.md#the-six-stages), Stage 3, for the exit artifact.
