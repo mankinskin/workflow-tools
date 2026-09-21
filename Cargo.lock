@@ -3390,12 +3390,13 @@ dependencies = [
 [[package]]
 name = "memory-fixtures"
 version = "0.1.0"
-source = "git+https://github.com/mankinskin/memory-fixtures?branch=main#96bcaf34d57d1e9587609af7b727314d67f06f47"
 dependencies = [
  "serde",
+ "serde_json",
  "tempfile",
  "thiserror 2.0.20",
  "toml 0.8.23",
+ "toon-format",
 ]
 
 [[package]]

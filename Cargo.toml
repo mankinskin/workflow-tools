@@ -105,3 +105,6 @@ install-ctl = { path = "install/install-ctl" }
 [patch."https://github.com/mankinskin/viewer-api"]
 viewer-api = { path = "viewer-api" }
 viewer-api-dioxus = { path = "viewer-api/frontend/dioxus" }
+
+[patch."https://github.com/mankinskin/memory-fixtures"]
+memory-fixtures = { path = "../context-engine/memory-api/crates/memory-fixtures" }
