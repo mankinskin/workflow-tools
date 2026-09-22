@@ -1,1 +1,0 @@
-Record graph layout/defaults implementation and move the ticket to review.

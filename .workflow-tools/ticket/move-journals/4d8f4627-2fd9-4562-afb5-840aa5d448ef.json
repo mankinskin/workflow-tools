@@ -1,0 +1,57 @@
+{
+  "id": "4d8f4627-2fd9-4562-afb5-840aa5d448ef",
+  "entity_id": "6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/ticket/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/ticket/.workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e",
+  "phase": "Validated",
+  "created_at": "2026-09-22T15:21:59.332775Z",
+  "updated_at": "2026-09-22T15:22:00.226040200Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "rewrote 1 tracked path reference files",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/ticket/.workflow-tools/ticket/move-locks/entity-6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/ticket/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [
+    {
+      "path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/a2f5460c-1e7e-481b-a250-e9def213ba55/description.md",
+      "repo_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools",
+      "repo_relative_path": ".workflow-tools/ticket/tickets/a2f5460c-1e7e-481b-a250-e9def213ba55/description.md",
+      "replacements": [
+        {
+          "before": ".workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e",
+          "after": "ticket/.workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e"
+        }
+      ]
+    }
+  ],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 0,
+    "migrate_board_history_ms": 26,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 599,
+    "scan_target_ms": 219,
+    "validate_move_ms": 37
+  },
+  "failure": null,
+  "next_recovery_step": null
+}

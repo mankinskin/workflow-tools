@@ -42,7 +42,7 @@ Viewer-wide keyboard support beyond those local flows is tracked separately.
 
 This ticket is the Track C coordination point in the broader ticket-viewer shell plan.
 
-1. Track A covers header actions cleanup in `C:/Users/linus_behrbohm/git/SECOND_CHECKOUT/graph_app/workflow-tools/.workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e`.
+1. Track A covers header actions cleanup in `C:/Users/linus_behrbohm/git/SECOND_CHECKOUT/graph_app/workflow-tools/ticket/.workflow-tools/ticket/tickets/6ea2c97c-0b41-4b90-91db-f0de9e8e4b8e`.
 2. Track B covers sidebar/tree parity and long-list scrolling in `C:/Users/linus_behrbohm/git/SECOND_CHECKOUT/graph_app/context-engine/memory-viewers/.ticket/tickets/c10cc92e-03b5-423b-a7ef-93879c253f7d`.
 3. This explorer track may run in parallel with those shell tracks, but should not absorb their shell-level scope.
 4. Shared helper extraction is acceptable only after the shell-level behavior is stable enough that the helper can be validated in one place.
