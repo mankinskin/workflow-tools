@@ -1,5 +1,0 @@
-{"rev":1,"ts":"2026-06-03T12:54:17.776866400+00:00","fields":{"state":"open","title":"[rules][copilot] Integrate RTK section into generated copilot instructions","type":"tracker-improvement"}}
-{"rev":2,"ts":"2026-06-03T12:55:14.079723700+00:00","fields":{"state":"planned","title":"[rules][copilot] Integrate RTK section into generated copilot instructions","type":"tracker-improvement"}}
-{"rev":3,"ts":"2026-06-03T12:55:14.312180200+00:00","fields":{"state":"in-implementation","title":"[rules][copilot] Integrate RTK section into generated copilot instructions","type":"tracker-improvement"}}
-{"rev":4,"ts":"2026-06-03T13:06:35.612709100+00:00","fields":{"state":"in-review","title":"[rules][copilot] Integrate RTK section into generated copilot instructions","type":"tracker-improvement"}}
-{"rev":5,"ts":"2026-06-30T13:17:55.232852+00:00","fields":{"state":"done","title":"[rules][copilot] Integrate RTK section into generated copilot instructions","type":"tracker-improvement"},"author":"copilot-gpt-5.4"}

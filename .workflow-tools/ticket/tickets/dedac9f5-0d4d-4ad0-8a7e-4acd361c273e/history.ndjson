@@ -1,2 +1,0 @@
-{"rev":1,"ts":"2026-06-17T15:38:13.353932+00:00","fields":{"effort":"450","priority":"high","state":"open","title":"[validation] Rule-target generation drift checks for scaffold guidance assets","type":"tracker-improvement"}}
-{"rev":2,"ts":"2026-06-17T15:38:22.205233500+00:00","fields":{"depends_on":["23e81ad8-b67c-49af-97b5-f90f8bb0ae2c"],"effort":"450","priority":"high","state":"open","title":"[validation] Rule-target generation drift checks for scaffold guidance assets","type":"tracker-improvement"}}

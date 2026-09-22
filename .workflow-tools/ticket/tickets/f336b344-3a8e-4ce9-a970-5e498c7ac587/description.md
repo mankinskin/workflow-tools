@@ -1,1 +1,0 @@
-Expose shared feedback analytics through deterministic CLI reports and MCP query tools. Support matching machine-readable and concise human-readable fields, with adapter parity coverage and clear invalid-parameter errors.

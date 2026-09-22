@@ -1,0 +1,44 @@
+{
+  "id": "1a115579-dd3f-46c1-a539-3531b4654fac",
+  "entity_id": "14cafba1-ebb0-4df6-8255-e2ae0d58658e",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/feedback/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/14cafba1-ebb0-4df6-8255-e2ae0d58658e",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/feedback/.workflow-tools/ticket/tickets/14cafba1-ebb0-4df6-8255-e2ae0d58658e",
+  "phase": "Validated",
+  "created_at": "2026-09-21T20:53:08.074903900Z",
+  "updated_at": "2026-09-21T20:53:09.283395400Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-14cafba1-ebb0-4df6-8255-e2ae0d58658e.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/feedback/.workflow-tools/ticket/move-locks/entity-14cafba1-ebb0-4df6-8255-e2ae0d58658e.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/feedback/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 1,
+    "migrate_board_history_ms": 26,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 962,
+    "scan_target_ms": 164,
+    "validate_move_ms": 46
+  },
+  "failure": null,
+  "next_recovery_step": null
+}

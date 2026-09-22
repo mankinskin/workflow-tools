@@ -1,5 +1,0 @@
-{"rev":1,"ts":"2026-06-03T14:09:10.646441900+00:00","fields":{"state":"open","title":"[rule-cli] Make scan output explain diagnostics and counters","type":"tracker-improvement"}}
-{"rev":2,"ts":"2026-06-03T14:09:21.710467100+00:00","fields":{"state":"planned","title":"[rule-cli] Make scan output explain diagnostics and counters","type":"tracker-improvement"}}
-{"rev":3,"ts":"2026-06-03T14:09:21.923263900+00:00","fields":{"state":"in-implementation","title":"[rule-cli] Make scan output explain diagnostics and counters","type":"tracker-improvement"}}
-{"rev":4,"ts":"2026-06-03T14:17:58.205293700+00:00","fields":{"state":"in-review","title":"[rule-cli] Make scan output explain diagnostics and counters","type":"tracker-improvement"}}
-{"rev":5,"ts":"2026-06-30T13:17:53.737844900+00:00","fields":{"state":"done","title":"[rule-cli] Make scan output explain diagnostics and counters","type":"tracker-improvement"},"author":"copilot-gpt-5.4"}

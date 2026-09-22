@@ -1,0 +1,44 @@
+{
+  "id": "ccf90553-532e-4b41-8bed-56b575addc38",
+  "entity_id": "0fdce225-9cef-46ed-92d9-83c852c2d084",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/memory-kernel/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/0fdce225-9cef-46ed-92d9-83c852c2d084",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/memory-kernel/.workflow-tools/ticket/tickets/0fdce225-9cef-46ed-92d9-83c852c2d084",
+  "phase": "Validated",
+  "created_at": "2026-09-21T21:13:58.449508400Z",
+  "updated_at": "2026-09-21T21:13:58.809993600Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-0fdce225-9cef-46ed-92d9-83c852c2d084.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/memory-kernel/.workflow-tools/ticket/move-locks/entity-0fdce225-9cef-46ed-92d9-83c852c2d084.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/memory-kernel/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 1,
+    "migrate_board_history_ms": 26,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 142,
+    "scan_target_ms": 140,
+    "validate_move_ms": 40
+  },
+  "failure": null,
+  "next_recovery_step": null
+}

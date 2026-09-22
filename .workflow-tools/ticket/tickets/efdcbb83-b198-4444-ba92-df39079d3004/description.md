@@ -1,1 +1,0 @@
-Reopening RuleStore tracing ticket to resolve the remaining rule-api test failures blocking closure, then rerun full crate validation.

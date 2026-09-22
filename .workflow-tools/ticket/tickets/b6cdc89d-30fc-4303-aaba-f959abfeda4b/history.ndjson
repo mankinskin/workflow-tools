@@ -1,4 +1,0 @@
-{"rev":1,"ts":"2026-07-08T23:04:18.895197600+00:00","fields":{"priority":"high","state":"open","title":"[session-optimization] run_in_terminal sync enters ambiguous background state","type":"bug"}}
-{"rev":2,"ts":"2026-07-08T23:05:38.008012900+00:00","fields":{"effort":"1.5k","priority":"high","state":"open","title":"[session-optimization] run_in_terminal sync enters ambiguous background state","type":"bug"}}
-{"rev":3,"ts":"2026-07-08T23:14:39.726091800+00:00","fields":{"effort":"1.5k","priority":"high","state":"in-review","title":"[session-optimization] run_in_terminal sync enters ambiguous background state","type":"bug"}}
-{"rev":4,"ts":"2026-07-08T23:14:51.238231800+00:00","fields":{"effort":"1.5k","priority":"high","state":"done","title":"[session-optimization] run_in_terminal sync enters ambiguous background state","type":"bug"}}

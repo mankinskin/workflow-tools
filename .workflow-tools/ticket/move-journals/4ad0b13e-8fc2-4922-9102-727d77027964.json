@@ -1,0 +1,44 @@
+{
+  "id": "4ad0b13e-8fc2-4922-9102-727d77027964",
+  "entity_id": "c878707f-1581-49b7-9b67-39c5b11bb34a",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/audit/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/c878707f-1581-49b7-9b67-39c5b11bb34a",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/audit/.workflow-tools/ticket/tickets/c878707f-1581-49b7-9b67-39c5b11bb34a",
+  "phase": "Validated",
+  "created_at": "2026-09-21T20:26:18.975918100Z",
+  "updated_at": "2026-09-21T20:26:19.347265200Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-c878707f-1581-49b7-9b67-39c5b11bb34a.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/audit/.workflow-tools/ticket/move-locks/entity-c878707f-1581-49b7-9b67-39c5b11bb34a.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/audit/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 1,
+    "migrate_board_history_ms": 27,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 146,
+    "scan_target_ms": 142,
+    "validate_move_ms": 44
+  },
+  "failure": null,
+  "next_recovery_step": null
+}

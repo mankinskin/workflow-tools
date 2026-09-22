@@ -1,7 +1,0 @@
-{"rev":1,"ts":"2026-06-03T13:13:21.189948700+00:00","fields":{"state":"open","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":2,"ts":"2026-06-03T13:13:27.311004200+00:00","fields":{"state":"planned","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":3,"ts":"2026-06-03T13:13:27.521173500+00:00","fields":{"state":"in-implementation","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":4,"ts":"2026-06-03T13:14:43.618542500+00:00","fields":{"state":"in-review","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":5,"ts":"2026-06-30T13:17:57.733664200+00:00","fields":{"state":"in-implementation","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":6,"ts":"2026-07-01T01:10:06.210004200+00:00","fields":{"state":"in-review","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"}}
-{"rev":7,"ts":"2026-07-03T12:39:01.396036600+00:00","fields":{"state":"done","title":"[hooks][rule] Show sync-targets failure output in pre-commit","type":"tracker-improvement"},"author":"github-copilot"}
