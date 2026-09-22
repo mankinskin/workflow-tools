@@ -1,0 +1,44 @@
+{
+  "id": "b54be163-b9af-4336-94ee-325566f2b304",
+  "entity_id": "c8f79641-6f99-4401-9b08-ad960a8d785c",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/session/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/c8f79641-6f99-4401-9b08-ad960a8d785c",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/session/.workflow-tools/ticket/tickets/c8f79641-6f99-4401-9b08-ad960a8d785c",
+  "phase": "Validated",
+  "created_at": "2026-09-22T09:42:53.592603500Z",
+  "updated_at": "2026-09-22T09:42:54.339130600Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-c8f79641-6f99-4401-9b08-ad960a8d785c.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/session/.workflow-tools/ticket/move-locks/entity-c8f79641-6f99-4401-9b08-ad960a8d785c.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/session/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 0,
+    "migrate_board_history_ms": 24,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 544,
+    "scan_target_ms": 130,
+    "validate_move_ms": 37
+  },
+  "failure": null,
+  "next_recovery_step": null
+}
