@@ -1,1 +1,0 @@
-Adopt the Entity Kernel event and capability contracts in session-api. Preserve CopilotHookEvent compatibility and session capture behavior. Add the adapter boundary and compatibility tests without changing session business schemas.
