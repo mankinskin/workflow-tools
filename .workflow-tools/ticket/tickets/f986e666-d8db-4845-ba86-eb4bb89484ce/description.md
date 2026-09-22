@@ -1,1 +1,0 @@
-Closing evidence: Governing spec 351389c0-0873-4c3c-bc46-3551459ba1cd (spec-api/store, state=reviewed, links this ticket). Validation: `rtk cargo test -p spec-api` → 79 passed, 0 failed. Landed in memory-api submodule commit cb423c5.

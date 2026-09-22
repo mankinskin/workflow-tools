@@ -1,5 +1,0 @@
-{"rev":1,"ts":"2026-05-25T22:03:11.001071+00:00","fields":{"state":"open","title":"[spec-cli] Normalize refs validate workspace_root JSON paths on Windows","type":"tracker-improvement"}}
-{"rev":2,"ts":"2026-05-25T22:03:25.069297600+00:00","fields":{"state":"planned","title":"[spec-cli] Normalize refs validate workspace_root JSON paths on Windows","type":"tracker-improvement"}}
-{"rev":3,"ts":"2026-05-25T22:03:25.133584700+00:00","fields":{"state":"in-implementation","title":"[spec-cli] Normalize refs validate workspace_root JSON paths on Windows","type":"tracker-improvement"}}
-{"rev":4,"ts":"2026-05-25T22:07:25.781644600+00:00","fields":{"state":"in-review","title":"[spec-cli] Normalize refs validate workspace_root JSON paths on Windows","type":"tracker-improvement"}}
-{"rev":5,"ts":"2026-05-25T22:07:25.854249100+00:00","fields":{"state":"done","title":"[spec-cli] Normalize refs validate workspace_root JSON paths on Windows","type":"tracker-improvement"}}

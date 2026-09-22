@@ -1,1 +1,0 @@
-Build representative prompt matrix (simple, medium, complex, edge-case) and replay harness to validate scaffold skill behavior, compile health, and architecture conformance across domain types.
