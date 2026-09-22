@@ -1,0 +1,44 @@
+{
+  "id": "9f70305f-d997-45f7-b640-cf1f5a09681b",
+  "entity_id": "5fc9e6df-d030-4d3e-b5a0-84665840a3ab",
+  "source_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket",
+  "target_store_root": "C:/Users/linus/git/3/meta-workspace/workflow-tools/spec/.workflow-tools/ticket",
+  "source_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/tickets/5fc9e6df-d030-4d3e-b5a0-84665840a3ab",
+  "destination_entity_path": "C:/Users/linus/git/3/meta-workspace/workflow-tools/spec/.workflow-tools/ticket/tickets/5fc9e6df-d030-4d3e-b5a0-84665840a3ab",
+  "phase": "Validated",
+  "created_at": "2026-09-22T10:49:12.509084100Z",
+  "updated_at": "2026-09-22T10:49:12.837050300Z",
+  "steps": [
+    "created move journal",
+    "acquired source/target store locks and move entity lock",
+    "moved entity folder",
+    "scanned source store",
+    "scanned target store",
+    "validated move ownership"
+  ],
+  "rollback_steps": [
+    "rename destination entity folder back to source path",
+    "restore migrated board history rows to source store",
+    "scan source and target stores"
+  ],
+  "lock_paths": [
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/entity-5fc9e6df-d030-4d3e-b5a0-84665840a3ab.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/.workflow-tools/ticket/move-locks/store.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/spec/.workflow-tools/ticket/move-locks/entity-5fc9e6df-d030-4d3e-b5a0-84665840a3ab.lock",
+    "C:/Users/linus/git/3/meta-workspace/workflow-tools/spec/.workflow-tools/ticket/move-locks/store.lock"
+  ],
+  "migrated_board_entries": [],
+  "rewritten_path_files": [],
+  "manual_followups": [],
+  "phase_timings_ms": {
+    "lock_acquisition_ms": 0,
+    "migrate_board_history_ms": 23,
+    "rename_entity_ms": 0,
+    "rewrite_path_refs_ms": 0,
+    "scan_source_ms": 130,
+    "scan_target_ms": 126,
+    "validate_move_ms": 37
+  },
+  "failure": null,
+  "next_recovery_step": null
+}
