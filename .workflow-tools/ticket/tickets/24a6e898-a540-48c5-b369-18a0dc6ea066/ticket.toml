@@ -1,0 +1,11 @@
+id = "24a6e898-a540-48c5-b369-18a0dc6ea066"
+created_at = "2026-09-25T14:38:39.430211700+00:00"
+title = "Execute staged cross-repository specification migration with reconciliation gates"
+state = "planning"
+component = "workflow-tools"
+depends_on = ["6309e12c-f81e-4b16-9fd4-32bc24fa5a0e", "8b1a5cf8-f75f-41e0-878e-280e2a9e0728", "f1f2afed-e1a1-47b8-8d1b-a074ae3c0f10"]
+effort = "10k"
+parts = [{ id = "65d44049-1e70-4aac-ada9-f4ca9c0feba2", kind = "requirements", path = "parts/65d44049-1e70-4aac-ada9-f4ca9c0feba2.md", frozen = false, created_at = "2026-09-25T15:24:18.561379Z" }]
+priority = "high"
+spec_refs = "7487a6b5-39c6-4114-a697-6ed0556e888e"
+type = "task"

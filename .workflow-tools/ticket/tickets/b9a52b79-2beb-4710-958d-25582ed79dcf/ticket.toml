@@ -7,6 +7,6 @@ depends_on = ["0a5ee413-7e59-4bcf-a6d9-cca37b17049a", "26d7dddb-a026-49ed-a4e8-2
 effort = "2200"
 linked = ["b13c5d89-db09-46e7-9061-dbed85c4ab41"]
 priority = "high"
-related_specs = [{ spec_id = "bc639ab3-8eda-4268-a7a2-34289bfeba4d", workspace = "default", store_root = ".spec" }]
+related_specs = [{ spec_id = "bc639ab3-8eda-4268-a7a2-34289bfeba4d", workspace = "default", store_root = "workflow-tools/.workflow-tools/spec" }]
 risk_level = "high"
 type = "task"
