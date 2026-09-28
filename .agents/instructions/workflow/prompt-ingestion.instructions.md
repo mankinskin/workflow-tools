@@ -83,14 +83,23 @@ flag.
 
 ## Resuming an In-Progress Dossier
 
-A single raw prompt is refined iteratively as the standard mode of use, not an edge case: after the pipeline runs, the requester reviews the dossier and can trigger it again with an additional transcript. Treat every such re-invocation as continuing the same dossier, never as a new request — but only when that continuation is anchored to **this session**, per the strict rule below.
+**Default: create a new dossier.** Every pipeline invocation creates a new `transcripts/DD-MM-YYYY_<slug>/` folder unless the invocation passes both gates below. A shared topic, component, file, tool, or the same session never justifies extending an existing dossier on its own.
 
-**Strict two-condition reuse rule.** Two sessions have in practice worked on similar or overlapping topics in parallel, and a new pipeline invocation in a fresh session reused another session's transcript folder by topic resemblance, collapsing what should have been two isolated dossiers and roadmaps into one. To close that failure mode, an existing dossier folder may be addressed only when at least one of these two conditions holds, evaluated strictly against the **current session**:
+**Gate 1 — session anchor (necessary, never sufficient).** Two sessions have in practice worked on similar topics in parallel, and a fresh session reused another session's dossier folder by topic resemblance, collapsing two isolated dossiers into one. An existing dossier folder is therefore eligible only when at least one of these conditions holds, evaluated strictly against the **current session**:
 
 1. This session's own conversation history shows it already created or resumed that exact dossier folder earlier in this session, or
 2. `session_runtime_view` shows **exactly one** dossier pinned under relation `intent-ingestion-dossier` by this session (matching `ce://<workspace>/dossier/<folder-name>`).
 
-If neither condition holds — including when `session_runtime_view` shows zero matching pins, or shows more than one (ambiguous) — a new `transcripts/DD-MM-YYYY_<slug>/` folder MUST be created, even if a similarly-named or topically similar dossier already exists from another session. Never scan the `transcripts/` directory for a topically similar existing folder to reuse: continuation detection is scoped strictly to this session's own record (conversation history or its own pins), never to the repository-wide `transcripts/` folder or to another session's work. When condition 1 or 2 holds, still confirm the new ask is thematically continuous with that dossier (a refinement, addition, or correction to the same request) before treating it as a continuation rather than an unrelated new request in the same session.
+Zero matching pins, more than one pin, or a similarly named dossier from another session all fail Gate 1. Never scan the `transcripts/` directory for a topically similar folder to reuse.
+
+**Gate 2 — extension trigger (one required).** An eligible dossier is extended only when one of these triggers holds:
+
+1. *Explicit request:* the requester asks to extend, continue, refine, or replan that dossier, or names that dossier. An `/execute-ingest` `replan` outcome counts as an explicit request.
+2. *Unambiguous extension:* the new input changes the same requested outcome as the active dossier. The input corrects or refines that dossier's scope, answers one of that dossier's open questions, or adds a requirement to the same deliverable. A reader of that dossier's `README.md` would name the new input part of the same deliverable.
+
+**Tie-breaker.** When Gate 2 is uncertain, create a new dossier and cite the related dossier in the new `ARTIFACTS.md` as evidence. Do not interview the requester only to justify an extension.
+
+**Record the decision.** A continuation states its Gate 2 trigger in the dossier's `README.md`.
 
 **Pinning.** Immediately after creating or resuming a dossier folder, pin its canonical URN via `session_runtime_pin` with relation `intent-ingestion-dossier` (e.g. `entity_urn: "ce://default/dossier/13-09-2026_my-slug"`) so a later stage, or a later pipeline invocation in the same session, can find it without re-deriving it. Do not pass a raw path like `path:...`, as entity pins require `ce://<workspace>/<store>/<entity>` format.
 
