@@ -83,23 +83,24 @@ flag.
 
 ## Resuming an In-Progress Dossier
 
-**Default: create a new dossier.** Every pipeline invocation creates a new `transcripts/DD-MM-YYYY_<slug>/` folder unless the invocation passes both gates below. A shared topic, component, file, tool, or the same session never justifies extending an existing dossier on its own.
+**Decide explicitly, in two steps, before writing any dossier file.** A shared topic, component, file, tool, or the same session never justifies extending an existing dossier on its own.
 
-**Gate 1 — session anchor (necessary, never sufficient).** Two sessions have in practice worked on similar topics in parallel, and a fresh session reused another session's dossier folder by topic resemblance, collapsing two isolated dossiers into one. An existing dossier folder is therefore eligible only when at least one of these conditions holds, evaluated strictly against the **current session**:
+**Step 1 — is there an active dossier?** Two sessions have in practice worked on similar topics in parallel, and a fresh session reused another session's dossier folder by topic resemblance, collapsing two isolated dossiers into one. An existing dossier is therefore active only when at least one of these conditions holds, evaluated strictly against the **current session**:
 
 1. This session's own conversation history shows it already created or resumed that exact dossier folder earlier in this session, or
 2. `session_runtime_view` shows **exactly one** dossier pinned under relation `intent-ingestion-dossier` by this session (matching `ce://<workspace>/dossier/<folder-name>`).
 
-Zero matching pins, more than one pin, or a similarly named dossier from another session all fail Gate 1. Never scan the `transcripts/` directory for a topically similar folder to reuse.
+Zero matching pins, more than one pin, or a similarly named dossier from another session mean there is no active dossier: create a new `transcripts/DD-MM-YYYY_<slug>/` folder and skip Step 2. Never scan the `transcripts/` directory for a topically similar folder to reuse.
 
-**Gate 2 — extension trigger (one required).** An eligible dossier is extended only when one of these triggers holds:
+**Step 2 — classify the request against the active dossier's roadmap.**
 
-1. *Explicit request:* the requester asks to extend, continue, refine, or replan that dossier, or names that dossier. An `/execute-ingest` `replan` outcome counts as an explicit request.
-2. *Unambiguous extension:* the new input changes the same requested outcome as the active dossier. The input corrects or refines that dossier's scope, answers one of that dossier's open questions, or adds a requirement to the same deliverable. A reader of that dossier's `README.md` would name the new input part of the same deliverable.
+| Classification | Signal | Action |
+|---|---|---|
+| Refinement | The requester explicitly asks to extend, continue, refine, or replan that dossier, or names it (an `/execute-ingest` `replan` counts); or the request clearly changes the same requested outcome — it corrects the scope, answers an open question, or adds a requirement to the same deliverable. | Extend the active dossier. |
+| Standalone | The request has its own outcome, even if it shares a topic, component, file, tool, or session with the active dossier. | Create a new dossier; the new `ARTIFACTS.md` may cite the active dossier as evidence. |
+| Borderline | The request is closely related to the active roadmap and might count as an extension, but is not clearly a refinement. | Stop before writing any file. Ask the requester one question per [question-quality.instructions.md](question-quality.instructions.md) that names the active dossier and offers exactly `extend <dossier>` or `new dossier`, then follow the answer. Never infer the answer from silence. |
 
-**Tie-breaker.** When Gate 2 is uncertain, create a new dossier and cite the related dossier in the new `ARTIFACTS.md` as evidence. Do not interview the requester only to justify an extension.
-
-**Record the decision.** A continuation states its Gate 2 trigger in the dossier's `README.md`.
+**Record the classification.** The `README.md` of the dossier used states the classification (refinement, standalone, or confirmed borderline) and its signal.
 
 **Pinning.** Immediately after creating or resuming a dossier folder, pin its canonical URN via `session_runtime_pin` with relation `intent-ingestion-dossier` (e.g. `entity_urn: "ce://default/dossier/13-09-2026_my-slug"`) so a later stage, or a later pipeline invocation in the same session, can find it without re-deriving it. Do not pass a raw path like `path:...`, as entity pins require `ce://<workspace>/<store>/<entity>` format.
 
