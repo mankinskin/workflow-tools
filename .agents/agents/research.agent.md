@@ -29,10 +29,10 @@ Your job is to gather the minimum trustworthy context needed to support the next
 ## Required Workflow
 
 1. Start from the most concrete anchor available.
-2. Search existing tickets and specs before broad code exploration.
+2. Sweep the domain stores before broad code exploration, per [entity-discovery.instructions.md](../instructions/workflow/entity-discovery.instructions.md) — that file owns the store list, the per-store surfaces, and the reuse rule when a relevant entity already exists.
 3. Read the nearest owning abstraction, neighboring test, or call site.
 4. Form one falsifiable local hypothesis about where the behavior or decision lives.
-5. Identify the single best next action: create a ticket, update a spec, run a validation, or edit a narrow slice.
+5. Identify the single best next action: reuse or extend an existing entity found in step 2, create a ticket, update a spec, run a validation, or edit a narrow slice.
 
 ## Output Format
 

@@ -56,6 +56,28 @@ If the intended outcome has no Execution side effect, keep the dossier in
 [idea-workspace mode](dossier-idea-workspace.instructions.md) instead of
 compiling an execution-ready roadmap.
 
+### Entity-creating waypoints
+
+A waypoint that proposes creating an entity — a ticket, spec, validation spec,
+session record, feedback entry, or dossier — MUST do one of two things, and
+state which in the waypoint itself:
+
+- **cite the search that proved non-existence** — the Stage 2 store-coverage
+  table in `ARTIFACTS.md`, or the exact search command and its result; or
+- **record a reuse form instead of creating**, chosen from
+  [entity-discovery.instructions.md](entity-discovery.instructions.md):
+  update the existing entity in place, add a child/sub-entity under it, or link
+  the new work to it.
+
+A creation waypoint with neither is a planning defect; the dry-run rejects it.
+"No existing one was found" with no cited search is not evidence. This is the
+second of the two phases [entity-discovery.instructions.md](entity-discovery.instructions.md)
+binds — the first is prompt-ingestion Stage 2.
+
+A creation waypoint's validation gate must read the created entity back by id
+(for example `ticket get <id>`). A bounded `list` command is not a read-back:
+it can omit a just-created entity when the store is larger than the limit.
+
 **One waypoint, one measurable outcome.** A waypoint bundling more than one loosely related change is a scoping defect — split it. Merge only when a prior split was too aggressive and produced trivially small fragments with no independent validation gate.
 
 **The single-session threshold decides waypoint vs. ticket.** A waypoint completable by one session in one sitting stays inline and is marked single-session. A waypoint that is too large for one session, or whose internal dependencies are complex enough to need cross-session tracking, is **not** decomposed inline — it becomes a ticket (per [prompt-ingestion.instructions.md's Ticket Creation During Refinement](prompt-ingestion.instructions.md#ticket-creation-during-refinement)), and the roadmap keeps only the ticket id and a one-line summary.
