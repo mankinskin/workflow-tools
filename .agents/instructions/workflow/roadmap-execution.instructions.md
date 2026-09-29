@@ -28,6 +28,10 @@ the planning loop and is not an executable handoff. A planning verdict such as
 `Approved as scoped` is evidence that the roadmap is ready for review, not
 evidence of execution approval.
 
+The `approve` outcome authorizes the roadmap's first `Execution side effect`
+waypoint (`W1`). Without that outcome, do not mark W1 `in-progress` or perform
+any external mutation.
+
 The executor must use the exact dossier path and `ROADMAP.md` supplied by the
 approved handoff. The executor must not reconstruct, alter, or substitute the
 roadmap before checking waypoint readiness.
@@ -43,6 +47,14 @@ A waypoint is ready only when all of the following are true:
 - Its `Session package:` line names one proportionate execution package, and its `Prompt:` line is self-contained enough for that package's fresh session to begin without rediscovering the goal, targets, dependencies, validation, or non-goals.
 - Its `Commit checkpoint:` line states the logical checkpoint to commit after validation, or explicitly records why the waypoint is read-only or produces no repository change.
 - Its validation lines name executable commands or an explicitly documented non-executable review method that can prove each criterion.
+- Its `Mode` satisfies the canonical classification in
+	[roadmap-authoring.instructions.md](roadmap-authoring.instructions.md#planning-reads-and-execution-side-effects).
+	`W1` must be `Execution side effect`; a Planning read is a compilation defect,
+	not an executable waypoint. A `Dependent read-only waypoint` must identify a
+	completed side effect in the same dependency branch that created or
+	materially changed every input it reads. The branch must not contain another
+	consecutive `Dependent read-only waypoint`, and the permitted waypoint must
+	consolidate all related reads and gates that became ready at that point.
 - The user has not supplied a newer request that changes or conflicts with the waypoint's objective, scope, order, acceptance criteria, or non-goals.
 
 Evaluate the readiness gate before the first mutation and again whenever new evidence changes the waypoint's premises. Do not infer that a waypoint is ready from an `in-progress` status left by a prior session.
@@ -51,7 +63,7 @@ Evaluate the readiness gate before the first mutation and again whenever new evi
 
 For a new or revised roadmap, the readiness gate must find one ordinary
 Markdown table containing the Waypoint properties. The table must include rows
-for `Status`, `Scope`, `Session package`, `Part`, `Prompt`, `Artifacts`,
+for `Status`, `Scope`, `Mode`, `Session package`, `Part`, `Prompt`, `Artifacts`,
 `Non-goal`, `Validate`, and `Commit checkpoint`; a `Depends` row is required
 when the Waypoint has dependencies. The `Part` row must resolve to exactly one
 dedicated Part Markdown file in the same dossier. That Part file must expose
