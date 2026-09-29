@@ -15,10 +15,10 @@ applyTo: "context-engine/context-stack/tools/context-editor/**"
 
 This skill documents Bevy 0.18 patterns as they are actually used in the
 context-editor kernel crate (`context-editor-kernel`, pinned in
-[kernel/Cargo.toml](../../../../context-engine/context-stack/tools/context-editor/kernel/Cargo.toml))
+[kernel/Cargo.toml](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/Cargo.toml))
 and its `sandbox-app` host. It is grounded in the module-boundary
 characterization from dossier waypoint W1
-([01-characterize-architecture.md](../../../../transcripts/18-09-2026_context-editor-sandbox-architecture/01-characterize-architecture.md))
+([01-characterize-architecture.md](https://github.com/mankinskin/meta-workspace/blob/main/transcripts/18-09-2026_context-editor-sandbox-architecture/01-characterize-architecture.md))
 and direct source reads of this pass. Every pattern below cites the kernel
 file that demonstrates it — do not extend a pattern beyond what its citation
 shows.
@@ -33,7 +33,7 @@ see "Dioxus-to-Bevy boundary" below for where the two meet.
 
 The kernel assembles ~28 `Plugin` impls into one `bevy::prelude::App` in
 `build_kernel_app()`
-([kernel/src/lib.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/lib.rs)),
+([kernel/src/lib.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/lib.rs)),
 gated `#[cfg(target_arch = "wasm32")]` — the native build compiles a no-op
 stub for this function and for `launch()`, `apply_registered_preset()`,
 `register_world_presets()`, and `world_preset_names()`. Treat any claim about
@@ -46,14 +46,14 @@ compile the wasm32 arm).
   `multiplayer`, `simulation`, `ui`, `world`) owns its own `Plugin` struct(s)
   and inline `#[cfg(test)] mod tests`. Example:
   `InteractionBridgePlugin` in
-  [kernel/src/ui/interaction.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/ui/interaction.rs)
+  [kernel/src/ui/interaction.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/ui/interaction.rs)
   registers exactly one resource pair (`InteractionQueue`, `InteractionHits`)
   and one `Update`-schedule system (`process_interactions`) — keep a plugin's
   `build()` this small: resource init + system registration, no inline logic.
 - **Resources are the cross-system contract, not events.** GPU buffers
   (`CameraUniformBuffer`, `SvoPageTableBuffer`, `SvoTransformBuffer`,
   `DoubleBindGroups`) are held as Bevy `Resource`s created once at startup in
-  [kernel/src/gpu/mod.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/gpu/mod.rs);
+  [kernel/src/gpu/mod.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/gpu/mod.rs);
   the module doc comment states plainly "the hot render-loop path never
   allocates." Mirror this: allocate GPU-backed resources in a startup system,
   mutate them in place per frame, never in a hot per-frame system.
@@ -69,7 +69,7 @@ compile the wasm32 arm).
   wildcard shim.
 - **`VoxelWorld` is the single source of truth for world geometry**, per its
   own module doc comment in
-  [kernel/src/svo/mod.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/svo/mod.rs).
+  [kernel/src/svo/mod.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/svo/mod.rs).
   Every domain module that touches geometry (`physics`, `splat`, `render`,
   `gpu`, `editor`, `world::svo_lod`/`world::theme`) reads or mutates this one
   resource directly — there is no abstraction layer between them. A new
@@ -82,7 +82,7 @@ compile the wasm32 arm).
 These are the load-bearing module boundaries W1 characterized; treat them as
 fixed contracts, not internal implementation detail to casually cross:
 
-- **SVO authority** — [kernel/src/svo/mod.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/svo/mod.rs)'s
+- **SVO authority** — [kernel/src/svo/mod.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/svo/mod.rs)'s
   `VoxelWorld` owns `nodes: Vec<OctreeNode>`, `dirty_ranges`, and the
   `set_voxel`/`remove_voxel`/`apply_sdf_brush`/`carve_sdf_brush` mutation API.
   `take_dirty_ranges()` (line ~223) drains pending dirty byte ranges and MUST
@@ -90,15 +90,15 @@ fixed contracts, not internal implementation detail to casually cross:
   lines ~258–280) assert the drain empties the queue, which is the regression
   guard for this invariant.
 - **GPU upload / double buffer** — `svo::upload::SvoUploadPlugin`
-  ([kernel/src/svo/upload.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/svo/upload.rs))
+  ([kernel/src/svo/upload.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/svo/upload.rs))
   runs `svo_resize_system → svo_paged_upload_system →
   double_buffer_swap_system` in `PostUpdate`, draining `take_dirty_ranges()`
   and writing the BACK buffer via `gpu::DoubleBindGroups`
-  ([kernel/src/gpu/mod.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/gpu/mod.rs)).
+  ([kernel/src/gpu/mod.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/gpu/mod.rs)).
   The swap is a pointer flip documented as "< 0.01 ms" — never write directly
   to the FRONT buffer or skip the swap system.
 - **Render graph / depth / wireframe** —
-  [kernel/src/render/mod.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/render/mod.rs)
+  [kernel/src/render/mod.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/render/mod.rs)
   fixes the node order as `BufferSwap → ParticleCompute → SvoRayMarch →
   DepthBridge → UiComposite → WireframeOverlay` via the `ContextEditorLabel`
   `RenderLabel` enum. This order is structural: `DepthBridge` depends on
@@ -107,7 +107,7 @@ fixed contracts, not internal implementation detail to casually cross:
   node must be inserted into this fixed sequence, not appended after
   `WireframeOverlay` by default.
 - **Editor mutation** —
-  [kernel/src/editor/sdf_cutting.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/editor/sdf_cutting.rs)'s
+  [kernel/src/editor/sdf_cutting.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/editor/sdf_cutting.rs)'s
   `sdf_csg()` implements standard CSG boolean ops on signed-distance values
   (`union = min`, `intersection = max`, `subtraction = max(a, -b)`); paint/carve
   itself is `VoxelWorld::apply_sdf_brush`/`carve_sdf_brush` in `svo/mod.rs`
@@ -115,7 +115,7 @@ fixed contracts, not internal implementation detail to casually cross:
   a separate command queue.
 - **Dioxus bridge** — see §3 below.
 - **World palette / LOD** —
-  [kernel/src/world/theme.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/world/theme.rs)'s
+  [kernel/src/world/theme.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/world/theme.rs)'s
   `ThemePalette` resource converts `MaterialDef` → `VoxelMaterial::pack()` →
   `OctreeNode.color_data`, and exposes `to_standard_material()`, which
   `sandbox-app`'s `bootstrap.rs::sync_palette_materials` calls to rewrite
@@ -126,7 +126,7 @@ fixed contracts, not internal implementation detail to casually cross:
 ## 3. Dioxus-to-Bevy state/event boundary (and its evidence gap)
 
 `ui::interaction::InteractionQueue`
-([kernel/src/ui/interaction.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/ui/interaction.rs))
+([kernel/src/ui/interaction.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/ui/interaction.rs))
 is a `Mutex<Vec<KernelEvent>>` Bevy `Resource`: `push()` is documented "safe
 to call from any thread" for the Dioxus/DOM side, and `drain()` is called
 once per frame by the `process_interactions` system (registered by
@@ -138,7 +138,7 @@ populates the `InteractionHits` resource the render pipeline reads.
 (`ui/interaction.rs`, `push(KernelEvent { ... })` inside `mod tests`). No
 production call from Dioxus DOM/`web_sys` event code into `push()` was found
 in this pass, and `ui::bridge::UiPanelList`
-([kernel/src/ui/bridge.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/ui/bridge.rs))
+([kernel/src/ui/bridge.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/ui/bridge.rs))
 only documents the reverse direction (Dioxus DOM → `UiPanelList` → GPU
 composite buffer), not an event queue. Treat the Dioxus→Bevy enqueue path as
 **unverified in production code**, not as a live bidirectional event bus —
@@ -149,14 +149,14 @@ implement.
 ## 4. WGSL shader layout, validation, and testing conventions
 
 - **Compact bit-packed material encoding.**
-  [kernel/src/render/pbr_material.wgsl](../../../../context-engine/context-stack/tools/context-editor/kernel/src/render/pbr_material.wgsl)
+  [kernel/src/render/pbr_material.wgsl](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/render/pbr_material.wgsl)
   packs an entire PBR material into one `u32` (`OctreeNode.color_data`): 8
   bits each for R/G/B, 5 bits roughness, 1 bit metallic, 2 reserved. Mirror
   this pattern (`pack_material`/`unpack_material` pairs) for any new
   per-voxel shader attribute rather than adding a second wide buffer.
 - **Explicit byte-offset comments on uniform structs.** Every uniform struct
   field in
-  [kernel/src/render/svo_ray_march.wgsl](../../../../context-engine/context-stack/tools/context-editor/kernel/src/render/svo_ray_march.wgsl)
+  [kernel/src/render/svo_ray_march.wgsl](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/render/svo_ray_march.wgsl)
   carries an inline `// N bytes` comment and the struct closes with a
   `// Total: N bytes` comment; padding fields (`_pad1`, `_pad3`) are explicit,
   not implicit compiler-inserted alignment. The matching Rust-side struct is
@@ -184,13 +184,13 @@ implement.
   (including `build_kernel_app()`'s 28-plugin assembly and every WGSL-owning
   render module) still compile, without running a full `trunk build`.
 - **Trunk build** — `trunk build` from
-  [sandbox-app](../../../../context-engine/context-stack/tools/context-editor/sandbox-app)
+  [sandbox-app](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/sandbox-app)
   (config in that directory's `Trunk.toml`) is the integration build that
   actually links the kernel's wasm32 target into the Dioxus host; use it as
   the final compile gate for any change touching `build_kernel_app()`,
   render-graph nodes, or WGSL shaders.
 - **Validated visual capture and benchmarks** — dossier waypoint W3
-  ([03-build-validation-foundation.md](../../../../transcripts/18-09-2026_context-editor-sandbox-architecture/03-build-validation-foundation.md))
+  ([03-build-validation-foundation.md](https://github.com/mankinskin/meta-workspace/blob/main/transcripts/18-09-2026_context-editor-sandbox-architecture/03-build-validation-foundation.md))
   established a deterministic capture harness at
   `sandbox-app/e2e/verify-visual-baseline.mjs` that triggers the exact
   per-frame `take_dirty_ranges()` sequence before capturing, plus a Criterion
@@ -221,7 +221,7 @@ implement.
   when reporting a regression.
 - **The `take_dirty_ranges()` once-per-frame invariant is the primary
   regression guard for the upload path** — see
-  [kernel/src/svo/upload.rs](../../../../context-engine/context-stack/tools/context-editor/kernel/src/svo/upload.rs)'s
+  [kernel/src/svo/upload.rs](https://github.com/mankinskin/context-engine/blob/main/context-stack/tools/context-editor/kernel/src/svo/upload.rs)'s
   own tests. Any change touching the upload/double-buffer path should assert
   this invariant still holds (drain empties the queue) rather than only
   checking that `cargo test` passes overall.

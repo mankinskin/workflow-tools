@@ -18,7 +18,7 @@ The workflow was rehearsed twice in the `template/` repository: an earlier
 folder + environment-variable-selector pilot (commit `b3b6c9f`, branch
 `prototype/session-api-v2-pilot-clean`, preserved as historical evidence), and
 the current worktree-based pilot (commit `b86f380`, branch `proto/v2-pilot`,
-see [07-template-worktree-pilot.md](../../../../transcripts/21-09-2026_session-api-v2-prototyping/07-template-worktree-pilot.md)).
+see [07-template-worktree-pilot.md](https://github.com/mankinskin/meta-workspace/blob/main/transcripts/21-09-2026_session-api-v2-prototyping/07-template-worktree-pilot.md)).
 Prefer the worktree mechanism below for new prototyping work; the folder +
 selector pattern is superseded because it required stashing/switching to
 compare the default and prototype states, and did not generalize past a
