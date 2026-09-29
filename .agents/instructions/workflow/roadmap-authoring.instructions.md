@@ -28,6 +28,34 @@ A roadmap is a complete route from the current state to the stated outcome, not 
 
 ## Scoping Guidelines
 
+### Planning reads and execution side effects
+
+Classify work before forming waypoints:
+
+- **Planning read** observes information whose inputs already exist. Complete
+	and record a Planning read during dossier planning; it is not an executable
+	roadmap waypoint.
+- **Execution side effect** mutates state outside the active dossier, including
+	repository content, entity stores, external systems, or commits. The first
+	waypoint (`W1`) of every execution-ready roadmap MUST be an Execution side
+	effect. When execution follows `execute-ingest`, the explicit `approve`
+	outcome authorizes W1; a planning verdict does not.
+- **Dependent read-only waypoint** observes information that a declared prior
+	Execution side effect in the same dependency branch created or materially
+	changed. The waypoint is valid only when those inputs did not exist in their
+	required state during planning.
+
+Each dependency branch may contain at most one consecutive Dependent read-only
+waypoint. Consolidate all related reads and gates that become ready at that
+point into the same waypoint while preserving one measurable outcome. A read
+is ready when all artifacts and state needed to perform it exist after its
+declared dependencies complete. Keep independent branches separate rather than
+combining unrelated reads or introducing false sequencing.
+
+If the intended outcome has no Execution side effect, keep the dossier in
+[idea-workspace mode](dossier-idea-workspace.instructions.md) instead of
+compiling an execution-ready roadmap.
+
 **One waypoint, one measurable outcome.** A waypoint bundling more than one loosely related change is a scoping defect — split it. Merge only when a prior split was too aggressive and produced trivially small fragments with no independent validation gate.
 
 **The single-session threshold decides waypoint vs. ticket.** A waypoint completable by one session in one sitting stays inline and is marked single-session. A waypoint that is too large for one session, or whose internal dependencies are complex enough to need cross-session tracking, is **not** decomposed inline — it becomes a ticket (per [prompt-ingestion.instructions.md's Ticket Creation During Refinement](prompt-ingestion.instructions.md#ticket-creation-during-refinement)), and the roadmap keeps only the ticket id and a one-line summary.
@@ -88,6 +116,7 @@ renderer:
 | **Status** | pending |
 | **Scope** | single-session |
 | **Depends** | W0 |
+| **Mode** | Execution side effect |
 | **Session package** | example |
 | **Part** | [01-example.md](01-example.md) |
 | **Prompt** | One self-contained outcome... |
@@ -97,7 +126,7 @@ renderer:
 | **Commit checkpoint** | logical checkpoint... |
 ```
 
-The required properties are `Status`, `Scope`, `Session package`, `Part`,
+The required properties are `Status`, `Scope`, `Mode`, `Session package`, `Part`,
 `Prompt`, `Artifacts`, `Non-goal`, `Validate`, and `Commit checkpoint`.
 `Depends` is included when a dependency exists. Every Waypoint has exactly one
 dedicated Part Markdown file in the same dossier, linked from the `Part` row.
@@ -119,6 +148,10 @@ Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing
 - **Waypoint heading.** `### W<n>. <one-line objective>` — sequential numbering (`W1`, `W2`, ...) that never gets reused, even across versioned revisions, so a dependency reference (`depends: W3`) always resolves unambiguously within that file's history.
 - **Status marker.** Each waypoint opens its body with exactly one status line: `Status: pending | in-progress | blocked | done`. Use `blocked` only when the blocker is named in the waypoint's own text or in "Active blockers" — a bare `blocked` with no stated reason is not acceptable.
 - **Sizing tag.** Immediately after status: `Scope: single-session` or `Scope: ticket <short-id>`. A ticket-scoped waypoint carries no further inline decomposition — see "Scoping Guidelines" above.
+- **Mode.** Every waypoint declares exactly `Mode: Execution side effect` or
+	`Mode: Dependent read-only waypoint`, using the classification in "Planning
+	reads and execution side effects." `Planning read` never appears as a
+	waypoint mode because planning completes that work before execution.
 - **Dependency notation.** `Depends: W2, W4` (waypoint ids) and/or `Depends: ticket <short-id>` for a ticket-level prerequisite. Omit the line entirely when a waypoint has no dependency — do not write `Depends: none`.
 - **Session package.** `Session package: <short-kebab-slug>` names the intended execution package for this waypoint. The slug is stable within the roadmap and should describe the session's work, not the person or model expected to run it.
 - **Session prompt.** `Prompt: <one self-contained prompt>` states the single prompt text to hand to the fresh session or delegated worker for this waypoint. Keep it goal-oriented and proportionate: include the outcome, target artifacts, validation expectation, dependency context, and non-goals; point to larger artifacts by id/path instead of pasting their bodies.
