@@ -1,4 +1,7 @@
 use serde::Deserialize;
+use std::time::Duration;
+
+const EXCHANGE_TIMEOUT: Duration = Duration::from_secs(30);
 
 pub const AUTHORIZE_URL: &str = "https://openrouter.ai/auth";
 pub const KEYS_EXCHANGE_URL: &str = "https://openrouter.ai/api/v1/auth/keys";
@@ -45,12 +48,15 @@ pub fn exchange_code(
         "code_challenge_method": "S256",
     });
 
-    let client = reqwest::blocking::Client::new();
+    let client = reqwest::blocking::Client::builder()
+        .timeout(EXCHANGE_TIMEOUT)
+        .build()
+        .map_err(|err| ExchangeError(format!("failed to initialize HTTP client: {err}")))?;
     let response = client
         .post(exchange_url)
         .json(&body)
         .send()
-        .map_err(|err| ExchangeError(format!("request to OpenRouter failed: {err}")))?;
+        .map_err(|err| ExchangeError(format!("OpenRouter exchange request failed: {err}")))?;
 
     if !response.status().is_success() {
         return Err(ExchangeError(format!(
