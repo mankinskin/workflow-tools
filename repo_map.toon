@@ -1,0 +1,216 @@
+format: repo_map_toon_v1
+description: "Compact workspace structural map for low-token orientation"
+usage: Read this before opening source files for structural orientation
+refresh_command: "cargo run -p peek-cli -- . --repo-map --output repo_map.toon"
+workspace:
+  root: "//?/C:/Users/linus/git/3/meta-workspace/workflow-tools"
+top_level_dirs[17]: audit,"contract-reference",doc,feedback,install,interview,log,"memory-kernel","openrouter-auth",peek,rule,session,spec,test,ticket,tools,"viewer-api"
+crates:
+  name: crates
+  kind: dir
+  path: crates
+  children[13]:
+    - name: audit
+      kind: dir
+      path: crates/audit
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/audit/crates
+          children[3]{name,kind,path,note}:
+            "audit-api",dir,"crates/audit/crates/audit-api","crate=audit-api"
+            "audit-cli",dir,"crates/audit/crates/audit-cli","crate=audit-cli"
+            "audit-mcp",dir,"crates/audit/crates/audit-mcp","crate=audit-mcp"
+    - name: doc
+      kind: dir
+      path: crates/doc
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/doc/crates
+          children[3]{name,kind,path,note}:
+            "doc-api",dir,"crates/doc/crates/doc-api","crate=doc-api"
+            "doc-http",dir,"crates/doc/crates/doc-http","crate=doc-http"
+            "doc-viewer",dir,"crates/doc/crates/doc-viewer","crate=doc-viewer"
+    - name: feedback
+      kind: dir
+      path: crates/feedback
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/feedback/crates
+          children[4]{name,kind,path,note}:
+            "feedback-api",dir,"crates/feedback/crates/feedback-api","crate=feedback-api"
+            "feedback-cli",dir,"crates/feedback/crates/feedback-cli","crate=feedback-cli"
+            "feedback-http",dir,"crates/feedback/crates/feedback-http","crate=feedback-http"
+            "feedback-mcp",dir,"crates/feedback/crates/feedback-mcp","crate=feedback-mcp"
+    - name: install
+      kind: dir
+      path: crates/install
+      children[1]{name,kind,path,note}:
+        "install-ctl",dir,"crates/install/install-ctl","crate=install-ctl"
+    - name: log
+      kind: dir
+      path: crates/log
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/log/crates
+          children[2]:
+            - name: "log-api"
+              kind: dir
+              path: "crates/log/crates/log-api"
+              note: "crate=log-api"
+            - name: "log-viewer"
+              kind: dir
+              path: "crates/log/crates/log-viewer"
+              note: "crate=log-viewer"
+              children[1]:
+                - name: frontend
+                  kind: dir
+                  path: "crates/log/crates/log-viewer/frontend"
+                  children[1]{name,kind,path,note}:
+                    dioxus,dir,"crates/log/crates/log-viewer/frontend/dioxus","crate=log-viewer-dioxus"
+    - name: "openrouter-auth"
+      kind: dir
+      path: "crates/openrouter-auth"
+      note: "crate=openrouter-auth"
+    - name: peek
+      kind: dir
+      path: crates/peek
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/peek/crates
+          children[3]{name,kind,path,note}:
+            "peek-api",dir,"crates/peek/crates/peek-api","crate=peek-api"
+            "peek-cli",dir,"crates/peek/crates/peek-cli","crate=peek-cli"
+            "peek-mcp",dir,"crates/peek/crates/peek-mcp","crate=peek-mcp"
+    - name: rule
+      kind: dir
+      path: crates/rule
+      note: crate=rule
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/rule/crates
+          children[1]{name,kind,path,note}:
+            "rule-api",dir,"crates/rule/crates/rule-api","crate=rule-api"
+    - name: session
+      kind: dir
+      path: crates/session
+      note: crate=session
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/session/crates
+          children[8]{name,kind,path,note}:
+            "mcp-toolmon",dir,"crates/session/crates/mcp-toolmon","crate=mcp-toolmon"
+            "session-api",dir,"crates/session/crates/session-api","crate=session-api"
+            "session-record-merge",dir,"crates/session/crates/session-record-merge","crate=session-record-merge"
+            "session-workspace-resolver",dir,"crates/session/crates/session-workspace-resolver","crate=session-workspace-resolver"
+            "session-worktree-provision",dir,"crates/session/crates/session-worktree-provision","crate=session-worktree-provision"
+            "toolmon-costgate",dir,"crates/session/crates/toolmon-costgate","crate=toolmon-costgate"
+            "toolmon-policy-api",dir,"crates/session/crates/toolmon-policy-api","crate=toolmon-policy-api"
+            "worktree-ctl",dir,"crates/session/crates/worktree-ctl","crate=worktree-ctl"
+    - name: spec
+      kind: dir
+      path: crates/spec
+      note: crate=spec
+      children[1]:
+        - name: "spec-viewer"
+          kind: dir
+          path: "crates/spec/spec-viewer"
+          note: "crate=spec-viewer"
+          children[1]:
+            - name: frontend
+              kind: dir
+              path: "crates/spec/spec-viewer/frontend"
+              children[1]{name,kind,path,note}:
+                dioxus,dir,"crates/spec/spec-viewer/frontend/dioxus","crate=spec-viewer-dioxus"
+    - name: test
+      kind: dir
+      path: crates/test
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/test/crates
+          children[3]{name,kind,path,note}:
+            "test-api",dir,"crates/test/crates/test-api","crate=test-api"
+            "test-cli",dir,"crates/test/crates/test-cli","crate=test-cli"
+            "test-mcp",dir,"crates/test/crates/test-mcp","crate=test-mcp"
+    - name: ticket
+      kind: dir
+      path: crates/ticket
+      note: crate=ticket
+      children[1]:
+        - name: "ticket-viewer"
+          kind: dir
+          path: "crates/ticket/ticket-viewer"
+          note: "crate=ticket-viewer"
+          children[1]:
+            - name: frontend
+              kind: dir
+              path: "crates/ticket/ticket-viewer/frontend"
+              children[1]{name,kind,path,note}:
+                dioxus,dir,"crates/ticket/ticket-viewer/frontend/dioxus","crate=ticket-viewer-dioxus"
+    - name: "viewer-api"
+      kind: dir
+      path: "crates/viewer-api"
+      note: "crate=viewer-api"
+      children[1]:
+        - name: frontend
+          kind: dir
+          path: "crates/viewer-api/frontend"
+          children[1]{name,kind,path,note}:
+            dioxus,dir,"crates/viewer-api/frontend/dioxus","crate=viewer-api-dioxus"
+agent_guidance:
+  name: "agent-guidance"
+  kind: dir
+  path: "agent-guidance"
+  children[1]{name,kind,path}:
+    AGENTS.md,file,"agent-guidance/AGENTS.md"
+agent_files:
+  name: "agent-files"
+  kind: dir
+  path: "agent-files"
+  children[1]:
+    - name: .agents
+      kind: dir
+      path: "agent-files/.agents"
+      children[2]:
+        - name: prompts
+          kind: dir
+          path: "agent-files/.agents/prompts"
+          children[10]{name,kind,path}:
+            "build-validate-tools.prompt.md",file,"agent-files/.agents/prompts/build-validate-tools.prompt.md"
+            commit.prompt.md,file,"agent-files/.agents/prompts/commit.prompt.md"
+            "handoff-tickets.prompt.md",file,"agent-files/.agents/prompts/handoff-tickets.prompt.md"
+            handoff.prompt.md,file,"agent-files/.agents/prompts/handoff.prompt.md"
+            implement.prompt.md,file,"agent-files/.agents/prompts/implement.prompt.md"
+            interview.prompt.md,file,"agent-files/.agents/prompts/interview.prompt.md"
+            iteration.prompt.md,file,"agent-files/.agents/prompts/iteration.prompt.md"
+            research.prompt.md,file,"agent-files/.agents/prompts/research.prompt.md"
+            "sync-model-prices.prompt.md",file,"agent-files/.agents/prompts/sync-model-prices.prompt.md"
+            "tool-grant-regression-probe.prompt.md",file,"agent-files/.agents/prompts/tool-grant-regression-probe.prompt.md"
+        - name: skills
+          kind: dir
+          path: "agent-files/.agents/skills"
+          children[1]{name,kind,path}:
+            README.md,file,"agent-files/.agents/skills/README.md"
+hooks:
+  name: hooks
+  kind: dir
+  path: hooks
+  children[1]:
+    - name: .githooks
+      kind: dir
+      path: hooks/.githooks
+      children[1]{name,kind,path}:
+        "pre-commit",file,"hooks/.githooks/pre-commit"
+key_tools[4]{path,description}:
+  target/debug/ticket.exe,"ticket (state machine, board, deps)"
+  target/debug/spec.exe,"spec-cli"
+  target/debug/peek,"bounded inspection + repo-map generation"
+  rtk <cmd>,"token-optimized CLI proxy (auto-compress output)"
+bounded_inspection_pattern[4]: "peek <file> --count  # 1. learn size","peek <file> --grep <pattern>  # 2. locate target line","peek <file> --start N --end M  # 3. bounded read","peek . --repo-map --output repo_map.toon  # refresh structural map"

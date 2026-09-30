@@ -102,6 +102,16 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Bin: `feedback`
 - Lifecycle: Install, Inspect, Uninstall
 
+## openrouter-auth
+
+- Category: Cli
+- Kind: RustBinary
+- Source: `openrouter-auth`
+- Owner: tooling
+- Safety: ApprovalRequired
+- Bin: `openrouter-auth`
+- Lifecycle: Install, Inspect, Uninstall
+
 ## session-cli
 
 - Category: Cli

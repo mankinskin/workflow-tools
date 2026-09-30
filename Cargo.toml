@@ -40,6 +40,7 @@ members = [
   "install/install-ctl",
   "viewer-api",
   "viewer-api/frontend/dioxus",
+  "openrouter-auth",
 ]
 
 [profile.dev]
