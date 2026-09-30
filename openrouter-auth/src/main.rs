@@ -7,6 +7,7 @@ mod pkce;
 use clap::Parser;
 use cli::{Cli, Command};
 use credential::{CredentialStore, KeyringStore};
+use std::io::{self, Write};
 use std::time::Duration;
 
 const SERVICE_NAME: &str = "openrouter-auth";
@@ -35,7 +36,13 @@ fn run_login() -> Result<(), String> {
     let callback_url = callback.callback_url();
 
     let authorize_url = exchange::build_authorize_url(&callback_url, &pkce.challenge_s256());
-    eprintln!("Open this URL in your browser to authorize OpenRouter access:\n{authorize_url}");
+    if let Err(error) = webbrowser::open(&authorize_url) {
+        eprintln!(
+            "Could not open the default browser ({error}); configure a desktop browser and retry."
+        );
+        return Err("browser launch failed".to_string());
+    }
+    eprintln!("Opened the OpenRouter authorization page in your browser.");
 
     let code = callback
         .wait_for_code(CALLBACK_TIMEOUT)
@@ -56,6 +63,22 @@ fn run_token() -> Result<(), String> {
     let store = KeyringStore::new(SERVICE_NAME, ACCOUNT_NAME)
         .map_err(|err| format!("credential store unavailable: {err}"))?;
     let key = store.load_secret().map_err(|err| err.to_string())?;
-    println!("{key}");
-    Ok(())
+    write_token(&mut io::stdout().lock(), &key)
+        .map_err(|_| "failed to write token to stdout".to_string())
+}
+
+fn write_token(mut output: impl Write, token: &str) -> Result<(), io::Error> {
+    writeln!(output, "{token}")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::write_token;
+
+    #[test]
+    fn token_output_contains_only_the_token_and_one_newline() {
+        let mut output = Vec::new();
+        write_token(&mut output, "fake-test-token").unwrap();
+        assert_eq!(output, b"fake-test-token\n");
+    }
 }

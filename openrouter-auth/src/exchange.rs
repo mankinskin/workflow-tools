@@ -82,19 +82,28 @@ mod tests {
 
     #[test]
     fn exchange_code_parses_a_mocked_success_response() {
-        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
-        let addr = listener.local_addr().unwrap();
+        let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
+        let addr = server.server_addr().to_ip().unwrap();
         let handle = std::thread::spawn(move || {
-            let (mut stream, _) = listener.accept().unwrap();
-            let mut buf = [0u8; 1024];
-            let _ = stream.read(&mut buf).unwrap();
-            let body = "{\"key\":\"fake-test-key\"}";
-            let response = format!(
-                "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {}\r\n\r\n{}",
-                body.len(),
-                body
-            );
-            stream.write_all(response.as_bytes()).unwrap();
+            let mut request = server.recv().unwrap();
+            assert_eq!(request.method(), &tiny_http::Method::Post);
+            assert_eq!(request.url(), "/api/v1/auth/keys");
+
+            let mut request_body = String::new();
+            request
+                .as_reader()
+                .read_to_string(&mut request_body)
+                .unwrap();
+            let request_json: serde_json::Value = serde_json::from_str(&request_body).unwrap();
+            assert_eq!(request_json["code"], "fake-code");
+            assert_eq!(request_json["code_verifier"], "fake-verifier");
+            assert_eq!(request_json["code_challenge_method"], "S256");
+
+            let response = tiny_http::Response::from_string("{\"key\":\"fake-test-key\"}")
+                .with_header(
+                    tiny_http::Header::from_bytes("Content-Type", "application/json").unwrap(),
+                );
+            request.respond(response).unwrap();
         });
 
         let url = format!("http://{addr}/api/v1/auth/keys");
