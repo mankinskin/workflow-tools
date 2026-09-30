@@ -50,6 +50,7 @@ pub fn exchange_code(
 
     let client = reqwest::blocking::Client::builder()
         .timeout(EXCHANGE_TIMEOUT)
+        .redirect(reqwest::redirect::Policy::none())
         .build()
         .map_err(|err| ExchangeError(format!("failed to initialize HTTP client: {err}")))?;
     let response = client
@@ -134,5 +135,32 @@ mod tests {
         let result = exchange_code(&url, "fake-code", "fake-verifier");
         assert!(result.is_err());
         handle.join().unwrap();
+    }
+
+    #[test]
+    fn exchange_code_does_not_follow_redirects() {
+        let redirect_target = TcpListener::bind("127.0.0.1:0").unwrap();
+        redirect_target.set_nonblocking(true).unwrap();
+        let target_addr = redirect_target.local_addr().unwrap();
+
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        let addr = listener.local_addr().unwrap();
+        let handle = std::thread::spawn(move || {
+            let (mut stream, _) = listener.accept().unwrap();
+            let mut buf = [0u8; 1024];
+            let _ = stream.read(&mut buf).unwrap();
+            let response = format!(
+                "HTTP/1.1 302 Found\r\nLocation: http://{target_addr}/redirected\r\nContent-Length: 0\r\n\r\n"
+            );
+            stream.write_all(response.as_bytes()).unwrap();
+        });
+
+        let url = format!("http://{addr}/api/v1/auth/keys");
+        assert!(exchange_code(&url, "fake-code", "fake-verifier").is_err());
+        handle.join().unwrap();
+        assert!(matches!(
+            redirect_target.accept(),
+            Err(error) if error.kind() == std::io::ErrorKind::WouldBlock
+        ));
     }
 }
