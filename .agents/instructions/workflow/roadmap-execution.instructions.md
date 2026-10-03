@@ -7,6 +7,18 @@ applyTo: "**/*.md"
 
 A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)) is a route, not a summary to skim once and improvise from. This instruction is the execution-side counterpart: it governs how an executing session — most often the Orchestrator Agent — walks a roadmap's waypoints methodically instead of reconstructing context from memory partway through.
 
+## Roadmap State Before Closure
+
+Before a roadmap is handed off, marked done, or treated as complete, the executing session must state the roadmap's full state in the same review frame as the waypoint state. The required state line is:
+
+- `Roadmap state: pending | in-progress | blocked | done`
+- `Current waypoint: W<n> <objective>`
+- `Current waypoint status: pending | in-progress | blocked | done`
+
+This state block is not optional commentary; it is the execution-readiness check that prevents a stale or half-finished roadmap from being treated as terminal. If a waypoint has been ticketed, the ticket state is the authoritative state for that waypoint and the roadmap row must point to the ticket instead of carrying a redundant local status.
+
+When a roadmap becomes fully ticket-backed, the route may be represented by the owning ticket and the roadmap-level status is derived from that ticket rather than maintained as a separate inline status surface.
+
 ## Required Procedure
 
 1. **Read the roadmap and the dossier together.** Before acting on anything, read `ROADMAP.md` in full — starting with its outcome summary — plus the dossier's `README.md` index and `ARTIFACTS.md`, so every cited id/path resolves to a real artifact instead of an assumed one.
@@ -18,6 +30,8 @@ A compiled `ROADMAP.md` (see [prompt-ingestion.instructions.md](prompt-ingestion
 7. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
 8. **Commit the checkpoint before advancing.** After the waypoint's validation and required review pass, create the declared `Commit checkpoint:` using the repository commit workflow, or record the declared no-change reason. The checkpoint preserves the stable state and documents the handoff boundary for later sessions.
 9. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route, and do not start a dependent waypoint while the current waypoint's required commit checkpoint is still uncommitted.
+
+10. **State reconciliation before closure.** Before any route completion decision, refresh the roadmap's aggregate state and the current waypoint's state. Confirm whether the current waypoint is still in `pending`, `in-progress`, `blocked`, or `done`, then update the roadmap to match that evidence. A roadmap with stale or contradictory state must not be closed.
 
 ### Execute Ingest Approval Gate
 

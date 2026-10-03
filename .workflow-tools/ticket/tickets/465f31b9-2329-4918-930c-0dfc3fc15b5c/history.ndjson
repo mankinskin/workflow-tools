@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-10-01T00:44:09.839900500+00:00","fields":{"state":"planning","title":"Attach sessions to missions by URN","type":"task"}}
+{"rev":2,"ts":"2026-10-01T00:44:38.872108400+00:00","fields":{"depends_on":["1486c2f9-301e-4709-a8d0-cae3c4e6f5d4"],"state":"planning","title":"Attach sessions to missions by URN","type":"task"}}

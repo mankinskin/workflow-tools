@@ -1,0 +1,6 @@
+id = "dc314dc3-40e9-4e6e-93db-5bbab48cf224"
+created_at = "2026-10-01T00:44:22.052693800+00:00"
+title = "Migrate legacy dossiers to missions"
+state = "planning"
+depends_on = ["c616418e-8c27-4954-975e-490fc22c408f"]
+type = "task"

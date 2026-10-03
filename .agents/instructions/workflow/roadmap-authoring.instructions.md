@@ -7,6 +7,29 @@ applyTo: "**/*.md"
 
 A roadmap is read cold by a fresh session and reread many times during execution — every structural and syntax choice either saves that reader time or costs it. This file is the canonical owner of what a high-quality `ROADMAP.md` contains and how it is written. [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) produces one during Stages 4/6 and defers to this file for its shape and scoping rules; [roadmap-execution.instructions.md](roadmap-execution.instructions.md) governs how a session then walks the finished artifact.
 
+## Roadmap State And Waypoint Ownership
+
+Before a roadmap is marked complete, closed, or handed off, the roadmap must explicitly state its aggregate state and the current waypoint's state. A roadmap is not ready for closure when the reader must infer whether the whole route is still blocked, in flight, or complete.
+
+Required state statement for every review or closure decision:
+
+- `Roadmap state: pending | in-progress | blocked | done`
+- `Current waypoint: W<n> <objective>`
+- `Current waypoint status: pending | in-progress | blocked | done`
+
+The roadmap's aggregate state and the current waypoint's status must be described in the same review step, before a later waypoint is marked done or before the roadmap is treated as terminal. A roadmap that omits its global state or leaves the current waypoint unnamed is a stale plan and is not executable.
+
+When a waypoint is promoted into a ticket or another durable execution record, the ticket becomes the authoritative state holder for that segment of work. The roadmap entry must no longer keep a locally-managed status for that waypoint; it must instead reference the ticket and record the fact that progress is tracked there. This is the ticket-backed status transfer rule.
+
+Examples:
+
+- Before: `Status: in-progress` inline on the roadmap entry.
+- After: `Status: ticketed` plus `Ticket: <short-id> <title>` and the ticket remains the source of truth for progress.
+
+When every waypoint in a roadmap becomes ticket-backed, the roadmap may be represented by a single owning ticket and the roadmap-level execution state is derived from that ticket instead of maintained as a second parallel status surface. In that case, retain a roadmap-level reference to the ticket rather than keeping a duplicated inline status table that can drift out of sync.
+
+This is the first version of the mission-level context model: a mission or execution set may aggregate the roadmap, objective, tickets, specs, validation records, and session references into one shared planning object, so multiple sessions read the same state instead of recomputing it from stale markdown fragments.
+
 ## Required Structure (six sections, this order)
 
 1. **Outcome summary** — two to four sentences stating what this roadmap achieves and why, so a reader grasps the objective before reading anything else. State the destination in the reader's terms, not a restatement of the raw request.
@@ -17,6 +40,10 @@ A roadmap is read cold by a fresh session and reread many times during execution
 6. **Heads-up notes** — a flat list of quirks, gotchas, and good-to-know information gathered during research that would otherwise cost a fresh session time to rediscover.
 
 **Size constraint.** `ROADMAP.md` is a root anchor for the whole effort, not an exhaustive plan — keep it readable in one pass. A sprawling waypoint list or deeply nested sub-tasks is a signal to push complexity into a ticket (see "Scoping Guidelines"), not to grow the file. The roadmap should read like a table of contents with status, not a full project plan.
+
+## Completion And Closure Gate
+
+Do not close, approve, or call a roadmap complete without a fresh state statement that includes the roadmap-level state, the current waypoint, the current waypoint state, and the effect of any ticket-backed status transfer. This applies to both execution reviews and handoff reviews. If the state is not explicit, the roadmap is treated as an unresolved plan rather than a finished route.
 
 ## Self-Containment Requirement
 

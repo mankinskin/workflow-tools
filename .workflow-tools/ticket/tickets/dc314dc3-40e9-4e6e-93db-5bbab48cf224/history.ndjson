@@ -1,0 +1,2 @@
+{"rev":1,"ts":"2026-10-01T00:44:22.115763100+00:00","fields":{"state":"planning","title":"Migrate legacy dossiers to missions","type":"task"}}
+{"rev":2,"ts":"2026-10-01T00:44:39.293256500+00:00","fields":{"depends_on":["c616418e-8c27-4954-975e-490fc22c408f"],"state":"planning","title":"Migrate legacy dossiers to missions","type":"task"}}
