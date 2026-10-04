@@ -27,7 +27,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          path: workflow-tools
           submodules: recursive
+
+      - name: Checkout context-engine workspace patch source
+        uses: actions/checkout@v4
+        with:
+          repository: mankinskin/context-engine
+          ref: 3414e259ed6a60c6a0886e4d9de50c754af23417
+          path: context-engine
+
+      - name: Checkout memory-api workspace patch source
+        uses: actions/checkout@v4
+        with:
+          repository: mankinskin/memory-api
+          ref: 499a8d3bd3b726bd42c1420c9603f5e9b914089e
+          path: context-engine/memory-api
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -37,6 +52,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y dbus-x11 gnome-keyring
 
       - name: Build and test openrouter-auth
+        working-directory: workflow-tools
         shell: bash
         run: |
           cargo fmt --check -p openrouter-auth
