@@ -1,17 +1,19 @@
-# Spec-domain transport workspace-resolution parity
+# Spec API DomainStore Adapter and Workspace Parity
 
-Follow-up after the ticket-domain first run. Adopt the same shared memory-api resolver + pure-transport pattern for the spec transports.
+## Goal
+Adapt `spec-api` and its supported transports to the kernel-owned `DomainStore` contract and preserve consistent nested-workspace behavior.
 
 ## Scope
-- spec-cli + spec-mcp + spec-http consume the shared memory-api workspace resolver; nested `.spec` discovery is recursive from a parent workspace.
-- Coordinate with `59d96577` (spec-cli + spec-mcp root-awareness, in implementation): extend to spec-http, remove the spec refs-only fallback path, and complete the pure-transport audit.
-- No per-transport resolution logic remains in any spec transport.
+- Make the Spec store implement only the typed operation capabilities its current API supports, preserving Spec entity types and references.
+- Route supported CLI/MCP/HTTP selection and write behavior through the shared contract; retain pure transport boundaries and existing nested-store read behavior.
+- Apply the workspace Spec semantics for explicit `.` normalization, canonical selection and `BothLayoutsPresent`, legacy read-only compatibility, owner-root reference resolution, and no auto-initialization for read-only access.
 
-## Acceptance criteria (test-validatable)
-1. From a parent workspace, spec get/search/list/refs-validate discover specs in nested `.spec` stores. *(regression test)*
-2. All spec transports (cli/mcp/http) resolve identically for the same input. *(parity test)*
-3. The refs-only fallback path is removed; resolution comes only from the shared resolver. *(code audit + test)*
+## Acceptance criteria
+1. `spec-api` consumes the `memory-kernel` core trait and typed capabilities without a Spec-to-kernel dependency inversion.
+2. Supported Spec operations preserve their existing models, validation behavior, and domain extensions.
+3. The Spec CLI/MCP/HTTP surfaces resolve the same explicit workspace consistently; writes remain canonical-only and read behavior preserves documented legacy compatibility.
+4. Focused API/transport tests verify selector, duplicate-layout diagnostic, owner-root resolution, and persisted canonical read-back.
+5. No Rule surface or Rule-specific dependency is introduced.
 
-## Depends on
-- the ticket-domain first run (proven pattern).
-- `59d96577` (spec-cli + spec-mcp root-awareness).
+## Validation
+Run the Spec API command in G2: `cargo test --manifest-path workflow-tools/spec/Cargo.toml --features "cli mcp http"`. Record focused transport tests and read-back evidence in the implementation ticket.

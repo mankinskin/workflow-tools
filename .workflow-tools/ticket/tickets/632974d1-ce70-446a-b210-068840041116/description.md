@@ -1,16 +1,19 @@
-# Audit-domain transport workspace-resolution parity
+# Audit API DomainStore Adapter and Workspace Parity
 
-Follow-up after the ticket-domain first run. Adopt the shared memory-api resolver + pure-transport pattern for the audit transports.
+## Goal
+Adapt `audit-api` and its supported transport consumers to the kernel-owned `DomainStore` contract while retaining Audit-specific index and query behavior.
 
 ## Scope
-- audit-cli + audit-mcp (+ audit-http if present) consume the shared memory-api workspace resolver; nested store discovery is recursive from a parent workspace.
-- Audit each transport for private resolution/store-selection logic; hoist into `audit-api` / `memory-api`.
-- No per-transport resolution logic remains in any audit transport.
+- Make the Audit store implement only the typed operation capabilities supported by its current API; preserve Audit models and repository-index behavior.
+- Route supported CLI/MCP/HTTP store selection through the shared contract and keep transport layers free of duplicate path-resolution logic.
+- Apply the workspace Spec semantics for explicit `.` normalization, canonical selection and `BothLayoutsPresent`, legacy read-only compatibility, canonical-only writes, and read-only no-auto-init.
 
-## Acceptance criteria (test-validatable)
-1. From a parent workspace, audit read commands resolve nested stores consistently. *(regression test)*
-2. All audit transports resolve identically for the same input. *(parity test)*
-3. No audit transport carries resolution logic absent from the shared resolver. *(code audit)*
+## Acceptance criteria
+1. `audit-api` consumes the `memory-kernel` core trait and typed capabilities without moving Audit business semantics into the kernel.
+2. Supported Audit operations retain existing results and domain-specific extensions.
+3. Supported Audit transports resolve the same explicit local workspace; discovered ancestor/global stores do not replace the write base.
+4. Focused API/transport tests verify canonical write/read-back, duplicate-layout diagnostics, and selector behavior.
+5. No Rule surface or Rule-specific dependency is introduced.
 
-## Depends on
-- the ticket-domain first run (proven pattern).
+## Validation
+Run the Audit API command in G2: `cargo test --manifest-path workflow-tools/audit/crates/audit-api/Cargo.toml`. Run affected Audit transport tests from G3 and record persisted canonical read-back evidence.
