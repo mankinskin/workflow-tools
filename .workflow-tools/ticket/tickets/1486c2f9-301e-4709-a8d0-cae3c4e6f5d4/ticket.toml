@@ -2,4 +2,6 @@ id = "1486c2f9-301e-4709-a8d0-cae3c4e6f5d4"
 created_at = "2026-10-01T00:43:38.870458800+00:00"
 title = "Implement mission-api durable store"
 state = "planning"
+effort = "8k tokens"
+refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Mission-domain contract for structured authoring, validation, ordering, and rendering." }]
 type = "task"

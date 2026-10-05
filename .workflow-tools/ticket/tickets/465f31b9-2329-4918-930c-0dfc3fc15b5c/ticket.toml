@@ -2,5 +2,7 @@ id = "465f31b9-2329-4918-930c-0dfc3fc15b5c"
 created_at = "2026-10-01T00:44:09.775278400+00:00"
 title = "Attach sessions to missions by URN"
 state = "planning"
-depends_on = ["1486c2f9-301e-4709-a8d0-cae3c4e6f5d4"]
+depends_on = ["c616418e-8c27-4954-975e-490fc22c408f"]
+effort = "2k tokens"
+refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Mission-domain contract for mission URNs and session attachment boundary." }]
 type = "task"
