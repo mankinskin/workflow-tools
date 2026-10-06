@@ -16,3 +16,11 @@ Implement the kernel-owned core `DomainStore` contract and typed operation capab
 
 ## Validation
 Run `cargo test --manifest-path workflow-tools/memory-kernel/Cargo.toml` and record focused test results against the workspace Spec.
+
+## Completion evidence
+- Published `memory-kernel` commit `917e51438f898628ab591bf64175df89b2f4796b` to canonical `main` by normal fast-forward; `origin/main` resolves to the same commit.
+- `cargo test --manifest-path workflow-tools/memory-kernel/Cargo.toml` passed: 233 tests across 2 suites.
+- `cargo build --manifest-path workflow-tools/memory-kernel/Cargo.toml` passed.
+- `git -C workflow-tools/memory-kernel diff --check` passed before publication.
+- With no `memory-kernel` development patch or path dependency, `cargo build --locked --manifest-path workflow-tools/Cargo.toml --workspace` passed (32 crates; 3 pre-existing warnings).
+- `workflow-tools/Cargo.lock` records the published Git source `917e51438f898628ab591bf64175df89b2f4796b` for both `memory-kernel` and `transport-harness`.

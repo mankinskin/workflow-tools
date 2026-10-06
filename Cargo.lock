@@ -3837,7 +3837,7 @@ dependencies = [
 [[package]]
 name = "memory-kernel"
 version = "0.1.0"
-source = "git+https://github.com/mankinskin/memory-kernel?branch=main#da8840b06cec45610761faac87b54efee5cab52d"
+source = "git+https://github.com/mankinskin/memory-kernel?branch=main#917e51438f898628ab591bf64175df89b2f4796b"
 dependencies = [
  "bincode",
  "chrono",
@@ -6837,7 +6837,7 @@ dependencies = [
 [[package]]
 name = "transport-harness"
 version = "0.1.0"
-source = "git+https://github.com/mankinskin/memory-kernel?branch=main#da8840b06cec45610761faac87b54efee5cab52d"
+source = "git+https://github.com/mankinskin/memory-kernel?branch=main#917e51438f898628ab591bf64175df89b2f4796b"
 dependencies = [
  "axum",
  "clap",
