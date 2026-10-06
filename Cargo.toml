@@ -53,10 +53,6 @@ opt-level = 2
 [workspace.metadata.docs.rs]
 no-deps = true
 
-[patch."https://github.com/mankinskin/memory-kernel"]
-memory-kernel = { path = "memory-kernel" }
-transport-harness = { path = "memory-kernel/crates/transport-harness" }
-
 [patch."https://github.com/mankinskin/ticket"]
 ticket = { path = "ticket" }
 ticket-api = { path = "ticket/crates/ticket-api" }

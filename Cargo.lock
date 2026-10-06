@@ -406,6 +406,7 @@ dependencies = [
  "audit-api",
  "memory-kernel",
  "rmcp",
+ "rusqlite",
  "serde",
  "serde_json",
  "tempfile",
@@ -3836,6 +3837,7 @@ dependencies = [
 [[package]]
 name = "memory-kernel"
 version = "0.1.0"
+source = "git+https://github.com/mankinskin/memory-kernel?branch=main#da8840b06cec45610761faac87b54efee5cab52d"
 dependencies = [
  "bincode",
  "chrono",
@@ -5814,6 +5816,7 @@ name = "spec-viewer"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "memory-kernel",
  "serde",
  "serde_json",
  "spec",
@@ -6834,6 +6837,7 @@ dependencies = [
 [[package]]
 name = "transport-harness"
 version = "0.1.0"
+source = "git+https://github.com/mankinskin/memory-kernel?branch=main#da8840b06cec45610761faac87b54efee5cab52d"
 dependencies = [
  "axum",
  "clap",
