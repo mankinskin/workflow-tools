@@ -12,3 +12,9 @@ Preserve Feedback's canonical per-entry store, append/ingest semantics, legacy m
 
 ## Validation
 Run G2 `cargo test --manifest-path workflow-tools/feedback/crates/feedback-api/Cargo.toml` and affected Feedback CLI/MCP/HTTP tests in G3.
+
+## W7 execution evidence
+- Completed in Feedback commit `cab83a2cc455c700506e6e34fe3cc983f14a03ca`.
+- The API now adopts `DomainStore`, `CreateEntity`, `ReadEntity`, and `ListEntities` through Feedback-owned types. Create-or-open writes retain legacy migration; selected read-only opens do not initialize a missing store.
+- Temporary-fixture selected-workspace create/read-back coverage now exists for the API, CLI, MCP, and HTTP transports. Each asserts canonical selected-store persistence and no parent or sibling store mutation.
+- Final validation passed on 2026-10-07: all four required Feedback crate commands and `git -C workflow-tools/feedback diff --check`.
