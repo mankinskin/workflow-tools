@@ -18,7 +18,8 @@ not the terminal state. The lifecycle continues through these explicit states:
    whenever repository evidence cannot resolve a requirement, and surface the
    decisions made during planning to the user.
 2. **Planned and accepted** — Stage 5 closes with no open question and Stage 6
-   produces the current `ROADMAP.md`.
+   produces the current `ROADMAP.md` with a passing review-only dry run of
+   every waypoint and the complete expected execution path.
 3. **Final user review** — present the compiled roadmap and request one explicit
    outcome from the user: `replan` returns the request to the planning loop;
    `approve` authorizes execution of the current roadmap.
@@ -125,16 +126,56 @@ Zero matching pins, more than one pin, or a similarly named dossier from another
 
 ## Roadmap Improvement Loop
 
-A compiled roadmap is a draft until it has been dry-run at least once. Repeat this loop until a dry-run pass surfaces no new blocker or structural defect, then treat the current `ROADMAP.md` as ready to hand off.
+A compiled roadmap remains a planning draft until its current revision passes
+an explicit, review-only dry run of every waypoint. This is a mandatory gate
+before suggesting the roadmap for approval, not an execution rehearsal: do
+not implement waypoints, run mutating validation commands, or mutate repository,
+entity-store, or external-system state during the pass.
+
+The first waypoint must be fully executable after approval without a required
+question or design decision when its stated expectations hold. The same applies
+to the complete happy path: all expected-scenario decisions, preconditions,
+intermediate results, and success criteria must be defined during planning.
+Only genuinely unexpected evidence or previously unknown context encountered
+during execution may require new questions, decisions, or interruptions. A
+dry-run pass does not guarantee that execution will succeed.
 
 **Dry-run procedure**:
 
 1. Read `ROADMAP.md` cold, as the first executing session would — do not use any context from having written it.
-2. Walk the waypoint list in order. For each waypoint, check whether everything it needs is actually present: the artifacts it cites resolve (via a bounded `peek-mcp`/`ticket-mcp`/`spec-mcp` probe, not by assumption), its stated objective is a single measurable outcome, its validation gate is an exact command, and its declared dependencies (prior waypoints, tickets, decisions) are already satisfied by that point in the order. Reject any waypoint that is a Planning read whose inputs are already available; complete that read during planning and recompile the roadmap. A later Dependent read-only waypoint is valid only under the branch-local dependency and consolidation rules in the authoring contract.
+2. Walk every waypoint in dependency order as an implementation agent would,
+   checking readiness rather than doing the work. Verify existing input
+   artifacts with bounded read-only probes. An output not yet created is valid
+   only when a declared earlier waypoint creates it with a defined expected
+   result and validation; do not require that future output to exist already.
+   Check each measurable outcome, target boundary, acceptance criteria,
+   validation method, commit checkpoint, and dependency against the expected
+   state at that point. Confirm W1 can start after approval and that every
+   later waypoint can proceed without rediscovering requirements or asking
+   the user to choose expected behavior. Reject Planning reads whose inputs
+   already exist; complete them during planning. A Dependent read-only
+   waypoint remains subject to the authoring contract's branch-local rules.
 3. Record every gap surfaced this way as one of two kinds:
-   - **Blocker** — something that would stop the executing session cold (unresolved decision, missing precondition, an artifact that does not exist, a dependency ordered after the waypoint that needs it). Normalize every Blocker according to [roadmap-authoring.instructions.md's Blocker-to-Waypoint Policy](roadmap-authoring.instructions.md#blocker-to-waypoint-policy) before the roadmap ships; do not leave a bare blocker note.
-   - **Informational gap** — something the session could stumble on but is not fully blocking (an ambiguous acceptance check, a missing heads-up note, an unclear ownership boundary between two waypoints).
-4. Fix cheap findings directly in `ROADMAP.md`: reorder a waypoint, sharpen an objective to be single-outcome, add a missing validation command, add a heads-up note, or insert a single-session resolution waypoint for a Blocker. Route expensive findings through a planning/interview waypoint under the same policy before adding a ticket-backed resolution waypoint; do not expand the roadmap with a passive blocker record.
+   - **Blocker** — a required open decision, missing expectation or input,
+     undefined prerequisite result, or dependency ordered too late.
+   - **Informational gap** — a missing heads-up note or other clarity defect.
+     An ambiguous acceptance check or ownership boundary affecting expected
+     execution is a Blocker, not an optional note.
+4. Resolve findings during planning. Correct evidence-backed structural defects
+   in the dossier and roadmap; return open decisions and missing expectations
+   to the informed review/interview loop and resolve them with the user before
+   approval. Apply the planning branch of the
+   [Blocker-to-Waypoint Policy](roadmap-authoring.instructions.md#blocker-to-waypoint-policy):
+   fully specified prerequisite implementation may remain on the route, but
+   do not defer known choices or interviews into execution waypoints.
+5. Repeat the cold pass after corrections until no blocker, open decision,
+   missing expectation, or structural defect remains. Record the verdict,
+   current roadmap revision identity, and readiness evidence for every
+   waypoint in the dossier's `REVIEW.md`, including W1 and the complete happy
+   path. Only this passing revision may be presented for approval. A change
+   to scope, expectations, decisions, dependencies, or validation invalidates
+   the pass and requires another dry run before approval; execution-only
+   status/evidence updates do not revise the approved plan.
 
 Apply [roadmap-authoring.instructions.md's Scoping Guidelines](roadmap-authoring.instructions.md#scoping-guidelines) during this dry-run pass — forward references, bundled objectives, hidden parallelism, implicit dependencies, and uneven waypoint flow are exactly the defects that section defines and this loop exists to catch.
 

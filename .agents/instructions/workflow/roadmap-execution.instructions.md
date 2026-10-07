@@ -50,6 +50,15 @@ The executor must use the exact dossier path and `ROADMAP.md` supplied by the
 approved handoff. The executor must not reconstruct, alter, or substitute the
 roadmap before checking waypoint readiness.
 
+The handoff must also identify the passing, current-revision review-only
+dry-run evidence required by the
+[Roadmap Improvement Loop](prompt-ingestion.instructions.md#roadmap-improvement-loop).
+Approval does not waive readiness checks or authorize deferring known choices.
+On the expected path, W1 and all later waypoints require no new design
+decision or question. If the handoff reveals a known unresolved choice or
+missing expectation, it is a planning defect: return it for planning
+resolution and a fresh dry run/approval rather than execute through it.
+
 ## Waypoint Readiness Gate
 
 A waypoint is ready only when all of the following are true:
@@ -105,6 +114,12 @@ artifact, inconsistent validation result, or conflict between a newer user
 request and the roadmap is a blocker. A blocker stops the current waypoint
 long enough to plan its resolution, but it is not a passive terminal status or
 a reason to freeze the whole roadmap.
+
+Use this execution protocol for genuinely unexpected evidence or previously
+unknown context, including failed expectations or a new user request.
+Known questions and decisions should already have been closed in planning;
+do not schedule routine execution interviews to complete an underspecified
+approved happy path.
 
 When a blocker is found:
 

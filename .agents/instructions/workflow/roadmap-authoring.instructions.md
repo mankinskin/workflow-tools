@@ -47,7 +47,18 @@ Do not close, approve, or call a roadmap complete without a fresh state statemen
 
 ## Self-Containment Requirement
 
-A roadmap is a complete route from the current state to the stated outcome, not a summary that assumes surrounding context. Every precondition and piece of prior work the outcome depends on — setup, missing infrastructure, an unresolved decision, another team's prerequisite change — must be represented as a waypoint or an owned ticket inside this roadmap. A roadmap must be executable starting from its first waypoint without first completing a separate roadmap.
+A roadmap is a complete route from the current state to the stated outcome, not a summary that assumes surrounding context. Every piece of prerequisite work the outcome depends on — setup, missing infrastructure, another team's prerequisite change — must be represented as a fully specified waypoint or an owned ticket inside this roadmap. A roadmap must be executable starting from its first waypoint without first completing a separate roadmap.
+
+Resolve every known decision and define all expected-scenario behavior during
+planning; an unresolved decision is not prerequisite work to defer into a
+waypoint. W1 must be executable after approval without a required question or
+design choice, and the complete expected happy path must have the same
+property. Fully specified prerequisite implementation is valid route work,
+including outputs created by earlier waypoints with defined expected results
+and validation. Before presentation for approval, the current revision must
+pass the review-only
+[Roadmap Improvement Loop](prompt-ingestion.instructions.md#roadmap-improvement-loop)
+with per-waypoint readiness evidence in the dossier review.
 
 - **No cross-roadmap dependencies.** A `Depends:` line may reference only another waypoint in this same file or a ticket owned by this roadmap's own scope. A `Depends:` line pointing at a different `ROADMAP.md`, a different dossier, or prose such as "assumes `<other roadmap>` is done" is a scoping defect — pull the prerequisite work in as an early waypoint (or a ticket tracked here) instead of leaving it external.
 - **Rationale.** Splitting prerequisite planning across multiple roadmaps distributes ownership of the plan across files that are revised independently and drift out of sync. Keeping every precondition inside one self-contained roadmap keeps that roadmap the single source of truth for reaching its own outcome.
@@ -122,6 +133,18 @@ it can omit a just-created entity when the store is larger than the limit.
 **Uneven flow is a decomposition defect.** A roadmap with a few tiny waypoints followed by one sprawling one should push the sprawling waypoint's internal complexity into a ticket rather than leave it lumpy in the roadmap.
 
 ## Blocker-to-Waypoint Policy
+
+**During planning and dry run**, resolve known open decisions, missing
+expectations, and interview needs in the planning loop with the user before
+offering approval. Do not turn them into planning/interview execution
+waypoints. Add prerequisite implementation work only once its scope,
+expected outcome, decisions, dependencies, and validation are fully defined;
+then repeat the dry run. No unresolved planning blocker may ship on the
+expected execution path.
+
+**During execution**, the insertion policy below handles genuinely unexpected
+evidence or previously unknown context. It is not a mechanism for deferring
+decisions that planning already knew were required.
 
 A discovered blocker is a missing or unmet work item, not a passive terminal
 record. Add a normal roadmap waypoint that states the blocking problem, the
