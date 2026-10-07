@@ -17,3 +17,11 @@ Adapt `spec-api` and its supported transports to the kernel-owned `DomainStore` 
 
 ## Validation
 Run the Spec API command in G2: `cargo test --manifest-path workflow-tools/spec/Cargo.toml --features "cli mcp http"`. Record focused transport tests and read-back evidence in the implementation ticket.
+
+## W4 completion evidence (2026-10-07)
+- Implemented the Spec `DomainStore` adapter at `crates/spec-api/src/domain_store.rs`: canonical selected-workspace resolution, legacy read-only compatibility, and only Spec's create/read/update/delete typed capabilities. Spec manifests, fields, references, and schema are unchanged.
+- Routed selected-workspace write selection through the shared core for CLI, MCP, and HTTP startup. Focused fixtures prove canonical persisted read-back for CLI (`create_in_selected_workspace_persists_to_its_canonical_store`), MCP (`explicit_dot_workspace_creates_and_reads_back_in_current_workspace`), and HTTP (`http_create_in_selected_workspace_persists_to_its_canonical_store`).
+- Validation evidence: `cargo test --manifest-path workflow-tools/spec/Cargo.toml --features "cli mcp http"` passed (87 test groups) after the change; `git -C workflow-tools/spec diff --check` passed. Spec source/test checkpoint: `d4bdd15`.
+- No separate bug fix; no schema, Rule, production Spec, or contract-owner change.
+
+- Superseding source checkpoint: the finalized Spec source/test commit is `d51a6a8` (the prior abbreviated checkpoint was amended before final validation).
