@@ -2,3 +2,16 @@
 **/node_modules/
 **/dist/
 **/.worktrees/
+
+# Excluded local index artifacts created by memory-kernel tools.
+tickets.db
+tickets.db-shm
+tickets.db-wal
+search_index/
+
+# Raw workstation telemetry; curated reports remain trackable.
+**/.feedback/entries/
+**/.workflow-tools/feedback/entries/
+**/.test/**/executions/
+**/.workflow-tools/test/**/executions/
+scan_fingerprints.json

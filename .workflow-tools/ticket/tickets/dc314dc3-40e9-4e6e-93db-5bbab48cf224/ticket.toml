@@ -2,7 +2,7 @@ id = "dc314dc3-40e9-4e6e-93db-5bbab48cf224"
 created_at = "2026-10-01T00:44:22.052693800+00:00"
 title = "Migrate legacy dossiers to missions"
 state = "planning"
-depends_on = ["465f31b9-2329-4918-930c-0dfc3fc15b5c"]
+depends_on = ["465f31b9-2329-4918-930c-0dfc3fc15b5c", "c616418e-8c27-4954-975e-490fc22c408f"]
 effort = "4k tokens"
 refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Mission-domain contract for idempotent migration and historical waypoint identity mapping." }]
 type = "task"
