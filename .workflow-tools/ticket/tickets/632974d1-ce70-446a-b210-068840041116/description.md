@@ -17,3 +17,19 @@ Adapt `audit-api` and its supported transport consumers to the kernel-owned `Dom
 
 ## Validation
 Run the Audit API command in G2: `cargo test --manifest-path workflow-tools/audit/crates/audit-api/Cargo.toml`. Run affected Audit transport tests from G3 and record persisted canonical read-back evidence.
+
+## W8 completion evidence — 2026-10-07
+
+- Audit source/tests: `workflow-tools/audit` commit `4c6da38` (`feat(audit): adopt shared DomainStore`).
+- `RepositoryIndex` now implements the shared `DomainStore`, plus only Audit-supported `CreateEntity` and `ReadEntity` capabilities for persisted findings. Read-only resolution retains legacy lookup without initialization; create/open selection writes only to `.workflow-tools/audit`.
+- API temporary-workspace fixture writes a persisted finding and reads it back from the selected canonical owning store, while proving parent and sibling stores remain untouched.
+- CLI temporary-workspace fixture persists an audit run and reads its `audit_runs` row back directly from the selected canonical SQLite store, while proving parent and sibling stores remain untouched.
+- MCP selected-workspace fixture reran and reads both audit and summary run rows back from the selected canonical SQLite store, while proving the ambient server workspace remains untouched.
+
+Validation passed:
+- `cargo test --manifest-path workflow-tools/audit/crates/audit-api/Cargo.toml` — 32 passed (3 suites).
+- `cargo test --manifest-path workflow-tools/audit/crates/audit-cli/Cargo.toml` — 21 passed (4 suites).
+- `cargo test --manifest-path workflow-tools/audit/crates/audit-mcp/Cargo.toml` — 6 passed (3 suites).
+- `git -C workflow-tools/audit diff --check` — passed.
+
+No separate bug fix was made; this was the bounded W8 adapter refactor.

@@ -1,7 +1,7 @@
 id = "632974d1-ce70-446a-b210-068840041116"
 created_at = "2026-06-27T14:46:07.214192700+00:00"
 title = "[audit-api][audit-mcp] DomainStore adapter and workspace parity"
-state = "planning"
+state = "done"
 component = "audit"
 depends_on = ["030b1d72-de93-4680-a9b7-d97ad3c93ced", "27558fde-37b0-43eb-86c6-cfbe2d99a0b8"]
 effort = "2500"
