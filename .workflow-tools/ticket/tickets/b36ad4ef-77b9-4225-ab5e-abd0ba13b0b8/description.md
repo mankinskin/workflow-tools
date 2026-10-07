@@ -13,3 +13,11 @@ Preserve TestSpec and execution models, existing explicit-workspace writes, and 
 
 ## Validation
 Run G2 `cargo test --manifest-path workflow-tools/test/crates/test-api/Cargo.toml` and affected `test-cli`/`test-mcp` tests in G3. Preserve the existing nested-store aggregation regression.
+
+## W5 completion evidence (2026-10-07)
+
+- Implemented `TestStoreConfig`'s shared `DomainStore` resolution and the Test-only typed create/read/list adapter for validation specs and executions. Existing TestSpec, execution, benchmark, and store-index behavior remains domain-owned.
+- Routed explicit workspace selection in Test CLI and MCP through the Test API adapter. Canonical writes, legacy read-only compatibility, duplicate-layout diagnostics, invalid creation aliases, and legacy write-path rejection remain enforced by the shared workspace contract.
+- Added isolated producer-shaped CLI and MCP fixtures that create a validation spec and execution, read both back through the same consumer, and prove parent, sibling, and ambient stores were unchanged. The canonical Test CLI Log-capture path was not edited.
+- Validation passed: `cargo test --manifest-path workflow-tools/test/crates/test-api/Cargo.toml` (46 tests), `cargo test --manifest-path workflow-tools/test/crates/test-cli/Cargo.toml` (14 tests), `cargo test --manifest-path workflow-tools/test/crates/test-mcp/Cargo.toml` (16 tests), and `git -C workflow-tools/test diff --check`.
+- Test source/test checkpoint: `f1060c1`. No separate bug fix, production test-record mutation, new TestSpec, or Log adapter work.

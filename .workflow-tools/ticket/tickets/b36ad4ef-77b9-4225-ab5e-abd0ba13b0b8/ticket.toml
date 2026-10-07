@@ -1,7 +1,7 @@
 id = "b36ad4ef-77b9-4225-ab5e-abd0ba13b0b8"
 created_at = "2026-10-05T16:54:15.216247300+00:00"
 title = "[test-api] Adapt TestStore and transports to DomainStore capabilities"
-state = "planning"
+state = "done"
 component = "test-api"
 depends_on = ["030b1d72-de93-4680-a9b7-d97ad3c93ced"]
 effort = "3500"
