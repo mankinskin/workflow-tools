@@ -83,7 +83,7 @@ Missing external references or status resolution failures block import/publicati
 
 ### Import, rendering, and publication
 
-The facade provides validate/collect preview, import with an expected current revision, render preview, publish, and check-generated operations over CLI and MCP. Validate and preview do not mutate the store. Import rejects stale revisions. Publication renders every output before replacement and preserves the prior accepted manifest and generated file set if validation or publication fails. Check-generated is read-only: it recomputes the projection for the declared mission/status snapshot and reports any byte drift without rewriting documents or executing gates.
+The facade provides validate/collect preview, import with an expected current revision, render preview, publish, and check-generated operations over CLI and MCP. Validate and preview do not mutate the store. Import rejects stale revisions. Published `ROADMAP.md` and Part files live together under `.workflow-tools/mission/missions/<uuid>/generated/`. Publication renders every output before replacement and preserves the prior accepted manifest and generated file set if validation or publication fails. Check-generated is read-only: it recomputes the projection for the declared mission/status snapshot and reports any byte drift without rewriting documents or executing gates.
 
 The same accepted model and snapshot must render byte-identically. The published output includes provenance identifying mission ID, accepted revision, external-status snapshot, and renderer version. Every successful mutation is read back from the canonical store.
 
