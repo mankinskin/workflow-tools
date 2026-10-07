@@ -1,7 +1,7 @@
 id = "5c3589f1-b3a2-4db5-9008-fd15b5804242"
 created_at = "2026-10-05T16:54:42.662779500+00:00"
 title = "[session-api] Adapt SessionStore and capture paths to DomainStore"
-state = "planning"
+state = "done"
 component = "session-api"
 depends_on = ["030b1d72-de93-4680-a9b7-d97ad3c93ced"]
 effort = "3500"
