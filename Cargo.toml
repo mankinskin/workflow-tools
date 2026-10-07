@@ -41,6 +41,7 @@ members = [
   "viewer-api",
   "viewer-api/frontend/dioxus",
   "openrouter-auth",
+  "mission/crates/mission-api",
 ]
 
 [profile.dev]
