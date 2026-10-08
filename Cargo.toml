@@ -41,6 +41,7 @@ members = [
   "viewer-api",
   "viewer-api/frontend/dioxus",
   "openrouter-auth",
+  "path-render-inventory",
   "mission/crates/mission-api",
   "mission/crates/mission",
 ]
