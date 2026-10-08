@@ -89,7 +89,7 @@ The same accepted model and snapshot must render byte-identically. The published
 
 ### Cross-session attachment and legacy migration
 
-The first release extends legal session pin-URN stores with `mission`. Any session may attach the same mission URN without embedding its record or transferring ownership. Migration inventories existing dossier directories at run time, creates or maps each mission idempotently, preserves source-path and historical label-to-waypoint mappings, reports migrated/skipped/blocked records, offers dry-run/recovery, and never deletes source dossiers.
+The first release extends legal session pin-URN stores with `mission`. Any session may attach the same mission URN without embedding its record or transferring ownership. Migration inventories existing dossier directories at run time, imports only each dossier's current `ROADMAP.md` as mission revision 1, and records the source path and each excluded `ROADMAP.vN.md` snapshot in provenance notes. Excluded snapshots remain unchanged in the source dossier and do not create historical mission revisions or label mappings. Migration creates or maps each mission idempotently, reports migrated/skipped/blocked records, offers dry-run/recovery, and never deletes source dossiers. When a legacy waypoint has only a positional W-label and title, migration derives a deterministic stable ID from the title; unsafe or colliding derived IDs block that dossier rather than being guessed.
 
 ## Boundaries And Failure Cases
 
@@ -125,7 +125,7 @@ Planned executable guards, to be registered in the test store before implementat
 - `cargo test -p mission-api --test roadmap_bundle` covers `manifest_rejects_unknown_field`, `manifest_rejects_unsafe_fragment_path`, `order_requires_each_waypoint_once`, `order_requires_prerequisites_before_dependents`, `order_requires_immediate_predecessor_chain`, `revision_numbers_waypoints_contiguously`, `stable_waypoint_ids_survive_reorder`, and `failed_import_preserves_accepted_revision`.
 - `cargo test -p mission-api --test roadmap_render` covers `render_is_byte_deterministic`, `render_escapes_pipes_and_resolves_links`, `render_parts_follow_execution_order`, and `revision_mapping_preserves_old_label_identity`.
 - `cargo test -p mission --test roadmap_commands` covers `validate_preview_does_not_mutate`, `cli_and_mcp_return_equivalent_diagnostics`, `publish_failure_preserves_previous_file_set`, `check_generated_detects_document_drift`, and `stale_revision_import_is_rejected`.
-- `cargo test -p mission --test dossier_migration` covers `migration_is_idempotent`, `migration_preserves_source_and_label_mapping`, and `ambiguous_source_is_reported_blocked`.
+- `cargo test -p mission --test dossier_migration` covers `migration_is_idempotent`, `migration_imports_current_roadmap_only_and_preserves_history_sources`, and `ambiguous_source_is_reported_blocked`.
 
 Each named integration-test target must execute at least one test; CI must fail if a required target or named test is absent. Read back the accepted manifest and generated ROADMAP/Part files in fixtures; a successful exit status alone is insufficient.
 

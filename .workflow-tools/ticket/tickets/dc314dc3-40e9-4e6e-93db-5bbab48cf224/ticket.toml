@@ -1,8 +1,10 @@
 id = "dc314dc3-40e9-4e6e-93db-5bbab48cf224"
 created_at = "2026-10-01T00:44:22.052693800+00:00"
 title = "Migrate legacy dossiers to missions"
-state = "planning"
+state = "in-review"
 depends_on = ["465f31b9-2329-4918-930c-0dfc3fc15b5c", "c616418e-8c27-4954-975e-490fc22c408f"]
 effort = "4k tokens"
+parts = [{ id = "54385585-a5a6-4d8d-ae63-70de3181a884", kind = "objective", path = "parts/54385585-a5a6-4d8d-ae63-70de3181a884.md", frozen = true, created_at = "2026-10-07T23:15:00.302323500Z" }, { id = "d665bbbc-29e7-467e-b1fa-94074fa02c0a", kind = "requirements", path = "parts/d665bbbc-29e7-467e-b1fa-94074fa02c0a.md", frozen = true, created_at = "2026-10-07T23:15:00.302623800Z" }, { id = "023d6e96-9d2f-49f8-b53d-3bb00c7ab0f0", kind = "design", path = "parts/023d6e96-9d2f-49f8-b53d-3bb00c7ab0f0.md", frozen = true, created_at = "2026-10-07T23:15:00.302924700Z" }, { id = "ab37d50c-090b-4588-85bc-228ceef915fe", kind = "examples", path = "parts/ab37d50c-090b-4588-85bc-228ceef915fe.md", frozen = true, created_at = "2026-10-07T23:15:00.303203500Z" }, { id = "40943c39-c98b-4b11-b0a1-b71a31d52da2", kind = "acceptance_criteria", path = "parts/40943c39-c98b-4b11-b0a1-b71a31d52da2.md", frozen = true, created_at = "2026-10-07T23:15:00.303488200Z" }, { id = "58fa83a8-1687-4cb7-b4fb-ccbe7f5197d5", kind = "amendment", path = "parts/58fa83a8-1687-4cb7-b4fb-ccbe7f5197d5.md", frozen = false, created_at = "2026-10-08T11:38:29.969781200Z", supersedes = "40943c39-c98b-4b11-b0a1-b71a31d52da2" }, { id = "f893cdb5-3727-4465-9fe0-7cfd828e42c9", kind = "amendment", path = "parts/f893cdb5-3727-4465-9fe0-7cfd828e42c9.md", frozen = false, created_at = "2026-10-08T11:38:42.406059400Z", supersedes = "54385585-a5a6-4d8d-ae63-70de3181a884" }, { id = "1a12378f-5f32-4a5c-bc96-992b11e722d0", kind = "amendment", path = "parts/1a12378f-5f32-4a5c-bc96-992b11e722d0.md", frozen = false, created_at = "2026-10-08T12:32:12.062663Z", supersedes = "58fa83a8-1687-4cb7-b4fb-ccbe7f5197d5" }]
+plan_revision = 1
 refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Mission-domain contract for idempotent migration and historical waypoint identity mapping." }]
 type = "task"
