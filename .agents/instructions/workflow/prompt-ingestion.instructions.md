@@ -5,7 +5,7 @@ applyTo: "**/*.md"
 
 ## Purpose
 
-A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline, and only the resulting dossier is used to seed tickets/specs. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the eventual tickets actually cover what the requester said.
+A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline; after explicit execution approval, that evidence seeds the durable mission and any ticket/spec work the approved roadmap requires. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the resulting work actually covers what the requester said.
 
 This pipeline is an extension of [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md), not a parallel process: it reuses that pipeline's denoise stage and dossier-folder conventions verbatim, then carries the cleaned signal onward through research, verification, and planning. Think of it as spell-crafting — the user hands over the raw spell (an unrefined ask) and the pipeline elevates it, preserving the original intent exactly, into the mechanical steps that execute it.
 
@@ -24,7 +24,9 @@ not the terminal state. The lifecycle continues through these explicit states:
    outcome from the user: `replan` returns the request to the planning loop;
    `approve` authorizes execution of the current roadmap.
 4. **Execution** — only after `approve`, hand the same dossier path and
-   `ROADMAP.md` to [execute-roadmap](https://github.com/mankinskin/meta-workspace/blob/main/.agents/prompts/execute-roadmap.prompt.md).
+   `ROADMAP.md` to `/execute-ingest`. It binds the approved roadmap to a mission
+   and then hands the mission-backed route to
+   [execute-roadmap](https://github.com/mankinskin/meta-workspace/blob/main/.agents/prompts/execute-roadmap.prompt.md).
 
 Planning interviews and final roadmap approval are separate interactions. A
 successful planning verdict never implies execution approval.
@@ -94,19 +96,21 @@ flag.
 **Step 1 — is there an active dossier?** Two sessions have in practice worked on similar topics in parallel, and a fresh session reused another session's dossier folder by topic resemblance, collapsing two isolated dossiers into one. An existing dossier is therefore active only when at least one of these conditions holds, evaluated strictly against the **current session**:
 
 1. This session's own conversation history shows it already created or resumed that exact dossier folder earlier in this session, or
-2. `session_runtime_view` shows **exactly one** dossier pinned under relation `intent-ingestion-dossier` by this session (matching `ce://<workspace>/dossier/<folder-name>`).
+2. `session_runtime_view` shows **exactly one** dossier pinned under relation `intent-ingestion-dossier` by this session (matching `ce://<workspace>/dossier/<folder-name>`), or
+3. The requester names that exact existing dossier and explicitly authorizes this session to take it over.
 
-Zero matching pins, more than one pin, or a similarly named dossier from another session mean there is no active dossier: create a new `transcripts/DD-MM-YYYY_<slug>/` folder and skip Step 2. Never scan the `transcripts/` directory for a topically similar folder to reuse.
+For an authorized takeover, read the prior owner from the dossier's handover record. Before changing any other dossier content, record both the prior owner and the current session as the new owner in `README.md`; if the prior owner cannot be verified, stop and ask rather than inventing it. Prior-session status is irrelevant: never infer authorization from expiry, status, a pin, or history. If a requester names an existing dossier without explicitly authorizing takeover, stop and ask whether to authorize takeover or create a new dossier. Zero matching pins, more than one pin, or a similarly named dossier from another session otherwise mean there is no active dossier: create a new `transcripts/DD-MM-YYYY_<slug>/` folder and skip Step 2. Never scan `transcripts/` for a topically similar folder to reuse.
 
 **Step 2 — classify the request against the active dossier's roadmap.**
 
 | Classification | Signal | Action |
 |---|---|---|
 | Refinement | The requester explicitly asks to extend, continue, refine, or replan that dossier, or names it (an `/execute-ingest` `replan` counts); or the request clearly changes the same requested outcome — it corrects the scope, answers an open question, or adds a requirement to the same deliverable. | Extend the active dossier. |
+| Authorized takeover | The requester explicitly named the dossier and authorized this session to take it over. | Record the prior and new owner in `README.md`, then extend the dossier; do not infer authorization from prior-session status. |
 | Standalone | The request has its own outcome, even if it shares a topic, component, file, tool, or session with the active dossier. | Create a new dossier; the new `ARTIFACTS.md` may cite the active dossier as evidence. |
 | Borderline | The request is closely related to the active roadmap and might count as an extension, but is not clearly a refinement. | Stop before writing any file. Ask the requester one question per [question-quality.instructions.md](question-quality.instructions.md) that names the active dossier and offers exactly `extend <dossier>` or `new dossier`, then follow the answer. Never infer the answer from silence. |
 
-**Record the classification.** The `README.md` of the dossier used states the classification (refinement, standalone, or confirmed borderline) and its signal.
+**Record the classification.** The `README.md` of the dossier used states the classification (refinement, authorized takeover, standalone, or confirmed borderline) and its signal. An authorized takeover also records the verified prior owner and current session as the new owner.
 
 **Pinning.** Immediately after creating or resuming a dossier folder, pin its canonical URN via `session_runtime_pin` with relation `intent-ingestion-dossier` (e.g. `entity_urn: "ce://default/dossier/13-09-2026_my-slug"`) so a later stage, or a later pipeline invocation in the same session, can find it without re-deriving it. Do not pass a raw path like `path:...`, as entity pins require `ce://<workspace>/<store>/<entity>` format.
 
@@ -123,6 +127,26 @@ Zero matching pins, more than one pin, or a similarly named dossier from another
 `ROADMAP.md` is the single, current, most-refined artifact the pipeline produces. It is the entry point a fresh executing session reads first — it must be self-contained enough that a session starting cold from `ROADMAP.md` alone (plus the cited artifact ids/paths) can begin work without re-reading the whole dossier. See [roadmap-execution.instructions.md](roadmap-execution.instructions.md#purpose) for how an executing session treats and walks the compiled roadmap, and [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) for the required structure, waypoint scoping thresholds, and syntax rules a compiled roadmap must follow — this stage produces that structure, it does not redefine it.
 
 **Iteration rule**: `ROADMAP.md` is expected to be revised as research deepens or execution surfaces new information. Never overwrite a prior iteration in place. Before writing an improved version, rename the existing `ROADMAP.md` to a versioned name (`ROADMAP.v1.md`, `ROADMAP.v2.md`, ...) inside the same dossier folder, then write the new, more refined content to `ROADMAP.md`. Only one file is ever named `ROADMAP.md` — it is always the most current, most refined iteration. The dossier's `README.md` index must point at `ROADMAP.md`, not at a versioned snapshot.
+
+## Mission-backed execution handoff
+
+Stages 1–6 keep the transcript dossier as planning evidence and do not create or
+mutate a mission. Before the requester approves execution, the current
+`ROADMAP.md` is the reviewable draft. After explicit `approve`, the
+`Execute Ingest` handoff resolves or creates the mission for that exact dossier
+using the procedure in
+[roadmap-execution.instructions.md](roadmap-execution.instructions.md#mission-backed-execution).
+The accepted mission record then owns the durable execution plan; record its
+canonical URN in the dossier's `README.md` and `ARTIFACTS.md`, and retain the
+raw inputs, reviews, and other planning evidence as source provenance.
+
+Once bound, execute from the mission's accepted record and its generated
+`ROADMAP.md`/Part projections. Treat the migrated dossier's `ROADMAP.md` as an
+unchanged source snapshot, not a second editable status authority. Update the
+mission through a validated bundle and `mission publish` with its expected
+revision, then verify with `mission check-generated`; never hand-edit generated
+mission documents. A blocked migration stops the handoff. A skipped migration
+is successful only after `mission get` confirms the bound record.
 
 ## Roadmap Improvement Loop
 
@@ -187,7 +211,9 @@ execution approval. Represent ticket creation or mutation as an Execution side
 effect waypoint after `approve`, then let dependent implementation waypoints
 reference the created ticket.
 
-- Use the ticket threshold from `AGENTS.md` and `.agents/prompts/tickets.prompt.md`
+- Use the ticket threshold from
+  [`AGENTS.md`](../../../AGENTS.md) and
+  [tickets.prompt.md](../../../ticket/.agents/prompts/tickets.prompt.md)
   to decide whether the approved roadmap needs a ticket-creation waypoint.
 - Before planning a ticket-creation waypoint, check the Stage 2 store-coverage
   table. If an existing ticket already owns the work, plan a reuse form from
@@ -213,7 +239,7 @@ This mirrors [escalation-gate.instructions.md](escalation-gate.instructions.md) 
 Run it before `tickets.prompt.md`, `spec.prompt.md`, or any multi-file implementation session whenever the incoming prompt is:
 
 - a raw transcript, dictation, or stream-of-consciousness prompt rather than an already-scoped ask,
-- broad enough that "just start implementing" would produce an unbounded session (compare the "Feature or refactor" and "Unfamiliar module" rows in `AGENTS.md`'s Task Routing table),
+- broad enough that "just start implementing" would produce an unbounded session (compare the "Feature or refactor" and "Unfamiliar module" rows in [`AGENTS.md`](../../../AGENTS.md)'s Task Routing table),
 - ambiguous about whether it is one request or several interleaved concerns.
 
 Skip it for an already-bounded, single-file fix or an ask that already names its acceptance criteria — running the full pipeline on a two-line, unambiguous prompt is pure overhead.

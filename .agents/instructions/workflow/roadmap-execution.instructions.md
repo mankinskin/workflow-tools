@@ -42,9 +42,9 @@ the planning loop and is not an executable handoff. A planning verdict such as
 `Approved as scoped` is evidence that the roadmap is ready for review, not
 evidence of execution approval.
 
-The `approve` outcome authorizes the roadmap's first `Execution side effect`
-waypoint (`W1`). Without that outcome, do not mark W1 `in-progress` or perform
-any external mutation.
+The `approve` outcome authorizes the mission handoff and the roadmap's first
+`Execution side effect` waypoint (`W1`). Without that outcome, do not create
+or mutate a mission, mark W1 `in-progress`, or perform any external mutation.
 
 The executor must use the exact dossier path and `ROADMAP.md` supplied by the
 approved handoff. The executor must not reconstruct, alter, or substitute the
@@ -58,6 +58,28 @@ On the expected path, W1 and all later waypoints require no new design
 decision or question. If the handoff reveals a known unresolved choice or
 missing expectation, it is a planning defect: return it for planning
 resolution and a fresh dry run/approval rather than execute through it.
+
+## Mission-backed execution
+
+For a roadmap handed off by `Execute Ingest`, resolve its mission before
+starting waypoint work. If the dossier already records a mission URN, read it
+with `mission --workspace <workspace-root> get <mission-id>` and pin
+`ce://default/mission/<mission-id>` to the active session. Otherwise, after
+`approve`, import only the selected dossier with
+`mission --workspace <workspace-root> migrate-dossiers --dossier <dossier-path>`.
+Require exactly one record with outcome `migrated` or `skipped`; read it back
+with `mission get` and record its ID and URN in the dossier index. Do not use
+the unfiltered migration as execution setup. Stop on `blocked`; accept
+`skipped` only after read-back confirms the expected provenance.
+
+Once bound, the accepted mission is the execution route. Read the generated
+mission `ROADMAP.md` and Part projections, using the transcript dossier for
+raw prompt, review, and source evidence only. Never update a generated
+projection or the archived source roadmap as a substitute for a mission
+mutation. Update the full validated bundle through `mission publish` with the
+expected current revision, then confirm `mission check-generated` succeeds.
+Ticket-backed progress remains owned by its ticket, and the active session's
+`session_workflow_*` graph remains session-local.
 
 ## Waypoint Readiness Gate
 
