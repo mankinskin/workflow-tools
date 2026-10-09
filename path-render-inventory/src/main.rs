@@ -1,9 +1,10 @@
 use clap::{Parser, Subcommand, ValueEnum};
 use path_render_inventory::{
-    Result,
+    Result, output_path, validation_input_path,
     gates::{self, PlatformKey},
     inventory,
     model::*,
+    reconcile,
 };
 use std::{
     collections::BTreeMap,
@@ -36,6 +37,28 @@ enum Action {
         stage: StageArg,
         #[arg(long)]
         windows: bool,
+    },
+    Reconcile {
+        #[arg(long)]
+        root: PathBuf,
+        #[arg(long)]
+        source: PathBuf,
+        #[arg(long)]
+        ledger: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long)]
+        report: PathBuf,
+    },
+    Export {
+        #[arg(long)]
+        root: PathBuf,
+        #[arg(long)]
+        source: PathBuf,
+        #[arg(long)]
+        ledger: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
     },
     Validate {
         #[arg(long)]
@@ -181,6 +204,51 @@ fn run(cli: Cli) -> Result<()> {
                     stage.into(),
                     windows
                 )?)?
+            );
+        }
+        Action::Reconcile {
+            root,
+            source,
+            ledger,
+            output,
+            report: report_path,
+        } => {
+            let source: Source =
+                serde_json::from_slice(&fs::read(validation_input_path(&root, &source)?)?)?;
+            let old: Ledger =
+                toml::from_str(&fs::read_to_string(validation_input_path(&root, &ledger)?)?)?;
+            let (candidate, report) = reconcile::reconcile(&root, &source, &old)?;
+            let candidate_path = output_path(&root, &output)?;
+            if candidate_path.exists() {
+                return Err(format!(
+                    "reconciliation candidate already exists: {}",
+                    candidate_path.display()
+                )
+                .into());
+            }
+            fs::write(
+                &candidate_path,
+                toml::to_string_pretty(&candidate)?,
+            )?;
+            reconcile::write_reconciliation(&root, &report_path, &candidate, &report)?;
+        }
+        Action::Export {
+            root,
+            source,
+            ledger,
+            output,
+        } => {
+            let source: Source =
+                serde_json::from_slice(&fs::read(validation_input_path(&root, &source)?)?)?;
+            let ledger: Ledger =
+                toml::from_str(&fs::read_to_string(validation_input_path(&root, &ledger)?)?)?;
+            let result = reconcile::write_export(&root, &output, &source, &ledger)?;
+            println!(
+                "Exported {} inventory, {} migration and {} Windows handoffs ({})",
+                result.inventory.len(),
+                result.migration.len(),
+                result.windows.len(),
+                result.selector_digest
             );
         }
         Action::Validate {

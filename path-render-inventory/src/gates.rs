@@ -48,7 +48,7 @@ pub fn select(ledger: &Ledger, selector: &str, stage: Stage) -> Result<Selection
             })
         })
         .collect();
-    inventory::make_selection(
+    inventory::make_selection_with_deletions(
         ledger,
         selector.into(),
         stage,
@@ -57,7 +57,17 @@ pub fn select(ledger: &Ledger, selector: &str, stage: Stage) -> Result<Selection
             .iter()
             .flat_map(|file| file.occurrences.iter().map(|row| row.id.clone()))
             .collect(),
+        if selector == "inventory-complete" || selector.ends_with(":complete") {
+            ledger
+                .tombstones
+                .iter()
+                .map(|tombstone| tombstone.id.clone())
+                .collect()
+        } else {
+            vec![]
+        },
         true,
+        &[],
     )
 }
 
@@ -126,8 +136,11 @@ pub fn test_arguments(owner: &Owner, platform: Platform) -> Result<&[String]> {
 }
 
 pub fn check_schema(ledger: &Ledger, source: &Source) -> Result<()> {
-    if ledger.schema != 1 {
+    if ledger.schema != 2 {
         return Err("unsupported ledger schema".into());
+    }
+    if ledger.source_digest != source.source_digest {
+        return Err("ledger source identity is stale".into());
     }
     unique(ledger.files.iter().map(|file| file.id.as_str()), "file id")?;
     unique(
@@ -145,6 +158,39 @@ pub fn check_schema(ledger: &Ledger, source: &Source) -> Result<()> {
             .flat_map(|file| file.occurrences.iter().map(|row| row.id.as_str())),
         "occurrence id",
     )?;
+    unique(
+        ledger.tombstones.iter().map(|tombstone| tombstone.id.as_str()),
+        "deletion review id",
+    )?;
+    if ledger.file_fingerprints.len() != ledger.files.len()
+        || ledger.repository_fingerprints.len() != ledger.repositories.len()
+        || ledger.owner_fingerprints.len() != ledger.owners.len()
+    {
+        return Err("schema-2 ledger has incomplete source provenance".into());
+    }
+    for file in &ledger.files {
+        let fingerprint = ledger
+            .file_fingerprints
+            .get(&file.path)
+            .ok_or_else(|| format!("missing file fingerprint: {}", file.path))?;
+        if fingerprint.source_digest != file.source_digest
+            || fingerprint.origin != file.origin
+            || fingerprint.owner != file.owner
+        {
+            return Err(format!("stale file fingerprint: {}", file.path).into());
+        }
+    }
+    if ledger
+        .repositories
+        .iter()
+        .any(|repository| !ledger.repository_fingerprints.contains_key(&repository.path))
+        || ledger
+            .owners
+            .iter()
+            .any(|owner| !ledger.owner_fingerprints.contains_key(&owner.id))
+    {
+        return Err("schema-2 ledger provenance does not cover its owners and repositories".into());
+    }
     let actual: BTreeSet<_> = source
         .files
         .iter()
@@ -154,7 +200,9 @@ pub fn check_schema(ledger: &Ledger, source: &Source) -> Result<()> {
             source
                 .exclusions
                 .iter()
-                .filter(|file| file.path.ends_with(".rs"))
+                .filter(|file| {
+                    file.path.ends_with(".rs") && file.reason != "deleted-working-file"
+                })
                 .map(|file| &file.path),
         )
         .collect();
@@ -212,6 +260,19 @@ pub fn check_schema(ledger: &Ledger, source: &Source) -> Result<()> {
         {
             return Err(format!("unowned repository: {}", file.path).into());
         }
+        for tombstone in &ledger.tombstones {
+            if !ledger
+                .repositories
+                .iter()
+                .any(|repo| repo.path == tombstone.file.repository)
+            {
+                return Err(format!(
+                    "deletion review has no repository: {}",
+                    tombstone.file.path
+                )
+                .into());
+            }
+        }
         if file
             .owner
             .as_ref()
@@ -233,6 +294,22 @@ pub fn check_schema(ledger: &Ledger, source: &Source) -> Result<()> {
 }
 
 pub fn check_classification(ledger: &Ledger, source: &Source, selection: &Selection) -> Result<()> {
+    for tombstone in ledger
+        .tombstones
+        .iter()
+        .filter(|tombstone| selection.deletion_ids.contains(&tombstone.id))
+    {
+        require_text(&tombstone.reason, "deletion reason")?;
+        require_text(
+            &tombstone.resolution,
+            &format!("deletion review resolution {}", tombstone.id),
+        )?;
+    }
+    if selection.aggregate
+        && selection.deletion_ids.len() != ledger.tombstones.len()
+    {
+        return Err("aggregate inventory omits deletion reviews".into());
+    }
     for file in ledger
         .files
         .iter()
@@ -644,6 +721,13 @@ pub fn check_detected_coverage(ledger: &Ledger, fresh: &Ledger) -> Result<()> {
             .iter()
             .find(|recorded| recorded.path == file.path)
             .ok_or("missing Rust file")?;
+        if recorded.id != file.id
+            || recorded.source_digest != file.source_digest
+            || recorded.origin != file.origin
+            || recorded.owner != file.owner
+        {
+            return Err(format!("stale source identity in ledger: {}", file.path).into());
+        }
         for row in &file.occurrences {
             if !recorded.occurrences.iter().any(|recorded| {
                 recorded.id == row.id

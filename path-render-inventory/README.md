@@ -8,8 +8,12 @@ workspace-relative identifiers, not human native filesystem displays.
 
 `scan --root /source --source /validation-results/source.json --output ...`
 creates a new, entirely pending ledger. It never overwrites an existing ledger.
-`batches --ledger ... --stage inventory` emits deterministic exact selectors.
-`validate` is intended for the common container driver, not host Cargo execution.
+`reconcile --root ... --source ... --ledger ... --output ... --report ...`
+explicitly migrates the prior ledger against current source before any
+replacement. `export --root ... --source ... --ledger ... --output ...` emits
+the current digest-bound handoffs and stage lists. `batches --ledger ... --stage
+inventory` reports only unfinished work. `validate` is intended for the common
+container driver, not host Cargo execution.
 
 The syntactic candidate visitor covers conversions, path/string/error wrappers,
 formatting macros, Display/Debug/serde implementations and generated derives.
@@ -21,10 +25,13 @@ occurrences before resolving those gaps.
 
 ## Ledger contract
 
-Schema 1 separates repositories, file reviews, occurrences, test owners and
-immutable publication. Stable candidate IDs depend on the portable file identity,
-candidate kind, source-line anchor and duplicate index, not a global row counter.
-Every row starts unclassified and unimplemented. Classification requires a
+Schema 2 separates repositories, file reviews, occurrences, test owners,
+fingerprints and deletion reviews. `reconcile` is the sole explicit schema-1
+migration path; records without verified provenance are reset and reported,
+never trusted as unchanged. Stable candidate IDs depend on the portable file
+identity, candidate kind, source-line anchor and duplicate index, not a global
+row counter. Every new or changed row starts unclassified and unimplemented.
+Classification requires a
 rationale, verified whole-file inspection, resolved coverage gaps and a concrete
 semantic `rendering_context` separate from the immutable source-line `context`,
 Cargo owner or justified generated/exception policy. `no-occurrence` is a human
@@ -38,8 +45,8 @@ require a real recipe extension, not an exemption. Windows applicability starts
 `pending`; a later verified assignment provides native tests/recipe or a specific
 inapplicability rationale.
 
-Batches inspect at most 25 files or 100 occurrences, including splitting a large
-file across consecutive batches. Selectors are `batch:<group>:<nnn>` or
+Batches contain at most 25 files and 100 occurrence/deletion review items,
+including splitting a large file across consecutive batches. Selectors are `batch:<group>:<nnn>` or
 `windows-batch:<group>:<nnn>`, with groups `workflow-tools`, `context-engine` and
 `remaining`. Classification and migration use separate stage parameters.
 Selections explicitly name their repository census reviews. Each group's first
@@ -61,8 +68,11 @@ a review batch. No repository disappears merely because it has no Rust files.
 Passed common-driver Docker receipts supply owner proofs. Owner identities cover
 reachable local source/tests, workspace Cargo configuration, relevant lockfile
 sections, concrete test arguments and harness recipe inputs. Unrelated owner or
-lock-section changes do not invalidate them. Actual tests must return success;
-only the real container OS can generate that platform's proof.
+lock-section changes do not invalidate them when the owner's transitive lock
+closure is present. If Cargo omits the owner from lock package records or that
+closure is incomplete, reconciliation conservatively fingerprints the nearest
+owning lockfile instead. Actual tests must return success; only the real
+container OS can generate that platform's proof.
 
 Source metadata carries immutable recipe digests per platform. A host adapter
 preserves the other platform's digest only while the shared recipe inputs remain
@@ -75,3 +85,10 @@ workspace inheritance, and reject renderer changes after the published revision.
 After changing a classified source file, explicitly reconcile its rows and hashes
 with a new scan. Never preserve old classifications merely by updating the
 ledger's global source digest.
+
+The common driver's `inventory-reconcile` publishes the candidate ledger,
+metadata, reports and all stage handoffs through a recoverable journal while
+holding the exclusive validation lock. An interrupted uncommitted generation is
+restored before the driver reads ledger or metadata; committed output is kept.
+The separate `inventory-export` selector refreshes handoffs after ledger-only
+edits without making semantic classifications.

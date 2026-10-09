@@ -1,6 +1,10 @@
 use crate::{Result, hash, input_path, model::*};
 use proc_macro2::Span;
-use std::{collections::BTreeMap, fs, path::Path};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    fs,
+    path::Path,
+};
 use syn::{spanned::Spanned, visit::Visit};
 
 fn group(repository: &str) -> String {
@@ -27,12 +31,13 @@ fn owner_for(root: &Path, file: &str) -> Result<Option<Owner>> {
             let value: toml::Value =
                 toml::from_str(&fs::read_to_string(input_path(root, &relative)?)?)?;
             if package.is_none()
-                && let Some(name) = value
-                    .get("package")
-                    .and_then(|v| v.get("name"))
-                    .and_then(|v| v.as_str())
+                && let Some(package_info) = value.get("package")
+                && let (Some(name), Some(version)) = (
+                    package_info.get("name").and_then(toml::Value::as_str),
+                    package_info.get("version").and_then(toml::Value::as_str),
+                )
             {
-                package = Some((relative.clone(), name.to_owned()));
+                package = Some((relative.clone(), name.to_owned(), version.to_owned()));
             }
             if value.get("workspace").is_some() && workspace.is_none() {
                 workspace = Some(relative);
@@ -40,7 +45,7 @@ fn owner_for(root: &Path, file: &str) -> Result<Option<Owner>> {
         }
         parent = directory.parent();
     }
-    let Some((package_manifest, package)) = package else {
+    let Some((package_manifest, package, version)) = package else {
         return Ok(None);
     };
     let manifest = workspace.unwrap_or_else(|| package_manifest.clone());
@@ -50,6 +55,7 @@ fn owner_for(root: &Path, file: &str) -> Result<Option<Owner>> {
         manifest: manifest.clone(),
         package_manifest,
         package: package.clone(),
+        version,
         test_args: vec![
             "test".into(),
             "--locked".into(),
@@ -251,7 +257,9 @@ pub fn scan(root: &Path, source: &Source) -> Result<Ledger> {
     for excluded in source
         .exclusions
         .iter()
-        .filter(|input| input.path.ends_with(".rs"))
+        .filter(|input| {
+            input.path.ends_with(".rs") && input.reason != "deleted-working-file"
+        })
     {
         let id = hash(&excluded.path)[..24].to_owned();
         files.push(FileReview {
@@ -276,20 +284,35 @@ pub fn scan(root: &Path, source: &Source) -> Result<Ledger> {
         });
     }
     files.sort_by(|a, b| (&a.repository, &a.path).cmp(&(&b.repository, &b.path)));
-    Ok(Ledger {
-        schema: 1,
+    let mut ledger = Ledger {
+        schema: 2,
         source_digest: source.source_digest.clone(),
         repositories,
         files,
         owners: owners.into_values().collect(),
+        file_fingerprints: BTreeMap::new(),
+        repository_fingerprints: BTreeMap::new(),
+        owner_fingerprints: BTreeMap::new(),
+        tombstones: vec![],
         publication: None,
-    })
+    };
+    crate::reconcile::populate_fingerprints(&mut ledger, source);
+    Ok(ledger)
 }
 
 pub fn selections(ledger: &Ledger, stage: Stage, windows: bool) -> Result<Vec<Selection>> {
+    #[derive(Clone)]
+    struct Unit {
+        file: Option<String>,
+        occurrence: Option<String>,
+        deletion: Option<String>,
+        repository: Option<String>,
+    }
+
     let mut result = vec![];
     for group in ["workflow-tools", "context-engine", "remaining"] {
-        let mut units: Vec<(String, Option<String>)> = vec![];
+        let mut units = vec![];
+        let mut covered_repositories = BTreeSet::new();
         let mut files: Vec<_> = ledger
             .files
             .iter()
@@ -308,58 +331,147 @@ pub fn selections(ledger: &Ledger, stage: Stage, windows: bool) -> Result<Vec<Se
             .collect();
         files.sort_by(|a, b| (&a.repository, &a.path).cmp(&(&b.repository, &b.path)));
         for file in files {
-            if file.occurrences.is_empty() {
-                units.push((file.id.clone(), None));
+            let selected_rows: Vec<_> = match stage {
+                Stage::Inventory if windows => vec![],
+                Stage::Inventory => {
+                    let whole_file_pending = !file.inspected
+                        || file.gaps.iter().any(|gap| gap.resolution.trim().is_empty())
+                        || (file.occurrences.is_empty() && file.disposition.is_none());
+                    let rows = file
+                        .occurrences
+                        .iter()
+                        .filter(|row| {
+                            whole_file_pending
+                                || row.disposition.is_none()
+                                || row.rationale.trim().is_empty()
+                                || row.rendering_context.trim().is_empty()
+                        })
+                        .collect::<Vec<_>>();
+                    if whole_file_pending || !rows.is_empty() {
+                        units.push(Unit {
+                            file: Some(file.id.clone()),
+                            occurrence: None,
+                            deletion: None,
+                            repository: None,
+                        });
+                        covered_repositories.insert(file.repository.clone());
+                    }
+                    rows
+                }
+                Stage::Migration if !windows => file
+                    .occurrences
+                    .iter()
+                    .filter(|row| {
+                        row.disposition == Some(Disposition::Migrate) && !row.implemented
+                    })
+                    .collect(),
+                Stage::Migration => vec![],
+                Stage::Final if windows => file.occurrences.iter().collect(),
+                Stage::Final => vec![],
+            };
+            for row in selected_rows {
+                units.push(Unit {
+                    file: Some(file.id.clone()),
+                    occurrence: Some(row.id.clone()),
+                    deletion: None,
+                    repository: None,
+                });
+                covered_repositories.insert(file.repository.clone());
             }
-            let mut occurrences: Vec<_> = file.occurrences.iter().collect();
-            occurrences.sort_by(|a, b| (a.line, a.column, &a.id).cmp(&(b.line, b.column, &b.id)));
-            units.extend(
-                occurrences
-                    .into_iter()
-                    .map(|row| (file.id.clone(), Some(row.id.clone()))),
-            );
+            if stage == Stage::Final && windows && file.occurrences.is_empty() {
+                units.push(Unit {
+                    file: Some(file.id.clone()),
+                    occurrence: None,
+                    deletion: None,
+                    repository: None,
+                });
+                covered_repositories.insert(file.repository.clone());
+            }
         }
+        if stage == Stage::Inventory && !windows {
+            let mut tombstones: Vec<_> = ledger
+                .tombstones
+                .iter()
+                .filter(|tombstone| {
+                    ledger.repositories.iter().any(|repo| {
+                        repo.path == tombstone.file.repository && repo.group == group
+                    })
+                        && tombstone.resolution.trim().is_empty()
+                })
+                .collect();
+            tombstones.sort_by(|a, b| a.id.cmp(&b.id));
+            for tombstone in tombstones {
+                units.push(Unit {
+                    file: None,
+                    occurrence: None,
+                    deletion: Some(tombstone.id.clone()),
+                    repository: Some(tombstone.file.repository.clone()),
+                });
+                covered_repositories.insert(tombstone.file.repository.clone());
+            }
+        }
+        for repository in ledger.repositories.iter().filter(|repo| {
+            repo.group == group && !repo.reviewed && !covered_repositories.contains(&repo.path)
+        }) {
+            if stage == Stage::Inventory && !windows {
+                units.push(Unit {
+                    file: None,
+                    occurrence: None,
+                    deletion: None,
+                    repository: Some(repository.path.clone()),
+                });
+            }
+        }
+
         let mut cursor = 0;
         let mut number = 1;
-        if units.is_empty()
-            && !windows
-            && ledger.repositories.iter().any(|repo| repo.group == group)
-        {
-            result.push(make_selection(
-                ledger,
-                format!("batch:{group}:001"),
-                stage,
-                vec![],
-                vec![],
-                false,
-            )?);
-        }
         while cursor < units.len() {
-            let mut file_ids = vec![];
+            let mut file_ids = BTreeSet::new();
             let mut occurrence_ids = vec![];
-            let start = cursor;
-            while cursor < units.len() && cursor - start < 100 {
-                let (file, occurrence) = &units[cursor];
-                if !file_ids.contains(file) {
-                    if file_ids.len() == 25 {
-                        break;
-                    }
-                    file_ids.push(file.clone());
+            let mut deletion_ids = vec![];
+            let mut repository_paths = BTreeSet::new();
+            let mut reviewed_work = 0;
+            while cursor < units.len() {
+                let unit = &units[cursor];
+                let new_file = unit.file.as_ref().is_some_and(|id| !file_ids.contains(id));
+                let unit_work = usize::from(unit.occurrence.is_some() || unit.deletion.is_some());
+                if reviewed_work + unit_work > 100 || (new_file && file_ids.len() == 25) {
+                    break;
                 }
-                if let Some(row) = occurrence {
+                if let Some(file) = &unit.file {
+                    file_ids.insert(file.clone());
+                }
+                if let Some(row) = &unit.occurrence {
                     occurrence_ids.push(row.clone());
                 }
+                if let Some(deletion) = &unit.deletion {
+                    deletion_ids.push(deletion.clone());
+                }
+                if let Some(repository) = &unit.repository {
+                    repository_paths.insert(repository.clone());
+                }
+                reviewed_work += unit_work;
                 cursor += 1;
             }
             let prefix = if windows { "windows-batch" } else { "batch" };
-            result.push(make_selection(
+            if cursor == 0 {
+                return Err("inventory selector could not fit an item within the file cap".into());
+            }
+            let file_ids: Vec<_> = file_ids.into_iter().collect();
+            let occurrence_ids: Vec<_> = occurrence_ids;
+            let deletion_ids: Vec<_> = deletion_ids;
+            let mut selection = make_selection_with_deletions(
                 ledger,
                 format!("{prefix}:{group}:{number:03}"),
                 stage,
                 file_ids,
                 occurrence_ids,
+                deletion_ids,
                 false,
-            )?);
+                &repository_paths.into_iter().collect::<Vec<_>>(),
+            )?;
+            selection.repository_paths.sort();
+            result.push(selection);
             number += 1;
         }
     }
@@ -374,10 +486,37 @@ pub fn make_selection(
     occurrence_ids: Vec<String>,
     aggregate: bool,
 ) -> Result<Selection> {
+    make_selection_with_deletions(
+        ledger,
+        selector,
+        stage,
+        file_ids,
+        occurrence_ids,
+        vec![],
+        aggregate,
+        &[],
+    )
+}
+
+pub fn make_selection_with_deletions(
+    ledger: &Ledger,
+    selector: String,
+    stage: Stage,
+    file_ids: Vec<String>,
+    occurrence_ids: Vec<String>,
+    deletion_ids: Vec<String>,
+    aggregate: bool,
+    extra_repositories: &[String],
+) -> Result<Selection> {
     let selected: Vec<_> = ledger
         .files
         .iter()
         .filter(|file| file_ids.contains(&file.id))
+        .collect();
+    let selected_tombstones: Vec<_> = ledger
+        .tombstones
+        .iter()
+        .filter(|tombstone| deletion_ids.contains(&tombstone.id))
         .collect();
     let mut owner_ids: Vec<_> = selected
         .iter()
@@ -399,6 +538,10 @@ pub fn make_selection(
                 return group.is_none_or(|group| repo.group == group);
             }
             selected.iter().any(|file| file.repository == repo.path)
+                || selected_tombstones
+                    .iter()
+                    .any(|tombstone| tombstone.file.repository == repo.path)
+                || extra_repositories.contains(&repo.path)
                 || (!selector.starts_with("windows-batch:")
                     && selector.ends_with(":001")
                     && group == Some(repo.group.as_str())
@@ -412,6 +555,7 @@ pub fn make_selection(
         &selected,
         &owners,
         &occurrence_ids,
+        &selected_tombstones,
         &repositories,
     ))?);
     let file_sources = selected
@@ -428,6 +572,7 @@ pub fn make_selection(
         repository_paths,
         file_sources,
         occurrence_ids,
+        deletion_ids,
         owner_ids,
         digest,
         aggregate,

@@ -8,7 +8,39 @@ pub struct Ledger {
     pub files: Vec<FileReview>,
     pub owners: Vec<Owner>,
     #[serde(default)]
+    pub file_fingerprints: std::collections::BTreeMap<String, FileFingerprint>,
+    #[serde(default)]
+    pub repository_fingerprints: std::collections::BTreeMap<String, String>,
+    #[serde(default)]
+    pub owner_fingerprints: std::collections::BTreeMap<String, OwnerFingerprint>,
+    #[serde(default)]
+    pub tombstones: Vec<DeletionReview>,
+    #[serde(default)]
     pub publication: Option<Publication>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq)]
+pub struct FileFingerprint {
+    pub source_digest: String,
+    pub origin: String,
+    pub owner: Option<String>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq)]
+pub struct OwnerFingerprint {
+    pub manifest_digest: String,
+    pub tests_digest: String,
+    pub test_args_digest: String,
+    pub linux_recipe_digest: String,
+    pub windows_recipe_digest: String,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct DeletionReview {
+    pub id: String,
+    pub file: FileReview,
+    pub reason: String,
+    pub resolution: String,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -71,6 +103,8 @@ pub struct Owner {
     pub manifest: String,
     pub package_manifest: String,
     pub package: String,
+    #[serde(default)]
+    pub version: String,
     pub test_args: Vec<String>,
     pub linux_recipe: String,
     pub windows: WindowsApplicability,
@@ -117,6 +151,8 @@ pub struct Selection {
     pub repository_paths: Vec<String>,
     pub file_sources: Vec<FileSource>,
     pub occurrence_ids: Vec<String>,
+    #[serde(default)]
+    pub deletion_ids: Vec<String>,
     pub owner_ids: Vec<String>,
     pub digest: String,
     pub aggregate: bool,
@@ -153,6 +189,8 @@ pub struct LockPackage {
     pub name: String,
     pub version: String,
     pub hash: String,
+    #[serde(default)]
+    pub dependencies: Vec<String>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
