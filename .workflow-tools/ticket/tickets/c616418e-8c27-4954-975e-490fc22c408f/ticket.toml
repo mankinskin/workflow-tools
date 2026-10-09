@@ -1,8 +1,10 @@
 id = "c616418e-8c27-4954-975e-490fc22c408f"
 created_at = "2026-10-01T00:43:54.683360100+00:00"
 title = "Implement mission CLI and MCP transports"
-state = "planning"
+state = "done"
 depends_on = ["1486c2f9-301e-4709-a8d0-cae3c4e6f5d4"]
 effort = "5k tokens"
+parts = [{ id = "0ffda94a-62fa-4af8-a063-50fda0a2ba7f", kind = "objective", path = "parts/0ffda94a-62fa-4af8-a063-50fda0a2ba7f.md", frozen = true, created_at = "2026-10-07T22:34:35.566968100Z" }, { id = "63cf2070-cd0a-41f6-ae81-a884552e4e56", kind = "requirements", path = "parts/63cf2070-cd0a-41f6-ae81-a884552e4e56.md", frozen = true, created_at = "2026-10-07T22:34:35.567204600Z" }, { id = "e10b662c-3727-4fd3-92e5-a140d8fbdb83", kind = "design", path = "parts/e10b662c-3727-4fd3-92e5-a140d8fbdb83.md", frozen = true, created_at = "2026-10-07T22:34:35.567501600Z" }, { id = "7d1029a3-d228-4d48-9e52-82da46dca86b", kind = "examples", path = "parts/7d1029a3-d228-4d48-9e52-82da46dca86b.md", frozen = true, created_at = "2026-10-07T22:34:35.567759800Z" }, { id = "0b63d8f7-8cb4-4b36-8e9b-6e47dae65d75", kind = "acceptance_criteria", path = "parts/0b63d8f7-8cb4-4b36-8e9b-6e47dae65d75.md", frozen = true, created_at = "2026-10-07T22:34:35.568057400Z" }]
+plan_revision = 1
 refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Mission-domain contract for roadmap preview, import, publication, and drift detection." }]
 type = "task"
