@@ -5,7 +5,7 @@ applyTo: "**/*.md"
 
 ## Purpose
 
-A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline; after explicit execution approval, that evidence seeds the durable mission and any ticket/spec work the approved roadmap requires. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the resulting work actually covers what the requester said.
+A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline. Settled scope may seed necessary planning tickets/specs; only explicit execution approval authorizes the durable mission handoff and implementation. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the resulting work actually covers what the requester said.
 
 This pipeline is an extension of [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md), not a parallel process: it reuses that pipeline's denoise stage and dossier-folder conventions verbatim, then carries the cleaned signal onward through research, verification, and planning. Think of it as spell-crafting — the user hands over the raw spell (an unrefined ask) and the pipeline elevates it, preserving the original intent exactly, into the mechanical steps that execute it.
 
@@ -19,10 +19,13 @@ not the terminal state. The lifecycle continues through these explicit states:
    decisions made during planning to the user.
 2. **Planned and accepted** — Stage 5 closes with no open question and Stage 6
    produces the current `ROADMAP.md` with a passing review-only dry run of
-   every waypoint and the complete expected execution path.
+   every waypoint and the complete expected execution path, followed by a
+   passing final formal review of that same revision.
 3. **Final user review** — present the compiled roadmap and request one explicit
    outcome from the user: `replan` returns the request to the planning loop;
-   `approve` authorizes execution of the current roadmap.
+   `approve` authorizes execution of the current roadmap. The user checks the
+   decisions and tasks against intent, not repairs to numbering, structure,
+   dependencies or other formal planning defects.
 4. **Execution** — only after `approve`, hand the same dossier path and
    `ROADMAP.md` to `/execute-ingest`. It binds the approved roadmap to a mission
    and then hands the mission-backed route to
@@ -30,6 +33,34 @@ not the terminal state. The lifecycle continues through these explicit states:
 
 Planning interviews and final roadmap approval are separate interactions. A
 successful planning verdict never implies execution approval.
+
+### Planning subphases and phase tracking
+
+Record `Workflow phase` in the dossier's `README.md` and every handoff,
+separately from roadmap/waypoint execution status:
+
+- `planning / dossier-discovery`: Stages 1-3 gather evidence, consult the user,
+  and record scope and decisions inside the dossier only. Existing entities
+  may be read; do not create or update planning tickets/specs yet.
+- `planning / entity-preparation`: after Stage 3 has settled scope, Stages 4-6
+  prepare the dossier, compile the route, and create or update only necessary
+  planning tickets/specs under [Planning Entities During Refinement](#planning-entities-during-refinement).
+  If no entity is needed, record that and continue; this is not a mandatory
+  ticket/spec-creation step.
+- Any new scope question or required interview, including Stage 5 findings,
+  returns the affected work to dossier-discovery. Resume entity-preparation
+  only after the answers are recorded and scope is settled again.
+- Dry run and final formal review remain read-only except for dossier
+  evidence and corrections. Finish any permitted entity preparation before
+  those passes; neither pass mutates entities or implements a waypoint.
+- `awaiting-approval` begins only after both current-revision gates pass.
+  `replan` returns to planning; explicit `approve` enters `execution`.
+  Closure records `complete` only after the validated route is complete.
+
+These are lifecycle states and planning subphases, not additional ingestion
+stages. Planning never implements repository/product changes, activates or
+dispatches work, or creates/mutates a mission. Lifecycle bookkeeping and
+required feedback remain governed by their own session/feedback procedures.
 
 ## The Six Stages
 
@@ -41,11 +72,11 @@ Complete and record all such reads and gates during these stages. Do not defer
 an independent Planning read into an executable roadmap waypoint.
 
 1. **Transcript preparation and cleaning (cheap).** Delegate entirely to [audio-transcript.instructions.md](https://github.com/mankinskin/meta-workspace/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md) and the [Transcription Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/transcription.agent.md) — the authoritative five-pass paragraphs/punctuation-review/denoise/restructure/verify pipeline and the same multi-part naming convention. These five transcript passes all belong inside this outer Stage 1; they do not renumber the six ingestion stages. Output: `input.md`/`input-2.md`/... (raw) and the matching `input.clean.md`/`input-2.clean.md`/... (denoised), plus `merged.clean.md` once more than one part exists. **This stage is not complete while the clean artifact carries a flagged ambiguity** — see "Ambiguity Resolution Gate" immediately below, which runs before Stage 2 starts.
-2. **Research and artifact inventory.** Dispatch a read-only [Explore Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/explore.agent.md) or [Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) pass to gather every existing artifact relevant to the cleaned prompt. The sweep covers all six domain stores — `ticket`, `spec`, `test`, `session`, `feedback`, and the `transcripts/` dossiers — plus docs and the concrete code/config file paths the eventual work will touch or depend on. [entity-discovery.instructions.md](entity-discovery.instructions.md) owns the per-store surfaces, the fallbacks for stores with no full-text search, and the reuse rule that applies when a relevant entity already exists; this stage is one of the two phases that rule binds. Do not re-derive this list later — every downstream stage cites entries from it instead of re-discovering paths. Output: `ARTIFACTS.md`, one row per artifact with id/path, a one-line relevance note, and its current state (e.g. ticket state, spec state, file exists/does not exist yet), **plus a mandatory store-coverage table** with the columns `store | searched? | surface used | result`, one row per store. A store that could not be searched is recorded as `partial — degraded` with the failure named; it is never recorded as an empty result.
+2. **Research and artifact inventory.** Dispatch a read-only [Explore Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/explore.agent.md) or [Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) pass to gather every existing artifact relevant to the cleaned prompt. The sweep covers all six domain stores — `ticket`, `spec`, `test`, `session`, `feedback`, and the `transcripts/` dossiers — plus docs and the concrete code/config file paths the eventual work will touch or depend on. [entity-discovery.instructions.md](entity-discovery.instructions.md) owns the per-store surfaces, fallbacks and reuse rule; Stage 2 supplies the discovery evidence later preparation/creation boundaries consume. Do not re-derive this list later — every downstream stage cites entries from it instead of re-discovering paths. Output: `ARTIFACTS.md`, one row per artifact with id/path, a one-line relevance note, and its current state (e.g. ticket state, spec state, file exists/does not exist yet), **plus a mandatory store-coverage table** with the columns `store | searched? | surface used | result`, one row per store. A store that could not be searched is recorded as `partial — degraded` with the failure named; it is never recorded as an empty result.
 3. **First informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the cleaned prompt against the research just gathered — never against the raw words alone — then apply that file's [interview-dispatch rule](intent-refinement.instructions.md#applying-the-refinement-loop-here) (interview only what the research cannot resolve). Output: `REVIEW.md` with an `Approved as scoped` verdict and a scope decision.
-4. **Fully informed dossier creation or restructure.** With the scope decision and the artifact inventory both in hand, dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) to produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. Each work package carries an outcome, a non-goal, and a validation method. Stage 4 writes dossier artifacts only; ticket, specification, workflow-store, repository, and external-system mutations belong to the roadmap after explicit `approve`. When a reviewed concern needs adversarial testing before it can be trusted, dispatch [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) first and hand its synthesis to the Roadmap Authoring Agent as input evidence — Structured Research Agent has no `edit` tool and must never be the one writing the dossier or `ROADMAP.md` itself.
+4. **Fully informed dossier creation or restructure.** With the scope decision and the artifact inventory both in hand, dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) to produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. Each work package carries an outcome, a non-goal, and a validation method. This is entity-preparation: dossier edits and the narrowly permitted planning ticket/spec preparation below are allowed, never implementation, activation or other execution side effects. When a reviewed concern needs adversarial testing before it can be trusted, dispatch [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) first and hand its synthesis to the Roadmap Authoring Agent as input evidence — Structured Research Agent has no `edit` tool and must never be the one writing the dossier or `ROADMAP.md` itself.
 5. **Second informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the drafted dossier and `ROADMAP.md` for anything newly ambiguous or low-confidence that the drafting pass surfaced, and interview the requester to close it. This loop replaces a separate traceability-checklist stage — coverage already lives in `ARTIFACTS.md` and `ROADMAP.md`, and open questions get resolved by interview, not logged and left open.
-6. **Adjustments and roadmap compilation (iterative).** Dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) again to apply the second loop's resolved answers, then dry-run and refine `ROADMAP.md`/`README.md`/the work packages until no new blocker or open question surfaces. See "Roadmap Compilation and Versioning" and "Roadmap Improvement Loop" below for required contents, dry-run procedure, and the iteration rule. `ROADMAP.md` must ship with zero open questions — that is this stage's exit condition, not an aspiration.
+6. **Adjustments and roadmap compilation (iterative).** Dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) again to apply resolved answers and finish permitted entity preparation, then dry-run and refine `ROADMAP.md`/`README.md`/the work packages until no blocker or open question surfaces. Perform the final formal review after the dry run; both current-revision verdicts and zero open questions are this stage's exit condition, not an aspiration. See "Roadmap Compilation and Versioning" and "Roadmap Improvement Loop" below for the procedures and iteration rule.
 
 ## Ambiguity Resolution Gate (before Stage 2)
 
@@ -174,7 +205,9 @@ dry-run pass does not guarantee that execution will succeed.
    result and validation; do not require that future output to exist already.
    Check each measurable outcome, target boundary, acceptance criteria,
    validation method, commit checkpoint, and dependency against the expected
-   state at that point. Confirm W1 can start after approval and that every
+   state at that point. Read every explicit `Expected state`, confirm its
+   observable postconditions satisfy dependent waypoint inputs, and chain
+   those states through the final outcome. Confirm W1 can start after approval and that every
    later waypoint can proceed without rediscovering requirements or asking
    the user to choose expected behavior. Reject Planning reads whose inputs
    already exist; complete them during planning. A Dependent read-only
@@ -196,31 +229,69 @@ dry-run pass does not guarantee that execution will succeed.
    missing expectation, or structural defect remains. Record the verdict,
    current roadmap revision identity, and readiness evidence for every
    waypoint in the dossier's `REVIEW.md`, including W1 and the complete happy
-   path. Only this passing revision may be presented for approval. A change
-   to scope, expectations, decisions, dependencies, or validation invalidates
-   the pass and requires another dry run before approval; execution-only
+   path. Then perform the final formal review below; a dry-run pass alone
+   does not permit presentation. A change to scope, targets, expectations,
+   decisions, dependencies, validation, numbering or revision mappings
+   invalidates both gates and requires another dry run followed by final
+   formal review before approval; execution-only
    status/evidence updates do not revise the approved plan.
 
 Apply [roadmap-authoring.instructions.md's Scoping Guidelines](roadmap-authoring.instructions.md#scoping-guidelines) during this dry-run pass — forward references, bundled objectives, hidden parallelism, implicit dependencies, and uneven waypoint flow are exactly the defects that section defines and this loop exists to catch.
 
-## Ticket Planning During Refinement
+### Final formal review
 
-Stages 1 through 6 write dossier artifacts only. Refinement may decide that a
-waypoint needs a ticket, but MUST NOT create or update the ticket before final
-execution approval. Represent ticket creation or mutation as an Execution side
-effect waypoint after `approve`, then let dependent implementation waypoints
-reference the created ticket.
+After the cold dry run passes, make a distinct final review of the exact
+current revision against the complete
+[authoring contract](roadmap-authoring.instructions.md), not just new policy
+keywords. Record a criterion/evidence/result table and a separate PASS/FAIL
+verdict in `REVIEW.md`, tied to the same revision as the dry run.
+
+Check all of the following before declaring the plan formally acceptable:
+
+- Current labels are exactly contiguous `W1` through `Wn` in document order:
+  reject W0, duplicates, gaps and suffixes such as W2a. Dependencies, Part
+  navigation and all current label references resolve; historical labels are
+  revision-bound with snapshots/mappings when renumbered.
+- Required structure and schema, valid table delimiters, dedicated Parts and
+  navigation, linked inputs/entities, scope/targets/non-goals, session prompts,
+  dependency order and prerequisite ownership satisfy the authoring contract.
+- Every waypoint has concrete preconditions, an explicit expected post-state,
+  observable acceptance/validation and a checkpoint. Post-states satisfy
+  dependent inputs and collectively reach the outcome. A completed waypoint
+  in a continuation has verified completion evidence and is not rerun.
+- No known blocker, missing expectation, design choice or interview remains
+  on the expected execution path; W1 and the entire happy path are ready.
+- Lifecycle phase, entity preparation/read-back and linked decisions agree.
+  Mission-specific schema/order and provenance rules remain binding; the
+  review cannot require invented fields or edits to generated projections.
+
+Resolve any finding during planning, then repeat both passes on the corrected
+revision. Only two passing current-revision verdicts allow awaiting-approval.
+User approval is an intent/content decision, not a substitute for this gate.
+
+## Planning Entities During Refinement
+
+After scope is settled, entity-preparation may create or update necessary
+planning tickets/specs through existing store APIs in their existing
+planning/draft states. This exception does not authorize implementation,
+activation, execution dispatch, mission mutation, or changes to unrelated or
+active entities. A necessary change to an active entity is execution work,
+not this exception. Never invent state flags or approval machinery.
 
 - Use the ticket threshold from
   [`AGENTS.md`](../../../AGENTS.md) and
   [tickets.prompt.md](../../../ticket/.agents/prompts/tickets.prompt.md)
-  to decide whether the approved roadmap needs a ticket-creation waypoint.
-- Before planning a ticket-creation waypoint, check the Stage 2 store-coverage
-  table. If an existing ticket already owns the work, plan a reuse form from
+  to decide whether a planning ticket is necessary; a spec is prepared only
+  when its contract is needed for the settled implementation scope.
+- Before a preparation mutation, cite the Stage 2 coverage or a refreshed
+  bounded search. If an existing entity owns the work, record a reuse form from
   [entity-discovery.instructions.md](entity-discovery.instructions.md) instead
-  of a creation waypoint.
-- Keep the planned ticket's objective, acceptance boundary, dependencies, and
-  validation strategy in its dossier Part file without fabricating an id.
+  of creating a duplicate. Unavailable discovery evidence is a planning
+  blocker, not proof of non-existence.
+- Record objective, acceptance boundary, dependencies and validation before
+  mutation. Read the resulting entity back by its specific id; record its
+  canonical link, state and evidence in `ARTIFACTS.md` and the relevant Part.
+  A bounded list is not read-back, and a guessed id is not an entity.
 - Do not create a ticket for work that remains a single-session waypoint.
 
 ## Decision Boundary
@@ -228,8 +299,8 @@ reference the created ticket.
 The dossier produced by this pipeline is a bounded research-and-scoping artifact, not an implementation. State this explicitly in the dossier's `README.md`:
 
 - Stages 1, 2, 3, and 5 (denoise, research/inventory, and both informed review + interview loops) are read-only with respect to the codebase and the ticket/spec store: they may read source, docs, tickets, and specs, and may write dossier notes (`REVIEW.md`, interview records), but do not mutate tickets or specs, and do not change workflow or store state.
-- Stages 4 and 6 (dossier drafting and roadmap adjustment, including the dry-run loop) also write only inside the active dossier. Ticket, specification, workflow/store, repository, and external-system mutations are Execution side effects and begin only after explicit `approve`.
-- `ROADMAP.md` is a scoping and sequencing artifact, not a spec — it names the waypoints an executing session should pick up, with complex decomposition delegated to tickets created during refinement. Turning roadmap items into a spec happens in a **separate**, later step — `spec.prompt.md` — consuming `ROADMAP.md` and its linked tickets as input.
+- Stages 4 and 6 may write dossier artifacts and prepare only scoped planning tickets/specs under the exception above. Dry run and formal review themselves are review-only. All repository/product implementation, activation, mission mutation and other execution side effects begin only after explicit `approve`.
+- `ROADMAP.md` is a scoping and sequencing artifact, not a spec. It links necessary prepared planning entities without duplicating their bodies; additional ticket/spec work outside the preparation exception remains approved execution work.
 
 This mirrors [escalation-gate.instructions.md](escalation-gate.instructions.md) and [phase-separation.instructions.md](phase-separation.instructions.md): discovery/interview/review happen before implementation, and this pipeline is exactly that discovery phase for a raw prompt. Once an approved roadmap ships, [roadmap-execution.instructions.md](roadmap-execution.instructions.md) governs its external side effects and dependency-ordered waypoints.
 

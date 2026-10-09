@@ -56,7 +56,7 @@ design choice, and the complete expected happy path must have the same
 property. Fully specified prerequisite implementation is valid route work,
 including outputs created by earlier waypoints with defined expected results
 and validation. Before presentation for approval, the current revision must
-pass the review-only
+pass the review-only dry run and subsequent final formal review in the
 [Roadmap Improvement Loop](prompt-ingestion.instructions.md#roadmap-improvement-loop)
 with per-waypoint readiness evidence in the dossier review.
 
@@ -74,7 +74,9 @@ Classify work before forming waypoints:
 	and record a Planning read during dossier planning; it is not an executable
 	roadmap waypoint.
 - **Execution side effect** mutates state outside the active dossier, including
-	repository content, entity stores, external systems, or commits. The first
+	repository content, entity stores, external systems, or commits, except for
+	the narrowly permitted [planning entity preparation](prompt-ingestion.instructions.md#planning-entities-during-refinement).
+	That preparation is planning, not an executable waypoint. The first
 	waypoint (`W1`) of every execution-ready roadmap MUST be an Execution side
 	effect. When execution follows `execute-ingest`, the explicit `approve`
 	outcome authorizes W1; a planning verdict does not.
@@ -109,8 +111,8 @@ state which in the waypoint itself:
 
 A creation waypoint with neither is a planning defect; the dry-run rejects it.
 "No existing one was found" with no cited search is not evidence. This is the
-second of the two phases [entity-discovery.instructions.md](entity-discovery.instructions.md)
-binds — the first is prompt-ingestion Stage 2.
+execution-creation boundary [entity-discovery.instructions.md](entity-discovery.instructions.md)
+binds, alongside Stage 2 and permitted planning entity preparation.
 
 A creation waypoint's validation gate must read the created entity back by id
 (for example `ticket get <id>`). A bounded `list` command is not a read-back:
@@ -118,7 +120,15 @@ it can omit a just-created entity when the store is larger than the limit.
 
 **One waypoint, one measurable outcome.** A waypoint bundling more than one loosely related change is a scoping defect — split it. Merge only when a prior split was too aggressive and produced trivially small fragments with no independent validation gate.
 
-**The single-session threshold decides waypoint vs. ticket.** A waypoint completable by one session in one sitting stays inline and is marked single-session. A waypoint that is too large for one session, or whose internal dependencies are complex enough to need cross-session tracking, is **not** decomposed inline — it becomes a ticket (per [prompt-ingestion.instructions.md's Ticket Creation During Refinement](prompt-ingestion.instructions.md#ticket-creation-during-refinement)), and the roadmap keeps only the ticket id and a one-line summary.
+**The single-session threshold decides waypoint vs. ticket.** A waypoint completable by one session in one sitting stays inline and is marked single-session. A waypoint that is too large for one session, or whose internal dependencies are complex enough to need cross-session tracking, is **not** decomposed inline — it becomes a ticket (per [prompt-ingestion.instructions.md's Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement)), and the roadmap keeps only the ticket id and a one-line summary.
+
+**Expected state after every waypoint.** State concrete, observable
+postconditions explicitly; a title or "tests pass" alone is not a post-state.
+The resulting artifact, behavior or state must satisfy dependent waypoint
+preconditions and collectively reach the roadmap's outcome. Pair it with
+acceptance criteria and validation so the executor can verify it before
+marking done or advancing. Completed waypoints retained in a continuation
+cite their verified post-state rather than schedule their work again.
 
 **Plan the executing sessions explicitly.** Every waypoint names the session package that should execute it and carries one clear prompt for that session. The prompt must describe a proportionate work package: the session's goal, target artifacts, validation, dependencies, and non-goals, with enough context for a cold session to begin from the roadmap without copying whole dossier, ticket, or spec bodies. When two waypoints can run in parallel, give each one its own independent session package and state shared dependencies rather than blending the packages into one prompt.
 
@@ -187,8 +197,8 @@ renderer:
 |---|---|
 | **Status** | pending |
 | **Scope** | single-session |
-| **Depends** | W0 |
 | **Mode** | Execution side effect |
+| **Expected state** | The named artifact exists with the agreed behavior and passes the stated acceptance checks; dependent inputs are satisfied. |
 | **Session package** | example |
 | **Part** | [01-example.md](01-example.md) |
 | **Prompt** | One self-contained outcome... |
@@ -198,7 +208,7 @@ renderer:
 | **Commit checkpoint** | logical checkpoint... |
 ```
 
-The required properties are `Status`, `Scope`, `Mode`, `Session package`, `Part`,
+The required properties are `Status`, `Scope`, `Mode`, `Expected state`, `Session package`, `Part`,
 `Prompt`, `Artifacts`, `Non-goal`, `Validate`, and `Commit checkpoint`.
 `Depends` is included when a dependency exists. Every Waypoint has exactly one
 dedicated Part Markdown file in the same dossier, linked from the `Part` row.
@@ -217,8 +227,8 @@ the execution compatibility rule.
 
 Consistent syntax lets a reader (and a script) scan a roadmap without re-parsing prose each time. Use these conventions in every `ROADMAP.md`:
 
-- **Waypoint heading.** `### W<n>. <one-line objective>` — sequential numbering (`W1`, `W2`, ...) that never gets reused, even across versioned revisions, so a dependency reference (`depends: W3`) always resolves unambiguously within that file's history.
-- **Mission-generated roadmap exception.** A roadmap rendered from an accepted mission revision uses stable waypoint IDs as identity and contiguous `W1` through `Wn` labels as revision-local display positions. The renderer may renumber the current projection after insertion, removal, or reordering, but it MUST retain the prior revision and its label-to-ID mapping; an unqualified historical `W<n>` MUST NOT silently resolve against the current revision. This exception applies only to explicitly versioned mission-generated roadmaps; manually authored roadmaps retain the non-reuse rule above. A mission-generated roadmap MUST declare one total execution order and make every waypoint after the first depend on its immediate predecessor's validated checkpoint. It MUST NOT imply parallel execution. The owning contract is spec `ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc` (Mission Domain).
+- **Waypoint heading.** `### W<n>. <one-line objective>` — exactly contiguous `W1` through `Wn` in current document order, including completed waypoints retained in the route. Reject W0, duplicates, numeric gaps and suffixes such as W2a. Labels are revision-local positions, not permanent identity. Before insertion, removal or reorder changes labels, preserve the prior revision and record its old-label-to-current-waypoint mapping (or mark a removed waypoint explicitly). Rewrite current dependencies, Part navigation and label references together; historical references identify their revision and must never silently resolve against new work. Linear numbering alone does not serialize independent manually authored branches.
+- **Mission-generated roadmap contract.** An accepted mission uses stable waypoint IDs as identity and contiguous revision-local `W1` through `Wn` display labels, with historical label-to-ID mappings. Keep the mission schema and renderer authoritative rather than inventing fields or hand-editing projections: record explicit expected states in each waypoint's canonical Part content when the schema has no dedicated field, and check their rendered Part projections during review and execution. A mission-generated roadmap MUST declare one total execution order and make every waypoint after the first depend on its immediate predecessor's validated checkpoint. It MUST NOT imply parallel execution. The owning contract is spec `ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc` (Mission Domain).
 - **Mission ownership handoff.** Before explicit execution approval, the dossier's current `ROADMAP.md` is the editable review draft. After it is accepted into a mission, the accepted mission bundle is the durable source of truth and the generated `ROADMAP.md`/Part files are read-only projections. Keep the transcript dossier as source provenance; do not keep editing its archived roadmap as a competing execution state. To change a mission-backed route, validate and publish a new bundle revision with the expected current revision, then run `mission check-generated`. Ordinary roadmaps not bound to a mission remain governed by their own source files.
 - **Status marker.** Each waypoint opens its body with exactly one status line: `Status: pending | in-progress | blocked | done`. Use `blocked` only when the blocker is named in the waypoint's own text or in "Active blockers" — a bare `blocked` with no stated reason is not acceptable.
 - **Sizing tag.** Immediately after status: `Scope: single-session` or `Scope: ticket <short-id>`. A ticket-scoped waypoint carries no further inline decomposition — see "Scoping Guidelines" above.

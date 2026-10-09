@@ -27,9 +27,9 @@ When a roadmap becomes fully ticket-backed, the route may be represented by the 
 4. **Collect per-waypoint context from the dossier before acting.** For each waypoint, resolve its cited artifact ids/paths — tickets, specs, numbered work-package documents (`01-...md`, ...), and code/config paths — via the dossier before writing anything. A waypoint's one-line roadmap summary is a pointer, not sufficient implementation context; the cited work-package document is normative and must be read.
 5. **Use the roadmap-authored session prompt.** Treat the waypoint's `Prompt:` line as the starting handoff for the fresh session or delegated worker named by `Session package:`. Add only verified execution identity, current status, and any already-satisfied dependency evidence needed by [shared-context-bundle.instructions.md](shared-context-bundle.instructions.md); do not replace the roadmap prompt with a reconstructed prompt from memory.
 6. **Use the task routing table.** Route the ready waypoint by task type before dispatching or acting. A task's route is determined by the work still required, not by its heading or a previous session's route.
-7. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket created during roadmap compilation (per [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md)'s "Ticket Creation During Refinement"), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
+7. **Delegate large waypoints as one isolated unit.** A waypoint marked cross-session, or one backed by a ticket prepared during roadmap compilation (per [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement)), is executed as a single delegated dispatch scoped to that waypoint and ticket — not split into ad hoc smaller asks and not folded into neighboring waypoints.
 8. **Commit the checkpoint before advancing.** After the waypoint's validation and required review pass, create the declared `Commit checkpoint:` using the repository commit workflow, or record the declared no-change reason. The checkpoint preserves the stable state and documents the handoff boundary for later sessions.
-9. **Validate before advancing.** Run the waypoint's declared validation gate and confirm it passes before marking the waypoint done and moving to the next one. Do not defer validation to the end of the route, and do not start a dependent waypoint while the current waypoint's required commit checkpoint is still uncommitted.
+9. **Validate before advancing.** Run the declared validation and verify observable postconditions against the waypoint's explicit expected state before marking done or advancing. Confirm those postconditions satisfy dependent inputs and the route's outcome; passing commands alone do not prove the expected state. Do not defer validation or start dependent work before the required checkpoint is committed.
 
 10. **State reconciliation before closure.** Before any route completion decision, refresh the roadmap's aggregate state and the current waypoint's state. Confirm whether the current waypoint is still in `pending`, `in-progress`, `blocked`, or `done`, then update the roadmap to match that evidence. A roadmap with stale or contradictory state must not be closed.
 
@@ -51,13 +51,20 @@ approved handoff. The executor must not reconstruct, alter, or substitute the
 roadmap before checking waypoint readiness.
 
 The handoff must also identify the passing, current-revision review-only
-dry-run evidence required by the
+dry-run and subsequent final formal-review evidence required by the
 [Roadmap Improvement Loop](prompt-ingestion.instructions.md#roadmap-improvement-loop).
 Approval does not waive readiness checks or authorize deferring known choices.
 On the expected path, W1 and all later waypoints require no new design
 decision or question. If the handoff reveals a known unresolved choice or
 missing expectation, it is a planning defect: return it for planning
 resolution and a fresh dry run/approval rather than execute through it.
+
+Require both gates after a semantic revision, including label/mapping changes.
+User approval confirms intent/content, not exemption from formal readiness.
+Prepared planning tickets/specs are inputs, not execution authorization.
+Record `Workflow phase: execution` in the index/handoff after explicit approval
+and `complete` only after validated closure, separately from execution status.
+Unexpected drift returning to planning records the affected planning subphase.
 
 ## Mission-backed execution
 
@@ -108,7 +115,7 @@ Evaluate the readiness gate before the first mutation and again whenever new evi
 
 For a new or revised roadmap, the readiness gate must find one ordinary
 Markdown table containing the Waypoint properties. The table must include rows
-for `Status`, `Scope`, `Mode`, `Session package`, `Part`, `Prompt`, `Artifacts`,
+for `Status`, `Scope`, `Mode`, `Expected state`, `Session package`, `Part`, `Prompt`, `Artifacts`,
 `Non-goal`, `Validate`, and `Commit checkpoint`; a `Depends` row is required
 when the Waypoint has dependencies. The `Part` row must resolve to exactly one
 dedicated Part Markdown file in the same dossier. That Part file must expose
@@ -128,6 +135,13 @@ This schema check applies to newly created or revised roadmaps. Historical
 roadmaps may use the legacy numbered format and remain executable under the
 existing dependency, validation, approval, and blocker rules; execution must
 not require retroactive migration before applying those rules.
+
+For accepted mission projections, use the mission's authoritative schema,
+stable ids and revision mapping instead of imposing dossier table fields on
+the renderer. An explicit expected state must be present in the waypoint's
+canonical Part content and read from its generated Part. Verify current
+contiguous W1 through Wn labels and all references under the authoring contract.
+Never hand-edit a generated projection to satisfy this gate.
 
 ## Blocker-to-Waypoint Insertion Protocol
 
@@ -166,6 +180,10 @@ When a blocker is found:
 	inserted waypoint. A waypoint whose declared dependencies remain satisfied
 	may proceed unaffected; insertion is local resequencing, not a global
 	roadmap freeze.
+	Keep the current revision numbered contiguously W1 through Wn, preserve
+	the prior revision/label mapping, and update references/Part navigation.
+	For a mission, publish a validated bundle preserving its total execution
+	order and stable identities; never edit projections or the source snapshot.
 6. Inform the user of the inserted waypoint or waypoints and the resequencing.
 	A single-session resolution waypoint needs no approval before proceeding.
 	For a planning/interview waypoint, ask only the one self-contained decision

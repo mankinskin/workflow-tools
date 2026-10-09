@@ -12,14 +12,16 @@ stores each used to carry their own copy; those sections now point here.
 
 ## When This Rule Binds
 
-This rule binds exactly two phases. It is deliberately not a per-turn tax.
+This rule binds the following planning and execution boundaries. It is
+deliberately not a per-turn tax.
 
 | Phase | Owner | Obligation |
 | --- | --- | --- |
 | Prompt-ingestion Stage 2 (research and artifact inventory) | [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) | Sweep all six stores and record the coverage table in `ARTIFACTS.md`. |
+| Planning ticket/spec preparation after settled scope | [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement) | Cite Stage 2 evidence or refresh the relevant bounded search, record creation/reuse and planning/draft state, then read every mutated entity back by its specific id. |
 | Any roadmap waypoint proposing entity creation | [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) | Cite the search that proved non-existence, or record a reuse form instead of creating. |
 
-Outside these two phases the rule is advisory: prefer a bounded search over an
+Outside these boundaries the rule is advisory: prefer a bounded search over an
 assumption, but do not run a six-store sweep before every edit.
 
 ## The Six Stores
@@ -79,6 +81,12 @@ case the creating waypoint or agent cites the sweep that proved it — the
 A related-but-not-owning entity is linked, not annexed: linking a new ticket to
 an adjacent one is reuse form 3, and does not transfer ownership of that
 entity's scope.
+
+Planning preparation is restricted to necessary planning/draft tickets/specs.
+Reject unrelated or active-entity mutations, missing discovery/reuse evidence,
+and a bounded list offered as id-specific read-back. Record the verified
+canonical id/link and state in the dossier before the final dry run/review.
+This does not authorize activation, execution dispatch or implementation.
 
 ## Related Guidance
 
