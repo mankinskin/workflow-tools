@@ -15,3 +15,5 @@ search_index/
 **/.test/**/executions/
 **/.workflow-tools/test/**/executions/
 scan_fingerprints.json
+
+.workflow-tools/validation/
