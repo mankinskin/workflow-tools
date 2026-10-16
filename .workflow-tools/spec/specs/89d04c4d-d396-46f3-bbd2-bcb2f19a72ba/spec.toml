@@ -1,0 +1,8 @@
+id = "89d04c4d-d396-46f3-bbd2-bcb2f19a72ba"
+created_at = "2026-10-16T06:31:44.611973+00:00"
+title = "Actionable PreToolUse configured-hook denial diagnostics"
+state = "draft"
+component = "agent-hooks"
+scope = "internal"
+slug = "agent-hooks/pretooluse-denial-diagnostics"
+type = "specification"

@@ -1,0 +1,20 @@
+{
+  "id": "val-pretooluse-denial-diagnostics",
+  "title": "PreToolUse configured-hook denial diagnostics",
+  "command": "bash context-engine/tools/agent-hooks/test-active-hooks.sh && bash context-engine/tools/agent-hooks/test-pretooluse-denial.sh",
+  "detail": "Passed deterministic coverage of 22 enabled hook entries and factual denial diagnostics for the wrapper, RTK delegate, workspace/context-engine preflight hooks, and session-capture hook.",
+  "links": {
+    "spec_ids": [
+      "89d04c4d-d396-46f3-bbd2-bcb2f19a72ba"
+    ],
+    "acceptance_criterion_ids": [
+      "PTH-1",
+      "PTH-2",
+      "PTH-3",
+      "PTH-4"
+    ],
+    "ticket_ids": [
+      "a7e69f7a-0aa7-4781-9a44-202ecd856407"
+    ]
+  }
+}

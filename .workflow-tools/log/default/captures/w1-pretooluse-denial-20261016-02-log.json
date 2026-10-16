@@ -1,0 +1,17 @@
+{
+  "id": "w1-pretooluse-denial-20261016-02-log",
+  "validation_execution_id": "w1-pretooluse-denial-20261016-02",
+  "kind": "combined-output",
+  "captured_at": "2026-10-16T07:45:23.395797700Z",
+  "media_type": "text/plain",
+  "locator": "target/test-logs/w1-pretooluse-denial-20261016-02.log",
+  "detail": "command `bash context-engine/tools/agent-hooks/test-active-hooks.sh && bash context-engine/tools/agent-hooks/test-pretooluse-denial.sh` exited with 0 in 1727ms",
+  "links": {
+    "ticket_ids": [
+      "a7e69f7a-0aa7-4781-9a44-202ecd856407"
+    ],
+    "validation_execution_ids": [
+      "w1-pretooluse-denial-20261016-02"
+    ]
+  }
+}
