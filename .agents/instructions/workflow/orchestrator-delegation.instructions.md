@@ -55,6 +55,8 @@ Never hardcode prices into tooling; re-resolve with `sync_model_prices.py --quer
 
 ## Delegation Contract
 
+Select the applicable template from the [root agent roster](https://github.com/mankinskin/meta-workspace/blob/main/AGENTS.md).
+
 Each sub-agent dispatch MUST include:
 
 1. **An explicit model string chosen from the tier ladder** in [model-routing.instructions.md](model-routing.instructions.md), which owns the T2 default, the bulk/mechanical drop to T3, context-window fit, and the budget-pressure step-down — do not re-derive a model from the price table or restate its default/step-down rules here.
