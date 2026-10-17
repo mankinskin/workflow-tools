@@ -39,10 +39,10 @@ use either surface interchangeably against the same data.
 
 ## 2. Bootstrapping a consumer workspace
 
-Three scripts compose the current, verified bootstrap path. Each is a
-separate, independently invokable script — there is no interactive
-selection step wiring them together yet (that wiring is tracked as later,
-separate work; do not assume it exists).
+The public installer, selection command, and minimal bootstrap script remain
+independently invokable. Builds containing the `tui` subcommand also provide
+interactive artifact selection; check `install-ctl --help` before relying on
+that subcommand in an older installed release.
 
 1. **`install.sh`** — the public `curl | bash` entry point. Installs only
    `install-ctl` into a caller-supplied local directory (never a system bin
@@ -65,6 +65,28 @@ separate work; do not assume it exists).
    ```bash
    install-ctl install ticket spec-cli session-cli test-cli feedback-cli audit-cli
    ```
+
+   For the corresponding interactive selection, run:
+
+   ```bash
+   install-ctl tui --root "$HOME/.local/workflow-tools"
+   ```
+
+   Choose categories and then the same six artifact IDs, using arrow keys
+   to navigate and Space to toggle. Enter advances to review. Inspect the
+   selected artifacts, lifecycle diagnostics, and installation root before
+   confirming with `y`; `n` or Esc cancels without applying. In review, `r`
+   edits the binary root and Up/Down scrolls the plan. Both paths apply the
+   same canonical artifact plan and print per-action results:
+   `written`, `unchanged`, `skipped`, or `failed`.
+
+   Optional guidance profiles require explicit `--guidance-source`,
+   `--guidance-profile <profile.toml>` (repeatable), `--guidance-select <id>`
+   (repeatable), and `--guidance-target <path>` startup arguments. A profile
+   selection screen precedes review. Guidance destination scope comes from
+   each TOML profile, independently of the binary root; guidance-only
+   selection is supported. Hook entries remain inspect-only when their
+   registry lifecycle does not permit installation.
 
    `install-ctl guidance plan|install|autofix|get` separately plans and
    installs `.agents/**` guidance corpora (not covered further by this
