@@ -12,6 +12,16 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Bin: `install-ctl`
 - Lifecycle: Install, Inspect, Uninstall
 
+## crane
+
+- Category: Cli
+- Kind: RustBinary
+- Source: `tools/cli/crane-cli`
+- Owner: workflow-tools
+- Safety: ApprovalRequired
+- Bin: `crane`
+- Lifecycle: Install, Inspect, Uninstall
+
 ## mcp-toolmon
 
 - Category: Mcp
