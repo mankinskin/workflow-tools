@@ -3,6 +3,7 @@ resolver = "2"
 members = [
   "ticket/ticket-viewer",
   "spec/spec-viewer",
+  "tools/cli/crane-cli",
   "spec/spec-viewer/frontend/dioxus",
   "ticket/ticket-viewer/frontend/dioxus",
   "spec",
