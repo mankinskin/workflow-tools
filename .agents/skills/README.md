@@ -34,6 +34,7 @@ Governing spec: `agents/skill-infrastructure` (`a9b7ef39-ace4-4a12-a171-80f54548
 | [find-skills](./find-skills/SKILL.md) | Discover and install agent skills from the open ecosystem when the user asks "how do I do X", "find a skill for X", or wants to extend capabilities. |
 | [token-optimized-agentic-engineering](./token-optimized-agentic-engineering/SKILL.md) | Maximize agent efficiency, minimize token cost, and preserve context-window capacity via token discipline, prefix-cache preservation, state externalization, and multi-tier model routing. |
 | [dioxus](./dioxus/SKILL.md) | Write/debug/review Dioxus (Rust WASM) frontends — signals & components, server functions & data flow, trunk/dx WASM toolchain, viewer-api managed-viewer integration, and styling/assets. |
+| [workflow-skill](./workflow-skill/SKILL.md) | Bootstrap and operate the workflow-tools ticket/spec/session/test/feedback bundle via `install.sh`/`install-ctl`/`bootstrap.sh` and the discover/plan/execute/feedback loop. |
 
 ### Vendored skills (normalized copies; provenance in each folder's `PROVENANCE.md`)
 
