@@ -8,29 +8,41 @@ SPEC_REVISION="6dddad9dc8ad4f79b62b5d4a10b1008a9a52f6b7"
 
 usage() {
     cat <<'EOF'
-Usage: bootstrap.sh --root <install-root> --workspace <consumer-root> [--dry-run]
+Usage: bootstrap.sh --root <install-root> --workspace <consumer-root> [--workflow-tools-rev <full-sha>] [--dry-run]
 
 Installs the minimal workflow-tools CLI bundle into <install-root>/bin and
 initializes ticket and spec stores only in the selected consumer workspace.
+
+Pass --workflow-tools-rev to re-execute this script from that exact
+workflow-tools commit before installing the bundle.
 EOF
 }
 
 install_root=""
 workspace=""
+workflow_tools_rev=""
 dry_run=false
+forward_args=()
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --root)
             install_root="${2:-}"
+            forward_args+=("$1" "$install_root")
             shift 2
             ;;
         --workspace)
             workspace="${2:-}"
+            forward_args+=("$1" "$workspace")
+            shift 2
+            ;;
+        --workflow-tools-rev)
+            workflow_tools_rev="${2:-}"
             shift 2
             ;;
         --dry-run)
             dry_run=true
+            forward_args+=("$1")
             shift
             ;;
         -h|--help)
@@ -43,6 +55,28 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+if [[ -n "$workflow_tools_rev" ]]; then
+    if [[ ! "$workflow_tools_rev" =~ ^[0-9a-fA-F]{40}$ ]]; then
+        printf '%s\n' '--workflow-tools-rev must be a full 40-character commit SHA' >&2
+        exit 2
+    fi
+
+    bootstrap_file="$(mktemp "${TMPDIR:-/tmp}/workflow-tools-bootstrap.XXXXXX")"
+    cleanup_bootstrap_file() {
+        rm -f "$bootstrap_file"
+    }
+    trap cleanup_bootstrap_file EXIT
+
+    if ! curl -fsSL --output "$bootstrap_file" \
+        "https://raw.githubusercontent.com/mankinskin/workflow-tools/$workflow_tools_rev/bootstrap.sh"; then
+        printf '%s\n' "failed to fetch bootstrap.sh at $workflow_tools_rev" >&2
+        exit 1
+    fi
+
+    bash "$bootstrap_file" "${forward_args[@]}"
+    exit $?
+fi
 
 if [[ -z "$install_root" || -z "$workspace" ]]; then
     usage >&2
