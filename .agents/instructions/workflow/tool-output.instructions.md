@@ -14,7 +14,7 @@ including delegated sub-agents:
   through the `'compact-terminal-mcp/*'` wildcard in
   `.agents/agents/*.agent.md`.
 - CLI fallback: the `compact-terminal` binary
-  (`memory-api/tools/cli/compact-terminal-cli`) — `run`, `read-spill`. Use this
+  (`workflow-tools/peek/crates/compact-terminal-cli`) — `run`, `read-spill`. Use this
   when the MCP surface is unavailable; it shares the same `compact-terminal-api`
   core, so bounding and spill behavior are identical to the MCP path.
 - Shell fallback: the `rtk` proxy, which filters output at the shell level.
@@ -41,7 +41,7 @@ artifact -> bounded search -> extracted finding -> prompt summary
 
 ## Compact Terminal Expectations
 
-The `rtk` proxy and the compact-terminal MCP tool (`memory-api/tools/mcp/compact-terminal-mcp`) truncate long outputs automatically. Long outputs are stored in a transient file and can be inspected via bounded search/read tools:
+The `rtk` proxy and the compact-terminal MCP tool (`workflow-tools/peek/crates/compact-terminal-mcp`) truncate long outputs automatically. Long outputs are stored in a transient file and can be inspected via bounded search/read tools:
 
 ```bash
 # Long output: rtk returns a summary + transient file path
