@@ -91,6 +91,34 @@ The same accepted model and snapshot must render byte-identically. The published
 
 The first release extends legal session pin-URN stores with `mission`. Any session may attach the same mission URN without embedding its record or transferring ownership. Migration inventories existing dossier directories at run time, imports only each dossier's current `ROADMAP.md` as mission revision 1, and records the source path and each excluded `ROADMAP.vN.md` snapshot in provenance notes. Excluded snapshots remain unchanged in the source dossier and do not create historical mission revisions or label mappings. Migration creates or maps each mission idempotently, reports migrated/skipped/blocked records, offers dry-run/recovery, and never deletes source dossiers. When a legacy waypoint has only a positional W-label and title, migration derives a deterministic stable ID from the title; unsafe or colliding derived IDs block that dossier rather than being guessed.
 
+## Nested Mission Waypoints
+
+A waypoint may reference a child mission. Classic dossier roadmaps and
+mission-generated roadmaps support these references recursively, within the
+same workspace. A mission-generated roadmap remains a projection of its
+accepted bundle and must not be hand-edited.
+
+Before accepting or publishing a mission that references child missions,
+resolve each reference from the explicitly selected workspace's mission
+store. Reject missing or unaccepted targets, cross-workspace references,
+missions with no waypoints, and direct or transitive cycles in the reachable
+mission graph. Validate recursively. On failure, preserve the previously
+accepted parent record and generated files.
+
+An accepted mission must contain at least one waypoint. Its status is derived:
+the mission is `completed` only when every waypoint in its accepted
+`execution_order` is `completed`; otherwise, the first non-completed waypoint
+in that order supplies the mission's state. Ticket-backed waypoint state
+continues to be read from the ticket store. A parent nested-mission waypoint
+reflects the referenced child's derived state, recursively.
+
+Nested missions do not introduce parallel or simultaneous execution. Preserve
+the total serial order and immediate-predecessor dependency rule. Do not add a
+separate dependency when the serial edge already supplies the required
+ordering. This extension does not add cross-workspace traversal,
+session-based transcript ingestion, automatic mission creation, or
+multi-agent scheduling.
+
 ## Boundaries And Failure Cases
 
 - The first release has no HTTP transport, viewer, agent assignment, execution lease, or multi-agent scheduling.
@@ -112,11 +140,22 @@ A revision-1 manifest collects fragments whose stable IDs are `mission-store`, `
 
 Positions:
 
-- `workflow-tools/mission/` - not-implemented.
-- `mission-api` bundle/model/validator/store/renderer - not-implemented.
-- `mission` CLI/MCP import and publication - not-implemented.
+- [Mission facade](../../../../mission/crates/mission/src/lib.rs) - implemented;
+  external ticket snapshots are resolved read-only for import, publication,
+  get, rendering and drift checks, including recursive child missions.
+- [mission-api bundle/model/validator/store/renderer](../../../../mission/crates/mission-api/src/lib.rs) -
+  implemented, including same-workspace nested validation and derived state.
+- [Mission CLI](../../../../mission/crates/mission/src/bin/mission.rs) -
+  implemented; help returns success and invalid arguments fail.
 - `session-api` mission URN routing - not-implemented.
-- Dossier migration command - not-implemented.
+- [Dossier migration](../../../../mission/crates/mission/src/migration.rs) -
+  implemented; nested references, ordered gates and authored Parts survive migration.
+
+Related planning work:
+
+- [Ticket c5d40e2a](../../../../../.workflow-tools/ticket/tickets/c5d40e2a-aaa8-4996-b7df-d281e6c75989/ticket.toml) owns the migration-heading and classic-execution handoff criteria.
+- [Ticket 7d5521c0](../../../ticket/tickets/7d5521c0-1e2c-40c1-a555-8136568707cf/ticket.toml) owns mission CLI help exit behavior.
+- [Ticket 97ad0658](../../../../.workflow-tools/ticket/tickets/97ad0658-3ca7-40e4-b7c7-aec27ea03b96/ticket.toml) owns recursive nested mission waypoints.
 
 The governing rule is [Roadmap State And Waypoint Ownership](../../../../.agents/instructions/workflow/roadmap-authoring.instructions.md). This specification remains coming-soon until the acceptance guards below pass.
 
@@ -128,6 +167,42 @@ Planned executable guards, to be registered in the test store before implementat
 - `cargo test -p mission --test dossier_migration` covers `migration_is_idempotent`, `migration_imports_current_roadmap_only_and_preserves_history_sources`, and `ambiguous_source_is_reported_blocked`.
 
 Each named integration-test target must execute at least one test; CI must fail if a required target or named test is absent. Read back the accepted manifest and generated ROADMAP/Part files in fixtures; a successful exit status alone is insufficient.
+
+### Final nested-mission review, 2026-10-19
+
+All eight acceptance criteria of
+[ticket 97ad0658](../../../ticket/tickets/97ad0658-3ca7-40e4-b7c7-aec27ea03b96/ticket.toml)
+were reviewed against implementation and observed outputs. The review found and
+fixed a snapshot-state defect: a local waypoint with omitted state was skipped,
+allowing a later state or a false completion to win. Omitted local state now
+remains pending, including when propagated through a parent.
+
+The four predeclared guards passed and their executions were read back from the
+meta-workspace's canonical test store:
+
+- [Bundle execution](../../../../../.workflow-tools/test/executions/exec-mission-nested-bundle-20261019.json):
+  14 tests, including missing/empty children and publication preservation.
+- [Render execution](../../../../../.workflow-tools/test/executions/exec-mission-nested-render-20261019.json):
+  8 tests, including the failing-before/passing-after pending-state regression.
+- [Command execution](../../../../../.workflow-tools/test/executions/exec-mission-nested-commands-20261019.json):
+  10 tests, covering recursive external snapshots and read-only drift.
+- [Migration execution](../../../../../.workflow-tools/test/executions/exec-mission-nested-migration-20261019.json):
+  7 tests, covering classic migration and accepted/generated artifact read-back.
+
+The combined mission package suite with CLI and MCP features passed 46 tests;
+the classic route selector passed 3 tests. Both public help commands returned
+exit 0. Formatting and package Clippy (`--no-deps -- -D warnings`) passed.
+Both repository audit hooks passed with zero broken/blocking Markdown links.
+Audit coverage collection remains unavailable; existing size/complexity
+advisories and a ticket-api dependency dead-code warning are not evidence of
+a clean global audit or a full dependency-lint pass.
+
+A public CLI fixture additionally published a blocked child and its parent.
+Read-back of the generated parent ROADMAP showed `State = blocked`, whereas
+the accepted parent contained `state = null` and the canonical child reference;
+`check-generated` returned `ok`. The render execution records the exact
+session-local fixture path. No production Mission revision was changed by
+this review. Specification verification remains guard-derived, not hand-set.
 
 ## Scope
 

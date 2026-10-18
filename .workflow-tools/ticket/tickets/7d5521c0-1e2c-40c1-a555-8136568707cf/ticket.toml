@@ -1,0 +1,9 @@
+id = "7d5521c0-1e2c-40c1-a555-8136568707cf"
+created_at = "2026-10-13T22:11:37.396670+00:00"
+title = "Make mission --help exit successfully"
+state = "done"
+depends_on = ["c5d40e2a-aaa8-4996-b7df-d281e6c75989"]
+effort = "2k tokens"
+parts = [{ id = "a8e93c2a-afc2-42ea-a257-af2c5f7805d6", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-16T07:06:24.908899200Z" }, { id = "d6bebe95-e5ed-4dd8-81a3-b33d309087cc", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-16T07:06:24.996105100Z" }]
+plan_revision = 1
+type = "bug"

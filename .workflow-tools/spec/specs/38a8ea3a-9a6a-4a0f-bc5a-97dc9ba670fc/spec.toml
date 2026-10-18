@@ -3,6 +3,7 @@ created_at = "2026-10-01T00:39:09.005970400+00:00"
 title = "Mission Domain"
 state = "draft"
 component = "mission"
+related_tickets = []
 scope = "internal"
 slug = "workflow-tools/mission-domain"
 type = "specification"

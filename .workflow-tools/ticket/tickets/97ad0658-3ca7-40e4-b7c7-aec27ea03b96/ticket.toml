@@ -1,0 +1,9 @@
+id = "97ad0658-3ca7-40e4-b7c7-aec27ea03b96"
+created_at = "2026-10-13T22:12:26.935676200+00:00"
+title = "Implement recursive nested mission waypoints"
+state = "done"
+depends_on = ["7d5521c0-1e2c-40c1-a555-8136568707cf"]
+effort = "12k tokens"
+parts = [{ id = "fa9f4501-8d7c-4b14-8ff0-365d013e7a6c", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-18T23:44:55.089022300Z" }, { id = "9f30d3c4-6123-48eb-bc71-6584430a448b", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-18T23:44:55.278570200Z" }]
+plan_revision = 1
+type = "task"
