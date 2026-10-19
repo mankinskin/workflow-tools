@@ -1,9 +1,10 @@
 # workflow-tools
 
-The installable ticket/spec/session/rule/audit/test CLI and MCP bundle that
-`context-engine` and downstream consumers depend on. Its primary use case is
-bootstrapping a consumer workspace with the ticket and spec CLIs so agents and
-humans can track work as structured tickets instead of ad hoc markdown notes.
+The Rust-based, installable ticket/spec/session/rule/audit/test CLI and MCP
+bundle that `context-engine` and downstream consumers depend on. Its primary
+use case is bootstrapping a consumer workspace with the ticket and spec CLIs so
+agents and humans can track work as structured tickets instead of ad hoc
+markdown notes.
 
 ## Quickstart: bootstrap a consumer
 
@@ -30,6 +31,10 @@ meta-workspace and exercises this install path.
 artifacts. Each `source_path` is relative to this repository root. The
 `install/install-ctl` crate reads the registry at runtime and generates
 `COMMANDS.md`:
+
+For local repository checks, initialize the nested workspace repositories first
+from this repository root with `git submodule update --init --recursive`; the
+Cargo workspace includes crates stored in those submodules.
 
 ```bash
 cargo run --manifest-path install/install-ctl/Cargo.toml -- catalog --check
