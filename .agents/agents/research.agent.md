@@ -4,7 +4,7 @@ description: "Use for focused repository research before ticketing, spec updates
 tools: [edit, read, vscodeGeneral/toolSearch,search, agent, execute, vscode/askQuestions, todo, 'audit-mcp/*', 'compact-terminal-mcp/*', 'context-mcp/*', 'feedback-mcp/*', 'fs-mcp/*', 'log-viewer-mcp/*', 'peek-mcp/*', 'spec-mcp/*', 'test-mcp/*', 'ticket-mcp/*']
 argument-hint: "Topic, code path, feature, or ticket scope to investigate."
 user-invocable: true
-model: "GPT-5 mini"
+model: "GPT-6 Luna"
 ---
 
 You are a research specialist for the context-engine repository.

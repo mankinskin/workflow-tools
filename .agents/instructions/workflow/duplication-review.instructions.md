@@ -85,7 +85,7 @@ A batch is efficient for a worker when one file — the **anchor** — stays fix
 
 - `CHARS_PER_TOKEN = 4` — repository-standard rough heuristic for English/Markdown text.
 - `INPUT_FRACTION = 0.5` — reserve the rest of the dispatched model's context window for prompt scaffolding, the per-pair reasoning, and the returned findings.
-- `MAX_BATCH_CHARS = context_window_tokens × CHARS_PER_TOKEN × INPUT_FRACTION`. For the default worker model `GPT-5 mini` (400k-token window, see [model-routing.instructions.md](model-routing.instructions.md)): `400,000 × 4 × 0.5 = 800,000` characters. Recompute with `GPT-5.6 Luna`'s 1.05M-token window (`≈ 2,100,000` characters) only when an anchor's remaining targets still cannot form a batch under the mini budget without violating `MAX_FILES_PER_BATCH` — do not raise the model tier for ordinary batches.
+- `MAX_BATCH_CHARS = context_window_tokens × CHARS_PER_TOKEN × INPUT_FRACTION`. The price table publishes no context window for the default worker model `GPT-6 Luna` (see [model-routing.instructions.md](model-routing.instructions.md)), so use a conservative assumed 400k-token window: `400,000 × 4 × 0.5 = 800,000` characters. Raise the assumed window only from a published vendor figure for the dispatched model — do not raise the model tier for ordinary batches.
 - Total unordered pairs in scope: `n × (n-1) / 2` — use this to verify `pair-ledger.md`'s final row count.
 
 ## Anchor-Subset Scope for Large Corpora

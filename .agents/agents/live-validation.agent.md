@@ -4,7 +4,7 @@ description: "Use when exercising shipped tools, CLIs, servers, or MCP surfaces 
 tools: [execute, read, vscodeGeneral/toolSearch, 'peek-mcp/*', 'compact-terminal-mcp/*', 'log-viewer-mcp/*', 'test-mcp/*', 'fs-mcp/*']
 argument-hint: "Shipped command, server, or MCP behavior to exercise directly."
 user-invocable: true
-model: "GPT-5 mini"
+model: "GPT-6 Luna"
 ---
 
 

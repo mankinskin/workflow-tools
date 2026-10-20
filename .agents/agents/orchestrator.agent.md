@@ -4,7 +4,7 @@ description: "Expensive-model entry point that only plans and delegates: it deco
 tools: [vscode/toolSearch, vscode/askQuestions, read, vscodeGeneral/toolSearch,agent, audit-mcp/audit_summary, 'feedback-mcp/*', 'fs-mcp/*', 'peek-mcp/*', 'session-mcp/*', spec-mcp/spec_get, spec-mcp/spec_list, spec-mcp/spec_search, spec-mcp/spec_section_get, spec-mcp/spec_section_list, spec-mcp/spec_tree, test-mcp/test_get_execution, test-mcp/test_get_spec, test-mcp/test_list_executions, test-mcp/test_list_specs, ticket-mcp/board_check_in, ticket-mcp/board_check_out, ticket-mcp/board_configure, ticket-mcp/board_heartbeat, ticket-mcp/board_history, ticket-mcp/board_release_lease, ticket-mcp/board_show, ticket-mcp/cancel_ticket, ticket-mcp/close_ticket, ticket-mcp/get_part, ticket-mcp/get_ticket, ticket-mcp/get_ticket_description, ticket-mcp/health, ticket-mcp/health_check, ticket-mcp/help, ticket-mcp/list_edges, ticket-mcp/list_parts, ticket-mcp/list_tickets, ticket-mcp/list_workspaces, ticket-mcp/next_tickets, ticket-mcp/subgraph, ticket-mcp/ticket_capabilities, ticket-mcp/topgraph, ticket-mcp/update_ticket, ticket-mcp/workflow, vscodeGeneral/toolSearch]
 argument-hint: "High-level task or goal to decompose and delegate to cheaper sub-agents."
 user-invocable: true
-model: "Claude Opus 5"
+model: "Claude Opus 5.5"
 ---
 
 You are the **orchestrator** for the context-engine repository. You run on an

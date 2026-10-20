@@ -26,7 +26,7 @@ Activate this rule when:
 
 **MCP boundary enforcement**: `mcp-toolmon` middleware injects a mandatory `caller_model` field into every MCP tool schema, then grades each call: `base_budget = round((1 − output_mtok / 60) × 100)` versus an empirical per-tool cost. A pricier model keeps full access to cheap tools and is asked to delegate only the token-heavy ones; an unmeasured tool costs 0 and is always allowed, and a grant offset can raise any model's budget. No model is denied outright. Fails open if the price table is unavailable, and intercepts MCP `tools/call` traffic only — it never sees `runSubagent`, so it does not police dispatch targets.
 
-**Setting `caller_model` correctly**: Pass the **actual id of the model issuing the call** — the running model's real price-table `model_id`, e.g. `claude-opus-5`, `claude-sonnet-5`, `claude-haiku-4-5`, `gpt-5.3-codex`, `gpt-5.6-terra`. Match a `model_id` key in `workflow-tools/session/crates/model-prices/model_prices.json` (query with `sync_model_prices.py --list`).
+**Setting `caller_model` correctly**: Pass the **actual id of the model issuing the call** — the running model's real price-table `model_id`, e.g. `claude-opus-5.5`, `claude-sonnet-5.5`, `claude-haiku-5.5`, `gpt-6.1-sol`, `gpt-6-luna`, `gpt-5.6-terra`. Match a `model_id` key in `workflow-tools/session/crates/model-prices/model_prices.json` (query with `sync_model_prices.py --list`).
 - Do **not** pass a generic vendor or product label such as `github-copilot`, `copilot`, `openai`, or `anthropic`. An unrecognized `caller_model` resolves to a **zero-cost budget**, which silently breaks price-awareness enforcement (the gate can no longer distinguish orchestrator-tier from cheap models).
 - When delegating, the sub-agent sets `caller_model` to **its own** model id, not the orchestrator's.
 
@@ -77,7 +77,7 @@ The pre-dispatch self-containment checklist lives in [model-routing.instructions
 
 ## Pre-Dispatch Quality Gates
 
-The pre-dispatch gate is an on-demand dry-run, not a step run before every delegation. Reach for it (dispatching the Explore Agent template, `.agents/agents/explore.agent.md`, `"GPT-5 mini (copilot)"`) when a compiled prompt is complex or risky enough that a mid-tier sub-agent is likely to hit a blocker; skip it for routine, well-scoped units. Each delegation class (Implement, Review, Testing, Commit, Research/Explore) has its own gate set. See [pre-dispatch-gates.instructions.md](pre-dispatch-gates.instructions.md) for complete definitions and trigger signals.
+The pre-dispatch gate is an on-demand dry-run, not a step run before every delegation. Reach for it (dispatching the Explore Agent template, `.agents/agents/explore.agent.md`, `"GPT-6 Luna (copilot)"`) when a compiled prompt is complex or risky enough that a mid-tier sub-agent is likely to hit a blocker; skip it for routine, well-scoped units. Each delegation class (Implement, Review, Testing, Commit, Research/Explore) has its own gate set. See [pre-dispatch-gates.instructions.md](pre-dispatch-gates.instructions.md) for complete definitions and trigger signals.
 
 Gate failures (`pass: false`) mean the delegation is NOT dispatched as-is: fix the precondition or escalate BEFORE dispatch, never re-dispatch a blocked unit and hope it works.
 
@@ -104,7 +104,7 @@ Define work allocation using **capability roles** rather than raw prices, where 
 | Role | Purpose | Cost Class | Allocation Strategy |
 |------|---------|------------|---------------------|
 | **Reasoner** | One-time context capture, strategic decisions, high-level reasoning, cross-cutting tradeoffs | T0 (orchestrator tier) | Use sparingly — only for planning and decomposition |
-| **Sequencer** | Decompose and sequence implementation steps, moderate-complexity editing, cross-file coordination | T1-T2 | Default delegation target (T2 = Claude Sonnet 5) |
+| **Sequencer** | Decompose and sequence implementation steps, moderate-complexity editing, cross-file coordination | T1-T2 | Default delegation target (T2 = Claude Sonnet 5.5) |
 | **Executor** | Step execution, mechanical edits, read-only triage, interaction with external systems, unforeseen error recovery, large-data handling | T3 | Use liberally for bulk/routine work |
 
 **Allocation principle**: Use **Executors** (small models) as much as possible; reserve **Reasoners** for one-time strategic work; use **Sequencers** (mid-tier) as the default implementation workhorse.

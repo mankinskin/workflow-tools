@@ -20,7 +20,7 @@ Skip the gate for routine, well-scoped units where the orchestrator already has 
 
 ## Gate Execution Model
 
-**Mechanism**: The orchestrator cannot run gates directly (it has no tools), so when it decides a dry-run is warranted, it dispatches a cheap gate sub-agent — the workspace **Explore Agent** template (`.agents/agents/explore.agent.md`), formally designated as the pre-dispatch gate agent — see "Acting as the Pre-Dispatch Gate" in that template. It runs on the T3 floor model (`"GPT-5 mini (copilot)"`).
+**Mechanism**: The orchestrator cannot run gates directly (it has no tools), so when it decides a dry-run is warranted, it dispatches a cheap gate sub-agent — the workspace **Explore Agent** template (`.agents/agents/explore.agent.md`), formally designated as the pre-dispatch gate agent — see "Acting as the Pre-Dispatch Gate" in that template. It runs on the T3 floor model (`"GPT-6 Luna (copilot)"`).
 
 **Gate contract (explicit input/output)**:
 

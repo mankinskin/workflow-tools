@@ -24,24 +24,22 @@ This table is the **canonical** tier ladder for the repository. [orchestrator-de
 
 Prices come from `workflow-tools/session/crates/model-prices/model_prices.json` and are USD per 1M tokens. Re-check with `sync_model_prices.py --query <model>` rather than trusting these numbers indefinitely — see [model-prices.instructions.md](../../../session/.agents/instructions/orchestration/model-prices.instructions.md).
 
-**Context windows are not in the price table.** No `github-copilot` row publishes `context_window`; the `ctx` values below are carried from each model's upstream (genai-prices) row or vendor documentation. Where an entry reads *unpublished*, no source gives a number — treat that as "unknown", not "large".
+**Context windows are not in the price table.** No `github-copilot` row publishes `context_window`. The `runSubagent` surface marks models as long-context or not; the `ctx` column below repeats only that flag. Do not invent a token count — treat "unpublished" as "unknown", not "large".
 
-**Every model named below was verified to be offered by `runSubagent` on 2026-07-27** (see "Roster is not the catalogue"). The price table lists every vendor's catalogue; this table lists only what can actually be dispatched.
+**Every model named below was verified to be offered by `runSubagent` on 2026-10-20** (see "Roster is not the catalogue"). The price table lists every vendor's catalogue; this table lists only what can actually be dispatched.
 
 | Tier | Preferred models | in$/M · cread$/M · out$/M · ctx | Use for | Avoid for |
 |---|---|---|---|---|
-| T0 — Orchestrator (most expensive) | Claude Opus 5 | 5 · 0.5 · 25 · 1M | Large-scope planning, cross-cutting architecture, high-level reasoning, review of dense content or a single critical artifact, final synthesis/decisions | Command batches, bulk output summarization, mechanical edits, wide file sweeps |
-| | Claude Opus 4.8 | 5 · 0.5 · 25 · 1M | Prior-generation equivalent; prefer Opus 5 | |
-| T1 — Complex implementation (gate ceiling) | GPT-5.6 Terra | 2.5 · 0.25 · 15 · 1.05M | High-risk or cross-cutting implementation, dense refactors, gnarly debugging where the default tier already failed once. Prefer Terra when the slice needs a very large context window | Routine slices the default tier handles; anything the cheap tier can pre-digest |
-| | GPT-5.3-Codex | 1.75 · 0.175 · 14 · 400k | Heavy code-generation slices with bounded input | |
-| **T2 — Default implementation** | **Claude Sonnet 5** | **2 · 0.2 · 10 · 1M** | **The default for all delegated implementation, review, targeted debugging, and moderate multi-file edits.** Dominates Sonnet 4.5 (3 · 0.3 · 15 · 1M) on every priced axis at the same window, so prefer it over any older Sonnet | Long research sweeps or bulk summarization a cheap model can pre-digest |
-| T3 — Cheap worker (floor) | **GPT-5 mini** *(default)* | **0.25 · 0.025 · 2 · 400k** | Running and summarizing command/tool-call batches, condensing large tool outputs, summarizing many large files or artifacts, first-pass research triage, and judgement-free extraction. Nothing offered on this surface is cheaper on input — this is the floor | Final architectural decisions, subtle correctness review of dense artifacts |
-| | Kimi K2.7 Code *(T3 code-specialist)* | 0.95 · 0.19 · 4 · 262k | Use for bulk code-shaped work where a code-specialist model materially improves edit quality; pick only when the task requires code-specialist capabilities — GPT-5 mini remains the T3 default | |
-| | MAI-Code-1-Flash *(T3 code-specialist)* | 0.75 · 0.075 · 4.5 · *unpublished* | Use for code-shaped bulk work at the cheap tier; priced identically to GPT-5.4 mini on input, cache read, and output. No context window is published for it, so prefer GPT-5.4 mini whenever the input size is near a limit — and GPT-5 mini remains the T3 default | |
-| | GPT-5.6 Luna | 1 · 0.1 · 6 · 1.05M | The wide-context cheap option: use when the input does not fit 400k, or when a cheap model must digest a huge input *and* emit non-trivial code | |
-| | GPT-5.4 mini | 0.75 · 0.075 · 4.5 · 400k | Step up from GPT-5 mini when the unit needs real reasoning over what it read | |
+| T0 — Orchestrator (most expensive) | **Claude Opus 5.5** | **4 · 0.2 · 20 · long** | Large-scope planning, cross-cutting architecture, high-level reasoning, review of dense content or a single critical artifact, final synthesis/decisions. Dominates Opus 5, Opus 4.8 and GPT-6 Astra | Command batches, bulk output summarization, mechanical edits, wide file sweeps |
+| T1 — Complex implementation (gate ceiling) | **GPT-5.6 Terra** | **2 · 0.2 · 12 · long** | High-risk or cross-cutting implementation, dense refactors, gnarly debugging where the default tier already failed once | Routine slices the default tier handles; anything the cheap tier can pre-digest |
+| | GPT-5.3-Codex | 1.75 · 0.175 · 14 · not long-context | Heavy code-generation slices with bounded input | Inputs that need a long context |
+| **T2 — Default implementation** | **Claude Sonnet 5.5** | **2 · 0.1 · 10 · long** | **The default for all delegated implementation, review, targeted debugging, and moderate multi-file edits.** Dominates Sonnet 5 (2 · 0.2 · 10) | Long research sweeps or bulk summarization a cheap model can pre-digest |
+| | GPT-6.1 Sol | 2 · 0.1 · 10 · long | Same price as Sonnet 5.5; use when a GPT-family model is preferred for the unit. Dominates GPT-6 Sol | |
+| T3 — Cheap worker (floor) | **GPT-6 Luna** *(default)* | **0.1 · 0.01 · 0.5 · long** | Running and summarizing command/tool-call batches, condensing large tool outputs, summarizing many large files or artifacts, first-pass research triage, and judgement-free extraction. Nothing offered on this surface is cheaper — this is the floor | Final architectural decisions, subtle correctness review of dense artifacts |
+| | Claude Haiku 5.5 | 0.1 · 0.01 · 0.5 · long | Same price as GPT-6 Luna; use when a Claude-family model is preferred for bounded cheap work | |
+| | MAI-Code-1.1-Flash *(code-specialist)* | 0.2 · 0.02 · 1.2 · unpublished | Bulk code-shaped work where a code-specialist model materially improves edit quality. Costs 2x the floor, so pick it only for genuinely code-specialist units | |
 
-There is no tier below T3 on this surface: no offered model undercuts GPT-5 mini on input or cache read, so judgement-free extraction and bulk triage share the same band. There is no T4 — a document citing one is stale.
+There is no tier below T3 on this surface: no offered model undercuts GPT-6 Luna or Claude Haiku 5.5 on input, cache read, or output, so judgement-free extraction and bulk triage share the same band. There is no T4 — a document citing one is stale.
 
 ### Two mechanisms, two jobs
 
@@ -64,14 +62,18 @@ These models are beaten by a laddered peer on **every** priced axis, so there is
 
 | Model | Dominated by | On |
 |---|---|---|
-| `Claude Sonnet 4.5` (3 · 0.3 · 15) | `Claude Sonnet 5` (2 · 0.2 · 10) | input, cache read, output — same 1M window |
-| `Claude Haiku 4.5` (1 · 0.1 · 5) | `GPT-5 mini` (0.25 · 0.025 · 2) | input, cache read, output, window |
-| `Gemini 3.5 Flash` (1.5 · 0.15 · 9) | `GPT-5.6 Luna` (1 · 0.1 · 6) | input, cache read, output, window |
-| `Gemini 3.6 Flash` (1.5 · 0.15 · 7.5) | `GPT-5.6 Luna` (1 · 0.1 · 6) | input, cache read, output, window |
+| `Claude Opus 5`, `Claude Opus 4.8` (5 · 0.5 · 25) | `Claude Opus 5.5` (4 · 0.2 · 20) | input, cache read, output |
+| `Claude Opus 4.8 (fast mode)`, `GPT-6 Astra` (10 · 1 · 50) | `Claude Opus 5.5` (4 · 0.2 · 20) | input, cache read, output |
+| `Claude Sonnet 5` (2 · 0.2 · 10) | `Claude Sonnet 5.5` (2 · 0.1 · 10) | cache read; equal input and output |
+| `GPT-6 Sol` (2 · 0.2 · 10) | `GPT-6.1 Sol` (2 · 0.1 · 10) | cache read; equal input and output |
+| `Claude Fable 5` (10 · 1 · 50) | `Claude Fable 5.1` (10 · 0.25 · 50) | cache read; equal input and output |
+| `Claude Haiku 4.5` (1 · 0.1 · 5) | `Claude Haiku 5.5` (0.1 · 0.01 · 0.5) | input, cache read, output |
+| `GPT-5.6 Luna` (0.2 · 0.02 · 1.2) | `GPT-6 Luna` (0.1 · 0.01 · 0.5) | input, cache read, output |
+| `Gemini 3.8 Flash` (0.75 · 0.075 · 3.75) | `GPT-6 Luna` (0.1 · 0.01 · 0.5) | input, cache read, output |
 
 Older Opus and Sonnet generations are likewise superseded by their current equivalents.
 
-Note that the gate cannot express this: dominance is a *relative* judgement across four axes, while `base_budget` reads only `output_mtok`. Claude Sonnet 4.5 and GPT-5.6 Terra both price at `out 15` and therefore receive the **identical** budget of 75 — the gate has no opinion between them. Preference ordering is exactly the gap the gate leaves open, which is why it lives here as guidance rather than there as enforcement.
+Note that the gate cannot express this: dominance is a *relative* judgement across four axes, while `base_budget` reads only `output_mtok`. Claude Sonnet 5 and Claude Sonnet 5.5 both price at `out 10` and therefore receive the **identical** budget of 83 — the gate has no opinion between them. Preference ordering is exactly the gap the gate leaves open, which is why it lives here as guidance rather than there as enforcement.
 
 **Do not derive a model from a vendor family name.** "A Sonnet", "a mini", "a Flash" is not a selection — it is the habit that produces these mistakes. Name a model from the table, or state why you are going outside it.
 
@@ -82,26 +84,25 @@ Note that the gate cannot express this: dominance is a *relative* judgement acro
 - Only route to a model verified present in the surface's model list. To re-verify, dispatch one trivial subagent with a deliberately wrong model string; the error response enumerates every available model.
 - **Model-name format is exact.** `"GPT-5.3-Codex (copilot)"` is hyphenated; `"GPT-5.3 Codex (copilot)"` errors. Copy strings from the surface list, not from prose.
 - If a model in this table is rejected, fall back to the next entry in the same band and update this table — do not silently land at T2.
-- **Verified available, 2026-07-27** — **dominated** entries are fully dispatchable but have no cost argument in their favour (see "Dominated models" above): Claude Fable 5, Claude Opus 4.6, Claude Opus 4.7, Claude Opus 4.8, Claude Opus 4.8 (fast mode) (preview), Claude Opus 5, Claude Sonnet 4.5 *(dominated)*, Claude Sonnet 4.6, Claude Sonnet 5, Claude Opus 4.5, Claude Haiku 4.5 *(dominated)*, Gemini 3.1 Pro, Gemini 3.5 Flash *(dominated)*, Gemini 3.6 Flash *(dominated)*, Gemini 2.5 Pro, GPT-5.3-Codex, GPT-5.4 mini, GPT-5.4, GPT-5.5, GPT-5.6 Luna, GPT-5.6 Sol, GPT-5.6 Terra, GPT-5 mini, Kimi K2.7 Code, MAI-Code-1-Flash, Auto *(escape hatch only)*. Notably **absent**: every `*-flash-lite` model, GPT-5.4 nano, and GPT-5.4 Pro.
-- `MAI-Code-1-Flash` is now priced (github-copilot provider row) and placed in the T3 band above as a code-specialist peer of GPT-5.4 mini.
-- `Auto` delegates model selection away from you and defeats cost-aware routing when used as a default. It is permitted only as an explicit escape hatch: use `Auto (copilot)` when no tier model fits or when the surface rejects the intended model. Because it delegates model selection away from the caller and prevents the cost gate from reasoning about the choice, any use must be stated explicitly in the dispatch rationale and not used as a default.
+- **Verified available, 2026-10-20** — **dominated** entries are fully dispatchable but have no cost argument in their favour (see "Dominated models" above): Claude Fable 5 *(dominated)*, Claude Fable 5.1, Claude Haiku 4.5 *(dominated)*, Claude Haiku 5.5, Claude Opus 4.8 *(dominated)*, Claude Opus 4.8 (fast mode) *(dominated)*, Claude Opus 5 *(dominated)*, Claude Opus 5.5, Claude Sonnet 5 *(dominated)*, Claude Sonnet 5.5, Gemini 3.8 Flash *(dominated)*, Gemini 4 Argon, GPT-5.3-Codex, GPT-5.6 Luna *(dominated)*, GPT-5.6 Sol, GPT-5.6 Terra, GPT-6 Astra *(dominated)*, GPT-6 Luna, GPT-6 Sol *(dominated)*, GPT-6.1 Sol, Grok 4.6, Grok 4.7, hydrafusion, hydrafusion-max, Kimi K3, MAI-Code-1.1-Flash. Notably **absent** since the previous check: GPT-5 mini, GPT-5.4 mini, GPT-5.4, GPT-5.5, Claude Sonnet 4.5/4.6, Gemini 3.5/3.6 Flash, Kimi K2.7 Code, MAI-Code-1-Flash, and Auto. A template or prompt still naming one of these will fail to dispatch.
+- `hydrafusion` and `hydrafusion-max` have no price-table row; the gate cannot budget them, so do not route to them without a stated reason.
 
 ### Optimizing the cheap tier (T3)
 
 Most delegated volume lands here, so T3 dominates real spend. Route it on the right metric:
 
 - **Select on `input_mtok` + `cache_read_mtok`, not `output_mtok`.** T3 units are input-heavy and output-tiny — they swallow a long log or many files and return a few lines. The output column is nearly irrelevant to their bill; the input and cache-read columns are the whole cost.
-- **This inverts the naive ranking.** Claude Haiku 4.5 (in 1 · cread 0.10 · 200k) looks cheap on output ($5/M) but is the *most* expensive input option in the band with the smallest window. GPT-5 mini (in 0.25 · cread 0.025 · 400k) costs 4x less on input, 4x less on cache read, and carries a 2x larger window. Do not reach for Haiku by habit.
-- **Fit the context window before anything else.** A unit whose input does not fit forces truncation, a re-dispatch, or a silently incomplete answer — each of which costs more than the tier ever saved. Send wide sweeps to GPT-5.6 Luna (1.05M); reserve GPT-5 mini for inputs that genuinely fit 400k.
+- **The floor is a tie.** GPT-6 Luna and Claude Haiku 5.5 both price at in 0.1 · cread 0.01 · out 0.5. Default to GPT-6 Luna; choose Haiku 5.5 only for a stated family preference. GPT-5.6 Luna and MAI-Code-1.1-Flash cost exactly 2x the floor on every axis.
+- **Fit the context window before anything else.** A unit whose input does not fit forces truncation, a re-dispatch, or a silently incomplete answer — each of which costs more than the tier ever saved. The floor models are long-context; MAI-Code-1.1-Flash publishes no window, so do not hand it a near-limit input.
 - **Batch aggressively at T3.** One subagent digesting twenty files beats twenty subagents digesting one file each; spawn overhead is per-dispatch and does not shrink with the model.
-- Kimi K2.7 Code is available as a T3 code-specialist option: it costs ~4x the default's input and ~8x its cache-read, so pick it only when the task is genuinely code-specialist, not for generic bulk work.
+- MAI-Code-1.1-Flash is the T3 code-specialist option: pick it only when the task is genuinely code-specialist, not for generic bulk work.
 - **Do not verify cheap output with an expensive model.** If a T3 result needs checking, check it with ground truth (a grep, a `--check` run, a bounded read), not by re-running the unit a tier up. Re-running upward erases the saving twice over.
 - **One retry, then step up exactly one band.** T3 failure goes to T2. Jumping a cheap unit straight to T1/T0 is how low-tier routing turns into a net loss.
-- **The Gemini Flash models are dominated.** Gemini 3.5 Flash and 3.6 Flash (in 1.5 · cread 0.15 · 1M) are beaten by GPT-5.6 Luna on input, cache read, output, and context window. Between the two, 3.6 Flash dominates 3.5 Flash. Neither belongs in T3.
+- **Gemini 3.8 Flash is dominated.** At in 0.75 · cread 0.075 · out 3.75 it costs 7.5x the floor on every axis. It does not belong in T3.
 
 ### Picking a tier
 
-- **Start at T2.** Claude Sonnet 5 is the default implementation model; deviate only for a stated reason.
+- **Start at T2.** Claude Sonnet 5.5 is the default implementation model; deviate only for a stated reason.
 - **Drop to T3** when the unit is bulk, mechanical, or read-only triage, or needs no judgement at all — that is where most delegated volume belongs.
 - **Climb to T1** only after a T2 attempt was wrong or too shallow, or when the slice is plainly cross-cutting and high-risk. Record why in the delegation note.
 - **Budget pressure** shifts the whole ladder down one step: T2 work goes to T3, T1 work goes to T2.
@@ -115,49 +116,49 @@ This is the canonical contract for the `model:` frontmatter field on every `.age
 
 **Resolution (AC2).** When `runSubagent` is invoked against a template and the caller does not pass an explicit `model` argument, the dispatcher resolves the model to that template's declared `model:` value. Explicit `model` arguments on the call always take precedence over the template default — the template value is a fallback, not a floor or ceiling.
 
-**Override-audit rule (AC4).** An explicit `model` argument that names a model *more expensive* than the template's declared tier (i.e., higher on the ladder) is an override. Every such override MUST be recorded with a one-line reason in the session record (the handoff/session-workflow entry for that dispatch) — e.g. "escalated ticket-refinement.agent.md from Claude Sonnet 5 to GPT-5.6 Terra: prior T2 attempt under-specified acceptance criteria on a cross-cutting spec." Overrides *downward* (cheaper than declared) do not require a recorded reason — the ladder already treats dropping a tier as the safe default direction; only climbing needs justification. This mirrors the existing "Climb to T1 only after..." and "Escalate a subtask up a tier only for quality insufficiency, and record why" rules elsewhere in this file — the override-audit rule generalizes those to *any* declared-tier override, not just T2→T1.
+**Override-audit rule (AC4).** An explicit `model` argument that names a model *more expensive* than the template's declared tier (i.e., higher on the ladder) is an override. Every such override MUST be recorded with a one-line reason in the session record (the handoff/session-workflow entry for that dispatch) — e.g. "escalated ticket-refinement.agent.md from Claude Sonnet 5.5 to GPT-5.6 Terra: prior T2 attempt under-specified acceptance criteria on a cross-cutting spec." Overrides *downward* (cheaper than declared) do not require a recorded reason — the ladder already treats dropping a tier as the safe default direction; only climbing needs justification. This mirrors the existing "Climb to T1 only after..." and "Escalate a subtask up a tier only for quality insufficiency, and record why" rules elsewhere in this file — the override-audit rule generalizes those to *any* declared-tier override, not just T2→T1.
 
 **Class-to-tier mapping applied to the current templates:**
 
 | Template | Declared `model:` | Tier | Rationale |
 |---|---|---|---|
-| `orchestrator.agent.md` | Claude Opus 5 | T0 | Sole planning/delegation entry point; no direct execution tools |
-| `implement.agent.md` | Claude Sonnet 5 | T2 | Default implementation class |
-| `audit.agent.md` | Claude Sonnet 5 | T2 | Findings-first review needs judgement over checks |
-| `handoff.agent.md` | Claude Sonnet 5 | T2 | Synthesizes session state into a coherent handoff, not pure extraction |
-| `interview.agent.md` | Claude Sonnet 5 | T2 | Requirement clarification needs judgement |
-| `iteration.agent.md` | Claude Sonnet 5 | T2 | Sequences gate decisions across Review/Interview/Commit/Handoff |
-| `review.agent.md` | Claude Sonnet 5 | T2 | Verifies acceptance criteria against evidence |
-| `roast.agent.md` | Claude Sonnet 5 | T2 | Critique requires judgement, not just extraction |
-| `spec.agent.md` | Claude Sonnet 5 | T2 | Spec authoring/traceability needs judgement |
-| `brainstorm.agent.md` | Claude Sonnet 5 | T2 | Generates distinct, grounded opportunity directions and compares tradeoffs |
-| `testing.agent.md` | Claude Sonnet 5 | T2 | Validation slice selection needs judgement |
-| `ticket-refinement.agent.md` | Claude Sonnet 5 | T2 | Ticket authoring/planning needs judgement |
-| `explore.agent.md` | GPT-5 mini | T3 | Read-only, judgement-free bounded probes (AC3) |
-| `research.agent.md` | GPT-5 mini | T3 | First-pass research triage, bulk artifact digestion (AC3) |
-| `commit.agent.md` | GPT-5 mini | T3 | Mechanical: pre-commit hooks, rule regen, conventional messages (AC3) |
-| `transcription.agent.md` | GPT-5.4 mini | T3 | Bulk text transform needing real reasoning over content, not zero-judgement extraction |
+| `orchestrator.agent.md` | Claude Opus 5.5 | T0 | Sole planning/delegation entry point; no direct execution tools |
+| `implement.agent.md` | GPT-5.6 Terra | T1 | Default implementation class |
+| `audit.agent.md` | GPT-5.6 Terra | T1 | Findings-first review needs judgement over checks |
+| `handoff.agent.md` | GPT-5.6 Terra | T1 | Synthesizes session state into a coherent handoff, not pure extraction |
+| `interview.agent.md` | GPT-5.6 Terra | T1 | Requirement clarification needs judgement |
+| `iteration.agent.md` | GPT-5.6 Terra | T1 | Sequences gate decisions across Review/Interview/Commit/Handoff |
+| `ticket-review.agent.md` | GPT-5.6 Terra | T1 | Verifies acceptance criteria against evidence |
+| `roast.agent.md` | GPT-5.6 Terra | T1 | Critique requires judgement, not just extraction |
+| `spec.agent.md` | GPT-5.6 Terra | T1 | Spec authoring/traceability needs judgement |
+| `brainstorm.agent.md` | Claude Sonnet 5.5 | T2 | Generates distinct, grounded opportunity directions and compares tradeoffs |
+| `testing.agent.md` | GPT-5.6 Terra | T1 | Validation slice selection needs judgement |
+| `ticket-refinement.agent.md` | GPT-5.6 Terra | T1 | Ticket authoring/planning needs judgement |
+| `explore.agent.md` | GPT-6 Luna | T3 | Read-only, judgement-free bounded probes (AC3) |
+| `research.agent.md` | GPT-6 Luna | T3 | First-pass research triage, bulk artifact digestion (AC3) |
+| `commit.agent.md` | GPT-6 Luna | T3 | Mechanical: pre-commit hooks, rule regen, conventional messages (AC3) |
+| `transcription.agent.md` | GPT-6 Luna | T3 | Bulk text transform needing real reasoning over content, not zero-judgement extraction |
 | `context-enrichment.agent.md` | GPT-5.6 Terra | T1 | Enriches context across related artifacts |
 | `simplify.agent.md` | GPT-5.6 Terra | T1 | Simplifies guidance and instruction content |
-| `guidance-lifecycle.agent.md` | Claude Sonnet 5 | T2 | Authors and publishes repository guidance through the required lifecycle |
-| `session-bootstrap.agent.md` | GPT-5 mini | T3 | Initializes session context and routine state |
+| `guidance-lifecycle.agent.md` | Claude Sonnet 5.5 | T2 | Authors and publishes repository guidance through the required lifecycle |
+| `session-bootstrap.agent.md` | GPT-6 Luna | T3 | Initializes session context and routine state |
 | `merge.agent.md` | GPT-5.6 Terra | T1 | Coordinates merge-ready integration work |
-| `cleanup.agent.md` | GPT-5.4 mini | T3 | Performs bounded cleanup tasks |
+| `cleanup.agent.md` | Claude Haiku 5.5 | T3 | Performs bounded cleanup tasks |
 | `structured-research.agent.md` | GPT-5.6 Terra | T1 | Synthesizes structured repository research |
 | `roadmap-authoring.agent.md` | GPT-5.6 Terra | T1 | Drafts and dry-runs prompt-ingestion dossier work packages and `ROADMAP.md` (Stage 4/6); never Structured Research Agent, which has no edit access |
-| `online-research.agent.md` | GPT-5 mini | T3 | Performs focused external research |
+| `online-research.agent.md` | GPT-6 Luna | T3 | Performs focused external research |
 | `writing.agent.md` | GPT-5.6 Terra | T1 | Produces considered written artifacts |
-| `framing.agent.md` | GPT-5.4 mini | T3 | Frames bounded work for downstream agents |
+| `framing.agent.md` | Claude Haiku 5.5 | T3 | Frames bounded work for downstream agents |
 | `refactoring.agent.md` | GPT-5.6 Terra | T1 | Plans and executes code refactoring work |
 | `code-architect.agent.md` | GPT-5.6 Terra | T1 | Designs code-level architecture |
 | `surface-design.agent.md` | GPT-5.6 Terra | T1 | Designs user-facing surfaces |
-| `live-validation.agent.md` | GPT-5 mini | T3 | Runs focused live validation checks |
-| `installer.agent.md` | GPT-5 mini | T3 | Handles routine installation work |
-| `bug-report.agent.md` | GPT-5.4 mini | T3 | Captures and structures bug reports |
+| `live-validation.agent.md` | GPT-6 Luna | T3 | Runs focused live validation checks |
+| `installer.agent.md` | GPT-6 Luna | T3 | Handles routine installation work |
+| `bug-report.agent.md` | Claude Haiku 5.5 | T3 | Captures and structures bug reports |
 | `session-learning.agent.md` | GPT-5.6 Terra | T1 | Extracts durable session learnings |
-| `/ticket-scoping.agent.md` | GPT-5.6 Terra | T1 | Defines implementation scope and boundaries |
+| `ticket-scoping.agent.md` | GPT-5.6 Terra | T1 | Defines implementation scope and boundaries |
 
-This satisfies AC3: Explore, Research, and Commit all route to GPT-5 mini, cheaper than Claude Sonnet 4.5 on every priced axis (see "Dominated models" above) and cheaper than the Claude Sonnet 5 default used by the remaining classes.
+This satisfies AC3: Explore, Research, and Commit all route to GPT-6 Luna, the T3 floor, cheaper on every priced axis than the Claude Sonnet 5.5 T2 default and the GPT-5.6 Terra tier used by most judgement-heavy classes.
 
 **AC5 — deferred.** The benchmark in ticket `10d21210` ("Define a synthetic benchmark session") is not yet built as of this ticket's implementation. AC5 ("measured against that benchmark, model distribution is no longer uniform and the mechanical delegation does not run on the strong tier") cannot be validated without fabricating numbers, so it is marked **DEFERRED-pending-10d21210** in ticket 66acb737. The structural change that AC5 will measure (non-uniform per-template tiers, mechanical classes on T3) is in place as of this section.
 
@@ -165,8 +166,8 @@ This satisfies AC3: Explore, Research, and Commit all route to GPT-5 mini, cheap
 
 - In a large-model session, delegate to a cheaper subagent model when the subtask is: a batch of command or tool calls, summarization of large or numerous tool outputs, or research/summarization across many large files or artifacts.
 - Give the subagent a **self-contained prompt** (see the context-isolation checklist above) and pin the intended cheaper `model` explicitly on `runSubagent`.
-- **Model-name format:** the `model` field must be `"Model Name (Vendor)"`, e.g. `"Claude Sonnet 5 (copilot)"` or `"GPT-5 mini (copilot)"`. A bare label like `"mini"` or `"cheap"` will error or be silently ignored. The string must match the surface's model list exactly, punctuation included — see "Roster is not the catalogue" above.
-- **Default model:** when a dispatch does not justify a different tier, pin `"Claude Sonnet 5 (copilot)"`. Going outside the ladder is allowed but never silent — name the model and the reason in the dispatch rationale.
+- **Model-name format:** the `model` field must be `"Model Name (Vendor)"`, e.g. `"Claude Sonnet 5.5 (copilot)"` or `"GPT-6 Luna (copilot)"`. A bare label like `"mini"` or `"cheap"` will error or be silently ignored. The string must match the surface's model list exactly, punctuation included — see "Roster is not the catalogue" above.
+- **Default model:** when a dispatch does not justify a different tier, pin `"Claude Sonnet 5.5 (copilot)"`. Going outside the ladder is allowed but never silent — name the model and the reason in the dispatch rationale.
 - Ask the subagent to return only the distilled finding — scope, result, blocker, pointer — not raw output. The expensive model reasons over the summary, not the bulk.
 - Reserve the high-capability tier for planning, high-level reasoning, and review of dense content or individual artifacts.
 

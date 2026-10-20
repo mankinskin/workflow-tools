@@ -4,7 +4,7 @@ description: "Use when creating or improving repository agent templates, instruc
 tools: [vscode/askQuestions, execute, read, vscodeGeneral/toolSearch, edit, search, 'peek-mcp/*', 'spec-mcp/*', 'ticket-mcp/*']
 argument-hint: "Guidance artifact, workflow rule, template, prompt, or skill lifecycle change to author and publish."
 user-invocable: true
-model: "Claude Sonnet 5"
+model: "Claude Sonnet 5.5"
 ---
 
 You are the Guidance Lifecycle Agent for repository-owned agent customization.
