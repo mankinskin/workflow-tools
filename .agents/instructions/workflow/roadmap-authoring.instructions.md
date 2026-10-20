@@ -76,10 +76,12 @@ Classify work before forming waypoints:
 - **Execution side effect** mutates state outside the active dossier, including
 	repository content, entity stores, external systems, or commits, except for
 	the narrowly permitted [planning entity preparation](prompt-ingestion.instructions.md#planning-entities-during-refinement).
-	That preparation is planning, not an executable waypoint. The first
-	waypoint (`W1`) of every execution-ready roadmap MUST be an Execution side
-	effect. When execution follows `execute-ingest`, the explicit `approve`
-	outcome authorizes W1; a planning verdict does not.
+	That exception is available only during late planning after Stage 3 has
+	locked the scope direction; it covers necessary planning tickets/specs, not
+	other external changes. That preparation is planning, not an executable
+	waypoint. The first waypoint (`W1`) of every execution-ready roadmap MUST
+	be an Execution side effect. When execution follows `execute-ingest`, the
+	explicit `approve` outcome authorizes W1; a planning verdict does not.
 - **Dependent read-only waypoint** observes information that a declared prior
 	Execution side effect in the same dependency branch created or materially
 	changed. The waypoint is valid only when those inputs did not exist in their
@@ -100,7 +102,9 @@ compiling an execution-ready roadmap.
 
 A waypoint that proposes creating an entity — a ticket, spec, validation spec,
 session record, feedback entry, or dossier — MUST do one of two things, and
-state which in the waypoint itself:
+state which in the waypoint itself. This governs execution-waypoint creation;
+late-planning ticket/spec preparation is not a waypoint and follows
+[Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement):
 
 - **cite the search that proved non-existence** — the Stage 2 store-coverage
   table in `ARTIFACTS.md`, or the exact search command and its result; or

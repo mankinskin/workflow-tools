@@ -18,7 +18,7 @@ deliberately not a per-turn tax.
 | Phase | Owner | Obligation |
 | --- | --- | --- |
 | Prompt-ingestion Stage 2 (research and artifact inventory) | [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) | Sweep all six stores and record the coverage table in `ARTIFACTS.md`. |
-| Planning ticket/spec preparation after settled scope | [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement) | Cite Stage 2 evidence or refresh the relevant bounded search, record creation/reuse and planning/draft state, then read every mutated entity back by its specific id. |
+| Late-planning ticket/spec preparation after Stage 3 settles scope | [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement) | Cite Stage 2 evidence or refresh the relevant bounded search; keep entities in planning/draft while decisions remain open; after decisions lock and both roadmap review gates pass, advance incomplete tickets to `ready` and specs to `approved`, read back by id, and verify any reused completed entity's outcome. Never mutate active entities under this exception. |
 | Any roadmap waypoint proposing entity creation | [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) | Cite the search that proved non-existence, or record a reuse form instead of creating. |
 
 Outside these boundaries the rule is advisory: prefer a bounded search over an
@@ -82,11 +82,16 @@ A related-but-not-owning entity is linked, not annexed: linking a new ticket to
 an adjacent one is reuse form 3, and does not transfer ownership of that
 entity's scope.
 
-Planning preparation is restricted to necessary planning/draft tickets/specs.
-Reject unrelated or active-entity mutations, missing discovery/reuse evidence,
-and a bounded list offered as id-specific read-back. Record the verified
-canonical id/link and state in the dossier before the final dry run/review.
-This does not authorize activation, execution dispatch or implementation.
+Planning preparation is restricted to necessary ticket/spec entities. Keep
+them in planning/draft while decisions can still change. Once all decisions
+lock and both roadmap review gates pass, advance incomplete tickets to `ready`
+and specs to `approved`; read each entity back by id before final approval.
+Record the canonical id/link, state and evidence in the dossier. Reused
+completed entities may remain terminal only when read-back confirms their
+outcome satisfies the plan. Reject unrelated or active-entity mutations,
+missing discovery/reuse evidence, and a bounded list offered as id-specific
+read-back. This does not authorize activation, execution dispatch or
+implementation.
 
 ## Related Guidance
 
