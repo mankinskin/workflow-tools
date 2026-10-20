@@ -1,0 +1,10 @@
+## W1 review — PTH-1 through PTH-4
+
+- **PTH-1 — pass.** The configured-command runner attributes failures to the actual failing configured invocation. The RTK delegate wrapper distinguishes an `rtk hook copilot` failure from its own forwarding failure. The denial regression checks both the outer wrapper diagnostics and nested delegate diagnosis, plus failures in the workspace and context-engine preflight hooks and session-capture command.
+- **PTH-2 — pass.** Diagnostics include failed path, configured command, stderr (including explicit no-stderr reporting), and numeric exit status. The regression asserts these fields for configured-hook failures.
+- **PTH-3 — pass.** The focused regression distinguishes wrapper/delegate from other configured hooks without requiring an incident reproduction.
+- **PTH-4 — pass.** `bash context-engine/tools/agent-hooks/test-active-hooks.sh` passed for 22 enabled hook entries; `bash context-engine/tools/agent-hooks/test-pretooluse-denial.sh` passed. All four relevant shell scripts passed `bash -n`; tracked diffs passed `git diff --check` (new-file whitespace checks passed separately).
+
+Implementation is committed in `context-engine` commit `d586648b3160d0587683a2fea8fee14b38354836`; validation and spec evidence are committed in `workflow-tools` commit `a8a5392778d6fb7a2d80dcd8c5a896ff2666f928`; root W1 content and submodule pointers were committed in `dce7e1cfd4609928ceb603605c2a681f6b0e9aed`. Validation execution `w1-pretooluse-denial-20261016-02` passed and links the ticket/spec/log; the spec body records all four positions as implemented.
+
+Review outcome: all W1 acceptance criteria met. No unresolved W1 implementation or validation blockers. The test CLI emitted a spec-index lookup warning due its default `.workflow-tools/.spec` path; explicit links were persisted and read back, so the warning does not affect this execution's result.

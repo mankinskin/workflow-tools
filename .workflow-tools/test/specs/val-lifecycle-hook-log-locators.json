@@ -1,0 +1,21 @@
+{
+  "id": "val-lifecycle-hook-log-locators",
+  "title": "Lifecycle-hook log locator behavior",
+  "command": "cargo test -p log-api val_lifecycle_hook_log_locators",
+  "detail": "Guard for general-tool and configured-hook locator record/fetch/list, source discrimination, optional event/correlation linkage, and raw-content exclusion.",
+  "links": {
+    "spec_ids": [
+      "0f675354-6404-4eaf-ac7b-655a89cf9825"
+    ],
+    "acceptance_criterion_ids": [
+      "L-1",
+      "L-2",
+      "L-3",
+      "L-4",
+      "L-5"
+    ],
+    "ticket_ids": [
+      "141d7917-41e7-4745-985f-b300ce76d95d"
+    ]
+  }
+}

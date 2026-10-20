@@ -1,0 +1,12 @@
+id = "16ea5791-a3f1-4c3e-aa1f-eec6e3fd5c84"
+created_at = "2026-10-15T19:01:03.353595700+00:00"
+title = "Record configured Copilot lifecycle-hook invocations as canonical session events"
+state = "planning"
+component = "session-api"
+depends_on = ["4d6d6301-0b2c-4da0-9c01-4c9f7d1a1002"]
+effort = "2500"
+parts = [{ id = "a9706f29-c615-4261-9dd9-926e914f3a3f", kind = "objective", path = "parts/a9706f29-c615-4261-9dd9-926e914f3a3f.md", frozen = false, created_at = "2026-10-15T19:01:19.864151900Z" }, { id = "efe7601a-cb2e-4547-b5e4-802e95c60bf5", kind = "design", path = "parts/efe7601a-cb2e-4547-b5e4-802e95c60bf5.md", frozen = false, created_at = "2026-10-15T19:01:19.906761600Z" }, { id = "d348fe59-7546-4a59-8558-f64c1d64332d", kind = "examples", path = "parts/d348fe59-7546-4a59-8558-f64c1d64332d.md", frozen = false, created_at = "2026-10-15T19:01:19.936232900Z" }, { id = "a71b1dda-fcaa-4c69-8c99-c8b314605cb7", kind = "requirements", path = "parts/a71b1dda-fcaa-4c69-8c99-c8b314605cb7.md", frozen = false, created_at = "2026-10-15T19:01:31.961357300Z" }, { id = "179b5bc6-6c33-44cb-b867-9ef8365fbc76", kind = "acceptance_criteria", path = "parts/179b5bc6-6c33-44cb-b867-9ef8365fbc76.md", frozen = false, created_at = "2026-10-15T19:01:31.996036800Z" }]
+priority = "medium"
+related_specs = [{ workspace = "workflow-tools", store_root = "memory-kernel/.workflow-tools/spec", spec_id = "55c7e6ab-0bad-4fa5-ab49-c320f0dbd5a7" }, { workspace = "workflow-tools", store_root = "memory-kernel/.workflow-tools/spec", spec_id = "86e20b9e-7f6d-4a51-a51c-8dd0f2fe68cc" }]
+risk_level = "medium"
+type = "feature"

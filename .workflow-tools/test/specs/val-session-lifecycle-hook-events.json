@@ -1,0 +1,22 @@
+{
+  "id": "val-session-lifecycle-hook-events",
+  "title": "Session lifecycle-hook event behavior",
+  "command": "cargo test -p session-api val_session_lifecycle_hook_events",
+  "detail": "Guard for exactly-once configured lifecycle-hook events, invocation identity, outcome, correlation, retry, and raw-content exclusion.",
+  "links": {
+    "spec_ids": [
+      "86e20b9e-7f6d-4a51-a51c-8dd0f2fe68cc"
+    ],
+    "acceptance_criterion_ids": [
+      "S-1",
+      "S-2",
+      "S-3",
+      "S-4",
+      "S-5",
+      "S-6"
+    ],
+    "ticket_ids": [
+      "16ea5791-a3f1-4c3e-aa1f-eec6e3fd5c84"
+    ]
+  }
+}

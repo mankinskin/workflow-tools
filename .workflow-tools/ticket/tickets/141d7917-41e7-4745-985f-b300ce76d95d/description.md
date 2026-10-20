@@ -1,0 +1,3 @@
+Implement metadata-only record, fetch, and list support in log-api for general-tool and configured VS Code/Copilot lifecycle-hook log artifacts. Preserve supplied canonical event/correlation identifiers when available and allow unlinked locator metadata. Do not accept or persist raw log content, execute locators, add Cline/other hook systems, or change retention policy.
+
+Validation is pending implementation. Run `cargo test -p log-api val_lifecycle_hook_log_locators` and `cargo test -p log-api val_hook_observability_integration`.

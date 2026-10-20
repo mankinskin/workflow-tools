@@ -1,0 +1,3 @@
+Implement one canonical tool-like Session API event for every configured VS Code/Copilot lifecycle-hook invocation. Persist a unique invocation identity, trigger, configured command/path, completion or exit outcome, and any available session/turn/tool-call correlation. Failed invocations remain observable; retries are distinct events. Do not add a parallel telemetry stream, persist raw log text, support Cline, or change unrelated MCP-call behavior.
+
+Validation is pending implementation. Run `cargo test -p session-api val_session_lifecycle_hook_events` and `cargo test -p session-api val_hook_observability_integration`.

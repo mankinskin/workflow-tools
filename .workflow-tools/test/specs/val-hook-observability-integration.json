@@ -1,0 +1,20 @@
+{
+  "id": "val-hook-observability-integration",
+  "title": "Hook observability cross-component integration",
+  "command": "cargo test -p session-api val_hook_observability_integration && cargo test -p log-api val_hook_observability_integration",
+  "detail": "Parent guard for exactly-once Session API event capture, available event/correlation locator joins, unlinked locators, and raw-content exclusion across components.",
+  "links": {
+    "spec_ids": [
+      "55c7e6ab-0bad-4fa5-ab49-c320f0dbd5a7"
+    ],
+    "acceptance_criterion_ids": [
+      "ROOT-1",
+      "ROOT-2",
+      "ROOT-3"
+    ],
+    "ticket_ids": [
+      "16ea5791-a3f1-4c3e-aa1f-eec6e3fd5c84",
+      "141d7917-41e7-4745-985f-b300ce76d95d"
+    ]
+  }
+}

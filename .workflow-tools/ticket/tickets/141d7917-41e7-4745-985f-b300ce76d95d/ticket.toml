@@ -1,0 +1,12 @@
+id = "141d7917-41e7-4745-985f-b300ce76d95d"
+created_at = "2026-10-15T19:01:32.026441+00:00"
+title = "Store general-tool and Copilot hook log locator metadata"
+state = "planning"
+component = "log-api"
+depends_on = ["16ea5791-a3f1-4c3e-aa1f-eec6e3fd5c84"]
+effort = "2000"
+parts = [{ id = "75831ffe-e995-4811-9469-fba22d59c349", kind = "objective", path = "parts/75831ffe-e995-4811-9469-fba22d59c349.md", frozen = false, created_at = "2026-10-15T19:01:46.315410600Z" }, { id = "267105c2-7ecf-4f1e-af98-8297543a5fd3", kind = "requirements", path = "parts/267105c2-7ecf-4f1e-af98-8297543a5fd3.md", frozen = false, created_at = "2026-10-15T19:01:46.344887300Z" }, { id = "02dd0e1a-5f50-4add-bee2-7ba6c7e165f1", kind = "design", path = "parts/02dd0e1a-5f50-4add-bee2-7ba6c7e165f1.md", frozen = false, created_at = "2026-10-15T19:01:46.375112500Z" }, { id = "3e79b668-6c88-4b27-b53e-c3be697da3a7", kind = "examples", path = "parts/3e79b668-6c88-4b27-b53e-c3be697da3a7.md", frozen = false, created_at = "2026-10-15T19:01:46.403692600Z" }, { id = "de012d5a-cccc-4e14-80b7-e009716944b5", kind = "acceptance_criteria", path = "parts/de012d5a-cccc-4e14-80b7-e009716944b5.md", frozen = false, created_at = "2026-10-15T19:01:46.441247900Z" }]
+priority = "medium"
+related_specs = [{ workspace = "workflow-tools", store_root = "memory-kernel/.workflow-tools/spec", spec_id = "55c7e6ab-0bad-4fa5-ab49-c320f0dbd5a7" }, { workspace = "workflow-tools", store_root = "memory-kernel/.workflow-tools/spec", spec_id = "0f675354-6404-4eaf-ac7b-655a89cf9825" }]
+risk_level = "medium"
+type = "feature"
