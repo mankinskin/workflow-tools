@@ -33,7 +33,7 @@ two newly opened prerequisite tickets that make `session-api` callable from a ho
   - emits `hookSpecificOutput.additionalContext` carrying the resolved worktree path
     plus an instruction to operate from that directory.
 - Wire the new hook into the root hook configuration (`.github/hooks/hooks.json` and
-  the synced `.clinerules/hooks/hooks.json`) alongside the existing reminders, without
+  `.github/hooks/hooks.json`) alongside the existing reminders, without
   replacing or removing them.
 - Document the launcher boundary: the hook performs allocation + context injection;
   a separate launcher (e.g. opening the worktree as a VS Code window or spawning a CLI
