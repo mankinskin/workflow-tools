@@ -1,0 +1,15 @@
+{
+  "id": "vt-guidance-selective-cli",
+  "title": "Selective guidance public CLI and retry regressions",
+  "command": "cargo test -p install-ctl --test guidance_selective_get",
+  "detail": "Real compiled CLI against controlled smart HTTP, profiles/recipes/directories, pinned nested submodules, symlinks, destination/idempotency, retained snapshots, warm-cache authorization, unsupported filtering, credential redaction and local-only plan/install.",
+  "links": {
+    "spec_ids": [
+      "c34c14c9-ead6-43b9-bd4b-d70f3ea85fc9"
+    ],
+    "acceptance_criterion_ids": [
+      "SG-05",
+      "SG-06"
+    ]
+  }
+}

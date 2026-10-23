@@ -1,0 +1,15 @@
+{
+  "id": "vt-guidance-selective-closure",
+  "title": "Selective guidance closure acquisition",
+  "command": "cargo test -p install-ctl guidance::remote::acquire -- --nocapture --test-threads=1",
+  "links": {
+    "spec_ids": [
+      "c34c14c9-ead6-43b9-bd4b-d70f3ea85fc9"
+    ],
+    "acceptance_criterion_ids": [
+      "SG-02",
+      "SG-03",
+      "SG-05"
+    ]
+  }
+}

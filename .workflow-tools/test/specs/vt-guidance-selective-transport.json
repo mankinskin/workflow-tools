@@ -1,0 +1,14 @@
+{
+  "id": "vt-guidance-selective-transport",
+  "title": "Selective Git object transport",
+  "command": "cargo test -p install-ctl guidance::remote::transport -- --nocapture --test-threads=1",
+  "detail": "Real upload-pack, Git daemon, smart HTTP, credential helper, SSH wrapper, SHA-256, object accounting, configuration and cancellation; includes the compiled production worker.",
+  "links": {
+    "spec_ids": [
+      "c34c14c9-ead6-43b9-bd4b-d70f3ea85fc9"
+    ],
+    "acceptance_criterion_ids": [
+      "SG-01"
+    ]
+  }
+}
