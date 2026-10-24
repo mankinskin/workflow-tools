@@ -1,6 +1,5 @@
 ---
 description: "Use when reading prior session transcripts, handoff documents, or Copilot chat artifacts. Covers bounded session artifact inspection and durable-first reading."
-applyTo: "**/*.md"
 ---
 
 ## Session Artifact Reading

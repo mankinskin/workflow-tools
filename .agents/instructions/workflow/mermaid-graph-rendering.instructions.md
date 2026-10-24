@@ -1,6 +1,5 @@
 ---
 description: "Use when rendering ticket dependency or execution-order graphs in an agent response."
-applyTo: "**"
 ---
 
 ## Single-Block Contract

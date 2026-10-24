@@ -1,6 +1,5 @@
 ---
 description: "Use when debugging, validating, or reading logs from Dockerized local services and containers. Covers rebuild verification, docker logs, and container-vs-browser evidence boundaries."
-applyTo: "**/Dockerfile,**/docker-compose*.yml,**/docker-compose*.yaml,**/scripts/*.sh,**/scripts/*.ps1"
 ---
 
 # Docker Container Debugging

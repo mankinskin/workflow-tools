@@ -1,6 +1,5 @@
 ---
 description: "Use when methodically executing a compiled ROADMAP.md from a prompt-ingestion dossier. Covers reading the roadmap and dossier together, walking waypoints in dependency order, collecting per-waypoint context from the dossier before acting, and delegating oversized waypoints as one isolated unit."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

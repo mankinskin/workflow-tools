@@ -1,6 +1,5 @@
 ---
 description: "Use when implementation, validation, audit output, compiler output, or lint output reveals a code-quality finding. Covers bounded proactive remediation and follow-up ticket capture."
-applyTo: "**"
 ---
 
 ## Code Quality Findings

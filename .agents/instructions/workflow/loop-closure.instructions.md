@@ -1,6 +1,5 @@
 ---
 description: "Use when implementing, reviewing, or completing iteration work. Covers the closed-loop iteration workflow: Review→Interview→Commit→Handoff. Only approved work is committed, and each passing run produces a forward handoff package."
-applyTo: "**/*.md,**/*.toml"
 ---
 
 ## Loop Closure

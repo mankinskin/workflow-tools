@@ -1,6 +1,5 @@
 ---
 description: "Use when analyzing agent traces together with generated artifacts. Covers evidence pairing, scenario-specific review, privacy, defect classification, and algorithm-improvement handoffs."
-applyTo: "**"
 ---
 
 # Trace and Artifact Analysis

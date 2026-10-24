@@ -1,6 +1,5 @@
 ---
 description: "Use when planning, approving, executing, recovering, or reviewing journaled ticket, specification, session, or feedback entity moves."
-applyTo: "**"
 ---
 
 # Entity Move Execution

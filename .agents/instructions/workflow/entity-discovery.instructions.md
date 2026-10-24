@@ -1,6 +1,5 @@
 ---
 description: "Use during prompt-ingestion Stage 2 research, and whenever a roadmap waypoint proposes creating a ticket, spec, validation spec, session record, feedback entry, or dossier. Covers the six-store discovery sweep, recording per-store coverage, and the three permitted reuse forms when a relevant entity already exists."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

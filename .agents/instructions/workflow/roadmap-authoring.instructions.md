@@ -1,6 +1,5 @@
 ---
 description: "Use when drafting or revising a ROADMAP.md for a prompt-ingestion dossier or any multi-step task plan. Covers the canonical roadmap structure, waypoint scoping thresholds, and syntax rules for status, dependencies, and cross-references."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

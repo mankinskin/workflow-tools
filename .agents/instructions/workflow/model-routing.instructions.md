@@ -1,6 +1,5 @@
 ---
 description: "Use at the start of and throughout every session, before every sub-agent dispatch: the canonical tier ladder and model preference ordering. Covers capability gating, context isolation, model selection, dominated models, delegation rules, and parallel fan-out."
-applyTo: "**"
 ---
 
 ## Model Cost Awareness & Routing

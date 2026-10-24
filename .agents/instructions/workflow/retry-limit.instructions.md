@@ -1,6 +1,5 @@
 ---
 description: "Use throughout every session, during execution of any dispatched worker-tier step: the mid-execution retry cap for test failures. Covers the exact retry count, the required escalation action on a second failure, and how this differs from the pre-dispatch fail-fast gate."
-applyTo: "**"
 ---
 
 ## Purpose

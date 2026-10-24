@@ -1,6 +1,5 @@
 ---
 description: "Use when defining or running any critique -> verdict -> interview cycle that must be grounded in gathered evidence rather than raw words alone (prompt intent refinement, ticket refinement, mission planning). Defines the shared four-step refinement-loop shape reused by intent-refinement.instructions.md, ticket-refinement.agent.md, and mission-planning.agent.md so the loop's mechanics live in one place."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

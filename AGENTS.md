@@ -1,74 +1,36 @@
-# workflow-tools Agent Guide
+# workflow-tools guidance router
 
-This repository owns the installable ticket, spec, session, rule, audit, and test workflow tooling used by consumer workspaces. Agents working here should treat `workflow-tools` as the canonical guidance root for tool implementation, validation, release, and repository-guidance lifecycle work.
+This repository owns workflow-tool implementation and canonical operational
+guidance. Read only the owners relevant to the requested operation, before
+acting; do not preload this table's targets.
 
-## Guidance Roots
+## Universal safeguards
 
-- `.agents/agents/` contains custom agent templates. Use these templates for context-isolated delegation when a task is bulky, risky, or benefits from a dedicated role.
-- `.agents/instructions/` contains operational rules. Load only the instruction files that apply to the task or edited paths.
-- `.agents/prompts/` contains reusable prompt workflows for implementation, research, handoff, iteration, commits, model-price sync, and tool-grant regression probes.
-- `.agents/skills/` contains on-demand skills. Load a skill only when the task falls inside the skill description.
+Resolve the target repository, explicit entity-store root, and active file
+ownership before edits. Use bounded inspection and the smallest falsifiable
+change. Main-checkout work is the default unless ownership or requested Git
+isolation requires a worktree. Preserve unrelated dirty changes; stage only
+task-owned paths. Use domain APIs for entity mutations and read records back.
+Validate the changed behavior, fix introduced regressions, and report evidence
+and blockers honestly. Commit submodules before updating parent gitlinks.
+Use installed compact command/inspection tools when available.
 
-Nested `AGENTS.md` files may refine behavior for their own subtree. When a nested guide applies, follow the nested guide for that subtree and keep this file as the repository-level default.
+## Read on task entry
 
-## Before Editing
+| Operation | Required owner |
+| --- | --- |
+| Repository editing, validation, publication | [repository workflow](.agents/instructions/repository/workflow.instructions.md), [repository guide](REPOSITORY_GUIDE.md) |
+| Investigation or uncertain requirements | [file inspection](.agents/instructions/workflow/file-inspection.instructions.md), [escalation](.agents/instructions/workflow/escalation-gate.instructions.md) |
+| Implementation or regression | [regression-first development](.agents/instructions/workflow/regression-first-development.instructions.md), [test execution](test/.agents/instructions/testing/test-execution.instructions.md) |
+| Delegation | [model routing](.agents/instructions/workflow/model-routing.instructions.md), [delegation contract](.agents/instructions/workflow/orchestrator-delegation.instructions.md) |
+| Session identity, response lineage | [session identity](session/.agents/instructions/session/session-identity-and-handoff.instructions.md) |
+| Ticket or board operation | [ticket workflow](ticket/.agents/instructions/ticket/workflow.instructions.md) |
+| Specification or validation records | [spec workflow](spec/.agents/instructions/spec/spec-system.instructions.md), [validation evidence](test/.agents/instructions/testing/validation-evidence.instructions.md) |
+| Planning or roadmap | [prompt ingestion](.agents/instructions/workflow/prompt-ingestion.instructions.md), [roadmap execution](.agents/instructions/workflow/roadmap-execution.instructions.md) |
+| Worktree or submodule operation | [worktree workflow](session/.agents/instructions/worktree/worktree-workflow.instructions.md), [submodules](.agents/instructions/repository/submodule.instructions.md) |
+| Deferred tooling problem, response feedback | [feedback visibility](.agents/instructions/workflow/feedback-turn-visibility.instructions.md) |
+| Guidance creation, generation or installation | [Guidance Lifecycle Agent](.agents/agents/guidance-lifecycle.agent.md) |
 
-Start from the concrete anchor named by the request: a failing command, file, symbol, ticket, spec, or nearby implementation surface. Gather only enough evidence to name the controlling path, one falsifiable local hypothesis, and the cheapest check that could disprove that hypothesis. Once that evidence exists, make the smallest grounded edit and validate immediately.
-
-Use bounded inspection. Prefer `repo_map.toon`, skeletons, targeted search, and small file windows over broad file reads. Use the peek tools for file inspection and compact terminal tooling for command output when those tools are available.
-
-## Task Routing
-
-- Use research or exploration before implementation when ownership, behavior, validation, or requirements are unclear.
-- Use implementation only after a complete handoff exists: objective, target paths, relevant ticket or spec, constraints, and validation commands.
-- Use review for bugs, regressions, missing tests, acceptance-criteria checks, and code-quality findings.
-- Use commit workflow only after validation and stage only the explicit paths for the current task.
-
-The model ladder and delegation rules live in `.agents/instructions/workflow/model-routing.instructions.md` and `.agents/instructions/workflow/orchestrator-delegation.instructions.md`. Do not guess model tiers from vendor names or dispatch a sub-agent without a self-contained prompt.
-
-## Session and Worktree Discipline
-
-Resolve the target repository from the active workspace before running session, Git, or worktree commands. Main-checkout work is the default for small, self-contained changes. Create or use a session worktree only when isolation is required by active ownership, explicit branch requirements, or planned Git operations that need an independent branch.
-
-When a task touches submodules, follow the deepest-first rule: commit inside the nested repository first, then update parent gitlinks. Never stage unrelated dirty files, and never use broad `git add -A` from an implementation session.
-
-Relevant rules:
-
-- `.agents/instructions/repository/workflow.instructions.md`
-- `.agents/instructions/repository/submodule.instructions.md`
-- `session/.agents/instructions/session/session-identity-and-handoff.instructions.md`
-- `session/.agents/instructions/worktree/worktree-workflow.instructions.md`
-
-## Validation
-
-Every repository-changing task needs executable evidence unless the task is pure prose with an explicitly documented review method. Run the narrowest check that can falsify the change first, then broaden only when the touched surface requires it.
-
-Common workflow-tools validation anchors:
-
-- `cargo test -p <crate>` for Rust crate changes.
-- `cargo test --workspace --no-run` when compile coverage matters more than a single crate test.
-- `install/install-ctl` catalog checks for install registry or guidance installer work.
-- `audit.exe links .` for repository-link and markdown-reference changes.
-- Focused `rg` checks for guidance moves, generated references, and old paths.
-
-Record validation results in the final response. If a validation command cannot run, report the exact blocker and the strongest evidence gathered instead.
-
-## Problem and Feedback Visibility
-
-Log unexpected tool behavior that is deferred with `feedback_ingest`; before
-closing a substantive response, call `feedback_session_summary` and surface
-the result. See the [canonical feedback visibility instruction](.agents/instructions/workflow/feedback-turn-visibility.instructions.md)
-for exact fields and turn resolution.
-
-## Guidance Authoring
-
-For repository guidance changes, use the [Guidance Lifecycle Agent](.agents/agents/guidance-lifecycle.agent.md),
-which owns primitive selection, canonical sources, and generated surfaces.
-
-## Code Quality
-
-Fix code-quality findings that affect the touched unit or its direct dependencies before completing the task. For unrelated findings, create or cite a follow-up instead of expanding the current change. Keep edits scoped to the owning module, crate, prompt, instruction, or skill.
-
-## Response Contract
-
-Final responses should name what changed, where validation ran, and what risk or blocker remains. For reviews, lead with findings ordered by severity. For implemented work, keep the summary compact and include the validation evidence that supports completion.
+Other task owners are discoverable through instruction descriptions. Detailed
+definitions stay authoritative in their owning files; route summaries do not
+override those definitions. Skills are opt-in by task, not startup imports.

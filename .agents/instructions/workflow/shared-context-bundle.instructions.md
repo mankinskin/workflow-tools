@@ -1,6 +1,5 @@
 ---
 description: "Use at the start of and throughout every session, whenever spawning a sub-agent: compiled delegation prompt protocol that gives sub-agents a compact, self-contained brief instead of raw artifact dumps. Covers prompt composition, named-artifact referencing, progressive compilation across a delegation chain, and parallel fan-out."
-applyTo: "**"
 ---
 
 ## Purpose

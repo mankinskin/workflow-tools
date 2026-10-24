@@ -1,6 +1,5 @@
 ---
 description: "Use at the start of and throughout every session: when to operate as orchestrator, the sub-agent delegation contract, and how to classify work into capability roles. Model selection itself lives in model-routing.instructions.md."
-applyTo: "**"
 ---
 
 ## When to Activate

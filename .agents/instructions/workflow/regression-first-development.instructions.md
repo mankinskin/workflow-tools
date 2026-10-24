@@ -1,6 +1,5 @@
 ---
 description: "Use when fixing a bug, a tool failure, or implementing a feature with a clear expected behavior. Covers reproducing the exact failure in an isolated fixture test first, enumerating sibling edge cases, fixing every layer that duplicates the logic, and recording read-back evidence."
-applyTo: "**"
 ---
 
 # Regression-First Development

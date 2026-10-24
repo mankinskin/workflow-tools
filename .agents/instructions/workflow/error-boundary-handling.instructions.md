@@ -1,6 +1,5 @@
 ---
 description: "Use when designing, debugging, or reviewing backend/frontend error handling, diagnostics, or user-facing failure states. Covers actionable error bubbling, trace-level detail, and frontend rendering obligations."
-applyTo: "**/*.rs,**/*.ts,**/*.tsx,**/*.js,**/*.jsx"
 ---
 
 # Error Boundary Handling

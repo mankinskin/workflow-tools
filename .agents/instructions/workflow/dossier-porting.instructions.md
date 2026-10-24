@@ -1,6 +1,5 @@
 ---
 description: "Use when copying a specific finding, waypoint, or artifact row from one prompt-ingestion dossier into a different, otherwise-unrelated dossier, without merging the two dossiers wholesale. Covers when porting applies instead of dossier-merge, provenance notes, and avoiding orphaned back-references."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

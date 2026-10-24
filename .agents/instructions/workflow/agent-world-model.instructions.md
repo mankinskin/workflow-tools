@@ -1,6 +1,5 @@
 ---
 description: "Canonical narrative and lifecycle map for repository-guided agents."
-applyTo: "**"
 ---
 
 # Agent World Model

@@ -1,6 +1,5 @@
 ---
 description: "Use whenever a dispatched sub-agent completes a requested unit. Defines the single terminal deliverable, blocker handling, and evidence-backed success claims."
-applyTo: "**"
 ---
 
 ## Terminal Delivery

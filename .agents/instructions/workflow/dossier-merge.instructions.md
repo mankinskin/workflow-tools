@@ -1,6 +1,5 @@
 ---
 description: "Use when merging two or more completed prompt-ingestion dossiers (transcripts/DD-MM-YYYY_<slug>/ folders) that turned out to be thematically related into one consolidated dossier."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

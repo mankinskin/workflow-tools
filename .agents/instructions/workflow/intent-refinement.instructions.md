@@ -1,6 +1,5 @@
 ---
 description: "Use when running an informed review + interview loop inside the prompt-ingestion pipeline: critiquing a cleaned prompt or a drafted dossier against research already gathered, and interviewing the requester only when repository evidence can't resolve the remaining ambiguity or low-confidence item. Used twice — before drafting and again after — so the shipped roadmap never carries an open question."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

@@ -1,6 +1,5 @@
 ---
 description: "Use in every agent response, not only when something breaks: the end-of-turn feedback visibility requirement. Covers when to log a deferred feedback entry versus fixing immediately, and the mandatory feedback_session_summary check before closing a response."
-applyTo: "**"
 ---
 
 ## Purpose

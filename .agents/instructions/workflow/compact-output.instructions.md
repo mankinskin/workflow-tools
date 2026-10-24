@@ -1,6 +1,5 @@
 ---
 description: "Use when configuring CLI output formats, choosing between TOON and JSON, or applying the rtk proxy for token-efficient command output."
-applyTo: "**/*.sh,**/*.ps1"
 ---
 
 ## Compact-by-Default Output

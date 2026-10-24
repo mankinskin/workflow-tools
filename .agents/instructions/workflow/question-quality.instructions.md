@@ -1,6 +1,5 @@
 ---
 description: "Use whenever asking the user a question (interviews, reviews, escalations, clarifications). Defines what makes a question answerable: self-contained framing, explicit references, one decision per question, concrete options, and a verifiable answer."
-applyTo: ".agents/prompts/**,**/*.md"
 ---
 
 ## Question Quality

@@ -1,6 +1,5 @@
 ---
 description: "Use when a roadmap or dossier artifact must reference material outside the dossier folder — other dossiers, tickets, specs, code, or non-repository documentation. Covers reference format, verification before citing, and when to inline vs point."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

@@ -1,6 +1,5 @@
 ---
 description: "Use when handling tool result output, managing command spills, or working with the compact-terminal MCP or CLI transports. Covers output reduction and spill-file inspection."
-applyTo: "**"
 ---
 
 ## Default Agent Tool Suite

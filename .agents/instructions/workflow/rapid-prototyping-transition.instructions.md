@@ -1,6 +1,5 @@
 ---
 description: "Use when creating, testing, rolling back, or promoting an isolated prototype version of a component using a parallel git worktree while an existing implementation remains the default."
-applyTo: "**"
 ---
 
 # Rapid Prototyping And Version Transitions

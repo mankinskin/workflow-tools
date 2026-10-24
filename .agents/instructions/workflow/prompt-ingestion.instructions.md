@@ -1,6 +1,5 @@
 ---
 description: "Use before turning a raw prompt into tickets, a spec, or any other complex downstream workflow. Defines the structural shell of the prompt-ingestion pipeline — an extension of the transcript-transformation pipeline that onboards a raw prompt through denoising, research, two informed review/interview loops, and roadmap compilation into a fully refined, zero-open-question deliverable — plus the decision boundary and when to run it."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

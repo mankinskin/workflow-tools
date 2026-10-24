@@ -1,6 +1,5 @@
 ---
 description: "Use when turning a request into production work or reporting validated results. Covers the closed-loop production cycle: request -> spec -> tickets -> tests -> implementation -> validated response -> next iteration."
-applyTo: "**/*.md,**/*.toml"
 ---
 
 ## Core Cycle

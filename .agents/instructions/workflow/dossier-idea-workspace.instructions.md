@@ -1,6 +1,5 @@
 ---
 description: "Use when a dossier under transcripts/ is being used to capture and develop open-ended ideas rather than to produce an execution-ready ROADMAP.md. Covers when a dossier may skip roadmap compilation, how to keep an idea-workspace dossier discoverable, and the promotion path to a full roadmap."
-applyTo: "**/*.md"
 ---
 
 ## Purpose

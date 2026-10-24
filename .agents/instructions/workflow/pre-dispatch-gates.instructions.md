@@ -1,6 +1,5 @@
 ---
 description: "Use whenever a compiled delegation prompt is complex, ambiguous, or risky enough that a mid-tier model is likely to hit a blocker: on-demand pre-dispatch dry-run gates. Covers per-delegation-class gate sets, tool calls implementing each check, when to reach for the gate, and fail-fast semantics."
-applyTo: "**"
 ---
 
 ## Purpose

@@ -1,6 +1,5 @@
 ---
 description: "Use whenever dispatching a Worker-tier sub-agent for a single plan step: the write-and-die contract — one isolated step, then terminate. Covers how the next step becomes a fresh session and how this differs from Planner/frontier-tier multi-step sessions."
-applyTo: "**"
 ---
 
 ## The Contract

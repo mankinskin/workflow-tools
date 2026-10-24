@@ -1,6 +1,5 @@
 ---
 description: "Use when a handoff package is incomplete or requirements are ambiguous. Covers escalation over inline clarification: when discovery or interview is needed, escalate to the user or hand off to a fresh discovery/interview agent rather than searching or clarifying during implementation."
-applyTo: "**/*.md,**/*.toml"
 ---
 
 ## Escalation Gate
