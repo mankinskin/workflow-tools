@@ -55,21 +55,15 @@ Record validation results in the final response. If a validation command cannot 
 
 ## Problem and Feedback Visibility
 
-When a turn reveals an unexpected tool behavior, contradictory evidence, stale instruction, or another deferred issue that is not being fixed in the same response, record it through `feedback_ingest` before continuing. Use `source: "agent"`, target the relevant entity URN when one exists, and otherwise point at the tool or file most responsible. This is for genuinely surprising problems and tooling drift, not for the normal blockers that are already being resolved in the active task.
-
-Before closing any substantive response, derive a best-effort current turn from the live session skeleton, call `feedback_session_summary` with the current `session_id` and that `turn_sequence`, and surface the result in the closing traceability footer as `| feedback: <n> new entries this turn` or `| feedback: none`. Do not silently omit the summary. The canonical rule lives in `.agents/instructions/workflow/feedback-turn-visibility.instructions.md`.
+Log unexpected tool behavior that is deferred with `feedback_ingest`; before
+closing a substantive response, call `feedback_session_summary` and surface
+the result. See the [canonical feedback visibility instruction](.agents/instructions/workflow/feedback-turn-visibility.instructions.md)
+for exact fields and turn resolution.
 
 ## Guidance Authoring
 
-Guidance files should be small, owned, and easy to route:
-
-- Put always-on repository rules in this file or a subtree `AGENTS.md`.
-- Put path-scoped operational rules in `.agents/instructions/**/*.instructions.md`.
-- Put repeatable workflows in `.agents/prompts/**/*.prompt.md`.
-- Put context-isolated roles in `.agents/agents/**/*.agent.md`.
-- Put domain-specific, opt-in knowledge in `.agents/skills/**/SKILL.md`.
-
-Do not duplicate a detailed rule across several files. Keep one authoritative location and replace secondary mentions with references. When moving guidance, update links and validation paths in the same logical change.
+For repository guidance changes, use the [Guidance Lifecycle Agent](.agents/agents/guidance-lifecycle.agent.md),
+which owns primitive selection, canonical sources, and generated surfaces.
 
 ## Code Quality
 
