@@ -1,0 +1,12 @@
+id = "57161cbd-58fc-44a3-9528-baa4cd1fceac"
+created_at = "2026-10-24T02:06:47.039150684+00:00"
+title = "[mission] Direct CLI/MCP authoring and result recording"
+state = "done"
+component = "mission"
+effort = "2k"
+parts = [{ id = "28523be4-a65f-42f6-8718-724aa1704f66", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T02:06:48.896940152Z" }, { id = "3ea44300-9b48-44dd-b1c6-67c096ed169b", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-24T11:40:40.145590528Z" }, { id = "1f2caf45-e506-4dc8-b31e-17d72dbe2dee", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T11:43:47.204719376Z" }]
+plan_revision = 1
+priority = "high"
+refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc", note = "Parent contract" }, { kind = "spec", urn = "ce://default/spec/0e02e89c-aff1-47c8-a113-3c6b36688add", note = "Owning approved direct-authoring contract" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w1-green-verified", note = "Full W1 suite and persistent transport readback; store workflow-tools/.workflow-tools/test" }]
+related_specs = "38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc,0e02e89c-aff1-47c8-a113-3c6b36688add"
+type = "task"

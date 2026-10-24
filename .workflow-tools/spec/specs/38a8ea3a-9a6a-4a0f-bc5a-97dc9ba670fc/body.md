@@ -40,6 +40,17 @@ If this specification is implemented, dependents can rely on UUID-addressed miss
 9. [mission transport implementation ticket](../../../ticket/tickets/c616418e-8c27-4954-975e-490fc22c408f/ticket.toml) - CLI/MCP import and publication work.
 10. [session attachment ticket](../../../ticket/tickets/465f31b9-2329-4918-930c-0dfc3fc15b5c/ticket.toml) - session reference boundary.
 11. [dossier migration ticket](../../../ticket/tickets/dc314dc3-40e9-4e6e-93db-5bbab48cf224/ticket.toml) - legacy conversion and historical reference mapping.
+12. [Direct Mission Authoring and Recording](../0e02e89c-aff1-47c8-a113-3c6b36688add/body.md) — direct content/progress/result contract.
+13. [Mission CLI and MCP Installer Distribution](../9e714b78-ef31-46e5-8103-a944e7b1a278/body.md) — installer registration and post-approval evidence.
+
+## Component Relationship Map
+
+```mermaid
+flowchart TD
+    InstallerDistribution -->|mission-direct-create; mission-direct-revision; mission-direct-readback| DirectAuthoring
+```
+
+The direct-authoring child owns transport semantics and immutable revision behavior. The installer-distribution child owns only registry discovery and post-approval verification. The edge is one-way: installed artifacts consume the authoring provider criteria; registry work cannot redefine Mission content or state authority.
 
 ## Responsibility
 

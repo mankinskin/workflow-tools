@@ -1,0 +1,23 @@
+{
+  "id": "mission-w1-direct-authoring",
+  "title": "Mission W1 direct authoring, CLI/MCP parity and persistent artifact readback",
+  "command": "/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission-api && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo check --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo fmt --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --check -p mission -p mission-api && /home/linus/.cargo/bin/rtk bypass /usr/bin/python3 /home/linus/.copilot/session-state/ae41c0ca-75fa-497e-b4ac-90e3fa04f6ec/files/mission_w1_fixture.py",
+  "links": {
+    "spec_ids": [
+      "0e02e89c-aff1-47c8-a113-3c6b36688add"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-direct-create",
+      "mission-direct-content-edit",
+      "mission-direct-revision",
+      "mission-direct-recording",
+      "mission-direct-readback",
+      "mission-direct-publication",
+      "mission-direct-parity",
+      "mission-direct-compatibility"
+    ],
+    "ticket_ids": [
+      "57161cbd-58fc-44a3-9528-baa4cd1fceac"
+    ]
+  }
+}

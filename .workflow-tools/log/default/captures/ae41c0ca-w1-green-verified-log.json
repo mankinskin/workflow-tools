@@ -1,0 +1,17 @@
+{
+  "id": "ae41c0ca-w1-green-verified-log",
+  "validation_execution_id": "ae41c0ca-w1-green-verified",
+  "kind": "combined-output",
+  "captured_at": "2026-10-24T11:36:38.428315587Z",
+  "media_type": "text/plain",
+  "locator": "/home/linus/.copilot/session-state/ae41c0ca-75fa-497e-b4ac-90e3fa04f6ec/files/mission-w1-logs/ae41c0ca-w1-green-verified.log",
+  "detail": "command `/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission-api && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo check --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp && /home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo fmt --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --check -p mission -p mission-api && /home/linus/.cargo/bin/rtk bypass /usr/bin/python3 /home/linus/.copilot/session-state/ae41c0ca-75fa-497e-b4ac-90e3fa04f6ec/files/mission_w1_fixture.py` exited with 0 in 2130ms",
+  "links": {
+    "ticket_ids": [
+      "57161cbd-58fc-44a3-9528-baa4cd1fceac"
+    ],
+    "validation_execution_ids": [
+      "ae41c0ca-w1-green-verified"
+    ]
+  }
+}

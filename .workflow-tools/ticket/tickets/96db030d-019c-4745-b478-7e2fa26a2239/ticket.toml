@@ -1,0 +1,12 @@
+id = "96db030d-019c-4745-b478-7e2fa26a2239"
+created_at = "2026-10-24T02:06:51.275294862+00:00"
+title = "[mission][install-ctl] Register Mission CLI and MCP artifacts"
+state = "ready"
+component = "mission.installer-distribution"
+depends_on = ["57161cbd-58fc-44a3-9528-baa4cd1fceac"]
+effort = "1k"
+parts = [{ id = "624837ab-15d3-4ea3-ab62-5bf297a37f1a", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T02:06:54.076852105Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc,9e714b78-ef31-46e5-8103-a944e7b1a278"
+type = "task"
