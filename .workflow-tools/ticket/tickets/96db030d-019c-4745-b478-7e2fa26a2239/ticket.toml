@@ -1,12 +1,13 @@
 id = "96db030d-019c-4745-b478-7e2fa26a2239"
 created_at = "2026-10-24T02:06:51.275294862+00:00"
 title = "[mission][install-ctl] Register Mission CLI and MCP artifacts"
-state = "ready"
+state = "done"
 component = "mission.installer-distribution"
 depends_on = ["57161cbd-58fc-44a3-9528-baa4cd1fceac"]
 effort = "1k"
-parts = [{ id = "624837ab-15d3-4ea3-ab62-5bf297a37f1a", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T02:06:54.076852105Z" }]
-plan_revision = 1
+parts = [{ id = "624837ab-15d3-4ea3-ab62-5bf297a37f1a", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T02:06:54.076852105Z" }, { id = "c42709e7-83b5-4c1b-bdaf-0190796afdbe", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-24T12:03:13.963166295Z" }, { id = "465d38aa-c20c-4c28-8f82-b145258310ec", kind = "validation", path = "parts/validation-2.md", frozen = false, created_at = "2026-10-24T12:49:29.693770797Z" }, { id = "f6c2d769-9690-434f-b88b-f78a175a1774", kind = "amendment", path = "parts/amendment.md", frozen = false, created_at = "2026-10-24T20:48:49.429150378Z", supersedes = "624837ab-15d3-4ea3-ab62-5bf297a37f1a" }, { id = "e5ed6700-0b55-4b33-a839-7cea562e7793", kind = "validation", path = "parts/validation-3.md", frozen = false, created_at = "2026-10-24T20:58:34.634465813Z" }, { id = "ec25ef63-3582-40e1-b56a-61dd7ce39765", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T20:58:34.836440707Z" }]
+plan_revision = 2
 priority = "high"
+refs = [{ kind = "spec", urn = "ce://default/spec/38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc" }, { kind = "spec", urn = "ce://default/spec/9e714b78-ef31-46e5-8103-a944e7b1a278" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w2-registry-red" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w2-registry-green" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w2-required-failed" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w2-parity-baseline-failed" }, { kind = "test_execution", urn = "ce://default/test/ae41c0ca-w2-prebuilt-serial-blocked" }]
 related_specs = "38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc,9e714b78-ef31-46e5-8103-a944e7b1a278"
 type = "task"

@@ -1,0 +1,9 @@
+## Revision-4 W2 validation update (2026-10-24)
+
+Requester approved revision 4 and selected classic. The adapter-only correction maps test Enter to CR without changing product handling or literal LF. Real raw-mode regression: initial 3 passed/2 failed for Enter decoded Ctrl+J; final 5 passed/0 failed/0 ignored, with explicit child exit and cleanup checks.
+
+Required combined focused command terminated exit 101: install_parity 3 passed/1 failed in 121.03s. tui_shadows_before_interaction_and_applies_self_selection_after_root_edit reaches Review/root editing/build, then install_parity.rs:259 times out awaiting written: install-ctl; child code 1, signal Terminated; output contains WARN PID: 1887572 / WARN killing PID 1887572. PIDs 1887503 and 1887572 absent after terminal result. This is a distinct, undiagnosed failure; no claim of deadlock or root cause. mission_artifacts/prebuilt_install were not reached; full crate gate not started per approved stop boundary. Formatting and diff checks passed.
+
+Evidence owning root: /home/linus/git/meta-workspace/workflow-tools. Recorded and ID-read-back executions: ae41c0ca-w2-pty-red (failed), ae41c0ca-w2-pty-green (passed), ae41c0ca-w2-pty-final (passed), ae41c0ca-w2-focused-after-enter (failed). Validation specs: mission-w2-pty-raw-input and mission-w2-installer-required-suites. Actual source logs are recorded in each execution provenance. Read with test --workspace /home/linus/git/meta-workspace/workflow-tools --json get --id <execution-id>. Automatic cross-store product-spec verification still reports Spec not found; no computed verified claim.
+
+W2 remains blocked, no checkpoint commit; ticket remains ready, not started for W3. Installation and native W4 pilot have not run. Preserve partial registry/catalog work and existing validation history. Deferred feedback: 59fe4bd0-21f6-48d5-92b7-0e5010bae2dd. A bounded follow-up investigation/repair needs planning before any expansion.
