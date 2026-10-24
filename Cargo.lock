@@ -4750,6 +4750,7 @@ dependencies = [
 name = "mission-api"
 version = "0.1.0"
 dependencies = [
+ "schemars",
  "serde",
  "serde_json",
  "tempfile",
