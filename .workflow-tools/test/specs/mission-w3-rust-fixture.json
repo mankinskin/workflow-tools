@@ -1,0 +1,14 @@
+{
+  "id": "mission-w3-rust-fixture",
+  "title": "Rust fixture support, transport, and Python-denial checks",
+  "command": "cargo test -p install-ctl-test-support --test contracts -- --test-threads=1",
+  "detail": "W3 Rust support fixture; real HTTP/backend/auth/SSH/cancellation and Python-denial evidence",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

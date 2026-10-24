@@ -3835,6 +3835,7 @@ dependencies = [
  "gix-protocol",
  "gix-transport",
  "gix-url",
+ "install-ctl-test-support",
  "jsonc-parser",
  "libc",
  "portable-pty",
@@ -3848,6 +3849,15 @@ dependencies = [
  "toml 0.8.23",
  "vt100",
  "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "install-ctl-test-support"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "tempfile",
+ "tiny_http",
 ]
 
 [[package]]

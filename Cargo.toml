@@ -39,6 +39,7 @@ members = [
   "peek/crates/peek-cli",
   "peek/crates/peek-mcp",
   "install/install-ctl",
+  "install/install-ctl/test-support",
   "viewer-api",
   "viewer-api/frontend/dioxus",
   "openrouter-auth",
