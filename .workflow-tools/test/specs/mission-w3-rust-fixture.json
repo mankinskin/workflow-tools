@@ -1,8 +1,8 @@
 {
   "id": "mission-w3-rust-fixture",
-  "title": "Rust fixture support, transport, and Python-denial checks",
-  "command": "cargo test -p install-ctl-test-support --test contracts -- --test-threads=1",
-  "detail": "W3 Rust support fixture; real HTTP/backend/auth/SSH/cancellation and Python-denial evidence",
+  "title": "Rust fixture support and behavioral contracts",
+  "command": "cargo test -p install-ctl -p install-ctl-test-support",
+  "detail": "W3 Rust test-support behavioral fixture contracts; real HTTP/backend/auth/SSH/cancellation. Python-denial checks removed by requester; source scan confirmed no Python references in active install-ctl Rust/TOML/shell test sources.",
   "links": {
     "spec_ids": [
       "9e714b78-ef31-46e5-8103-a944e7b1a278"
