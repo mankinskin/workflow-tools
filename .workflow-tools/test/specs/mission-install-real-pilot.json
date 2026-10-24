@@ -1,0 +1,14 @@
+{
+  "id": "mission-install-real-pilot",
+  "title": "Real Mission artifact installation and installed CLI/MCP management",
+  "command": "install/bin/install-ctl install --root <isolated-root> mission-cli mission-mcp; installed CLI/MCP native operations",
+  "detail": "Real isolated installation, actual binary paths, same-Mission cross-transport edits, stale revision rejection, validation/publication/generated readback; W3 tests reused, not rerun.",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}
