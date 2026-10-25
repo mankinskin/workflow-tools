@@ -1,0 +1,14 @@
+{
+  "id": "mission-recovery-authority",
+  "title": "W1 typed authority focused validation",
+  "command": "rtk bypass cargo test --manifest-path workflow-tools/Cargo.toml -p mission-api --test typed_source && rtk bypass cargo test --manifest-path workflow-tools/Cargo.toml -p mission --test typed_migration",
+  "detail": "W1 recovery authority gate covering typed source lifecycle parity and migration compatibility.",
+  "links": {
+    "spec_ids": [
+      "0a8b3ea4-a3ce-4f26-90cc-1ce34474fb6c"
+    ],
+    "ticket_ids": [
+      "f60ee370-09a7-41d9-9d4a-6b97145f0e18"
+    ]
+  }
+}
