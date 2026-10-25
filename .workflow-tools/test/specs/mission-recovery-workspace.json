@@ -1,0 +1,11 @@
+{
+  "id": "mission-recovery-workspace",
+  "title": "W2 Mission launch root selection",
+  "command": "rtk cargo test -p mission --features cli,mcp --test direct_transports workspace_",
+  "detail": "Exercises explicit/configured/cwd precedence, relative-root resolution, invalid empty configuration, canonical relative launch path, symlink rejection, and read-only missing-root behavior through the real CLI and MCP transports.",
+  "links": {
+    "spec_ids": [
+      "eb4444fd-1349-471f-b911-26b8c7cdf5d0"
+    ]
+  }
+}
