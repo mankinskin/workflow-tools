@@ -4759,10 +4759,12 @@ dependencies = [
 name = "mission-api"
 version = "0.1.0"
 dependencies = [
+ "fs4 0.11.1",
  "pulldown-cmark",
  "schemars",
  "serde",
  "serde_json",
+ "sha2 0.10.9",
  "tempfile",
  "thiserror 2.0.20",
  "uuid",
