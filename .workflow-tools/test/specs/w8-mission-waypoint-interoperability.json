@@ -1,0 +1,18 @@
+{
+  "id": "w8-mission-waypoint-interoperability",
+  "title": "Optional waypoint Ticket, Specification, and test relationships",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test waypoint_interoperability_contract",
+  "detail": "Future contract gate: promoted/unpromoted waypoint cases, correct-root entity lookups, dangling/wrong-root failures and preservation after failed resolution. Not run during W8.",
+  "links": {
+    "spec_ids": [
+      "88a07686-34da-4ec9-a569-21eb286e7609"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-waypoint-optional-promotion",
+      "mission-waypoint-spec-test-links"
+    ],
+    "ticket_ids": [
+      "edfcc41e-4191-47c3-af22-518b68c49213"
+    ]
+  }
+}

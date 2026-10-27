@@ -1,0 +1,1 @@
+Complete artifact reachability and destination-resolved links; concise promise/delivery/verification orientation with explicit unknowns; exact publish/verification equality including empty external status; distinct changed/missing/extra failures; no historical review acceptance by implication.

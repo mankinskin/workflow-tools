@@ -1,0 +1,13 @@
+id = "1e1445ec-73e1-4b7a-b798-ed54c9852d16"
+created_at = "2026-10-27T22:52:40.548331280+00:00"
+title = "Mission generated review entry and publication consistency"
+state = "ready"
+acceptance_criteria = "Complete output reachability and publication/verification consistency; preserve explicit unknowns and negative drift."
+component = "mission"
+parts = [{ id = "55450878-691f-4cb6-8c37-1589690c884a", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:07.754810710Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "87d20edd-240d-4533-b7ba-711b06bf8296"
+spec = "87d20edd-240d-4533-b7ba-711b06bf8296"
+type = "tracker-improvement"
+validation_plan = "Run w8-mission-review-entry guard; no product validation during W8."

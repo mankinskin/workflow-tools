@@ -1,0 +1,1 @@
+Revision labels identify complete states; archives are create-new and gaps explicit; input/waypoint locations and generated history are covered; optional note cannot replace history; JSON BOM contract and separate approve/changes-requested event bind correctly and preserve metadata without crypto claims; invalid or repeated content cannot overwrite prior state.

@@ -1,0 +1,1 @@
+Role input/output and invocation are explicit and use the generated entry without hidden context; findings cite artifacts and evidence; missing/contradictory/unavailable facts remain distinct; Audit Agent stays available and unchanged; future role authoring follows the Guidance Lifecycle Agent; no guidance changes happen in W8.

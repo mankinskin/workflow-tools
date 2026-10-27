@@ -1,0 +1,18 @@
+{
+  "id": "w8-mission-evidence-provenance",
+  "title": "Mission evidence provenance, file roles, and destination references",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test evidence_reference_contract",
+  "detail": "Future contract gate: producer metadata and file roles, two supported consumer locations, unknown and unsupported file cases, dangling/wrong-root/escape references, and immutable historic evidence. Not run during W8.",
+  "links": {
+    "spec_ids": [
+      "84733d3e-ae79-4080-bf09-a5ead08cc182"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-artifact-role-and-provenance",
+      "mission-reference-consumer-resolution"
+    ],
+    "ticket_ids": [
+      "06319160-44df-4311-a527-50be6543b302"
+    ]
+  }
+}

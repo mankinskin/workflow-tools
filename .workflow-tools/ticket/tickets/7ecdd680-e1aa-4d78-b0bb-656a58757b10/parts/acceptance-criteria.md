@@ -1,0 +1,1 @@
+Shared fields, versions, meanings, allowed values, validation and migrations are documented; unsupported versions and invalid values preserve source; canonical requirement refs reject dangling/wrong-root IDs; renderers are deterministic, escaped and composable; no generic backend or duplicate authorities.

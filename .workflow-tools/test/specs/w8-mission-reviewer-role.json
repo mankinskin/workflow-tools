@@ -1,0 +1,18 @@
+{
+  "id": "w8-mission-reviewer-role",
+  "title": "Dedicated Mission review and completeness role",
+  "command": "manual: review complete, missing, and contradictory Mission review-entry fixtures",
+  "detail": "Future manual gate: confirm the role works from the generated entry without hidden context, cites evidence, distinguishes unknowns, and leaves Audit Agent checks unchanged. No guidance or product validation was run during W8.",
+  "links": {
+    "spec_ids": [
+      "d6899bdd-657c-4f50-8475-8930d39b276c"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-review-role-evidence-citations",
+      "mission-review-role-audit-compatibility"
+    ],
+    "ticket_ids": [
+      "bf85445e-a6a2-4a64-9d9d-a2cf3ade5460"
+    ]
+  }
+}

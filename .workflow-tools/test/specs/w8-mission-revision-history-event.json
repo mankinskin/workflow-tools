@@ -1,0 +1,19 @@
+{
+  "id": "w8-mission-revision-history-event",
+  "title": "Whole-state Mission generation history and separate approval events",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test revision_history_approval_event_contract",
+  "detail": "Future contract gate: whole-state snapshots, create-new collision rejection, explicit gaps, path organization, BOM digest/size checks, separate approve/changes-requested events, and invalid or replayed event handling. Not run during W8.",
+  "links": {
+    "spec_ids": [
+      "ec5f9329-041e-487e-b30b-2f27d5e06522"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-whole-state-history",
+      "mission-json-contract-bom",
+      "mission-separate-human-reaction"
+    ],
+    "ticket_ids": [
+      "b691f49a-f272-477e-aab5-ba0d52efcd4d"
+    ]
+  }
+}

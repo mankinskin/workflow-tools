@@ -1,0 +1,18 @@
+{
+  "id": "w8-mission-review-entry",
+  "title": "Mission generated review entry and publication consistency",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test review_entry_contract",
+  "detail": "Future contract gate: complete artifact reachability, consumer-resolved links, unknown facts, promise/delivery/verification orientation, empty external status, and negative output drift. Not run during W8.",
+  "links": {
+    "spec_ids": [
+      "87d20edd-240d-4533-b7ba-711b06bf8296"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-review-entry-complete-artifact-reachability",
+      "mission-publication-consistency"
+    ],
+    "ticket_ids": [
+      "1e1445ec-73e1-4b7a-b798-ed54c9852d16"
+    ]
+  }
+}

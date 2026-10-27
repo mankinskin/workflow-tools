@@ -1,0 +1,1 @@
+All new outputs identify producer, purpose, invocation, inputs and outputs; each file has a validated authored/generated/helper role and format; emitted refs resolve at supported consumers; missing, wrong-root, escaping and unknown cases fail; historic data is not backfilled.

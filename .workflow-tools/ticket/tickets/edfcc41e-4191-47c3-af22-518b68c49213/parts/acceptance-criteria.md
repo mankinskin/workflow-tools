@@ -1,0 +1,1 @@
+Unpromoted and promoted waypoints both validate; promotion references existing canonical Tickets only; criteria and executions resolve through owning APIs with optional criterion links; missing/wrong-root/dangling links fail and preserve source; no extra dependency edges or authorities.

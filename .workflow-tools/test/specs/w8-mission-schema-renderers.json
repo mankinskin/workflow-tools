@@ -1,0 +1,19 @@
+{
+  "id": "w8-mission-schema-renderers",
+  "title": "Bounded Mission/Ticket schema, requirements, and entity rendering",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test schema_requirement_renderer_contract",
+  "detail": "Future contract gate: valid/invalid values, unsupported versions and migration preservation, canonical Requirement refs, deterministic composed rendering and escaping; no generic backend. Not run during W8.",
+  "links": {
+    "spec_ids": [
+      "b2c52f3b-5061-441e-9c7b-dc8dc8d8eec8"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-shared-schema-version-validation",
+      "mission-requirement-canonical-reference",
+      "mission-entity-render-composition"
+    ],
+    "ticket_ids": [
+      "7ecdd680-e1aa-4d78-b0bb-656a58757b10"
+    ]
+  }
+}
