@@ -23,9 +23,9 @@ Offer the user a structured workflow for co-authoring the document. Explain the 
 
 Explain that this approach helps ensure the doc works well when others read it (including when they paste it into Claude). Ask if they want to try this workflow or prefer to work freeform.
 
-If user declines, work freeform. If user accepts, proceed to Stage 1.
+If user declines, work freeform. If user accepts, proceed to doc-coauthoring/SKILL.md Stage 1.
 
-## Stage 1: Context Gathering
+## doc-coauthoring/SKILL.md Stage 1: Context Gathering
 
 **Goal:** Close the gap between what the user knows and what Claude knows, enabling smart guidance later.
 
@@ -99,9 +99,9 @@ Sufficient context has been gathered when questions show understanding - when ed
 **Transition:**
 Ask if there's any more context they want to provide at this stage, or if it's time to move on to drafting the document.
 
-If user wants to add more, let them. When ready, proceed to Stage 2.
+If user wants to add more, let them. When ready, proceed to doc-coauthoring/SKILL.md Stage 2.
 
-## Stage 2: Refinement & Structure
+## doc-coauthoring/SKILL.md Stage 2: Refinement & Structure
 
 **Goal:** Build the document section by section through brainstorming, curation, and iterative refinement.
 
@@ -239,7 +239,7 @@ Provide any final suggestions.
 
 Ask if ready to move to Reader Testing, or if they want to refine anything else.
 
-## Stage 3: Reader Testing
+## doc-coauthoring/SKILL.md Stage 3: Reader Testing
 
 **Goal:** Test the document with a fresh Claude (no context bleed) to verify it works for readers.
 

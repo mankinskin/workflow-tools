@@ -1,5 +1,5 @@
 ---
-description: "Use during prompt-ingestion Stage 2 research, and whenever a roadmap waypoint proposes creating a ticket, spec, validation spec, session record, feedback entry, or dossier. Covers the six-store discovery sweep, recording per-store coverage, and the three permitted reuse forms when a relevant entity already exists."
+description: "Use during prompt-ingestion.instructions.md Stage 2 research, and whenever a roadmap waypoint proposes creating a ticket, spec, validation spec, session record, feedback entry, or dossier. Covers the six-store discovery sweep, recording per-store coverage, and the three permitted reuse forms when a relevant entity already exists."
 ---
 
 ## Purpose
@@ -16,8 +16,8 @@ deliberately not a per-turn tax.
 
 | Phase | Owner | Obligation |
 | --- | --- | --- |
-| Prompt-ingestion Stage 2 (research and artifact inventory) | [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) | Sweep all six stores and record the coverage table in `ARTIFACTS.md`. |
-| Late-planning ticket/spec preparation after Stage 3 settles scope | [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement) | Cite Stage 2 evidence or refresh the relevant bounded search; keep entities in planning/draft while decisions remain open; after decisions lock and both roadmap review gates pass, advance incomplete tickets to `ready` and specs to `approved`, read back by id, and verify any reused completed entity's outcome. Never mutate active entities under this exception. |
+| prompt-ingestion.instructions.md Stage 2 (research and artifact inventory) | [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) | Sweep all six stores and record the coverage table in `ARTIFACTS.md`. |
+| Late-planning ticket/spec preparation after prompt-ingestion.instructions.md Stage 3 settles scope | [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement) | Cite prompt-ingestion.instructions.md Stage 2 evidence or refresh the relevant bounded search; keep entities in planning/draft while decisions remain open; after decisions lock and both roadmap review gates pass, advance incomplete tickets to `ready` and specs to `approved`, read back by id, and verify any reused completed entity's outcome. Never mutate active entities under this exception. |
 | Any roadmap waypoint proposing entity creation | [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) | Cite the search that proved non-existence, or record a reuse form instead of creating. |
 
 Outside these boundaries the rule is advisory: prefer a bounded search over an
@@ -94,7 +94,7 @@ implementation.
 
 ## Related Guidance
 
-- [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) — Stage 2 applies this rule and owns the `ARTIFACTS.md` contract.
+- [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) — prompt-ingestion.instructions.md Stage 2 applies this rule and owns the `ARTIFACTS.md` contract.
 - [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) — creation waypoints apply this rule.
 - [evidence-grounded-refinement.instructions.md](evidence-grounded-refinement.instructions.md) — the general "gather evidence before critiquing or asking" loop this rule specializes.
 - [file-inspection.instructions.md](file-inspection.instructions.md) — bounded reads for the grep-based fallbacks above.

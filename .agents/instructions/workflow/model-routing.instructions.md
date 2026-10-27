@@ -144,7 +144,7 @@ This is the canonical contract for the `model:` frontmatter field on every `.age
 | `merge.agent.md` | GPT-5.6 Terra | T1 | Coordinates merge-ready integration work |
 | `cleanup.agent.md` | Claude Haiku 5.5 | T3 | Performs bounded cleanup tasks |
 | `structured-research.agent.md` | GPT-5.6 Terra | T1 | Synthesizes structured repository research |
-| `roadmap-authoring.agent.md` | GPT-5.6 Terra | T1 | Drafts and dry-runs prompt-ingestion dossier work packages and `ROADMAP.md` (Stage 4/6); never Structured Research Agent, which has no edit access |
+| `roadmap-authoring.agent.md` | GPT-5.6 Terra | T1 | Drafts and dry-runs prompt-ingestion dossier work packages and `ROADMAP.md` (prompt-ingestion.instructions.md Stages 4 and 6); never Structured Research Agent, which has no edit access |
 | `online-research.agent.md` | GPT-6 Luna | T3 | Performs focused external research |
 | `writing.agent.md` | GPT-5.6 Terra | T1 | Produces considered written artifacts |
 | `framing.agent.md` | Claude Haiku 5.5 | T3 | Frames bounded work for downstream agents |

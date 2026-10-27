@@ -15,6 +15,11 @@ Validate the changed behavior, fix introduced regressions, and report evidence
 and blockers honestly. Commit submodules before updating parent gitlinks.
 Use installed compact command/inspection tools when available.
 
+When referring to a numbered stage in guidance, qualify it with its owning
+instruction file or complete workflow name (for example,
+`prompt-ingestion.instructions.md Stage 4`). Never use a bare `Stage N` or
+`Stage-N` when the process identity is not part of the same reference.
+
 ## Read on task entry
 
 | Operation | Required owner |

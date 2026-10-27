@@ -17,17 +17,16 @@ Follow the four-step loop in [evidence-grounded-refinement.instructions.md](evid
 
 This file owns only the two interview-loop dispatches above. Drafting the
 dossier itself — the numbered work packages, `ROADMAP.md`, and `README.md` at
-Stage 4/6 — is a separate role owned by the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md);
+prompt-ingestion.instructions.md Stages 4 and 6 — is a separate role owned by the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md);
 do not conflate the two. Mission Planning Agent and Interview Agent interview
 the requester and record decisions; the Roadmap Authoring Agent turns an
 already-resolved decision into the dossier's written artifacts.
 
 ## Where the Loop Runs
 
-- **First loop** (`prompt-ingestion.instructions.md` Stage 3): runs once research and the artifact inventory exist, before anything is drafted, so both the critique and any interview question are informed by real repository findings instead of the raw prompt alone. See [prompt-ingestion.instructions.md's Six Stages](prompt-ingestion.instructions.md#the-six-stages), Stage 3, for the exit artifact.
-- **Second loop** (`prompt-ingestion.instructions.md` Stage 5): runs once the dossier, `ROADMAP.md`, and `README.md` exist in draft, to catch anything the drafting pass surfaced as low-confidence or newly ambiguous. This loop replaces a separate traceability-checklist stage: its job is to make sure `ROADMAP.md` ships with zero open questions — every one gets an interview, not a checklist entry.
+- **First loop** (prompt-ingestion.instructions.md Stage 3): runs once research and the artifact inventory exist, before anything is drafted, so both the critique and any interview question are informed by real repository findings instead of the raw prompt alone. See [prompt-ingestion.instructions.md's Six Stages](prompt-ingestion.instructions.md#the-six-prompt-ingestion-stages), prompt-ingestion.instructions.md Stage 3, for the exit artifact.
+- **Second loop** (prompt-ingestion.instructions.md Stage 5): runs once the dossier, `ROADMAP.md`, and `README.md` exist in draft, to catch anything the drafting pass surfaced as low-confidence or newly ambiguous. This loop replaces a separate traceability-checklist stage: its job is to make sure `ROADMAP.md` ships with zero open questions — every one gets an interview, not a checklist entry.
 
 ## Handoff
 
-Once a loop closes with `Approved as scoped` (or, for the second loop, "no open questions remain"), control returns to [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) for the next stage. This file never drafts dossier content itself — it only clears the ambiguity gate before and after drafting.
-
+Once a loop closes with `Approved as scoped` (or, for the second loop, "no open questions remain"), control returns to [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) for the next prompt-ingestion stage. This file never drafts dossier content itself — it only clears the ambiguity gate before and after drafting.

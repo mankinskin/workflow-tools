@@ -82,6 +82,26 @@ Generated from `install/artifacts.toml` (schema version 1). Do not edit by hand.
 - Bin: `spec`
 - Lifecycle: Install, Inspect, Uninstall
 
+## mission-cli
+
+- Category: Cli
+- Kind: RustBinary
+- Source: `mission/crates/mission`
+- Owner: tooling
+- Safety: ApprovalRequired
+- Bin: `mission`
+- Lifecycle: Install, Inspect, Uninstall
+
+## mission-mcp
+
+- Category: Mcp
+- Kind: RustBinary
+- Source: `mission/crates/mission`
+- Owner: tooling
+- Safety: ApprovalRequired
+- Bin: `mission-mcp`
+- Lifecycle: Install, Inspect, Uninstall
+
 ## audit-cli
 
 - Category: Cli

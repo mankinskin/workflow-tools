@@ -22,7 +22,7 @@ Even in idea-workspace mode, keep:
 - **`README.md`** as the index, stating the idea-workspace status and a one-line summary of what is being explored.
 - **`ARTIFACTS.md`**, started as soon as any concrete repository artifact (a ticket, a file, a spec) becomes relevant to the idea — do not wait until promotion to start tracking it.
 
-Everything else — the full Stage 3/5 review-and-interview loops, the numbered work-package documents, waypoint compilation — is **optional** while the dossier stays in idea-workspace mode. Forcing those stages early defeats the point of a lightweight workspace.
+Everything else — the full prompt-ingestion.instructions.md Stages 3 and 5 review-and-interview loops, the numbered work-package documents, waypoint compilation — is **optional** while the dossier stays in idea-workspace mode. Forcing those stages early defeats the point of a lightweight workspace.
 
 ## Allowed Operations in Idea-Workspace Mode
 
@@ -32,7 +32,7 @@ Everything else — the full Stage 3/5 review-and-interview loops, the numbered 
 
 ## Promotion Path
 
-When the idea workspace has accumulated enough shape to justify committing to a roadmap, run the full pipeline against the accumulated notes exactly as [prompt-ingestion.instructions.md's Resuming an In-Progress Dossier](prompt-ingestion.instructions.md#resuming-an-in-progress-dossier) describes for a continuation: treat the notes as the merged clean input, run Stage 2 research/inventory if not already current, then Stages 3 through 6 to produce a real `ROADMAP.md`. At that point the dossier stops being an idea workspace and is governed like any other dossier by [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) and [roadmap-execution.instructions.md](roadmap-execution.instructions.md).
+When the idea workspace has accumulated enough shape to justify committing to a roadmap, run the full pipeline against the accumulated notes exactly as [prompt-ingestion.instructions.md's Resuming an In-Progress Dossier](prompt-ingestion.instructions.md#resuming-an-in-progress-dossier) describes for a continuation: treat the notes as the merged clean input, run prompt-ingestion.instructions.md Stage 2 research/inventory if not already current, then prompt-ingestion.instructions.md Stages 3 through 6 to produce a real `ROADMAP.md`. At that point the dossier stops being an idea workspace and is governed like any other dossier by [roadmap-authoring.instructions.md](roadmap-authoring.instructions.md) and [roadmap-execution.instructions.md](roadmap-execution.instructions.md).
 
 ## Guardrail
 

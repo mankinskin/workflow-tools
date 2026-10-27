@@ -4,7 +4,7 @@ description: "Use when drafting or revising a ROADMAP.md for a prompt-ingestion 
 
 ## Purpose
 
-A roadmap is read cold by a fresh session and reread many times during execution — every structural and syntax choice either saves that reader time or costs it. This file is the canonical owner of what a high-quality `ROADMAP.md` contains and how it is written. [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) produces one during Stages 4/6 and defers to this file for its shape and scoping rules; [roadmap-execution.instructions.md](roadmap-execution.instructions.md) governs how a session then walks the finished artifact.
+A roadmap is read cold by a fresh session and reread many times during execution — every structural and syntax choice either saves that reader time or costs it. This file is the canonical owner of what a high-quality `ROADMAP.md` contains and how it is written. [prompt-ingestion.instructions.md](prompt-ingestion.instructions.md) produces one during prompt-ingestion.instructions.md Stages 4 and 6 and defers to this file for its shape and scoping rules; [roadmap-execution.instructions.md](roadmap-execution.instructions.md) governs how a session then walks the finished artifact.
 
 ## Roadmap State And Waypoint Ownership
 
@@ -75,7 +75,7 @@ Classify work before forming waypoints:
 - **Execution side effect** mutates state outside the active dossier, including
 	repository content, entity stores, external systems, or commits, except for
 	the narrowly permitted [planning entity preparation](prompt-ingestion.instructions.md#planning-entities-during-refinement).
-	That exception is available only during late planning after Stage 3 has
+	That exception is available only during late planning after prompt-ingestion.instructions.md Stage 3 has
 	locked the scope direction; it covers necessary planning tickets/specs, not
 	other external changes. That preparation is planning, not an executable
 	waypoint. The first waypoint (`W1`) of every execution-ready roadmap MUST
@@ -105,7 +105,7 @@ state which in the waypoint itself. This governs execution-waypoint creation;
 late-planning ticket/spec preparation is not a waypoint and follows
 [Planning Entities During Refinement](prompt-ingestion.instructions.md#planning-entities-during-refinement):
 
-- **cite the search that proved non-existence** — the Stage 2 store-coverage
+- **cite the search that proved non-existence** — the prompt-ingestion.instructions.md Stage 2 store-coverage
   table in `ARTIFACTS.md`, or the exact search command and its result; or
 - **record a reuse form instead of creating**, chosen from
   [entity-discovery.instructions.md](entity-discovery.instructions.md):
@@ -115,7 +115,7 @@ late-planning ticket/spec preparation is not a waypoint and follows
 A creation waypoint with neither is a planning defect; the dry-run rejects it.
 "No existing one was found" with no cited search is not evidence. This is the
 execution-creation boundary [entity-discovery.instructions.md](entity-discovery.instructions.md)
-binds, alongside Stage 2 and permitted planning entity preparation.
+binds, alongside prompt-ingestion.instructions.md Stage 2 and permitted planning entity preparation.
 
 A creation waypoint's validation gate must read the created entity back by id
 (for example `ticket get <id>`). A bounded `list` command is not a read-back:
