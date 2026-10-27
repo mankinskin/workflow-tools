@@ -1,0 +1,3 @@
+## W2 filesystem completion review
+
+Commit `16cbec0` closes the remaining W2 filesystem guarantees. `ensure_safe_path` now rejects a symlink at the managed `missions` root as well as descendants. Fixture-owned Unix controls cover normal reads plus symlinked mission directory, `source.json`, `parts`, and final Part. A two-writer barrier proves exactly one accepted revision and one `StaleRevision { expected: 1, actual: 2 }`, with source/history/Part coherence. The cleanup seam proves an accepted revision remains readable while the prior directory is retained with the existing recoverable warning. No W3 surfaces changed.

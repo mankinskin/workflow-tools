@@ -1,0 +1,11 @@
+id = "86816751-6212-407f-bed3-dfbc16231d1e"
+created_at = "2026-10-25T16:22:00.769494182+00:00"
+title = "[recovery][W6] Session schema migration lifecycle infrastructure at production v1"
+state = "ready"
+component = "session.canonical-recovery.schema"
+effort = "18000 tokens estimated across infrastructure, fixtures, adapters and review"
+parts = [{ id = "20d0a3a2-c13a-489e-a21f-5523486ebf55", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-25T16:22:04.971092938Z" }, { id = "974b6d05-bafa-4097-8f55-8753b95aa3f1", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-25T16:34:22.981643754Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "cef24f88-a24b-4d1c-9a9c-5c249e9991f9"
+type = "task"

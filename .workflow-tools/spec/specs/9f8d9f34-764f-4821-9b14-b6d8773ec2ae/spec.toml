@@ -1,0 +1,8 @@
+id = "9f8d9f34-764f-4821-9b14-b6d8773ec2ae"
+created_at = "2026-10-25T16:21:41.054125610+00:00"
+title = "Canonical Mission Recovery and Session Integration"
+state = "approved"
+component = "mission-session.canonical-recovery"
+scope = "internal"
+slug = "workflow-tools/mission-domain/canonical-recovery"
+type = "specification"

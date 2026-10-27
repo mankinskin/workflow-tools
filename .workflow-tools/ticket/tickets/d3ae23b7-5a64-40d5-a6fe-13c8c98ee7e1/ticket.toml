@@ -1,0 +1,9 @@
+id = "d3ae23b7-5a64-40d5-a6fe-13c8c98ee7e1"
+created_at = "2026-10-24T21:55:32.182132420+00:00"
+title = "[mission][typed-authoring] Persist typed drafts and render file-backed Parts"
+state = "done"
+component = "mission.typed-authoring.persistence"
+depends_on = ["1aefa1c4-dc8a-4044-869a-89191649f05f"]
+parts = [{ id = "1489cf5a-a514-4a17-952e-d30638069f90", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T21:55:44.544984096Z" }, { id = "231b6eb5-20d9-4dbf-9359-60a409088d8e", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T22:49:09.696680478Z" }, { id = "acfe7a0b-010c-4f63-a592-6dbb92684389", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-24T22:55:06.029142347Z" }, { id = "8590df75-eeac-46d9-8d70-fd9227bb21e2", kind = "review", path = "parts/review-2.md", frozen = false, created_at = "2026-10-24T22:57:09.383997552Z" }, { id = "4148ed2c-113d-4ed7-aa3b-fd7e59cd8c1a", kind = "validation", path = "parts/validation-2.md", frozen = false, created_at = "2026-10-24T22:57:09.465276531Z" }]
+plan_revision = 1
+type = "task"

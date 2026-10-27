@@ -1,0 +1,12 @@
+id = "f60ee370-09a7-41d9-9d4a-6b97145f0e18"
+created_at = "2026-10-25T16:21:57.939452773+00:00"
+title = "[recovery][W1] Correct persisted typed Mission lifecycle authority"
+state = "done"
+component = "mission.canonical-recovery.authority"
+effort = "16000 tokens estimated across implementation and review"
+linked = ["1aefa1c4-dc8a-4044-869a-89191649f05f", "a68d5a7c-a243-417d-9abf-089c2690cdb0", "d3ae23b7-5a64-40d5-a6fe-13c8c98ee7e1"]
+parts = [{ id = "c980cdb5-0531-4bcb-8739-45b6425af0d6", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-25T16:22:02.502235441Z" }, { id = "adfadbc6-509e-4ce0-a117-87cec85e9e62", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-25T16:34:22.583159341Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "0a8b3ea4-a3ce-4f26-90cc-1ce34474fb6c"
+type = "task"

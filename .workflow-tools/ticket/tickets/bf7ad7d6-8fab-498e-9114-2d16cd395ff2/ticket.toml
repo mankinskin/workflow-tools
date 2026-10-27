@@ -1,0 +1,11 @@
+id = "bf7ad7d6-8fab-498e-9114-2d16cd395ff2"
+created_at = "2026-10-24T21:55:32.374763322+00:00"
+title = "[mission][typed-authoring] Migrate Mission stores without Part loss"
+state = "ready"
+component = "mission.typed-authoring.migration"
+depends_on = ["0e928c01-31c8-4f6b-8992-7f8cdb228431", "a68d5a7c-a243-417d-9abf-089c2690cdb0", "ad664d30-d0b2-4c47-9120-ec4ed794bab9", "f60ee370-09a7-41d9-9d4a-6b97145f0e18"]
+effort = "12000 tokens estimated for preflight, authorized operations, recovery and independent review"
+parts = [{ id = "7b292e10-8dcc-4bbd-adb4-5de0e7cc5a0a", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T21:55:44.673024381Z" }, { id = "cbdacb97-0887-4d60-b4bc-375b130c802b", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T23:07:59.040018371Z" }, { id = "2a37318c-7053-4bc7-bbfb-e3495dc2a1a9", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-25T14:57:19.583386006Z" }, { id = "74705f69-5adf-42b7-bc21-879d333e0951", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-25T16:34:23.107861449Z" }, { id = "213c1250-6adb-4c02-ac2b-9f3590241aa2", kind = "notes", path = "parts/notes-2.md", frozen = false, created_at = "2026-10-25T16:34:23.340590396Z" }]
+plan_revision = 2
+related_specs = "53e78fcb-df6f-4d74-91fa-163dbcb0e1a8"
+type = "task"

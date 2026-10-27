@@ -1,0 +1,13 @@
+id = "0e928c01-31c8-4f6b-8992-7f8cdb228431"
+created_at = "2026-10-25T16:21:59.102378431+00:00"
+title = "[recovery][W3] Journaled forward Mission repair with durable recovery"
+state = "done"
+component = "mission.canonical-recovery.repair"
+depends_on = ["f60ee370-09a7-41d9-9d4a-6b97145f0e18"]
+effort = "20000 tokens estimated across provider, transports and review"
+linked = ["a7f9f4a0-ade7-4023-b45d-c6431a45de03"]
+parts = [{ id = "644c13e3-ec36-4006-bc13-77a2143bc322", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-25T16:22:03.418958979Z" }, { id = "fdbd422d-c0d9-41cd-b50e-35603673df19", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-25T16:34:22.716493109Z" }, { id = "ae887461-4016-4b6a-8ec1-898d99f2be1e", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-25T21:07:50.973194521Z" }, { id = "41951960-aab0-4693-af1d-b5024857c8cb", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-26T10:49:31.788287081Z" }, { id = "2579405d-750a-4ce8-bcf4-407d4714de8c", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-26T12:23:01.354301073Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "44f100c4-215e-445a-b452-1a8a969d96cc"
+type = "task"

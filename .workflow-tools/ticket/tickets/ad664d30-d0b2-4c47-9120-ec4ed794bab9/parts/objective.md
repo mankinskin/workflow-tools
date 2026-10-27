@@ -1,0 +1,1 @@
+Shared-kernel Mission set relocation and recovery. Deliver W4's measurable outcome under the corrected recovery route, with its linked specification, exact acceptance criteria and defined failure/approval boundaries. No implementation or live operation is authorized by planning preparation.

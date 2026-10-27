@@ -1,0 +1,9 @@
+id = "a68d5a7c-a243-417d-9abf-089c2690cdb0"
+created_at = "2026-10-24T21:55:32.282105858+00:00"
+title = "[mission][typed-authoring] Adapt CLI/MCP publication to API-owned authoring"
+state = "done"
+component = "mission.typed-authoring.adapters"
+depends_on = ["d3ae23b7-5a64-40d5-a6fe-13c8c98ee7e1"]
+parts = [{ id = "0e573730-760e-438c-8db9-6f7ca3e9fcbe", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T21:55:44.613434931Z" }, { id = "d0fad39d-feea-4336-aaf9-819638e2e86f", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T23:01:00.728451182Z" }]
+plan_revision = 1
+type = "task"

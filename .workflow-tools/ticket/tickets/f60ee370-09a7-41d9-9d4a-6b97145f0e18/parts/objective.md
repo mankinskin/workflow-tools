@@ -1,0 +1,1 @@
+Correct persisted typed Mission lifecycle authority. Deliver W1's measurable outcome under the corrected recovery route, with its linked specification, exact acceptance criteria and defined failure/approval boundaries. No implementation or live operation is authorized by planning preparation.

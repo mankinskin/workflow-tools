@@ -1,0 +1,8 @@
+id = "1aefa1c4-dc8a-4044-869a-89191649f05f"
+created_at = "2026-10-24T21:55:32.056588869+00:00"
+title = "[mission][typed-authoring] Refactor API ownership before typed behavior"
+state = "done"
+component = "mission.typed-authoring.ownership"
+parts = [{ id = "36ed688c-20af-499d-92ef-c14045ddbca0", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T21:55:44.469879477Z" }, { id = "61f28575-3fe0-4b79-b0a7-bf4ddec76ade", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-24T22:45:19.618436151Z" }]
+plan_revision = 1
+type = "task"

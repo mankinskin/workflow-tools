@@ -1,0 +1,11 @@
+id = "f71a08aa-938c-4590-9b09-006ce69c48fc"
+created_at = "2026-10-24T21:55:32.483027888+00:00"
+title = "[mission][typed-authoring] Publish canonical authoring guidance and end-to-end evidence"
+state = "ready"
+component = "mission.typed-authoring.guidance"
+depends_on = ["0e928c01-31c8-4f6b-8992-7f8cdb228431", "86816751-6212-407f-bed3-dfbc16231d1e", "a68d5a7c-a243-417d-9abf-089c2690cdb0", "ad664d30-d0b2-4c47-9120-ec4ed794bab9", "bf7ad7d6-8fab-498e-9114-2d16cd395ff2", "f60ee370-09a7-41d9-9d4a-6b97145f0e18"]
+effort = "6000 tokens estimated for canonical documentation and semantic review"
+parts = [{ id = "d63c685d-f426-4250-abf6-a6f0ebcd3245", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-24T21:55:44.728267156Z" }, { id = "13b351e4-2595-4b31-98e8-8f366fcfeb13", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-25T16:34:23.241464346Z" }]
+plan_revision = 2
+related_specs = "a404c898-c859-485d-99c0-0bc539312477"
+type = "task"
