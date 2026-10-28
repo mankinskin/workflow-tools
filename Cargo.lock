@@ -7581,6 +7581,7 @@ dependencies = [
  "serde_json",
  "tempfile",
  "test-api",
+ "test-cli",
  "tokio",
  "tracing",
  "tracing-subscriber",
