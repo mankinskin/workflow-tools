@@ -4767,6 +4767,7 @@ dependencies = [
  "sha2 0.10.9",
  "spec-api",
  "tempfile",
+ "test-api",
  "thiserror 2.0.20",
  "ticket-api",
  "toml 0.8.23",
