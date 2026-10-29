@@ -3,13 +3,13 @@ description: "Compact workspace structural map for low-token orientation"
 usage: Read this before opening source files for structural orientation
 refresh_command: "cargo run -p peek-cli -- . --repo-map --output repo_map.toon"
 workspace:
-  root: "//?/C:/Users/linus/git/3/meta-workspace/workflow-tools"
-top_level_dirs[17]: audit,"contract-reference",doc,feedback,install,interview,log,"memory-kernel","openrouter-auth",peek,rule,session,spec,test,ticket,tools,"viewer-api"
+  root: "/home/linus/git/meta-workspace/workflow-tools"
+top_level_dirs[19]: audit,"contract-reference",doc,feedback,install,interview,log,"memory-kernel",mission,"openrouter-auth","path-render-inventory",peek,rule,session,spec,test,ticket,tools,"viewer-api"
 crates:
   name: crates
   kind: dir
   path: crates
-  children[13]:
+  children[16]:
     - name: audit
       kind: dir
       path: crates/audit
@@ -47,8 +47,13 @@ crates:
     - name: install
       kind: dir
       path: crates/install
-      children[1]{name,kind,path,note}:
-        "install-ctl",dir,"crates/install/install-ctl","crate=install-ctl"
+      children[1]:
+        - name: "install-ctl"
+          kind: dir
+          path: "crates/install/install-ctl"
+          note: "crate=install-ctl"
+          children[1]{name,kind,path,note}:
+            "test-support",dir,"crates/install/install-ctl/test-support","crate=install-ctl-test-support"
     - name: log
       kind: dir
       path: crates/log
@@ -71,10 +76,24 @@ crates:
                   path: "crates/log/crates/log-viewer/frontend"
                   children[1]{name,kind,path,note}:
                     dioxus,dir,"crates/log/crates/log-viewer/frontend/dioxus","crate=log-viewer-dioxus"
+    - name: mission
+      kind: dir
+      path: crates/mission
+      children[1]:
+        - name: crates
+          kind: dir
+          path: crates/mission/crates
+          children[2]{name,kind,path,note}:
+            mission,dir,crates/mission/crates/mission,crate=mission
+            "mission-api",dir,"crates/mission/crates/mission-api","crate=mission-api"
     - name: "openrouter-auth"
       kind: dir
       path: "crates/openrouter-auth"
       note: "crate=openrouter-auth"
+    - name: "path-render-inventory"
+      kind: dir
+      path: "crates/path-render-inventory"
+      note: "crate=path-render-inventory"
     - name: peek
       kind: dir
       path: crates/peek
@@ -154,6 +173,15 @@ crates:
               path: "crates/ticket/ticket-viewer/frontend"
               children[1]{name,kind,path,note}:
                 dioxus,dir,"crates/ticket/ticket-viewer/frontend/dioxus","crate=ticket-viewer-dioxus"
+    - name: tools
+      kind: dir
+      path: crates/tools
+      children[1]:
+        - name: cli
+          kind: dir
+          path: crates/tools/cli
+          children[1]{name,kind,path,note}:
+            "crane-cli",dir,"crates/tools/cli/crane-cli","crate=crane-cli"
     - name: "viewer-api"
       kind: dir
       path: "crates/viewer-api"
@@ -178,7 +206,12 @@ agent_files:
     - name: .agents
       kind: dir
       path: "agent-files/.agents"
-      children[2]:
+      children[3]:
+        - name: instructions
+          kind: dir
+          path: "agent-files/.agents/instructions"
+          children[1]{name,kind,path}:
+            INDEX.md,file,"agent-files/.agents/instructions/INDEX.md"
         - name: prompts
           kind: dir
           path: "agent-files/.agents/prompts"
