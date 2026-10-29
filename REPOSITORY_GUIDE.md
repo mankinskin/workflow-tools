@@ -28,7 +28,7 @@ The model ladder and delegation rules live in `.agents/instructions/workflow/mod
 
 ## Session and Worktree Discipline
 
-Resolve the target repository from the active workspace before running session, Git, or worktree commands. Main-checkout work is the default for small, self-contained changes. Create or use a session worktree only when isolation is required by active ownership, explicit branch requirements, or planned Git operations that need an independent branch.
+Resolve the target repository from the active workspace before running session, Git, or worktree commands. Main-checkout work is the default. Create or adopt a session worktree only on an explicit request from the current requester, following the [worktree provisioning policy](session/.agents/instructions/session/worktree-provisioning.instructions.md). Ownership overlap, dirty files, task size, and risk are not permission to isolate; coordinate or stop instead.
 
 When a task touches submodules, follow the deepest-first rule: commit inside the nested repository first, then update parent gitlinks. Never stage unrelated dirty files, and never use broad `git add -A` from an implementation session.
 

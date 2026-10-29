@@ -8,8 +8,9 @@ acting; do not preload this table's targets.
 
 Resolve the target repository, explicit entity-store root, and active file
 ownership before edits. Use bounded inspection and the smallest falsifiable
-change. Main-checkout work is the default unless ownership or requested Git
-isolation requires a worktree. Preserve unrelated dirty changes; stage only
+change. Main-checkout work is the default. Worktree creation requires an explicit
+request from the current requester; overlap, risk, and dirty files do not
+authorize it. Coordinate or stop on ownership conflicts. Preserve unrelated dirty changes; stage only
 task-owned paths. Use domain APIs for entity mutations and read records back.
 Validate the changed behavior, fix introduced regressions, and report evidence
 and blockers honestly. Commit submodules before updating parent gitlinks.
