@@ -110,3 +110,7 @@ viewer-api-dioxus = { path = "viewer-api/frontend/dioxus" }
 
 [patch."https://github.com/mankinskin/memory-fixtures"]
 memory-fixtures = { path = "../context-engine/memory-api/crates/memory-fixtures" }
+
+[patch."https://github.com/mankinskin/memory-kernel"]
+memory-kernel = { path = "memory-kernel" }
+transport-harness = { path = "memory-kernel/crates/transport-harness" }
