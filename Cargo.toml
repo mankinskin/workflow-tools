@@ -22,6 +22,7 @@ members = [
   "audit/crates/audit-api",
   "audit/crates/audit-cli",
   "audit/crates/audit-mcp",
+  "audit/crates/markdown-links",
   "test/crates/test-api",
   "test/crates/test-cli",
   "test/crates/test-mcp",
@@ -83,6 +84,7 @@ worktree-ctl = { path = "session/crates/worktree-ctl" }
 
 [patch."https://github.com/mankinskin/audit"]
 audit-api = { path = "audit/crates/audit-api" }
+markdown-links = { path = "audit/crates/markdown-links" }
 
 [patch."https://github.com/mankinskin/test"]
 test-api = { path = "test/crates/test-api" }

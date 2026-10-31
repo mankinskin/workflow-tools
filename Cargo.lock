@@ -378,6 +378,7 @@ dependencies = [
  "criterion",
  "git2",
  "ignore",
+ "markdown-links",
  "memory-kernel",
  "proc-macro2",
  "pulldown-cmark",
@@ -4536,6 +4537,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a5cab8f2cadc416a82d2e783a1946388b31654d391d1c7d92cc1f03e295b1deb"
 dependencies = [
  "unicode-id",
+]
+
+[[package]]
+name = "markdown-links"
+version = "0.1.0"
+dependencies = [
+ "pulldown-cmark",
 ]
 
 [[package]]
