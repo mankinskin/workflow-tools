@@ -1,9 +1,10 @@
 id = "800237c4-dbe5-4d48-94ea-e8a1f906e582"
 created_at = "2026-10-31T17:20:09.707319296+00:00"
 title = "[install-ctl] Use markdown-links for guidance closure and plan"
-state = "ready"
+state = "done"
 acceptance_criteria = "install-ctl closure/plan use markdown-links extract/classify_destination/resolve_local; own extract_links/resolve_relative/shape checks deleted; D8 mapping with decoded paths; guidance tests pass; files <=500 lines."
 component = "install-ctl"
+parts = [{ id = "e52bf43b-ba30-4d16-b1b2-29ff746df6b9", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-31T21:25:32.925745213Z" }]
 plan_revision = 1
 priority = "high"
 type = "task"
