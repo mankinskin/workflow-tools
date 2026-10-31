@@ -1,0 +1,1 @@
+The installed MCP creates Mission m from Session input with no precreated folder. Actor-only approval is rejected. An actual requester message grants digest A; changing A blocks execution until reapproval. Restart retains m and successful Ticket reopening is read back.

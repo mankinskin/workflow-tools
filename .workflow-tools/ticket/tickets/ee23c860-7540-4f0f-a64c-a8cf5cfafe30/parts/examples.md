@@ -1,0 +1,1 @@
+A cancelled linked Ticket projects cancelled, not blocked. An on-hold Ticket projects paused. Querying an unsupported reopen capability returns an explicit unsupported-capability result without changing either store.

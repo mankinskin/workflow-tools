@@ -1,10 +1,10 @@
 id = "b691f49a-f272-477e-aab5-ba0d52efcd4d"
 created_at = "2026-10-27T22:53:40.025210303+00:00"
 title = "Whole-state Mission generation history and separate approval events"
-state = "ready"
+state = "done"
 acceptance_criteria = "Use coherent revisions and reconstructable history; preserve canonical files and inputs/waypoints layout; validate JSON BOM contract before separate approve/changes-requested metadata event."
 component = "mission"
-parts = [{ id = "23954de5-059c-4a7b-b028-4d335649f851", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:43.367929302Z" }]
+parts = [{ id = "23954de5-059c-4a7b-b028-4d335649f851", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:43.367929302Z" }, { id = "913cb298-d256-4b30-bb8d-ae6eabc0e2e6", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T06:51:26.964735763Z" }, { id = "8f0e14a2-048b-4b5e-93ef-8a670706b6f9", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T06:52:41.107064320Z" }]
 plan_revision = 1
 priority = "medium"
 related_specs = "ec5f9329-041e-487e-b30b-2f27d5e06522"

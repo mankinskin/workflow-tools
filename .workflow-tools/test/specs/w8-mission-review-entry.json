@@ -2,7 +2,7 @@
   "id": "w8-mission-review-entry",
   "title": "Mission generated review entry and publication consistency",
   "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test review_entry_contract",
-  "detail": "Future contract gate: complete artifact reachability, consumer-resolved links, unknown facts, promise/delivery/verification orientation, empty external status, and negative output drift. Not run during W8.",
+  "detail": "Generated review entry is at generated/README.md and is included in the published and verified output inventory. Resolve workspace-contained file paths from workspace root and emit links relative to the README. Preserve canonical URNs for Specs and validation evidence. Render outside-workspace artifact paths as unavailable without absolute links. Verify complete artifact reachability, concise promise/delivery/verification orientation, explicit unknowns, empty external status, byte-exact inventories, and distinct changed/missing/extra/dangling/destination-invalid failures. Do not infer acceptance of historical review rows.",
   "links": {
     "spec_ids": [
       "87d20edd-240d-4533-b7ba-711b06bf8296"

@@ -1,0 +1,14 @@
+{
+  "id": "mission-w3-fixture-python",
+  "title": "Real Python 3 transport fixture launchers",
+  "command": "timeout 120s cargo test -p install-ctl --bin install-ctl guidance::remote::transport::tests:: -- --test-threads=1",
+  "detail": "cwd=/home/linus/git/meta-workspace/workflow-tools; serial disk TMPDIR; actual HTTP/auth/SSH",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

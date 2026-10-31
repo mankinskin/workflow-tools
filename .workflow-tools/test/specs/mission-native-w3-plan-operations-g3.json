@@ -1,0 +1,21 @@
+{
+  "id": "mission-native-w3-plan-operations-g3",
+  "title": "Mission-native W3 granular plan operations G3",
+  "command": "/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --locked -p mission-api -p mission --all-features -j 1",
+  "detail": "MN-W3-01..05: stable CAS/replay; granular waypoint/goal/requirements/evidence changes; complete native-v2/typed-v3 and truthful legacy reads; coherent deterministic plan projection; separate semantic plan and append-only evidence identity.",
+  "links": {
+    "spec_ids": [
+      "c3385d21-983e-4fb5-92f7-2a6ad757677a"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W3-01",
+      "MN-W3-02",
+      "MN-W3-03",
+      "MN-W3-04",
+      "MN-W3-05"
+    ],
+    "ticket_ids": [
+      "bb4d6c4c-913d-4f01-b774-a75bd14ccb7d"
+    ]
+  }
+}

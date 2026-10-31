@@ -1,0 +1,1 @@
+A fresh execute-ingest captures input through Session intake, discovers its Mission directory and prepares the plan through named MCP calls. It stops before execution for the exact approval; missing capabilities stop visibly rather than creating a classic folder.

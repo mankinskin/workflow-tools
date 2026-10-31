@@ -1,0 +1,3 @@
+Example:
+
+For a new waypoint, expected_outcome describes the one planned success. alternative_outcomes lists plausible non-primary results, each paired with one or more acceptable_handling options for a person. The renderer presents these as descriptive guidance only. A legacy waypoint without an outcome plan remains readable and retains its prior rendering; upgrading it requires user-authored plan content.

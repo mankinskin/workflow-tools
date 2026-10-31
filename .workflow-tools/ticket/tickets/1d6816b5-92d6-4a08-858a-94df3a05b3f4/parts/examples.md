@@ -1,0 +1,1 @@
+Plan digest A passes two reviews; the requester message approving A grants A only. Editing a requirement creates B and blocks execution until B is reviewed and approved. An automated fixture saying actor=requester cannot approve B.

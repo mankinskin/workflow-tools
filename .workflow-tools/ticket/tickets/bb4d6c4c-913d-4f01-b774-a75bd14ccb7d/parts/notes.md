@@ -1,0 +1,1 @@
+Planning only; no implementation authorized. Canonical contract: ce://default/spec/c3385d21-983e-4fb5-92f7-2a6ad757677a. Explicit store: /home/linus/git/meta-workspace/workflow-tools. Source dossier: /home/linus/git/meta-workspace/transcripts/29-10-2026_mission-native-mcp-planning. Existing providers linked unchanged; no external readiness dependency on historical roadmaps.

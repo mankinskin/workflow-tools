@@ -1,0 +1,14 @@
+id = "aef38836-6230-4798-96bc-ac84c5e3e105"
+created_at = "2026-10-29T21:58:42.841809941+00:00"
+title = "[mission-native][W6] Discoverable Mission-native MCP Tool Contracts"
+state = "ready"
+component = "mission.native-planning.named-mcp"
+depends_on = ["9fcad997-7233-4305-9e69-534d4813ee2e"]
+effort = "10000"
+linked = ["c616418e-8c27-4954-975e-490fc22c408f"]
+parts = [{ id = "338e1b1c-256d-4303-90b2-b1964b7c8fac", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-29T21:58:43.086826828Z" }, { id = "213fa5ad-df2a-45a1-998d-cc5439ddb0b5", kind = "design", path = "parts/design.md", frozen = true, created_at = "2026-10-29T21:58:43.153936564Z" }, { id = "58547ded-b122-4146-af1f-906b4dd91a5f", kind = "examples", path = "parts/examples.md", frozen = true, created_at = "2026-10-29T21:58:43.224023629Z" }, { id = "16590a5d-9333-4544-b7f1-d6a344faf0be", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-29T21:58:43.293977206Z" }, { id = "89522523-2fad-430e-b24b-3bd88152e0f5", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T21:58:43.365356461Z" }, { id = "790e58c7-2f22-48ca-8619-1633f78910ec", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-29T21:58:43.435638671Z" }, { id = "99b0a5b7-e87a-4998-bda0-d14c9a2f83ca", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-29T22:00:44.295980377Z" }, { id = "72bea756-0c87-46fe-a9de-d67cff8c61d5", kind = "amendment", path = "parts/amendment.md", frozen = false, created_at = "2026-10-29T23:25:18.840804524Z", supersedes = "338e1b1c-256d-4303-90b2-b1964b7c8fac" }, { id = "6e012b31-4cb9-4359-81be-4d1298ebb7cf", kind = "amendment", path = "parts/amendment-2.md", frozen = false, created_at = "2026-10-29T23:25:18.911536473Z", supersedes = "213fa5ad-df2a-45a1-998d-cc5439ddb0b5" }, { id = "5cfcf00c-582b-4590-8b83-9908359a6f12", kind = "amendment", path = "parts/amendment-3.md", frozen = false, created_at = "2026-10-29T23:25:18.982257572Z", supersedes = "16590a5d-9333-4544-b7f1-d6a344faf0be" }]
+plan_revision = 1
+priority = "high"
+refs = [{ kind = "spec", urn = "ce://default/spec/551422d7-8a0f-4711-8642-a4c367649361", note = "Owning native planning contract" }]
+related_specs = "551422d7-8a0f-4711-8642-a4c367649361"
+type = "feature"

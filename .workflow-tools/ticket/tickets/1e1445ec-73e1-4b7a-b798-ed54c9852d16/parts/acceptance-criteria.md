@@ -1,1 +1,8 @@
-Complete artifact reachability and destination-resolved links; concise promise/delivery/verification orientation with explicit unknowns; exact publish/verification equality including empty external status; distinct changed/missing/extra failures; no historical review acceptance by implication.
+- Generate the review entry at `generated/README.md` and include it in the published and verified output inventory.
+- Resolve file artifacts inside the workspace against the workspace root; emit their Markdown links relative to `generated/README.md`.
+- Retain canonical URNs for Specs and validation evidence.
+- Render artifact references outside the workspace as unavailable; do not emit absolute links for them.
+- Make every declared generated artifact reachable; keep promise/delivery/verification orientation concise and unknown facts explicit.
+- Require the published and verified inventories to match exactly, including an empty external-status field.
+- Report changed, missing, extra, dangling, and destination-invalid files distinctly.
+- Do not infer acceptance of historical review rows.

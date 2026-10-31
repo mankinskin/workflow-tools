@@ -1,0 +1,14 @@
+id = "bb4d6c4c-913d-4f01-b774-a75bd14ccb7d"
+created_at = "2026-10-29T21:58:39.149375489+00:00"
+title = "[mission-native][W3] Granular Mission Plan Mutation and Coherent Projection"
+state = "done"
+component = "mission.native-planning.plan-operations"
+depends_on = ["55c99751-2801-42ef-bc29-7e3d01d6f4ca"]
+effort = "10000"
+linked = ["921335e1-ac41-4217-b86c-e582eb0762b9"]
+parts = [{ id = "6e67fbe0-9771-4693-8740-38a3baade4a1", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-29T21:58:39.294971947Z" }, { id = "82dabdc2-d314-4bf4-be4e-44e0162e6027", kind = "design", path = "parts/design.md", frozen = true, created_at = "2026-10-29T21:58:39.363165066Z" }, { id = "e02ae33f-12a7-4fce-9562-5a1ecb1007c6", kind = "examples", path = "parts/examples.md", frozen = true, created_at = "2026-10-29T21:58:39.434547727Z" }, { id = "7e781a12-5bdf-40f4-b9ab-bd86b2f351b6", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-29T21:58:39.507781083Z" }, { id = "8ca66fe6-c5a6-400e-8f15-eadc73090c26", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T21:58:39.581884144Z" }, { id = "73627ed0-4521-4e83-8a2f-74f28f0fcf2f", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-29T21:58:39.658650890Z" }, { id = "18bae0cf-2756-4206-b7aa-8fddbdf1af18", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-29T22:00:43.376178904Z" }, { id = "972faf32-f730-4d39-9948-2d7aa49b0328", kind = "validation", path = "parts/validation-2.md", frozen = false, created_at = "2026-10-30T04:10:52.115511894Z" }, { id = "6113bee5-8fca-4c11-ab37-375558504528", kind = "validation", path = "parts/validation-3.md", frozen = false, created_at = "2026-10-30T04:20:24.492431160Z" }, { id = "c583dd5b-cdb8-487d-9a6e-cafece4d9295", kind = "validation", path = "parts/validation-4.md", frozen = false, created_at = "2026-10-30T04:26:59.809587769Z" }, { id = "34bdcd3d-0396-489c-b19d-06538e24f6bd", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-30T04:30:20.424813524Z" }]
+plan_revision = 1
+priority = "high"
+refs = [{ kind = "spec", urn = "ce://default/spec/c3385d21-983e-4fb5-92f7-2a6ad757677a", note = "Owning native planning contract" }]
+related_specs = "c3385d21-983e-4fb5-92f7-2a6ad757677a"
+type = "feature"

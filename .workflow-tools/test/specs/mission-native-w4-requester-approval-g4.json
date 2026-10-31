@@ -1,0 +1,20 @@
+{
+  "id": "mission-native-w4-requester-approval-g4",
+  "title": "Mission-native W4 requester decision and execution approval G4",
+  "command": "/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --locked -p mission-api -p mission -p session-api -p session --all-features -j 1",
+  "links": {
+    "spec_ids": [
+      "9fe60c69-af53-4578-9310-69283cd09284"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W4-01",
+      "MN-W4-02",
+      "MN-W4-03",
+      "MN-W4-04",
+      "MN-W4-05"
+    ],
+    "ticket_ids": [
+      "1d6816b5-92d6-4a08-858a-94df3a05b3f4"
+    ]
+  }
+}

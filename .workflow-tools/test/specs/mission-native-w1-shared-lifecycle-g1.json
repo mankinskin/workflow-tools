@@ -1,0 +1,20 @@
+{
+  "id": "mission-native-w1-shared-lifecycle-g1",
+  "title": "Mission-native W1 shared lifecycle G1",
+  "command": "/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --locked -p mission-api -p mission -p ticket-api --all-features -j 1",
+  "detail": "G1 shared-lifecycle guard for W1: mappings, version-1 control journal, projections, Ticket authority, unsupported capabilities. Run from meta-workspace root.",
+  "links": {
+    "spec_ids": [
+      "908e1755-d486-4e49-8b63-3f9eee81396e"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W1-01",
+      "MN-W1-02",
+      "MN-W1-03",
+      "MN-W1-04"
+    ],
+    "ticket_ids": [
+      "ee23c860-7540-4f0f-a64c-a8cf5cfafe30"
+    ]
+  }
+}

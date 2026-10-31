@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "session_id": "d2f34546-b3bd-4fb5-b0bf-70f43c291f8b",
+  "source": "session-runtime-init",
+  "started_at": "2026-10-28T17:45:48.432859042Z",
+  "captured_at": "2026-10-28T17:46:40.304229916Z",
+  "metadata": {
+    "workspace_path": "/home/linus/git/meta-workspace/workflow-tools",
+    "trigger": "session-runtime-init"
+  },
+  "links": {},
+  "active_run_id": "288ad530-6f5f-45cf-a41c-285dc561bbdd",
+  "runs": [
+    {
+      "run_id": "288ad530-6f5f-45cf-a41c-285dc561bbdd",
+      "captured_session_id": "d2f34546-b3bd-4fb5-b0bf-70f43c291f8b",
+      "started_at": "2026-10-28T17:45:48.432859042Z"
+    }
+  ],
+  "pinned_entities": [
+    {
+      "urn": "entity://%2Fhome%2Flinus%2Fgit%2Fmeta-workspace%2Fworkflow-tools/dossier/28-10-2026_agent-sandbox-planning-consolidation",
+      "kind": "dossier",
+      "relation": "intent-ingestion-dossier",
+      "reason": "Standalone transcript dossier for prompt-ingestion.instructions.md Stage 1 only",
+      "pinned_at": "2026-10-28T17:46:40.304229916Z",
+      "last_used_at": "2026-10-28T17:46:40.304229916Z"
+    }
+  ]
+}

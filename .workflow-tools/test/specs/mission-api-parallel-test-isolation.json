@@ -1,0 +1,14 @@
+{
+  "id": "mission-api-parallel-test-isolation",
+  "title": "Mission API test failure injector isolation",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api",
+  "detail": "Ensure test-only injected backup-cleanup failures are isolated per test thread so the API suite can safely run with normal parallelism.",
+  "links": {
+    "spec_ids": [
+      "44f100c4-215e-445a-b452-1a8a969d96cc"
+    ],
+    "ticket_ids": [
+      "0e928c01-31c8-4f6b-8992-7f8cdb228431"
+    ]
+  }
+}

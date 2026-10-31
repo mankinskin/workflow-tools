@@ -1,0 +1,13 @@
+id = "921335e1-ac41-4217-b86c-e582eb0762b9"
+created_at = "2026-10-28T03:37:20.168680684+00:00"
+title = "Add planned waypoint outcomes to Mission schema and renderer"
+state = "done"
+acceptance_criteria = "Versioned outcome plans validate, migrate, and render without changing actual result semantics or progress."
+component = "mission"
+depends_on = ["7ecdd680-e1aa-4d78-b0bb-656a58757b10"]
+parts = [{ id = "46f34c7a-9da3-4155-9768-1d07ab183491", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-28T03:37:56.195811509Z" }, { id = "f6cf2363-cda9-487b-8a9d-084ddc43566d", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-28T03:38:08.560275151Z" }, { id = "8466220f-27fb-4872-9a00-371a670734f1", kind = "design", path = "parts/design.md", frozen = true, created_at = "2026-10-28T03:38:08.658544172Z" }, { id = "e0fdf0ac-d884-43d9-b7d0-061e78f5727c", kind = "examples", path = "parts/examples.md", frozen = true, created_at = "2026-10-28T03:38:08.751005572Z" }, { id = "f044395b-4a97-4efc-9435-7650afffb337", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-28T03:38:08.873916973Z" }, { id = "f867088d-bf3a-4cba-ac8d-dd6ba0fbb014", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-28T03:38:08.965011574Z" }, { id = "acd6a4c2-2cc9-415e-b9c3-1fcc064cfa0d", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-28T03:38:09.058545655Z" }, { id = "93bcb2c9-c8bb-4e7c-bf90-a0a44fadfe66", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T07:13:11.046803328Z" }]
+plan_revision = 1
+priority = "high"
+related_specs = "d0a96ede-6f79-4e50-8049-8ecbd5b96c7e,b2c52f3b-5061-441e-9c7b-dc8dc8d8eec8"
+type = "tracker-improvement"
+validation_plan = "Register and run mission-waypoint-outcome-plan-contract before implementation review."

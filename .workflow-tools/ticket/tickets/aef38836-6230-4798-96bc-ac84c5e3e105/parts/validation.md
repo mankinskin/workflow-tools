@@ -1,0 +1,1 @@
+Planned G6 named-mcp: `cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --all-features -j 1` from meta-workspace root. Cover all amended criterion and failure cases; register the owning test-api guard before execution. No product test has run during planning. Checkpoint: `feat(mission): expose named MCP lifecycle tools`.

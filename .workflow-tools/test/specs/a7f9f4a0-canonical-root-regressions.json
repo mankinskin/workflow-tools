@@ -1,0 +1,11 @@
+{
+  "id": "a7f9f4a0-canonical-root-regressions",
+  "title": "test-cli canonical spec resolution regressions",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p test-cli run_verifies_specs_linked_from_the_validation_spec && cargo test --manifest-path workflow-tools/Cargo.toml --locked -p test-cli run_failure_maps_to_failed_outcome && cargo test --manifest-path workflow-tools/Cargo.toml --locked -p test-cli record_verifies_linked_spec_in_canonical_store_not_legacy_index && cargo test --manifest-path workflow-tools/Cargo.toml --locked -p test-cli resolve_spec_root",
+  "detail": "Focused canonical-store and linked-validation-spec regressions.",
+  "links": {
+    "ticket_ids": [
+      "a7f9f4a0-ade7-4023-b45d-c6431a45de03"
+    ]
+  }
+}

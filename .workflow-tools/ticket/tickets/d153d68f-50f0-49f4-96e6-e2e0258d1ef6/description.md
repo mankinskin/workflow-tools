@@ -1,0 +1,1 @@
+New intake defaults to Session-to-Mission MCP planning before exact requester approval while existing classic sources remain readable and opt-in migration stays explicit.

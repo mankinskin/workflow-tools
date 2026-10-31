@@ -1,0 +1,9 @@
+W8 execution amendment (2026-10-29; requester-approved bounded renderer correction)
+
+The requester explicitly approved: “Renderer-Korrektur einplanen und W8 anschließend fortsetzen”. This amendment clarifies implementation of the existing frozen W8 criteria; it does not edit or weaken them.
+
+Preserve strict workspace ownership and all existing canonical local resolution, wrong-root rejection, and symlink checks. Do not add root fallback. Replace only absolute-root serialization in linked waypoint output with the truthful stable label: “Owning workspace: selected workspace root (local records in .workflow-tools/).” The label is context, not an identity claim or a selector.
+
+Version newly generated relationship-bearing output as mission-api/7. Preserve byte output and version mission-api/5 for unlinked native v1 and mission-api/6 for unlinked native v2. Historical published output and contracts remain immutable and verifiable; regression tests cover old history plus the v7 gate and strict lookups. No broad renderer redesign.
+
+Continue exact byte-for-byte comparison across distinct fresh roots for complete trees, contracts, archives and event bindings; do not strip/normalize fields or hand-edit generated output. Retain the narrowly scoped test-only fixed event UUID/timestamp provider; production callers retain random/clock metadata. Then implement the full Part 08 4/9/17 generated corpus and same-corpus tests, perform G8 and coupled tests, manual walkthrough, source/live-store immutability verification, persist and read back linked validation evidence, and move only to in-review. No staging, commit, closure, live Mission mutation, source-roadmap execution, or W1-W7 reopening.

@@ -1,0 +1,14 @@
+{
+  "id": "mission-w3-package-gate",
+  "title": "Mission package gate after W3 repair",
+  "command": "cargo test -p mission --features cli,mcp",
+  "detail": "Full mission package; closes the publish_failure_preserves_previous_file_set disposition (obsolete staging name .publish.tmp -> .typed.tmp)",
+  "links": {
+    "spec_ids": [
+      "44f100c4-215e-445a-b452-1a8a969d96cc"
+    ],
+    "ticket_ids": [
+      "0e928c01-31c8-4f6b-8992-7f8cdb228431"
+    ]
+  }
+}

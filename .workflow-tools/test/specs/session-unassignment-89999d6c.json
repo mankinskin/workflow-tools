@@ -1,0 +1,11 @@
+{
+  "id": "session-unassignment-89999d6c",
+  "title": "Explicit unassignment recovers deleted checkout routing",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p session-api -p session-workspace-resolver -p mcp-toolmon --lib",
+  "detail": "Ownership and expected path/branch validation, shared check-in/unassign locks, audited rollback, deleted and live checkouts, inactive registration, corrupt metadata/registry, CLI and MCP surfaces, main-only proxy recovery without broadening other calls.",
+  "links": {
+    "acceptance_criterion_ids": [
+      "explicit-unassignment-main-recovery"
+    ]
+  }
+}

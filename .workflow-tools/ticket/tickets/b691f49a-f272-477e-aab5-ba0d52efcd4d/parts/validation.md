@@ -1,0 +1,15 @@
+# W6 implementation validation
+
+Implemented only approved W6 against Spec ec5f9329-041e-487e-b30b-2f27d5e06522 and frozen acceptance Part 23954de5-059c-4a7b-b028-4d335649f851.
+
+Coverage: create-new shared revision-N whole-state archives; canonical current files; generated history with explicit gaps; independent inputs/ and root REQUEST.md; generated/waypoints/ Parts and map; complete strict JSON BOM with SHA-256, byte sizes and file/producer metadata; separate strict approve/changes-requested events with API-assigned identity/time, actor/source metadata and non-authenticating contract digest binding. Invalid, stale, mismatched and replayed records preserve prior state. Publication, verification, repair fingerprint projections, native/typed migration and real CLI/MCP transports are wired. Typed migration rollback appends compensation rather than deleting history. No Mission, historic specimen, Ticket/Spec authority boundary or W7 implementation change.
+
+Implementation: mission/crates/mission-api/src/output_history.rs with lib.rs, typed_source.rs, repair.rs, typed_migration.rs, review_entry.rs and artifact_contract.rs; mission/crates/mission/src/lib.rs, migration.rs and bin/mission{,-mcp}.rs; documentation mission/README.md. Renderer mission-api/5.
+
+Gate G6: cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test revision_history_approval_event_contract: 11 passed. ValidationSpec w8-mission-revision-history-event; execution ece952ab-w6-history-green; run ece952ab-w6; log ece952ab-w6-history-green-log. Recorded and read back at explicit workflow-tools store, confirming passed outcome and Ticket/Spec/criterion/source links. Initial actual red reproducer (0 passed/1 failed: missing generated/waypoints/01-first.md) recorded/read back as ece952ab-w6-history-red.
+
+Coupled regression: cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission --all-features: 157 passed, 22 reported targets including zero-test/doc targets; no failures. Includes actual CLI/MCP input-publication and reaction round trips, migration, repair and W1-W5 regressions. Clippy --locked -p mission-api -p mission --all-features --all-targets: 0 errors, 8 existing local warnings plus pre-existing transitive warnings; no new warnings. New Rust units formatted, legacy unrelated formatting preserved. git diff --check passed.
+
+Limitations: contract bindings do not authenticate actor identity or authorize execution; contracts intentionally do not invent historical timestamps. Archived Markdown keeps original consumer-relative links (reconstruct canonical byte state rather than rebasing archives). Missing old states/approvals are never reconstructed or reused. Feedback summary MCP was attempted but unavailable because this subagent runtime did not expose a recognized caller_model identity; no product validation is blocked by that ancillary limitation.
+
+No staging, commit, closure, worktree/branch, dossier/guidance/Test-submodule edits or W7 execution. Parent review and commit remain pending.

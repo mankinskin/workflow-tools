@@ -1,0 +1,11 @@
+id = "d6aedcd2-5a05-41ab-89b1-272d476f5a29"
+created_at = "2026-10-29T07:50:55.534251934+00:00"
+title = "Generate representative production-scale Mission review and test fixtures"
+state = "done"
+acceptance_criteria = "Generate full 4/9/17 waypoint source-grounded synthetic examples using final native-v2/typed-v3 Mission APIs; persist actual reviewable output; deterministic fresh-root byte equality including history and synthetic reactions; same-corpus tests, negative preservation and source immutability; preserve W1-W7."
+component = "mission"
+parts = [{ id = "c5eef770-bc1e-4fe9-806e-fd0b0f0bff7d", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-29T07:51:01.156955742Z" }, { id = "0091269b-cbbc-438b-a824-bde9a9d88493", kind = "amendment", path = "parts/amendment.md", frozen = false, created_at = "2026-10-29T12:05:08.356309684Z", supersedes = "c5eef770-bc1e-4fe9-806e-fd0b0f0bff7d" }, { id = "94d451c0-7bde-4d9d-b1f6-c10c6b7e9c89", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T12:52:21.409468889Z" }]
+plan_revision = 1
+priority = "high"
+type = "tracker-improvement"
+validation_plan = "G8: cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test representative_mission_fixtures; coupled mission-api and mission all features single job; documented manual review walkthrough."

@@ -1,0 +1,7 @@
+{
+  "id": "explicit-session-assignment-routing-89999d6c",
+  "title": "Explicit registry-only session assignment routing",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p session-api -p session-workspace-resolver -p mcp-toolmon --lib",
+  "detail": "Regression: unregistered session-named checkout must not assign a session. Only explicit main-store registration selects an isolated checkout. Check registry changes, inactive/malformed/missing assignments, canonical/legacy stores, unchanged manifests, and canonical Ticket/Spec/Test proxy calls. Capture-hook suite separately verifies registered routing and no fallback for broken registration. Full-package reload and handoff fixture failures remain separately reported; this gate covers shared library tests only.",
+  "links": {}
+}

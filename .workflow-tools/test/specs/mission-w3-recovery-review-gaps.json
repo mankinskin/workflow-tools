@@ -1,0 +1,17 @@
+{
+  "id": "mission-w3-recovery-review-gaps",
+  "title": "Mission W3 recovery review gaps",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api && cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --all-features -- --test-threads=1",
+  "detail": "Serial/full gate for journal-lock recovery, strict RepairRequest CLI envelope and root mismatch, and native twelve-waypoint identity with prior results preserved.",
+  "links": {
+    "spec_ids": [
+      "44f100c4-215e-445a-b452-1a8a969d96cc"
+    ],
+    "acceptance_criterion_ids": [
+      "REPAIR-7"
+    ],
+    "ticket_ids": [
+      "0e928c01-31c8-4f6b-8992-7f8cdb228431"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+Request r-42 submits bytes once, returns Mission m and its UUID directory. Restart and replay r-42 return m; different bytes conflict. A crash after Mission creation resumes the linkage and never creates m2.

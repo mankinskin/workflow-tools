@@ -1,0 +1,16 @@
+{
+  "id": "mission-w2-registry-selection",
+  "title": "Mission installer registry and selections",
+  "command": "cargo test -p install-ctl --test mission_artifacts && install/bin/install-ctl catalog --check",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "acceptance_criterion_ids": [
+      "mission-install-registry"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

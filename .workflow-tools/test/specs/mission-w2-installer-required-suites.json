@@ -1,0 +1,13 @@
+{
+  "id": "mission-w2-installer-required-suites",
+  "title": "Required Mission installer distribution suites",
+  "command": "cargo test -p install-ctl --test install_parity --test prebuilt_install",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

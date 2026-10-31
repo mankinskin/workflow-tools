@@ -1,10 +1,10 @@
 id = "7ecdd680-e1aa-4d78-b0bb-656a58757b10"
 created_at = "2026-10-27T22:53:18.725973278+00:00"
 title = "Bounded Mission/Ticket schema, requirements, and entity rendering"
-state = "ready"
+state = "done"
 acceptance_criteria = "Document and validate bounded Mission/Ticket schema overlap; canonical Requirement links; deterministic composable renderers; no all-workflow backend."
 component = "mission"
-parts = [{ id = "8e1052a9-a794-4396-9272-206108cb1523", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:22.168477663Z" }]
+parts = [{ id = "8e1052a9-a794-4396-9272-206108cb1523", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:22.168477663Z" }, { id = "4807f3bf-0d14-4e52-a1e4-a4255e53ec72", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T06:00:19.407591991Z" }, { id = "b4778538-dd30-4c1c-9881-5ded0e525288", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T06:01:28.494079612Z" }]
 plan_revision = 1
 priority = "high"
 related_specs = "b2c52f3b-5061-441e-9c7b-dc8dc8d8eec8"

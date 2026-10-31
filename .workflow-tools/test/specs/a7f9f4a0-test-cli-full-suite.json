@@ -1,0 +1,11 @@
+{
+  "id": "a7f9f4a0-test-cli-full-suite",
+  "title": "test-cli full package suite",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p test-cli",
+  "detail": "Full test-cli package suite for canonical spec resolution bug validation.",
+  "links": {
+    "ticket_ids": [
+      "a7f9f4a0-ade7-4023-b45d-c6431a45de03"
+    ]
+  }
+}

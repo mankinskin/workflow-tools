@@ -1,0 +1,1 @@
+Consumers can create, edit, remove and reorder waypoints and update goal, requirements and evidence through domain operations that generate one coherent current plan.

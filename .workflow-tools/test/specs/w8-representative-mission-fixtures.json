@@ -1,0 +1,11 @@
+{
+  "id": "w8-representative-mission-fixtures",
+  "title": "W8 representative Mission fixture corpus",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test representative_mission_fixtures",
+  "detail": "G8 required integration target; validates same-corpus source-derived 4/9/17 fixtures, exact fresh-root trees, schema/readback/history checks, and negative preserve-on-rejection cases. Links only the owning W8 Ticket.",
+  "links": {
+    "ticket_ids": [
+      "d6aedcd2-5a05-41ab-89b1-272d476f5a29"
+    ]
+  }
+}

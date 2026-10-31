@@ -1,0 +1,14 @@
+{
+  "id": "mission-recovery-repair",
+  "title": "Mission journaled repair recovery",
+  "command": "rtk cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission-api repair_apply_stops_after_partial_failure_and_resume_finishes_remaining_records && rtk cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission-api repair_rollback_records_an_unchanged_failed_record_as_durable_compensation && rtk cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission-api published_waypoints_may_have_empty_parts_when_other_required_content_is_present && rtk cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp --test recovery_move_contract repair_ && rtk cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml -p mission --features cli,mcp --test direct_transports typed_drafts_have_cli_mcp_parity_for_identity_gates_and_serial_sources",
+  "detail": "Validates deterministic partial-batch repair recovery and resume drift refusal, durable no-op rollback and interrupted compensation recovery, optional empty Part publication, and CLI/MCP draft lifecycle and repair contract parity.",
+  "links": {
+    "spec_ids": [
+      "44f100c4-215e-445a-b452-1a8a969d96cc"
+    ],
+    "ticket_ids": [
+      "0e928c01-31c8-4f6b-8992-7f8cdb228431"
+    ]
+  }
+}

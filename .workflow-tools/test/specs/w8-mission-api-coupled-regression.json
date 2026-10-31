@@ -1,0 +1,11 @@
+{
+  "id": "w8-mission-api-coupled-regression",
+  "title": "W8 coupled Mission API regression",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission --all-features -j1",
+  "detail": "Required coupled all-feature regression gate for the W8 renderer and generated fixture changes; links only the owning W8 Ticket.",
+  "links": {
+    "ticket_ids": [
+      "d6aedcd2-5a05-41ab-89b1-272d476f5a29"
+    ]
+  }
+}

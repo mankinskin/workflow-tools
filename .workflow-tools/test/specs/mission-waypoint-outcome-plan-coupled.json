@@ -1,0 +1,14 @@
+{
+  "id": "mission-waypoint-outcome-plan-coupled",
+  "title": "Mission outcome plan coupled regressions",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission --all-features",
+  "detail": "Frozen Ticket acceptance-criteria Part f044395b-4a97-4efc-9435-7650afffb337. No standalone criterion IDs exist in the supplied authorities.",
+  "links": {
+    "spec_ids": [
+      "d0a96ede-6f79-4e50-8049-8ecbd5b96c7e"
+    ],
+    "ticket_ids": [
+      "921335e1-ac41-4217-b86c-e582eb0762b9"
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 id = "edfcc41e-4191-47c3-af22-518b68c49213"
 created_at = "2026-10-27T22:53:25.495002006+00:00"
 title = "Optional waypoint Ticket, Specification, and test relationships"
-state = "ready"
+state = "done"
 acceptance_criteria = "Unpromoted and promoted waypoints validate; promoted references resolve canonically; criteria and test runs remain owned by their stores; invalid links fail without writes."
 component = "mission"
-parts = [{ id = "66b1ea69-bf42-41c4-bb49-0a3e8ae0d96b", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:28.767882879Z" }]
+parts = [{ id = "66b1ea69-bf42-41c4-bb49-0a3e8ae0d96b", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:28.767882879Z" }, { id = "4ef93000-7a77-4e91-8cb6-b6e89ce9536e", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T06:12:09.720713878Z" }, { id = "73aea3d1-d5cd-412e-b94b-d5db195c750f", kind = "validation", path = "parts/validation-2.md", frozen = false, created_at = "2026-10-29T06:15:14.653221019Z" }, { id = "23e99dfa-d91b-4cc2-b649-d479c0c547fc", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T06:15:53.523241325Z" }]
 plan_revision = 1
 priority = "high"
 related_specs = "88a07686-34da-4ec9-a569-21eb286e7609"

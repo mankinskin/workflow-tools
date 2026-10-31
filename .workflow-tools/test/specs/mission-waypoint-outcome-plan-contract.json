@@ -1,0 +1,14 @@
+{
+  "id": "mission-waypoint-outcome-plan-contract",
+  "title": "Mission planned waypoint outcome contract",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --test waypoint_outcome_plan_contract",
+  "detail": "Authority: frozen acceptance-criteria Part f044395b-4a97-4efc-9435-7650afffb337 and approved Spec Acceptance Criteria. Neither authority declares standalone criterion IDs: acceptance_criterion_ids is intentionally empty; the Part UUID is not a criterion ID.",
+  "links": {
+    "spec_ids": [
+      "d0a96ede-6f79-4e50-8049-8ecbd5b96c7e"
+    ],
+    "ticket_ids": [
+      "921335e1-ac41-4217-b86c-e582eb0762b9"
+    ]
+  }
+}

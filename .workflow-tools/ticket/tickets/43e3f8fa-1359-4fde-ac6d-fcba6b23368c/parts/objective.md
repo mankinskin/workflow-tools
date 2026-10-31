@@ -1,0 +1,1 @@
+A disposable installed-server pilot proves the full user-facing native lifecycle from empty stores and no precreated Mission directory, including real requester authority.

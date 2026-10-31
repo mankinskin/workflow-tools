@@ -1,13 +1,13 @@
 id = "1e1445ec-73e1-4b7a-b798-ed54c9852d16"
 created_at = "2026-10-27T22:52:40.548331280+00:00"
 title = "Mission generated review entry and publication consistency"
-state = "ready"
-acceptance_criteria = "Complete output reachability and publication/verification consistency; preserve explicit unknowns and negative drift."
+state = "done"
+acceptance_criteria = "Publish generated/README.md; render workspace-contained files as relative links, retain canonical URNs, mark outside-workspace artifacts unavailable, and verify complete inventory and distinct drift."
 component = "mission"
-parts = [{ id = "55450878-691f-4cb6-8c37-1589690c884a", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:07.754810710Z" }]
-plan_revision = 1
+parts = [{ id = "55450878-691f-4cb6-8c37-1589690c884a", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:07.754810710Z" }, { id = "25f466b5-6cd6-43e3-8398-fbb2dd566413", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T05:23:02.436149498Z" }]
+plan_revision = 2
 priority = "high"
 related_specs = "87d20edd-240d-4533-b7ba-711b06bf8296"
 spec = "87d20edd-240d-4533-b7ba-711b06bf8296"
 type = "tracker-improvement"
-validation_plan = "Run w8-mission-review-entry guard; no product validation during W8."
+validation_plan = "Run w8-mission-review-entry after implementation; verify generated/README.md, relative path and URN semantics, outside-workspace unavailability, complete output inventory, empty external status, and distinct drift diagnostics. No product validation during planning."

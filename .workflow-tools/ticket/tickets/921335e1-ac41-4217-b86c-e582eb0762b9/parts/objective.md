@@ -1,0 +1,1 @@
+Add plan-time expected and alternative outcome metadata to Mission waypoints. Carry it through native and typed schemas, migration, validation, and deterministic roadmap/Part rendering without changing actual operator results, progress, or dependencies.

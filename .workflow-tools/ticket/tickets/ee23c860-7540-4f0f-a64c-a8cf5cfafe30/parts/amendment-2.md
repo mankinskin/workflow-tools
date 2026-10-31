@@ -1,0 +1,18 @@
+# Effective design - cold-read correction
+
+This supersedes part `6ae87b56-a4bb-40af-b78f-55d6a1747dcf` for W1. Implement [the amended behavior authority](../../../../spec/specs/908e1755-d486-4e49-8b63-3f9eee81396e/body.md) with unchanged criterion IDs and [current execution package](../../../../../../transcripts/29-10-2026_mission-native-mcp-planning/01-shared-lifecycle-abstractions.md). Frozen original text remains historical, not a competing plan.
+
+## Concrete interface and provider contract
+
+LifecycleState, abstract Waypoint identity and separate read/transition, approval, handoff and reopen traits are proposed public concepts, not claims about existing symbols.
+
+- **MN-W1-01**: Expose LifecycleState/LifecycleSnapshot from mission-api::lifecycle and re-export through its lib.rs; facade adapters belong to mission/src/lifecycle.rs. Keep the existing mission-api -> ticket-api dependency direction, with no Ticket -> Mission dependency or new shared crate. Retain native state/revision, owning root, control sequence and separate execution eligibility. Ticket planning/ready -> planned, in-implementation/in-review -> active, on-hold -> paused, done -> completed, cancelled -> cancelled, schema-provided blocked -> blocked; unknown states return ticket_state_unmapped. Single-session Pending/InProgress/Completed/Blocked -> planned/active/completed/blocked; paused/cancelled come from Mission-owned control events, not new legacy enum values. Mission starts planned, is active for running/result-review-needed work, blocked at an unavailable required entry, and completed only by validated explicit completion; explicit pause/cancel projects paused/cancelled.
+- **MN-W1-02**: Ticket-backed waypoints read current state from the explicit owning Ticket store. A Mission cannot overwrite that state; transition adapters invoke the Ticket domain and preserve its history and legal-state checks.
+- **MN-W1-03**: Separate read/transition, planning, approval, pause/resume, cancellation, completion/result review, handoff and reopen capabilities. Unsupported capabilities return an explicit diagnostic. Mission pause/cancel gates execution without overriding the shared state of a Ticket-backed waypoint. Single-session pause/cancel applies only to nonterminal work; resume restores the prior nonterminal state, and paused completion is rejected.
+- **MN-W1-04**: Preserve stable waypoint identity and native/typed read compatibility. Define a version-1 Mission-owned lifecycle journal/control schema with monotonic sequence, operation ID, target, prior sequence and prior nonterminal state. W5 implements writes/recovery; do not extend legacy plan manifests or duplicate Ticket state. Missing legacy journal means no control events; corrupt/unsupported history errors. Terminal cancellation/completion precedes pause, blocked entry, then planned/active; conflicting events error. Progress/control events preserve semantic plan identity, while semantic edits require reapproval.
+
+The [Spec interface contract](../../../../spec/specs/908e1755-d486-4e49-8b63-3f9eee81396e/body.md#interfaces-and-dependencies) and [correction inventory](../../../../../../transcripts/29-10-2026_mission-native-mcp-planning/ARTIFACTS.md) name the complete owner, authority, persistence, host/installer ingress and failure contracts. Do not replace them with guessed adapter or generated-output paths.
+
+Planned guard: `cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission -p ticket-api --all-features -j 1`.
+
+Checkpoint: `feat(workflow): add shared lifecycle capability contracts` after the guard. No execution or implementation evidence is asserted.

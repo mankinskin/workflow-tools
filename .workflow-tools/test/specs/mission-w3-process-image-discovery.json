@@ -1,0 +1,14 @@
+{
+  "id": "mission-w3-process-image-discovery",
+  "title": "Exclude own tasks while discovering real processes",
+  "command": "timeout 120s cargo test -p install-ctl --bin install-ctl process::tests -- --test-threads=1",
+  "detail": "cwd=/home/linus/git/meta-workspace/workflow-tools; Linux real tasks and owned child",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

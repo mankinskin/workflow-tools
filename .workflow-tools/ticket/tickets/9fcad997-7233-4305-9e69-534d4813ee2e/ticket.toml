@@ -1,0 +1,14 @@
+id = "9fcad997-7233-4305-9e69-534d4813ee2e"
+created_at = "2026-10-29T21:58:41.545350159+00:00"
+title = "[mission-native][W5] Mission Lifecycle, Session Handoff and Audited Ticket Reopen"
+state = "ready"
+component = "mission.native-planning.lifecycle-reopen"
+depends_on = ["1d6816b5-92d6-4a08-858a-94df3a05b3f4"]
+effort = "18000"
+linked = ["f77e35d8-8d74-4160-9ed0-85bf32c62a97"]
+parts = [{ id = "34e4bd94-9bac-4d1f-bf79-eea1e612da69", kind = "requirements", path = "parts/requirements.md", frozen = true, created_at = "2026-10-29T21:58:41.670974470Z" }, { id = "9923cbc3-6959-49d9-a40b-0356b544ad98", kind = "design", path = "parts/design.md", frozen = true, created_at = "2026-10-29T21:58:41.738271227Z" }, { id = "b54f28b3-43ff-4774-bb27-a209e0ecc365", kind = "examples", path = "parts/examples.md", frozen = true, created_at = "2026-10-29T21:58:41.809250051Z" }, { id = "b1596949-249d-456e-afaa-1317d8fad925", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-29T21:58:41.880570197Z" }, { id = "57f8abe8-f3fd-4317-8e5d-97dcb5be4ab5", kind = "validation", path = "parts/validation.md", frozen = false, created_at = "2026-10-29T21:58:41.949958791Z" }, { id = "e5c1fb22-bcfc-401d-97fc-ad619b3ece10", kind = "notes", path = "parts/notes.md", frozen = false, created_at = "2026-10-29T21:58:42.022219558Z" }, { id = "09c627f7-3804-4845-9d36-02f23de2939c", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-29T22:00:44.001988753Z" }, { id = "a09b4c1e-9eac-4120-9c22-e9b845d0ef06", kind = "amendment", path = "parts/amendment.md", frozen = false, created_at = "2026-10-29T23:25:16.611658347Z", supersedes = "34e4bd94-9bac-4d1f-bf79-eea1e612da69" }, { id = "2338ec8b-f792-467c-9820-4a8278ad1eb8", kind = "amendment", path = "parts/amendment-2.md", frozen = false, created_at = "2026-10-29T23:25:16.685707037Z", supersedes = "9923cbc3-6959-49d9-a40b-0356b544ad98" }, { id = "f329473f-c14c-441b-97d3-4394f1cd0125", kind = "amendment", path = "parts/amendment-3.md", frozen = false, created_at = "2026-10-29T23:25:16.756770042Z", supersedes = "b1596949-249d-456e-afaa-1317d8fad925" }]
+plan_revision = 1
+priority = "high"
+refs = [{ kind = "spec", urn = "ce://default/spec/164e9acd-9781-4455-b835-f7121a275eef", note = "Owning native planning contract" }]
+related_specs = "164e9acd-9781-4455-b835-f7121a275eef"
+type = "feature"

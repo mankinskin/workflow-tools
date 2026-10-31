@@ -1,0 +1,21 @@
+{
+  "id": "mission-native-w2-session-intake-g2",
+  "title": "Mission-native W2 Session intake and managed workspace G2",
+  "command": "/home/linus/.cargo/bin/rtk bypass /home/linus/.cargo/bin/cargo test --manifest-path /home/linus/git/meta-workspace/workflow-tools/Cargo.toml --locked -p session-api -p mission-api -p mission --all-features -j 1",
+  "detail": "W2 MN-W2-01..05: immutable Session bytes/digest; restart replay/conflict; managed draft paths and safe roots; recoverable cross-store linkage; structured failures and no execution authority. Validation is not passing until a recorded execution succeeds.",
+  "links": {
+    "spec_ids": [
+      "8f53aa05-fb9c-4fec-9458-1eeb55b7342e"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W2-01",
+      "MN-W2-02",
+      "MN-W2-03",
+      "MN-W2-04",
+      "MN-W2-05"
+    ],
+    "ticket_ids": [
+      "55c99751-2801-42ef-bc29-7e3d01d6f4ca"
+    ]
+  }
+}

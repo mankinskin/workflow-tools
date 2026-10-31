@@ -1,0 +1,3 @@
+Design:
+
+Add a typed WaypointOutcomePlan with expected_outcome and alternative_outcomes. Each AlternativeOutcome contains outcome and acceptable_handling text options. Add the optional typed field needed to deserialize legacy records, then enforce presence by schema version: native v2 and typed v3 require it; native v1 and typed v2 retain the legacy absence. Keep the existing native v1-to-typed-v2 conversion and add lossless native v2-to-typed-v3 conversion. Render the fields in both generated views with deterministic escaping. W7 consumes the completed W3 schema-version, migration-preservation, and renderer foundation; no W1-W6 Ticket edges are added.

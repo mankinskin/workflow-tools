@@ -1,0 +1,1 @@
+Planned G3 plan-operations: `cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission --all-features -j 1` from meta-workspace root. Register the behavior-specific ValidationSpec and link criteria before running. No execution exists. Checkpoint: `feat(mission): add granular planning operations`.

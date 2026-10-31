@@ -1,0 +1,1 @@
+Discover mission_waypoint_reorder, call it with stable IDs and expected revision, and read the generated plan with mission_plan_get. A stale call returns revision_conflict and preserves source/projection hashes.

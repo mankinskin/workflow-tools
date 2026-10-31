@@ -1,0 +1,1 @@
+Planned G2 intake-workspace: `cargo test --manifest-path workflow-tools/Cargo.toml --locked -p session-api -p mission-api -p mission --all-features -j 1` from meta-workspace root. Register the behavior-specific ValidationSpec and link criteria before running. No execution exists. Checkpoint: `feat(mission): add session intake and managed workspace`.

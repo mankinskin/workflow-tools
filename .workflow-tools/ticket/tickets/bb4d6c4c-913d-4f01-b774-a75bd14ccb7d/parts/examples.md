@@ -1,0 +1,1 @@
+Removing W2's stable ID while W3 depends on it fails without changing files. Supplying a valid replacement and serial order in the same edit succeeds and yields one new plan digest; old result-bearing identity remains historical.

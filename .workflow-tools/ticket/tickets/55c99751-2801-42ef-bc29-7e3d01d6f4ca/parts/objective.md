@@ -1,0 +1,1 @@
+Consumers can submit input, create and find exactly one planning Mission workspace from an empty store without manually creating a transcript directory.

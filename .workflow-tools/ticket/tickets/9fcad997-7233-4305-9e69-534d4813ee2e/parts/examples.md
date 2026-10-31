@@ -1,0 +1,1 @@
+Waypoint A completes at sequence 8 after B at 7 even though A is earlier in plan order. Reopen selects A, calls its Ticket done->ready operation, retains both results and blocks descendants. Crash after Ticket commit resumes the same operation without another reopen.

@@ -1,0 +1,14 @@
+{
+  "id": "mission-w2-pty-raw-input",
+  "title": "Real PTY raw-mode Enter and literal LF contract",
+  "command": "cd /home/linus/git/meta-workspace/workflow-tools && PATH=/home/linus/.cargo/bin:/usr/local/bin:/usr/bin:/bin TMPDIR=/home/linus/.copilot/session-state/ae41c0ca-75fa-497e-b4ac-90e3fa04f6ec/files/mission-w2-test-temp timeout 120s cargo test -p install-ctl --test pty_raw_input -- --test-threads=1",
+  "detail": "Unix real child terminal regression: Enter, arrows/characters ordering, literal LF remains Ctrl+J, explicit child exit and reader cleanup.",
+  "links": {
+    "spec_ids": [
+      "9e714b78-ef31-46e5-8103-a944e7b1a278"
+    ],
+    "ticket_ids": [
+      "96db030d-019c-4745-b478-7e2fa26a2239"
+    ]
+  }
+}

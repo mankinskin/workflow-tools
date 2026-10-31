@@ -1,10 +1,10 @@
 id = "bf85445e-a6a2-4a64-9d9d-a2cf3ade5460"
 created_at = "2026-10-27T22:53:32.860382615+00:00"
 title = "Define dedicated Mission review and completeness role"
-state = "ready"
+state = "done"
 acceptance_criteria = "Role works from generated entry; reports evidence-backed gaps and unknowns; leaves Audit Agent and audit authority unchanged."
 component = "mission"
-parts = [{ id = "be4b584e-cd89-43ed-86b2-08390d509583", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:36.517360070Z" }, { id = "b1df01db-a1ee-5ca2-9639-d9d2b28a5303", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-27T22:56:32.904762057Z" }]
+parts = [{ id = "be4b584e-cd89-43ed-86b2-08390d509583", kind = "acceptance_criteria", path = "parts/acceptance-criteria.md", frozen = true, created_at = "2026-10-27T22:53:36.517360070Z" }, { id = "b1df01db-a1ee-5ca2-9639-d9d2b28a5303", kind = "objective", path = "parts/objective.md", frozen = true, created_at = "2026-10-27T22:56:32.904762057Z" }, { id = "192e42a8-e011-4a68-8491-5aa18dde4593", kind = "review", path = "parts/review.md", frozen = false, created_at = "2026-10-29T06:36:03.256966327Z" }]
 plan_revision = 1
 priority = "medium"
 related_specs = "d6899bdd-657c-4f50-8475-8930d39b276c"
