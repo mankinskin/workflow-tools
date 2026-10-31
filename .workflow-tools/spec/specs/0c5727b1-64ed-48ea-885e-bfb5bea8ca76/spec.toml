@@ -4,6 +4,7 @@ title = "Shared Markdown link parsing (markdown-links)"
 state = "approved"
 acceptance_criteria = [{ id = "ML-01", statement = "extract returns inline, reference, autolink and image links with 1-based line and verbatim destination span, and never returns links inside code blocks or code spans." }, { id = "ML-02", statement = "Reference-style links resolve their span inside the matching definition; unlocatable destinations return span None." }, { id = "ML-03", statement = "anchors and checkable_fragment keep audit's slug, duplicate-suffix, HTML id/name and line-anchor semantics." }, { id = "ML-04", statement = "classify_destination returns FragmentOnly, OtherExternal, Web, Unsupported, Absolute or Local exactly per the shape table, including backslash and drive-letter absolutes." }, { id = "ML-05", statement = "resolve_local percent-decodes and lexically normalizes, returning None on root escape; encode_destination round-trips through resolve_local." }, { id = "ML-06", statement = "Audit consumes the crate with unchanged findings and tests except the documented Absolute delta; install-ctl consumes it for closure, plan and span-based rewrites with warn (install) or refuse (autofix) on unlocatable spans." }, { id = "ML-07", statement = "The crate depends only on pulldown-cmark, every touched source file is at most 500 lines, and remote cargo install of install-ctl builds against published main branches." }]
 component = "audit"
+implementation_status = "implemented"
 scope = "internal"
 slug = "audit/markdown-links"
 type = "specification"
