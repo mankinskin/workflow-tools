@@ -3835,6 +3835,7 @@ name = "install-ctl"
 version = "0.1.0"
 dependencies = [
  "audit-api",
+ "base64 0.22.1",
  "clap",
  "crossterm 0.28.1",
  "dirs 5.0.1",
@@ -3850,6 +3851,7 @@ dependencies = [
  "portable-pty",
  "ratatui",
  "ratatui-testlib",
+ "rustls-native-certs",
  "serde",
  "serde_json",
  "sha2 0.10.9",
