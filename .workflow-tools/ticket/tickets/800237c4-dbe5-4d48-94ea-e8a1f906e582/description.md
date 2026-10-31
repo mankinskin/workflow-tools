@@ -1,0 +1,3 @@
+Move install-ctl guidance closure and plan link handling onto `markdown-links` (spec `0c5727b1`, waypoint W3).
+
+Scope: split `guidance/tests.rs` into `guidance/tests/*.rs` as a pure move (D11); install-ctl depends on `markdown-links`; `guidance/graph.rs` and `guidance/plan.rs` use `extract`, `classify_destination`, `resolve_local`; delete install-ctl's own `extract_links`, `resolve_relative` and shape checks; mapping per D8 (Local by decoded extension, Absolute -> AbsoluteSourcePath, Web/OtherExternal/FragmentOnly/Unsupported -> skipped). Plan rewrites keep raw `old_link`/`new_link` values and store no spans; W4 re-parses the text to locate spans (`guidance/span_edit.rs`).

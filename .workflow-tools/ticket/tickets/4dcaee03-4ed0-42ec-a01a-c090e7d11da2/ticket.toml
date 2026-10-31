@@ -1,0 +1,11 @@
+id = "4dcaee03-4ed0-42ec-a01a-c090e7d11da2"
+created_at = "2026-10-31T17:20:10.304197283+00:00"
+title = "[install-ctl] Span-based install and autofix link rewrites"
+state = "ready"
+acceptance_criteria = "install edits only located spans with encoded destinations and warns non-blocking on unlocatable rewrites; autofix rewrites located matching spans and refuses when none; regression tests for code fences/spans, reference links, encoding, warn/refuse pass."
+component = "install-ctl"
+depends_on = ["800237c4-dbe5-4d48-94ea-e8a1f906e582"]
+plan_revision = 1
+priority = "high"
+type = "task"
+validation_plan = "cargo test -p install-ctl guidance; cargo test -p audit-cli links"
