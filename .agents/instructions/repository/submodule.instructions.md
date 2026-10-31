@@ -28,9 +28,27 @@ cd .. && git add memory-viewers && git commit -m "chore: update memory-viewers s
 
 ## Branch integration and gitlinks
 
+Keep all submodule checkouts attached to `main` or feature branches recursively.
+An immediate superproject on `main` requires each child on `main`; a feature
+superproject permits `main` or feature children. Never leave detached HEADs
+as the working state. Configure each `.gitmodules` entry's `branch` to match
+the selected child (`.` only for an inherited identical branch name) and
+`update = merge` or `rebase`; check local overrides too. Initial population
+may detach HEAD: attach the intended branches before edits, builds or commits.
+Do not force-switch, discard changes or move backward to satisfy the rule.
+See the Meta-workspace's
+[branch guard and hook setup](https://github.com/mankinskin/meta-workspace/blob/main/CONTRIBUTING.md#submodule-branches)
+when operating inside that checkout.
+
 Commit order is not integration order. Integrate affected submodule branches deepest first, fast-forward each submodule's `main`, then bump and commit its gitlink on the superproject feature branch before fast-forwarding the superproject. The full sequence is [worktree-merge.instructions.md](../../../session/.agents/instructions/worktree/worktree-merge.instructions.md#bottom-up-integration-sequence-canonical).
 
-**Invariant:** every gitlink recorded by the superproject must be contained in the corresponding submodule's `main` branch. `git submodule status` shows `+` when a checked-out HEAD differs from the recorded gitlink and `-` when uninitialized; a clean integration has neither marker for all five submodules.
+**Invariant:** every recorded gitlink must be contained in the child's selected
+branch; publication on a `main` superproject requires containment in child
+`main`. Feature-parent drafts may reference feature-child commits before
+bottom-up integration. `git submodule status` shows `+` when a checked-out
+HEAD differs from the recorded gitlink and `-` when uninitialized; a clean
+integration has neither marker for any submodule. It does not prove branch
+attachment: also inspect `git symbolic-ref --short HEAD` recursively.
 
 | Failure signature | Diagnostic | Repair |
 |---|---|---|

@@ -2,55 +2,69 @@
 	path = ticket
 	url = "https://github.com/mankinskin/ticket"
 	branch = "main"
+	update = merge
 [submodule "spec"]
 	path = spec
 	url = "https://github.com/mankinskin/spec"
 	branch = "main"
+	update = merge
 [submodule "audit"]
 	path = audit
 	url = "https://github.com/mankinskin/audit"
 	branch = "main"
+	update = merge
 [submodule "feedback"]
 	path = feedback
 	url = "https://github.com/mankinskin/feedback"
 	branch = "main"
+	update = merge
 [submodule "session"]
 	path = session
 	url = "https://github.com/mankinskin/session"
 	branch = "main"
+	update = merge
 [submodule "doc"]
 	path = doc
 	url = "https://github.com/mankinskin/doc"
 	branch = "main"
+	update = merge
 [submodule "log"]
 	path = log
 	url = "https://github.com/mankinskin/log"
 	branch = "main"
+	update = merge
 [submodule "peek"]
 	path = peek
 	url = "https://github.com/mankinskin/peek"
 	branch = "main"
+	update = merge
 [submodule "interview"]
 	path = interview
 	url = "https://github.com/mankinskin/interview"
 	branch = "main"
+	update = merge
 [submodule "rule"]
 	path = rule
 	url = "https://github.com/mankinskin/rule"
 	branch = "main"
+	update = merge
 [submodule "test"]
 	path = test
 	url = "https://github.com/mankinskin/test"
 	branch = "main"
+	update = merge
 [submodule "memory-kernel"]
 	path = memory-kernel
 	url = "https://github.com/mankinskin/memory-kernel"
 	branch = main
+	update = merge
 [submodule "viewer-api"]
 	path = viewer-api
 	url = https://github.com/mankinskin/viewer-api
 	branch = main
+	update = merge
 [submodule "install"]
 	path = install
 	url = https://github.com/mankinskin/install.git
 	branch = main
+	update = merge
