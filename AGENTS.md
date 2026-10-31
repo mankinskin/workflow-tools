@@ -25,7 +25,7 @@ instruction file or complete workflow name (for example,
 
 | Operation | Required owner |
 | --- | --- |
-| Repository editing, validation, publication | [repository workflow](.agents/instructions/repository/workflow.instructions.md), [repository guide](REPOSITORY_GUIDE.md) |
+| Repository editing, validation, publication | [repository workflow](.agents/instructions/repository/workflow.instructions.md), repository guide (`REPOSITORY_GUIDE.md`) |
 | Investigation or uncertain requirements | [file inspection](.agents/instructions/workflow/file-inspection.instructions.md), [escalation](.agents/instructions/workflow/escalation-gate.instructions.md) |
 | Implementation or regression | [regression-first development](.agents/instructions/workflow/regression-first-development.instructions.md), [test execution](test/.agents/instructions/testing/test-execution.instructions.md) |
 | Delegation | [model routing](.agents/instructions/workflow/model-routing.instructions.md), [delegation contract](.agents/instructions/workflow/orchestrator-delegation.instructions.md) |

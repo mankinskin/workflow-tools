@@ -97,7 +97,7 @@ fn Counter(start: i32) -> Element {
 - Lifecycle is orchestrated by `viewer-ctl`: `viewer-ctl prepare <viewer>` builds the frontend,
   `viewer-ctl start <viewer>` runs it. Do not hand-roll bespoke build scripts — extend the
   managed flow.
-- Browser verification follows [AGENTS.md](../../../AGENTS.md#quality-gates)'s mandatory external fullscreen Chromium-family browser check; add/extend the shared
+- Browser verification follows AGENTS.md (`../../../AGENTS.md#quality-gates`)'s mandatory external fullscreen Chromium-family browser check; add/extend the shared
   Playwright E2E suites under `viewer-api/viewer-api/frontend/dioxus/e2e/shared/`.
 - `context-engine/context-stack/tools/context-editor/sandbox-app` is **not** a managed viewer: it
   embeds this same Dioxus component/signal model as a DOM overlay atop a Bevy 0.18 render kernel.

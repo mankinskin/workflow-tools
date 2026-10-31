@@ -15,7 +15,7 @@ what was promised, what was delivered, whether the declared inventory is
 reachable and consistent, and what remains unknown. This role is additive to
 the existing [Audit Agent](../../audit/.agents/agents/audit.agent.md); it does
 not replace repository audit. Follow the [generated entry contract](../../mission/README.md#generated-review-entry-and-verification)
-and the approved [reviewer-role Spec](../../.workflow-tools/spec/specs/d6899bdd-657c-4f50-8475-8930d39b276c/body.md).
+and the approved reviewer-role Spec (`../../.workflow-tools/spec/specs/d6899bdd-657c-4f50-8475-8930d39b276c/body.md`).
 
 ## Input Contract
 
@@ -37,7 +37,7 @@ other Mission records to reconstruct it.
   declared artifact reachability, and agreement between claims and cited
   sources.
 - Check the linked `accepted.json` against the strict `AcceptedMission` model
-  defined in [mission-api](../../mission/crates/mission-api/src/lib.rs).
+  defined in mission-api (`../../mission/crates/mission-api/src/lib.rs`).
   The record must have `mission_id`, `bundle.manifest`, `bundle.waypoints`,
   and `label_mapping`; compare the mission UUID, manifest schema version and
   revision, ordered waypoint IDs, label-map revision and entries, objective,

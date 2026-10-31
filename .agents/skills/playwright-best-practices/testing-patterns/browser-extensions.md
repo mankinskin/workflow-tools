@@ -8,7 +8,7 @@
 4. [Background Script Testing](#background-script-testing)
 5. [Content Script Testing](#content-script-testing)
 6. [Extension APIs](#extension-apis)
-7. [Cross-Browser Testing](#cross-browser-testing)
+7. Cross-Browser Testing (`#cross-browser-testing`)
 
 ## Setup & Configuration
 

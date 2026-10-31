@@ -21,7 +21,7 @@ Do not use a feedback entry as a substitute for a fix that was explicitly reques
 
 ## Mandatory End-Of-Turn Visibility Check
 
-Near the end of every substantive response, derive your current turn number, then call the `feedback_session_summary` MCP tool (see [workflow-tools/feedback/crates/feedback-mcp/src/server.rs](../../../feedback/crates/feedback-mcp/src/server.rs)) with the current `session_id` and that turn number, and surface the result so new entries are visible rather than buried in the transcript.
+Near the end of every substantive response, derive your current turn number, then call the `feedback_session_summary` MCP tool (see workflow-tools/feedback/crates/feedback-mcp/src/server.rs (`../../../feedback/crates/feedback-mcp/src/server.rs`)) with the current `session_id` and that turn number, and surface the result so new entries are visible rather than buried in the transcript.
 
 - **Deriving the turn number.** There is no live, authoritative "what turn am I on" signal. Derive a best-effort number from the currently running session — call `session_peek_skeleton` for the current `session_id` and use its returned `total_turns` as your current turn. This is a **best-effort** number, not an authoritative capture-time stamp: state it as such if you ever report it to the user (e.g. "turn ~4", not "turn 4 exactly").
 - **Stamping new entries.** When calling `feedback_ingest` to log a finding during the turn, pass this same derived number as `turn_sequence` so the entry is attributable to this turn specifically.

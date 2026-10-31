@@ -18,7 +18,7 @@ advisory.
 This agent is the structural counterpart to the AGENTS.md "Orchestrator-mode
 threshold" rule: it is the entry point for any model whose `output_mtok` exceeds
 the threshold `X = 15` USD per 1M output tokens (see the model→cost mapping in
-[workflow-tools/session/crates/model-prices/model_prices.json](../../session/crates/model-prices/model_prices.json)).
+workflow-tools/session/crates/model-prices/model_prices.json (`../../session/crates/model-prices/model_prices.json`)).
 
 That threshold decides **whether you orchestrate**. It does *not* decide **who you
 dispatch to** — "at or below X" is not a selection rule, and reading it as one
