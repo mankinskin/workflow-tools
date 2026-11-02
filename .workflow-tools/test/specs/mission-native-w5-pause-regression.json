@@ -1,0 +1,16 @@
+{
+  "id": "mission-native-w5-pause-regression",
+  "title": "W5 durable pause regression",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --test w5_controls -j 1",
+  "links": {
+    "spec_ids": [
+      "164e9acd-9781-4455-b835-f7121a275eef"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W5-01"
+    ],
+    "ticket_ids": [
+      "9fcad997-7233-4305-9e69-534d4813ee2e"
+    ]
+  }
+}

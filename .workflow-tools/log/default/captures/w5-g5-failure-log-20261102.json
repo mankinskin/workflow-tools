@@ -1,0 +1,17 @@
+{
+  "id": "w5-g5-failure-log-20261102",
+  "validation_execution_id": "w5-g5-failed-20261102",
+  "kind": "combined-output",
+  "captured_at": "2026-11-02T17:27:35.959774706Z",
+  "media_type": "text/plain",
+  "locator": "rtk-recall://8aea85458d019019",
+  "detail": "Exact serialized G5 failure output; recover with rtk recall 8aea85458d019019 --full.",
+  "links": {
+    "ticket_ids": [
+      "9fcad997-7233-4305-9e69-534d4813ee2e"
+    ],
+    "validation_execution_ids": [
+      "w5-g5-failed-20261102"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "w5-diagnostic-summary-20261102",
+  "validation_execution_id": "w5-diagnostic-20261102",
+  "kind": "structured-summary",
+  "captured_at": "2026-11-02T17:27:36.044503092Z",
+  "media_type": "text/markdown",
+  "locator": "file:///home/linus/git/meta-workspace/transcripts/29-10-2026_mission-native-mcp-planning/RESULTS.md#w5---implementation-delivered-exact-g5-remains-blocked",
+  "detail": "Actual 964-pass diagnostic outcome and all non-waived G5 blockers.",
+  "links": {
+    "ticket_ids": [
+      "9fcad997-7233-4305-9e69-534d4813ee2e"
+    ],
+    "validation_execution_ids": [
+      "w5-diagnostic-20261102"
+    ]
+  }
+}

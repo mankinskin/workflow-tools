@@ -1,0 +1,14 @@
+{
+  "id": "mission-native-w5-lifecycle-diagnostic",
+  "title": "W5 diagnostic only; not a passing G5",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api -p mission -p ticket-api -p session-api --all-features -j 1 -- --skip state_contract::publication_preserves_whole_states_at_shared_revision_labels --skip storage::tests::scan_visibility_tests::nested_workspace_visibility::create_rejects_non_workspace_target_root",
+  "detail": "Repository-local TMPDIR and isolated Ticket catch-store, GIT_CEILING_DIRECTORIES at fixture root, RUST_TEST_THREADS=1. Two baseline tests explicitly excluded; not G5 acceptance.",
+  "links": {
+    "spec_ids": [
+      "164e9acd-9781-4455-b835-f7121a275eef"
+    ],
+    "ticket_ids": [
+      "9fcad997-7233-4305-9e69-534d4813ee2e"
+    ]
+  }
+}
