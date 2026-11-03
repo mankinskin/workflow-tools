@@ -1,0 +1,21 @@
+{
+  "id": "mission-native-w6-named-mcp-g6",
+  "title": "Mission native W6 named MCP G6",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --all-features -j 1",
+  "detail": "Exact W6 acceptance guard; no filtering or RTK prefix in stored command.",
+  "links": {
+    "spec_ids": [
+      "551422d7-8a0f-4711-8642-a4c367649361"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W6-01",
+      "MN-W6-02",
+      "MN-W6-03",
+      "MN-W6-04",
+      "MN-W6-05"
+    ],
+    "ticket_ids": [
+      "aef38836-6230-4798-96bc-ac84c5e3e105"
+    ]
+  }
+}
