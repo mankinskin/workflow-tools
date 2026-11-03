@@ -65,6 +65,41 @@ Record `Workflow phase: execution` in the index/handoff after explicit approval
 and `complete` only after validated closure, separately from execution status.
 Unexpected drift returning to planning records the affected planning subphase.
 
+## Native Mission execution
+
+New runs enter via [Native new-run planning](prompt-ingestion.instructions.md#native-new-run-planning),
+not dossier migration. Require the handoff's explicit Mission and Session
+roots, Mission ID, current revision/digests, source/projection paths, passing
+cold and distinct formal reviews, and captured requester receipt/grant.
+Re-discover all 20 named capability/version tools—the original 19 W6 tools
+plus `mission_plan_record_review`—and read `mission_plan_get` from the same
+roots. Confirm its cold/formal review records are distinct, current and
+consistent with the handoff. Confirm the grant matches the reviewed revision
+and digests, pending operations are absent, and effective execution eligibility
+is true.
+Missing authority, stale approval, paused/cancelled control, pending recovery
+or unmet authoritative prerequisites stops that branch visibly. Never replace
+the grant with free-text intent, generic approval, raw actor/boolean or a
+manual lifecycle script.
+
+Read the accepted plan, generated roadmap/Parts and managed source evidence
+before each waypoint. Follow this file's same readiness, delegation,
+validation, distinct review and scoped-checkpoint gates. Use the named
+completion/control/handoff/result-review/reopen tools, with current revision,
+control sequence, UUID request identity and explicit evidence; preserve
+provider replay rejection and partial-operation recovery rather than treating
+a replay error as success. Ticket-backed state remains Ticket authority;
+Mission controls govern separate execution eligibility. W5 lifecycle uses
+the canonical workspace Session store, not an intake-only `session_root`
+override. Read mutations back through the owning domain.
+
+Do not hand-edit generated documents, create a second dossier status surface
+or migrate this already managed Mission. A semantic replan uses named plan
+operations, new cold/formal reviews and a fresh captured challenge/receipt
+before resumed execution. Handoff also requires valid active Sessions and
+the source Session's authoritative Mission pin; it is not a worktree or
+Ticket-ownership transfer.
+
 ## Mission-backed execution
 
 For a roadmap handed off by `Execute Ingest`, resolve its mission before

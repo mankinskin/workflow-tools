@@ -1,0 +1,20 @@
+{
+  "id": "mission-native-w8-routing-g7",
+  "title": "Native new-run routing and disposable guidance installation G7",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --all-features --test mission_native_routing -j 1",
+  "links": {
+    "spec_ids": [
+      "ec2f0709-180f-4ccf-b692-601796f33e05"
+    ],
+    "acceptance_criterion_ids": [
+      "MN-W7-01",
+      "MN-W7-02",
+      "MN-W7-03",
+      "MN-W7-04",
+      "MN-W7-05"
+    ],
+    "ticket_ids": [
+      "d153d68f-50f0-49f4-96e6-e2e0258d1ef6"
+    ]
+  }
+}

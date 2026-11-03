@@ -4758,6 +4758,7 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "clap",
+ "markdown-links",
  "memory-kernel",
  "mission-api",
  "rmcp",

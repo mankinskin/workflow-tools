@@ -4,11 +4,106 @@ description: "Use before turning a raw prompt into tickets, a spec, or any other
 
 ## Purpose
 
-A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline. Settled scope may seed necessary planning tickets/specs; only explicit execution approval authorizes the durable mission handoff and implementation. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the resulting work actually covers what the requester said.
+A raw prompt — a rambling transcript, a dictated ask, a stream-of-consciousness request — must not be handed directly to `tickets.prompt.md`, `spec.prompt.md`, or an implementation session. Structure and scope are extracted first, cheaply, in a bounded pipeline. New runs default to Session-to-Mission named MCP planning; existing classic dossiers retain their selected route. Settled scope may seed necessary planning tickets/specs; only an exact captured requester decision authorizes native execution. This closes the gap the raw-prompt path otherwise leaves open: unbounded scope, no verification lens, and no evidence that the resulting work actually covers what the requester said.
 
 This pipeline is an extension of [audio-transcript.instructions.md](https://github.com/mankinskin/context-engine/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md), not a parallel process: it reuses that pipeline's denoise stage and dossier-folder conventions verbatim, then carries the cleaned signal onward through research, verification, and planning. Think of it as spell-crafting — the user hands over the raw spell (an unrefined ask) and the pipeline elevates it, preserving the original intent exactly, into the mechanical steps that execute it.
 
-This file is the ingestion shell: it owns the dossier folder layout and the six-stage prompt-ingestion sequence. [intent-refinement.instructions.md](intent-refinement.instructions.md) owns the recurring technique used at prompt-ingestion.instructions.md Stages 3 and 5 — the informed review + interview loop that clears ambiguity before it reaches the shipped roadmap.
+This file is the ingestion shell: it owns the managed planning-source layout (and legacy dossier layout) and the six-stage prompt-ingestion sequence. [intent-refinement.instructions.md](intent-refinement.instructions.md) owns the recurring technique used at prompt-ingestion.instructions.md Stages 3 and 5 — the informed review + interview loop that clears ambiguity before it reaches the shipped roadmap.
+
+## Native new-run planning
+
+This section governs **new runs**; the dossier instructions below remain the
+classic compatibility route. Do not replace an active classic route, adopt a
+similar dossier, migrate archives, or silently fall back when native tooling
+is unavailable. A requester-selected classic continuation stays classic;
+explicit migration remains the separate [Mission-backed execution handoff](#mission-backed-execution-handoff).
+
+1. **Discover before intake.** Initialize Mission MCP and inspect `tools/list`.
+   Require exactly one of each original 19 named tools plus
+   `mission_plan_record_review` (20 total), all with
+   `capability=mission.native-planning version=1` descriptions and explicit
+   `workspace_root` object schemas. The review recorder must expose its strict
+   `workspace_root`, optional `session_root`, `mission_id`, `request_id`,
+   `expected_revision`, `kind`, `verdict`, `reviewer`, `plan_digest`,
+   `evidence_identity`, and optional `cold_review_id` schema, with
+   `kind=cold_walkthrough|formal` and `verdict=pass|fail`. An absent tool,
+   incompatible version or generic-only server is
+   `native_capability_unavailable`: stop, name the missing capability and ask
+   the requester to install/reconnect the W6 and review-recording providers.
+   Never require manual folders or hand-written lifecycle scripts as a
+   substitute. The optional read-only route checker (`tools/roadmap-route.py`)
+   accepts `--mode native-new-run --workspace-root <absolute-root>
+   --session-id <active-uuid> --tools-list <fresh-tools-list-result.json>`;
+   it returns `source=session`, `action=plan-native`, `executable=false`.
+   A snapshot selects a route, not approval or proof that a later call succeeds.
+2. **Capture through Session intake.** Resolve the existing active Session and
+   explicit owning Mission/Session roots. Call `mission_intake_create` with
+   `workspace_root`, `session_id`, stable `request_id`, and verbatim `input`;
+   pass `session_root` only when that store is explicitly separate. Read back
+   `mission_workspace_get` with the same identity and roots. Preserve its
+   `input_path`, `session_input_path`, digest and immutable bytes. Use returned
+   `mission_dir` for working clean inputs, research, interviews and indexes.
+   `source_path` names domain-owned `source.json`, not a directory; never
+   hand-edit it. Do not invent `transcripts/DD-MM-YYYY_<slug>/`. The returned
+   `generated_plan_entry` may be `NotYetGenerated` for this incomplete draft.
+   A pending subset, unavailable workspace, finished Session or identity
+   conflict stops progression; recover by the provider's reported identity,
+   never by fabricating linkage or claiming an executable plan.
+3. **Run the same six-stage gates.** Apply the five ordered transcript passes
+   to working copies, then resolve every ambiguity with the requester before
+   research or roadmap notes. Keep bounded research and provenance, both
+   informed review/interview loops. The separate cold walkthrough and formal
+   review gates run against the completed roadmap revision in step 4; they do
+   not replace either informed review loop.
+   Store working evidence under `mission_dir`; the generated roadmap/Parts are
+   read-only projections, not working files.
+   Do not let domain intake resolve transcript ambiguity or imply scope approval.
+4. **Plan through Mission tools.** After prompt-ingestion.instructions.md
+   Stage 3 locks scope, create the first complete waypoint with
+   `mission_waypoint_create` before editing goal/requirements: W3 cannot
+   publish an empty intake draft. Use `mission_plan_update` and the named
+   waypoint create/update/remove/reorder tools with current `expected_revision`
+   and stable request identities. Read `mission_plan_get` after each mutation.
+   Apply the [roadmap authoring contract](roadmap-authoring.instructions.md)
+   to its reviewable plan and Parts. Preserve stable IDs, serial order,
+   prerequisite evidence, validation and checkpoint fields; never guess schema
+   fields or hand-edit a generated projection. After the final semantic edit,
+   run the cold walkthrough and a distinct formal review. Persist each through
+   `mission_plan_record_review` with the same current revision, plan digest
+   and evidence identity; the formal review must name the cold review's
+   `cold_review_id` and use a distinct reviewer. Read both records back through
+   `mission_plan_get`. A review record is not requester approval or a grant.
+   Any later semantic edit invalidates these records and requires both reviews
+   again. Scoped planning
+   Ticket/Spec preparation still follows the exception below.
+5. **Capture the exact requester decision.** Only after both current-revision
+   reviews have been recorded through `mission_plan_record_review`, read back
+   through `mission_plan_get`, and necessary entity read-backs pass, call
+   `mission_plan_prepare_review` with the same roots, active Session,
+   `expected_revision`, and a new `request_id` (the challenge ID). Present its
+   complete returned review and exact `mission-decision approve|reject|replan`
+   prompt, including Mission ID, revision, plan digest, review digest and
+   challenge ID. The actual requester submits the complete line through the
+   configured host `UserPromptSubmit` ingress. Do not substitute a form answer,
+   generic "approve", actor string, boolean or agent-authored receipt. Re-read
+   `mission_plan_get` for captured `decision_refs`; call `mission_plan_approve`
+   only with the matching approve reference and `request_id` equal to
+   `decision.challenge_id`. Missing receipt/host provenance is
+   `approval_authority_unavailable`: stop and restore the configured ingress,
+   not synthetic authority. For captured replan use `mission_plan_replan`,
+   revise and repeat both reviews with a fresh challenge; reject does not
+   permit execution. Read back the grant and effective execution eligibility
+   before handing the accepted Mission to the executor.
+
+Planning intake and revision-checked plan edits are permitted before approval;
+execution, activation, lifecycle completion, repository implementation and
+external-service changes are not. This is the native planning exception to
+the classic dossier-only boundaries below, not a general mutation grant.
+All named call errors remain visible with their provider diagnostics. Optional
+`session_root` on intake/review does not change W5 lifecycle's canonical
+workspace Session-store contract. Handoff to execution names the accepted
+Mission ID, roots, revision/digests, source/projection paths, grant/reference
+and passing reviews. Native execution never migrates its own managed workspace.
 
 When the workflow is invoked through `Execute Ingest`, roadmap compilation is
 not the terminal state. The lifecycle continues through these explicit states:
@@ -31,9 +126,11 @@ not the terminal state. The lifecycle continues through these explicit states:
    structure, dependencies or other formal planning defects. Full planning is
    complete only after this approval, with decisions locked and necessary
    planning entities ready.
-4. **Execution** — only after `approve`, hand the same dossier path and
-   `ROADMAP.md` to `/execute-ingest`. It binds the approved roadmap to a mission
-   and then hands the mission-backed route to
+4. **Execution** — for native new runs, only after a captured exact approve
+   receipt and read-back grant, hand the accepted Mission and its managed
+   source/projection paths to `/execute-ingest`; no migration is needed.
+   Classic dossiers retain their explicitly selected execution route.
+   Then hand that same accepted route to
    [execute-roadmap](https://github.com/mankinskin/meta-workspace/blob/main/.agents/prompts/execute-roadmap.prompt.md).
 
 Planning interviews and final roadmap approval are separate interactions. A
@@ -78,10 +175,11 @@ separately from roadmap/waypoint execution status:
   Closure records `complete` only after the validated route is complete.
 
 These are lifecycle states and planning subphases, not additional ingestion
-stages. Before final `approve`, the only permitted mutations outside the active
-dossier are the scoped planning ticket/spec operations in the late-planning
-exception. Planning never implements repository/product changes, activates or
-dispatches execution work, creates/mutates a mission, or changes an external
+stages. Before final `approve`, permitted domain mutations are native
+intake/plan edits and the scoped planning ticket/spec operations in the
+late-planning exception. Planning never implements repository/product changes, activates or
+dispatches execution work, mutates a mission outside the native planning
+exception, or changes an external
 service. Required session and feedback bookkeeping remains governed by its
 own procedures and does not widen the ticket/spec exception.
 
@@ -97,7 +195,7 @@ an independent Planning read into an executable roadmap waypoint.
 1. **Prompt-ingestion Stage 1 — Transcript preparation and cleaning (cheap).** Delegate entirely to [audio-transcript.instructions.md](https://github.com/mankinskin/meta-workspace/blob/main/.agents/instructions/transcripts/audio-transcript.instructions.md) and the [Transcription Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/transcription.agent.md) — the authoritative audio-transcript.instructions.md Stages 1-5 pipeline (paragraphs, punctuation review, denoise, restructure, verify) and the same multi-part naming convention. These five audio-transcript passes all belong inside prompt-ingestion.instructions.md Stage 1; they do not renumber the six prompt-ingestion stages. Output: `input.md`/`input-2.md`/... (raw) and the matching `input.clean.md`/`input-2.clean.md`/... (denoised), plus `merged.clean.md` once more than one part exists. **Prompt-ingestion Stage 1 is not complete while the clean artifact carries a flagged ambiguity** — see "Ambiguity Resolution Gate" immediately below, which runs before prompt-ingestion.instructions.md Stage 2 starts.
 2. **Prompt-ingestion Stage 2 — Research and artifact inventory.** Dispatch a read-only [Explore Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/explore.agent.md) or [Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/research.agent.md) pass to gather every existing artifact relevant to the cleaned prompt. The sweep covers all six domain stores — `ticket`, `spec`, `test`, `session`, `feedback`, and the `transcripts/` dossiers — plus docs and the concrete code/config file paths the eventual work will touch or depend on. [entity-discovery.instructions.md](entity-discovery.instructions.md) owns the per-store surfaces, fallbacks and reuse rule; prompt-ingestion.instructions.md Stage 2 supplies the discovery evidence later preparation/creation boundaries consume. Do not re-derive this list later — every downstream prompt-ingestion stage cites entries from it instead of re-discovering paths. Output: `ARTIFACTS.md`, one row per artifact with id/path, a one-line relevance note, and its current state (e.g. ticket state, spec state, file exists/does not exist yet), **plus a mandatory store-coverage table** with the columns `store | searched? | surface used | result`, one row per store. A store that could not be searched is recorded as `partial — degraded` with the failure named; it is never recorded as an empty result.
 3. **Prompt-ingestion Stage 3 — First informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the cleaned prompt against the research just gathered — never against the raw words alone — then apply that file's [interview-dispatch rule](intent-refinement.instructions.md#applying-the-refinement-loop-here) (interview only what the research cannot resolve). Output: `REVIEW.md` with an `Approved as scoped` verdict and a scope decision.
-4. **Prompt-ingestion Stage 4 — Fully informed dossier creation or restructure.** After prompt-ingestion.instructions.md Stage 3 records `Approved as scoped` and locks the scope direction, enter optional late-planning/entity-preparation and dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) to produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. Each work package carries an outcome, a non-goal, and a validation method. Only necessary planning ticket/spec preparation is permitted here under the exception below; leave those entities in their normal planning/draft states while prompt-ingestion.instructions.md Stage 5 may still reopen decisions. No implementation, activation, execution dispatch or mission mutation is allowed. When a reviewed concern needs adversarial testing before it can be trusted, dispatch [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) first and hand its synthesis to the Roadmap Authoring Agent as input evidence — Structured Research Agent has no `edit` tool and must never be the one writing the dossier or `ROADMAP.md` itself.
+4. **Prompt-ingestion Stage 4 — Fully informed dossier creation or restructure.** After prompt-ingestion.instructions.md Stage 3 records `Approved as scoped` and locks the scope direction, enter optional late-planning/entity-preparation and dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) to produce, in one informed pass: the numbered work-package documents (`01-...md`, `02-...md`, ...), a draft `ROADMAP.md`, and a draft `README.md` index. For native runs, use named planning operations and their read-only projections instead of authoring those projection files. Each work package carries an outcome, a non-goal, and a validation method. Only necessary planning ticket/spec preparation is permitted here under the exception below; leave those entities in their normal planning/draft states while prompt-ingestion.instructions.md Stage 5 may still reopen decisions. No implementation, activation or execution dispatch is allowed; Mission mutations are limited to native planning. When a reviewed concern needs adversarial testing before it can be trusted, dispatch [Structured Research Agent](https://github.com/mankinskin/context-engine/blob/main/.agents/agents/structured-research.agent.md) first and hand its synthesis to the Roadmap Authoring Agent as input evidence — Structured Research Agent has no `edit` tool and must never be the one writing the dossier or `ROADMAP.md` itself.
 5. **Prompt-ingestion Stage 5 — Second informed review + interview loop.** Owned by [intent-refinement.instructions.md](intent-refinement.instructions.md). Critique the drafted dossier and `ROADMAP.md` for anything newly ambiguous or low-confidence that the drafting pass surfaced, and interview the requester to close it. This loop replaces a separate traceability-checklist stage — coverage already lives in `ARTIFACTS.md` and `ROADMAP.md`, and open questions get resolved by interview, not logged and left open.
 6. **Prompt-ingestion Stage 6 — Adjustments and roadmap compilation (iterative).** Dispatch the [Roadmap Authoring Agent](https://github.com/mankinskin/meta-workspace/blob/main/.agents/agents/roadmap-authoring.agent.md) again to apply resolved answers and finish entity content preparation while decisions remain in planning/draft. Then dry-run and refine `ROADMAP.md`/`README.md`/the work packages until no blocker or open question surfaces; perform the final formal review after the dry run. Once all decisions are locked and both current-revision gates pass, advance necessary tickets to `ready` and specs to `approved` through their owning lifecycle tools; do not set specs to `implemented` or `verified` during planning. Read every entity back by id and record its state. Any content or decision change invalidates both gates; repeat them before requesting approval. Both passing gates, zero open questions and ready entity read-backs are prompt-ingestion Stage 6's exit condition. See "Roadmap Compilation and Versioning" and "Roadmap Improvement Loop" below for the procedures and iteration rule.
 
@@ -147,6 +245,11 @@ flag.
 
 **Decide explicitly, in two steps, before writing any dossier file.** A shared topic, component, file, tool, or the same session never justifies extending an existing dossier on its own.
 
+For a native continuation, resolve the exact Session intake identity and
+accepted Mission through the named tools, with the same ownership/takeover
+gate; do not discover a Mission by title resemblance. The classic folder
+resumption and naming rules below do not create folders for fresh native input.
+
 **Step 1 — is there an active dossier?** Two sessions have in practice worked on similar topics in parallel, and a fresh session reused another session's dossier folder by topic resemblance, collapsing two isolated dossiers into one. An existing dossier is therefore active only when at least one of these conditions holds, evaluated strictly against the **current session**:
 
 1. This session's own conversation history shows it already created or resumed that exact dossier folder earlier in this session, or
@@ -183,6 +286,9 @@ For an authorized takeover, read the prior owner from the dossier's handover rec
 **Iteration rule**: `ROADMAP.md` is expected to be revised as research deepens or execution surfaces new information. Never overwrite a prior iteration in place. Before writing an improved version, rename the existing `ROADMAP.md` to a versioned name (`ROADMAP.v1.md`, `ROADMAP.v2.md`, ...) inside the same dossier folder, then write the new, more refined content to `ROADMAP.md`. Only one file is ever named `ROADMAP.md` — it is always the most current, most refined iteration. The dossier's `README.md` index must point at `ROADMAP.md`, not at a versioned snapshot.
 
 ## Mission-backed execution handoff
+
+This is **explicit classic dossier migration only**, not native planning or
+an automatic fallback. Native new runs follow the managed handoff above.
 
 prompt-ingestion.instructions.md Stages 1–6 keep the transcript dossier as planning evidence and do not create or
 mutate a mission. Before the requester approves execution, the current
@@ -313,11 +419,12 @@ ownership or planning issue; do not silently omit it. If no planning entity is
 needed, record that and treat the entity-readiness condition as satisfied.
 
 This exception does not authorize implementation, activation, execution
-dispatch, mission mutation, external-service changes, or changes to unrelated
+dispatch, mission mutation outside native planning, external-service changes, or changes to unrelated
 or active entities. A necessary change to an active entity is execution work,
 not this exception. Never invent state flags or approval machinery. The
 requester's final `approve` accepts the ready plan and authorizes execution;
-do not start execution or bind a mission before that outcome.
+do not start execution before that outcome. Only classic dossier migration
+waits until approval to bind a Mission; native planning already owns one.
 
 - Use the ticket threshold from
   [`AGENTS.md`](../../../AGENTS.md) and
@@ -343,7 +450,7 @@ do not start execution or bind a mission before that outcome.
 The dossier produced by this pipeline is a bounded research-and-scoping artifact, not an implementation. State this explicitly in the dossier's `README.md`:
 
 - prompt-ingestion.instructions.md Stages 1, 2, 3, and 5 (denoise, research/inventory, and both informed review + interview loops) are read-only with respect to the codebase and the ticket/spec store: they may read source, docs, tickets, and specs, and may write dossier notes (`REVIEW.md`, interview records), but do not mutate tickets or specs, and do not change workflow or store state.
-- prompt-ingestion.instructions.md Stages 4 and 6 may write dossier artifacts and, only after prompt-ingestion.instructions.md Stage 3's scope decision is locked, prepare necessary planning tickets/specs under the exception above. Keep entities in planning/draft while decisions remain open; after all decisions and both review gates pass, confirm incomplete tickets are `ready` and specs are `approved` before requesting final approval. Reused completed entities must have read-back evidence that their outcome satisfies the plan; active or blocked required entities prevent approval unless resolved through their owning process. Dry run and formal review themselves are review-only. All repository file changes (code, documentation, or configuration), activation, mission mutation, external-service changes and other execution side effects begin only after explicit `approve`.
+- prompt-ingestion.instructions.md Stages 4 and 6 may write dossier artifacts and, only after prompt-ingestion.instructions.md Stage 3's scope decision is locked, prepare necessary planning tickets/specs under the exception above. Keep entities in planning/draft while decisions remain open; after all decisions and both review gates pass, confirm incomplete tickets are `ready` and specs are `approved` before requesting final approval. Reused completed entities must have read-back evidence that their outcome satisfies the plan; active or blocked required entities prevent approval unless resolved through their owning process. Dry run and formal review themselves are review-only. Native Mission intake/planning follows the exception above. All repository file changes (code, documentation, or configuration), activation, lifecycle execution, external-service changes and other execution side effects begin only after the route's exact requester approval.
 - `ROADMAP.md` is a scoping and sequencing artifact, not a spec. It links necessary prepared planning entities without duplicating their bodies; additional ticket/spec work outside the preparation exception remains approved execution work.
 
 This mirrors [escalation-gate.instructions.md](escalation-gate.instructions.md) and [phase-separation.instructions.md](phase-separation.instructions.md): discovery/interview/review happen before implementation, and this pipeline is exactly that discovery phase for a raw prompt. Once an approved roadmap ships, [roadmap-execution.instructions.md](roadmap-execution.instructions.md) governs its external side effects and dependency-ordered waypoints.

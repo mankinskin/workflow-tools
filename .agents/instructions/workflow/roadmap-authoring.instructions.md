@@ -8,6 +8,27 @@ A roadmap is read cold by a fresh session and reread many times during execution
 
 ## Roadmap State And Waypoint Ownership
 
+For native new-run planning, author through the named Mission planning tools
+under [Native new-run planning](prompt-ingestion.instructions.md#native-new-run-planning).
+The returned managed `mission_dir` holds working research/interview/review evidence;
+`source_path` is the domain-owned source file, never a working directory.
+generated `ROADMAP.md` and Parts are read-only projections of the
+revision-checked plan, not manually written dossier files. Apply this same
+outcome, scoping, dependency, validation and checkpoint contract to that plan.
+Create the first complete waypoint before goal/requirement edits of an empty
+intake draft. Semantic revisions invalidate approval and both current-revision
+review gates; planning edits never authorize execution.
+The classic dossier structure and versioning below remain compatibility
+rules, not instructions to migrate an active route.
+
+For native planning, persist both review gates with
+`mission_plan_record_review` before preparing the requester challenge. Record
+the cold walkthrough and formal review against the same current revision,
+plan digest and evidence identity; the formal review must cite the cold
+review's `cold_review_id` and a distinct reviewer. Read both records back
+through `mission_plan_get`. These review records establish plan readiness,
+not requester authority.
+
 Before a roadmap is marked complete, closed, or handed off, the roadmap must explicitly state its aggregate state and the current waypoint's state. A roadmap is not ready for closure when the reader must infer whether the whole route is still blocked, in flight, or complete.
 
 Required state statement for every review or closure decision:
