@@ -1,0 +1,10 @@
+{
+  "id": "mission-output-history-snapshot-fixture",
+  "title": "Byte-preserving revision-history snapshot fixture naming repair",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission-api --all-features --test revision_history_approval_event_contract -j 1",
+  "links": {
+    "ticket_ids": [
+      "d153d68f-50f0-49f4-96e6-e2e0258d1ef6"
+    ]
+  }
+}

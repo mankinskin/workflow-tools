@@ -1,7 +1,7 @@
 id = "ec2f0709-180f-4ccf-b692-601796f33e05"
 created_at = "2026-10-29T21:58:44.226822101+00:00"
 title = "Mission-native New-run Workflow Routing and Guidance"
-state = "approved"
+state = "implemented"
 component = "mission.native-planning.native-routing"
 parent = "92c78a48-cad8-4c08-8bba-4a523b717842"
 related_tickets = "d153d68f-50f0-49f4-96e6-e2e0258d1ef6"

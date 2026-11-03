@@ -1,7 +1,7 @@
 id = "d153d68f-50f0-49f4-96e6-e2e0258d1ef6"
 created_at = "2026-10-29T21:58:44.316736997+00:00"
 title = "[mission-native][W8] Mission-native New-run Workflow Routing and Guidance"
-state = "in-review"
+state = "done"
 component = "mission.native-planning.native-routing"
 depends_on = ["aef38836-6230-4798-96bc-ac84c5e3e105"]
 effort = "8000"
