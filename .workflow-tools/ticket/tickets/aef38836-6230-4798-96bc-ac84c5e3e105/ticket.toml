@@ -1,7 +1,7 @@
 id = "aef38836-6230-4798-96bc-ac84c5e3e105"
 created_at = "2026-10-29T21:58:42.841809941+00:00"
 title = "[mission-native][W6] Discoverable Mission-native MCP Tool Contracts"
-state = "in-review"
+state = "done"
 component = "mission.native-planning.named-mcp"
 depends_on = ["9fcad997-7233-4305-9e69-534d4813ee2e"]
 effort = "10000"
