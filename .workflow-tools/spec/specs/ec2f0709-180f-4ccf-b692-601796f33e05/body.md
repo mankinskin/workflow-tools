@@ -22,7 +22,7 @@ The full source scope and earlier explicit lifecycle/trait decisions are preserv
 ## Reading Order
 
 1. [Composition root](../92c78a48-cad8-4c08-8bba-4a523b717842/body.md) — shared invariants and component map.
-2. [Owning Part](../../../../../transcripts/29-10-2026_mission-native-mcp-planning/07-native-workflow-switch.md) — execution package, not a competing behavior authority.
+2. [Owning Part](../../../../../transcripts/29-10-2026_mission-native-mcp-planning/08-native-workflow-switch.md) — current display W8, retaining original W7 criterion/Ticket identity.
 3. [Mission Domain](../38a8ea3a-9a6a-4a0f-bc5a-97dc9ba670fc/body.md) — stable identity, serial order and foreign authority.
 
 - Consumer W7 -> [provider W6](../551422d7-8a0f-4711-8642-a4c367649361/body.md) -> MN-W6-01, MN-W6-02, MN-W6-03, MN-W6-04, MN-W6-05.
@@ -34,6 +34,18 @@ The full source scope and earlier explicit lifecycle/trait decisions are preserv
 New intake defaults to Session-to-Mission MCP planning before exact requester approval while existing classic sources remain readable and opt-in migration stays explicit. This new behavior slice is not already guaranteed by its historical providers.
 
 ## Interfaces And Dependencies
+
+The 2026-11-03 requester-approved scope replan inserts a bounded
+[review-recording provider repair](../../../../../transcripts/29-10-2026_mission-native-mcp-planning/07-record-review-transport.md)
+before this outcome. Its RR-01–RR-05 post-state is required: additive named
+`mission_plan_record_review` can durably record cold/formal reviews through
+W4 with snapshot/CAS/replay checks, without minting requester authority.
+Fresh native discovery requires it plus all 19 historical W6 tools. Existing
+W6 completion remains historical; this Spec does not reopen its acceptance.
+See the [revision mapping](../../../../../transcripts/29-10-2026_mission-native-mcp-planning/REVISION-MAPPING.md):
+current W8 owns this original `MN-W7-*` contract, and current W9 owns the
+original pilot. Six draft routing tests passed, but the missing review
+transport means this contract is not yet implemented end to end.
 
 Verified inventory from the bounded guidance research:
 
@@ -101,7 +113,7 @@ Dependencies consume provider outcomes/criteria; they do not transfer provider o
 
 - **MN-W7-01**: Edit parent .agents/prompts/{refine-ingest,execute-ingest,execute-roadmap}.prompt.md and product .agents/instructions/workflow/{prompt-ingestion,roadmap-authoring,roadmap-execution}.instructions.md plus tools/roadmap-route.py and install/README.md. Both .claude/commands links alias .agents/prompts; do not generate phantom .github guidance or a rule-target registry. Installed bodies are runtime guidance-install closure, not COMMANDS.md or artifact-catalog projections. Preserve planning-before-approval and no-execution-before-approval.
 - **MN-W7-02**: Retain input cleaning/ambiguity clarification, bounded research, cold walkthrough, distinct formal review and exact requester decision gates. Route source capture through Session intake and use Mission-owned managed source/projection locations instead of manually scaffolded transcript folders.
-- **MN-W7-03**: Require W6 capability/version discovery. Missing native capabilities or requester authority return actionable failures with no silent classic fallback or hand-written lifecycle script requirement.
+- **MN-W7-03**: Require W6 capability/version discovery plus additive `mission_plan_record_review` from the inserted provider repair. A fresh MCP-only plan records both current cold/formal reviews through the named operation before preparing the exact host challenge; no Rust-API fixture review seeding substitutes for this path. Missing native capabilities or requester authority return actionable failures with no silent classic fallback or hand-written lifecycle script requirement.
 - **MN-W7-04**: Preserve existing classic dossiers and active routes unchanged as provenance; mass migration, archive deletion and unsolicited active-route replacement are excluded. Explicit migration uses its existing validated separate route.
 - **MN-W7-05**: Create mission/crates/mission/tests/fixtures/mission-native-guidance.toml with item mission-native-route selecting the six canonical Markdown paths from the explicit meta source root, and mission/crates/mission/tests/mission_native_routing.rs. Exercise install-ctl guidance plan/install from its separate manifest against disposable repo-scope targets both with initialized product submodule and without one. Require nonblocking closure, correct ownership destinations, rewritten-link integrity, source/installed routing parity, unchanged second install and alias correctness where present. Existing roadmap-route.py accepts classic/mission-backed only; add native-new-run and test all three modes without altering existing modes. Cover fresh native entry, stop-before-approval, missing capability and no manual fallback. Commit product sources/tests/profile first, then parent prompts and gitlink; no runtime installation bodies committed.
 
@@ -142,7 +154,10 @@ request. Execution must register the owning guard and criterion/Ticket reference
 through test tools before recording the new behavior's results. Approval of a
 Spec does not mean implemented or verified. Positions/code_ref values are above.
 
-Owning implementation [Ticket](../../../ticket/tickets/d153d68f-50f0-49f4-96e6-e2e0258d1ef6/ticket.toml). State is planning until final review and supported lifecycle advancement; later read-back is in the dossier ledger.
+Owning implementation [Ticket](../../../ticket/tickets/d153d68f-50f0-49f4-96e6-e2e0258d1ef6/ticket.toml).
+Its original W7 execution is on hold while this scoped replan passes renewed
+reviews and obtains separate execution approval. No implementation/verification
+or accepted installation is asserted by the draft tests.
 
 ## Scope
 
