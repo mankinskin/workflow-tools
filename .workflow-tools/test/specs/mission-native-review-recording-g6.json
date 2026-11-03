@@ -1,0 +1,15 @@
+{
+  "id": "mission-native-review-recording-g6",
+  "title": "Revision-bound named review recording RR-01 through RR-05",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml --locked -p mission --all-features -j 1",
+  "detail": "Current W7 single-session repair; original W6 remains done. Includes explicit named fresh review-to-challenge, replay, lock and legacy tests.",
+  "links": {
+    "acceptance_criterion_ids": [
+      "RR-01",
+      "RR-02",
+      "RR-03",
+      "RR-04",
+      "RR-05"
+    ]
+  }
+}
