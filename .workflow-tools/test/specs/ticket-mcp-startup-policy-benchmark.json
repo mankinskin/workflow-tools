@@ -1,0 +1,7 @@
+{
+  "id": "ticket-mcp-startup-policy-benchmark",
+  "title": "Warm full versus incremental Ticket workspace policy reconciliation",
+  "command": "cargo bench --manifest-path workflow-tools/Cargo.toml -p ticket-api --bench fixture_scan --locked -j 1 -- fixture_startup_policy --sample-size 10 --warm-up-time 1 --measurement-time 2",
+  "detail": "Optimized Criterion benchmark on disposable generated fixture. Compares policy reconciliation, not end-to-end VS Code startup.",
+  "links": {}
+}

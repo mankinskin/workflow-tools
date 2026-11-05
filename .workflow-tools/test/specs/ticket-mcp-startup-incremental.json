@@ -1,0 +1,7 @@
+{
+  "id": "ticket-mcp-startup-incremental",
+  "title": "Ticket MCP startup diagnostics and incremental reconciliation",
+  "command": "cargo test --manifest-path workflow-tools/Cargo.toml -p ticket -p ticket-api --all-features --locked -j 1 -- --exact --skip ui",
+  "detail": "Standalone Ticket MCP startup optimization, not Mission G6. Excludes three previously documented offline trybuild ui tests. Covers warm unchanged rows, description changes, deletion, root discovery, ignore/reinclude, index recovery, stdio protocol and startup diagnostics.",
+  "links": {}
+}

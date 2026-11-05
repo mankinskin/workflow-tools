@@ -424,7 +424,7 @@ version = "0.1.0"
 dependencies = [
  "audit-api",
  "memory-kernel",
- "rmcp",
+ "rmcp 0.14.0",
  "rusqlite",
  "serde",
  "serde_json",
@@ -574,6 +574,12 @@ name = "base64"
 version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
+
+[[package]]
+name = "base64"
+version = "0.23.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac07cdecf99051d9a5238b80f35af32cdeba5b336e55d957b318b50137e18da5"
 
 [[package]]
 name = "bincode"
@@ -2188,7 +2194,7 @@ dependencies = [
  "doc-http",
  "markdown",
  "regex",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "serde_yaml",
@@ -2519,7 +2525,7 @@ dependencies = [
  "chrono",
  "feedback-api",
  "memory-kernel",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "tempfile",
@@ -3771,6 +3777,8 @@ checksum = "d466e9454f08e4a911e14806c24e16fba1b4c121d1ea474396f396069cf949d9"
 dependencies = [
  "equivalent",
  "hashbrown 0.17.1",
+ "serde",
+ "serde_core",
 ]
 
 [[package]]
@@ -4411,7 +4419,7 @@ dependencies = [
  "once_cell",
  "regex",
  "reqwest",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "tempfile",
@@ -4761,7 +4769,7 @@ dependencies = [
  "markdown-links",
  "memory-kernel",
  "mission-api",
- "rmcp",
+ "rmcp 0.14.0",
  "schemars",
  "serde",
  "serde_json",
@@ -5355,7 +5363,7 @@ name = "peek-mcp"
 version = "0.1.0"
 dependencies = [
  "peek-api",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "tempfile",
@@ -6171,7 +6179,7 @@ dependencies = [
  "futures",
  "pastey",
  "pin-project-lite",
- "rmcp-macros",
+ "rmcp-macros 0.14.0",
  "schemars",
  "serde",
  "serde_json",
@@ -6179,6 +6187,30 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+]
+
+[[package]]
+name = "rmcp"
+version = "3.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8be15815186873ea063bf005011d16c356804973489e40c39116ae3a2878d1f"
+dependencies = [
+ "base64 0.23.1",
+ "chrono",
+ "futures",
+ "indexmap",
+ "libc",
+ "pastey",
+ "pin-project-lite",
+ "rmcp-macros 3.8.0",
+ "schemars",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.20",
+ "tokio",
+ "tokio-util",
+ "tracing",
+ "uuid",
 ]
 
 [[package]]
@@ -6195,6 +6227,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "rmcp-macros"
+version = "3.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8b0748e054a5f5598b3213cf72099ae6b2745ba4d996c59ccf455150a7dbb839"
+dependencies = [
+ "darling 0.24.1",
+ "proc-macro2",
+ "quote",
+ "serde_json",
+ "syn 3.0.4",
+]
+
+[[package]]
 name = "rule"
 version = "0.1.0"
 dependencies = [
@@ -6203,7 +6248,7 @@ dependencies = [
  "memory-fixtures",
  "memory-kernel",
  "pretty_assertions",
- "rmcp",
+ "rmcp 0.14.0",
  "rule-api",
  "serde",
  "serde_json",
@@ -6746,7 +6791,7 @@ dependencies = [
  "memory-fixtures",
  "memory-kernel",
  "pretty_assertions",
- "rmcp",
+ "rmcp 0.14.0",
  "rule-api",
  "serde",
  "serde_json",
@@ -7042,7 +7087,7 @@ dependencies = [
  "memory-kernel",
  "pretty_assertions",
  "proc-macro2",
- "rmcp",
+ "rmcp 0.14.0",
  "rule-api",
  "serde",
  "serde_json",
@@ -7600,7 +7645,7 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "memory-kernel",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "tempfile",
@@ -7673,7 +7718,7 @@ dependencies = [
  "memory-fixtures",
  "memory-kernel",
  "pretty_assertions",
- "rmcp",
+ "rmcp 3.8.0",
  "serde",
  "serde_json",
  "shell-words",
@@ -8216,7 +8261,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "clap",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "thiserror 2.0.20",
@@ -8532,7 +8577,7 @@ dependencies = [
  "hyper",
  "hyper-util",
  "memory-kernel",
- "rmcp",
+ "rmcp 0.14.0",
  "serde",
  "serde_json",
  "tempfile",

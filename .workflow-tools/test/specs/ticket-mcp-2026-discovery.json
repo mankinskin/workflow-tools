@@ -1,0 +1,11 @@
+{
+  "id": "ticket-mcp-2026-discovery",
+  "title": "Ticket MCP 2026 discovery and legacy interoperability",
+  "command": "cargo test --manifest-path workflow-tools/ticket/Cargo.toml --features mcp --locked -j 1 --test integration_stdio_discovery --test integration_capabilities_mcp --test integration_update_mcp --test integration_move_mcp",
+  "detail": "Ancillary Ticket MCP readiness fix; not Mission W6/G6 execution.",
+  "links": {
+    "ticket_ids": [
+      "aef38836-6230-4798-96bc-ac84c5e3e105"
+    ]
+  }
+}
