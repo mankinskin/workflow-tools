@@ -68,3 +68,8 @@
 	url = https://github.com/mankinskin/install.git
 	branch = main
 	update = merge
+[submodule "crane-cli"]
+	path = crane-cli
+	url = https://github.com/mankinskin/crane-cli.git
+	branch = main
+	update = merge

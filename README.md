@@ -36,6 +36,12 @@ For local repository checks, initialize the nested workspace repositories first
 from this repository root with `git submodule update --init --recursive`; the
 Cargo workspace includes crates stored in those submodules.
 
+`crane-cli` is maintained in [its own repository](https://github.com/mankinskin/crane-cli)
+and consumed through the `crane-cli/` submodule. The Cargo package remains
+`crane-cli` and the installer artifact/binary remains `crane`. Run
+`cargo test -p crane-cli --locked` here, or follow its
+[standalone installation instructions](crane-cli/INSTALL.md).
+
 ```bash
 cargo run --manifest-path install/install-ctl/Cargo.toml -- catalog --check
 ```

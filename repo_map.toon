@@ -4,7 +4,7 @@ usage: Read this before opening source files for structural orientation
 refresh_command: "cargo run -p peek-cli -- . --repo-map --output repo_map.toon"
 workspace:
   root: "/home/linus/git/meta-workspace/workflow-tools"
-top_level_dirs[19]: audit,"contract-reference",doc,feedback,install,interview,log,"memory-kernel",mission,"openrouter-auth","path-render-inventory",peek,rule,session,spec,test,ticket,tools,"viewer-api"
+top_level_dirs[20]: audit,"contract-reference","crane-cli",doc,feedback,install,interview,log,"memory-kernel",mission,"openrouter-auth","path-render-inventory",peek,rule,session,spec,test,ticket,tools,"viewer-api"
 crates:
   name: crates
   kind: dir
@@ -17,10 +17,15 @@ crates:
         - name: crates
           kind: dir
           path: crates/audit/crates
-          children[3]{name,kind,path,note}:
+          children[4]{name,kind,path,note}:
             "audit-api",dir,"crates/audit/crates/audit-api","crate=audit-api"
             "audit-cli",dir,"crates/audit/crates/audit-cli","crate=audit-cli"
             "audit-mcp",dir,"crates/audit/crates/audit-mcp","crate=audit-mcp"
+            "markdown-links",dir,"crates/audit/crates/markdown-links","crate=markdown-links"
+    - name: "crane-cli"
+      kind: dir
+      path: "crates/crane-cli"
+      note: "crate=crane-cli"
     - name: doc
       kind: dir
       path: crates/doc
@@ -173,15 +178,6 @@ crates:
               path: "crates/ticket/ticket-viewer/frontend"
               children[1]{name,kind,path,note}:
                 dioxus,dir,"crates/ticket/ticket-viewer/frontend/dioxus","crate=ticket-viewer-dioxus"
-    - name: tools
-      kind: dir
-      path: crates/tools
-      children[1]:
-        - name: cli
-          kind: dir
-          path: crates/tools/cli
-          children[1]{name,kind,path,note}:
-            "crane-cli",dir,"crates/tools/cli/crane-cli","crate=crane-cli"
     - name: "viewer-api"
       kind: dir
       path: "crates/viewer-api"
